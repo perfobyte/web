@@ -1,0 +1,1 @@
+/run/current-system/sw/bin/cc CMakeFiles/i.dir/src/i.c.o -o i  /home/dencelman/gt/space/app/perfobyte/code/cdn/static/../../../../../general/pkg/c/http/build/libhttp.a /home/dencelman/gt/space/app/perfobyte/code/cdn/static/../../../../../general/pkg/c/html/build/libhtml.a

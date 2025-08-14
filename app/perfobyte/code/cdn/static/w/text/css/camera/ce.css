@@ -1,0 +1,46 @@
+
+#cm_ce {
+    height:64px;
+    width:128px;
+
+    bottom:64px;
+
+    left:calc(50% - 64px);
+
+    background-color:white;
+    border-radius:64px;
+
+    opacity:0;
+    pointer-events:auto;
+    transition:opacity .2s;
+    z-index:0;
+
+    display:block;
+}
+
+#cm_ce > button {
+    position:absolute;
+    border-radius:100%;
+    
+    top:8px;
+    
+    height:48px;
+    width:48px;
+    
+    color:black;
+    display:inline-block;
+
+    &:last-child {left:64px;}
+    &:first-child {left:16px;}
+
+    &:hover {
+        background-color:var(--gray-200);
+        color:var(--nv-fc-c);
+    }
+    
+    & svg {
+        margin:auto;
+        width:24px;
+        height:24px;
+    }
+}

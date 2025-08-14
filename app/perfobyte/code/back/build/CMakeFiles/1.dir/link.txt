@@ -1,0 +1,1 @@
+/run/current-system/sw/bin/cc CMakeFiles/1.dir/src/1.c.o -o 1  /home/dencelman/gt/space/app/perfobyte/code/back/../../../../general/pkg/c/http/build/libhttp.a /home/dencelman/gt/space/app/perfobyte/code/back/../../../../general/pkg/c/html/build/libhtml.a

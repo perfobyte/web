@@ -1,0 +1,2 @@
+/run/current-system/sw/bin/ar qc libhtml.a CMakeFiles/html.dir/src/replace.c.o
+/run/current-system/sw/bin/ranlib libhtml.a

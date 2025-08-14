@@ -1,0 +1,2 @@
+/run/current-system/sw/bin/ar qc libhttp.a CMakeFiles/http.dir/src/init.c.o CMakeFiles/http.dir/src/method.c.o CMakeFiles/http.dir/src/path.c.o CMakeFiles/http.dir/src/query_path.c.o
+/run/current-system/sw/bin/ranlib libhttp.a

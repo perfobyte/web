@@ -1,0 +1,63 @@
+
+
+
+#camera.c.d {
+    & > #cm_pl {
+        opacity:1;
+    }
+    & > #cm_pl.hi {
+        opacity:0;
+    }
+}
+
+#cm_pl {
+    opacity:0;
+    transition:.2s opacity;
+    position:absolute;
+    left:calc(50% - 50px);
+    top:calc(50% - 50px);
+    &>svg {
+        color:white;
+    }
+    &,&>svg{
+        width:100px;
+        height:100px;
+    }
+}
+
+#camera.d.f {
+    & > #cm_pa {
+        opacity:1;
+        pointer-events:auto;
+    }
+    
+    & #cm_sh > button > div {
+        width:24px;
+        height:24px;
+        left:20px;
+        top:20px;
+        border-radius:4px;
+    }
+    &>#cm_ts{
+        background-color:rgb(255, 0, 0, .8);
+    }
+    & > #cm_au,
+    & > #cm_aud,
+    & > #cm_sw,
+    & > #cm_ca,
+    & > #cm_mo {
+        pointer-events:none;
+        opacity:0;
+    }
+}
+
+#camera.d #cm_sh > button > div {
+    background-color:red;
+}
+
+#camera.d #cm_au,
+#camera.d #cm_aud,
+#camera.d #cm_ts {
+    pointer-events:auto;
+    opacity:1;
+}

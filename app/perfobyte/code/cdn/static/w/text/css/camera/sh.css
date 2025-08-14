@@ -1,0 +1,46 @@
+
+
+#cm_sh {
+
+    bottom:64px;
+    left:calc(50% - 32px);
+    z-index:20;
+
+    &>button>div{
+        transition:
+            width .2s,
+            height .2s,
+            left .2s,
+            top .2s,
+            border-radius .2s,
+            background-color .2s
+        ;
+        position:absolute;
+        width:56px;
+        height:56px;
+        border-radius:28px;
+        background-color:white;
+        top:4px;
+        left:4px;
+    }
+
+    &>button{
+        display:block;
+        position:relative;
+        background-color:white;
+        width:64px;
+        height:64px;
+        pointer-events:auto;
+        border-radius:32px;
+    }
+
+    &.b > button {
+        pointer-events:none;
+    }
+}
+
+#camera.c #cm_ce {
+    opacity:1;
+    pointer-events:fill;
+    z-index:50;
+}

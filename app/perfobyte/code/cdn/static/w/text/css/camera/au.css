@@ -1,0 +1,101 @@
+
+
+#cm_aud > div > h1 {
+    font-size:18px;
+    
+    height:20px;
+    margin:10px 0 10px 10px;
+}
+
+#cm_aud > div > ul > li > button {
+    height:40px;
+
+    width:100%;
+    font-size:14px;
+    display:flex;
+    flex-direction:row;
+    &:hover{
+        background-color:var(--gray-200);
+    }
+    &>div{
+        margin-top:15px;
+        margin-left:15px;
+        width:10px;
+        height:10px;
+        background:none;
+        border-radius:10px;
+    }
+    &>*{
+        display:inline-block;
+    }
+    &.a > div {
+        background:var(--nv-fc-c);
+    }
+    &.a {
+        color:var(--inp-fc-c);
+    }
+}
+
+#cm_aud > div > ul > li > button > span {
+    font-size:14px;
+    text-align:left;
+    display:block;
+    width:70%;
+    margin:0 0 0 15px;
+    text-overflow:ellipsis;
+    overflow:hidden;
+    line-height:40px;
+}
+
+#cm_aud > div > ul {
+    list-style:none;
+    margin-bottom:10px;
+    width:100%;
+}
+
+#cm_aud {
+    top:80px;
+    left:20px;
+    height:400px;
+    
+    background:rgba(255, 255, 255, 1);
+
+    border-radius:10px;
+    outline:1px solid gray;
+
+    position:relative;
+
+    overflow:hidden;
+    display:none;
+
+    
+
+    &.a {
+        display:block;
+    }
+
+    &>div {
+        overflow-x:hidden;
+        overflow-y:scroll;
+    }
+
+    &>div{
+        height:100%;
+        width:256px;
+    }
+
+    &>div>ul{
+        margin-top:10px;
+        display:block;
+        padding:0;
+    }
+}
+
+#cm_au {
+    height:40px;
+    width:40px;
+
+    left:20px;
+    top:20px;
+    color:white;
+}

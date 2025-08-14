@@ -1,0 +1,3 @@
+/home/dencelman/gt/pkg/c/http/build/CMakeFiles/http.dir
+/home/dencelman/gt/pkg/c/http/build/CMakeFiles/edit_cache.dir
+/home/dencelman/gt/pkg/c/http/build/CMakeFiles/rebuild_cache.dir

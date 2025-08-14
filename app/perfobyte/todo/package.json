@@ -1,0 +1,7 @@
+{
+  "name": "modules",
+  "version": "1.0.0",
+  "main": "i.js",
+  "type": "module",
+  "license": "ISC"
+}

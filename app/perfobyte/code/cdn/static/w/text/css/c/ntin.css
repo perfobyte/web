@@ -1,0 +1,60 @@
+
+#ntin_bl {
+    width:100%;
+    height:100%;
+    position:absolute;
+    left:0;
+    top:0;
+
+    transition:.2s opacity;
+
+    opacity:0;
+    pointer-events:none;
+
+    &.a {
+        opacity:1;
+    }
+}
+
+#ntin_ts {
+    position:absolute;
+
+    right:88px;
+    bottom:80px;
+
+    width:64px;
+    height:32px;
+
+    background:rgb(208, 1, 1);
+    color:white;
+
+    text-align:center;
+    line-height:32px;
+    font-weight:600;
+    font-size:16px;
+
+    border-radius:20px;
+}
+
+#ntin {
+    overflow:hidden;
+    z-index:60;
+    left: calc(50% - 128px);
+    border-radius:128px;
+    position:absolute;
+
+    bottom:100px;
+
+    &>video {
+        position:absolute;
+        top:0;
+        background:black;
+    }
+
+    &,&>video{
+        
+        
+        width:256px;
+        height:256px;
+    }
+}

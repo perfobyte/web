@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>404 | Perfobyte</title>
+    </head>
+    <body>
+        <p
+            style="word-wrap:break-word"
+        >
+            This path not found:<br/>
+        </p>
+
+        <h1 id=a></h1>
+        <h2></h2>
+        <h1 id=b></h1>
+        
+        <script>
+            ((l) => {
+                var s = l.search;
+                return (
+                    (document.getElementById('a')
+                    .textContent = l.pathname),
+
+                    (document.querySelector("h2")
+                    .textContent = s[0]),
+
+                    (document.getElementById('b')
+                    .textContent = s.substring(1))
+                );
+            })(
+                window.location 
+            )
+        </script>
+    </body>
+</html>

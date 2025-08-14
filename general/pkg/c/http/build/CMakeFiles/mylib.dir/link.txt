@@ -1,0 +1,2 @@
+/run/current-system/sw/bin/ar qc libmylib.a CMakeFiles/mylib.dir/src/init.c.o CMakeFiles/mylib.dir/src/method.c.o CMakeFiles/mylib.dir/src/path.c.o
+/run/current-system/sw/bin/ranlib libmylib.a

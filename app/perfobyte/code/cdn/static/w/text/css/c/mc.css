@@ -1,0 +1,46 @@
+
+#rl.f > #mcin,
+#rl.f > #mcin_b {
+    opacity:1;
+}
+
+
+#mcin,
+#mcin_b {
+    transition:.5s opacity;
+    opacity:0;
+}
+
+#mcin{
+    
+    z-index:30;
+    &>span{
+        color:white;
+        font-size:16px;
+        text-align:center;
+        font-weight:bold;
+        user-select:none;
+        position:absolute;
+        line-height:20px;
+        height:20px;
+        width:40px;
+        top:20px;
+        left:10px;
+    }
+}
+
+#mcin_b{
+    z-index:20;
+}
+
+#mcin_b,
+#mcin {
+    position:absolute;
+    right:130px;
+    bottom:90px;
+
+    width:60px;
+    height:60px;
+    background:red;
+    border-radius:40px;
+}
