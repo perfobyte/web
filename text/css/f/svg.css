@@ -1,0 +1,24 @@
+
+
+
+button._180 svg {
+    transition:.2s transform;
+    transform:rotate(0);
+}
+button._180.R svg {
+    transform:rotate(180deg);
+}
+
+
+.i2 > svg:nth-child(2) {
+    display:none;
+}
+
+.i2.TW {
+    &>svg:nth-child(1) {
+        display:none;
+    }
+    &>svg:nth-child(2) {
+        display:block;
+    }
+}

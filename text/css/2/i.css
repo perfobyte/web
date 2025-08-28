@@ -1,0 +1,61 @@
+
+
+
+#c2 > div {
+    width:500px;
+    margin: 40px auto 0 auto;
+}
+
+#c2 > div > * {
+    padding:0;
+}
+
+#c2 > div > * > * {
+    list-style:none;
+    overflow:hidden;
+    transition:.4s height;
+
+    & > .c {
+        font-family:sans-serif;
+        width:90%;
+        margin: 0 auto;
+        padding-bottom:20px;
+    }
+    
+    & > button > img {
+        width:20px;
+        height:20px;
+        margin-top:10px;
+        margin-left:10px;
+        margin-right:10px;
+    }
+    
+    & > button:hover {
+        background-color:var(--gray-100);
+    }
+
+    &.a > button {
+        outline-color:var(--nv-fc-c);
+        background-color:var(--gray-100);
+    }
+
+    & > button {
+        outline:1px solid var(--gray-400);
+        width:100%;
+        display:flex;
+        flex-direction:row;
+        border-radius:10px;
+        height:40px;
+        margin-bottom:10px;
+        outline-offset:-1px;
+    }
+
+    & > button > span {
+        height:20px;
+        line-height:20px;
+        margin-top:10px;
+        margin-left:10px;
+        font-size:15px;
+        white-space:nowrap;
+    }
+}

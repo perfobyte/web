@@ -1,0 +1,28 @@
+
+
+
+#left_panel > .tp {
+    height:50px;
+    
+    width:100%;
+    
+    position:sticky;
+    top:0;
+    
+    z-index:100;
+    background-color:var(--background-color);
+    
+    & > input {
+        direction:ltr;
+        position:absolute;
+        height:40px;
+        top:10px;
+        
+        width:calc(100% - 20px);
+        outline-offset:-1px;
+        
+        display:block;
+        padding:0 10px;
+        font-size:16px;
+    }
+}
