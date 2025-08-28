@@ -4,7 +4,7 @@ export default {
 
     description: "Chat for storage with youself",
 
-    img: "/image/svg+xml/local.svg",
+    id:0,
 
     type: [
         "Personal Knowledge Management",

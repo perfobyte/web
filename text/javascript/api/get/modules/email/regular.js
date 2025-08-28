@@ -2,11 +2,11 @@
 export default {
     name: "Email",
 
+    id:2,
+
     description: (
         "SMTP-based email chat without encryption, with spam and attack protection"
     ),
-
-    img: "/image/svg+xml/email.svg",
 
     type: [
         "Email Client",

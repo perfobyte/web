@@ -11,7 +11,7 @@ export default (
         return (
             bt.addEventListener("click",module_click),
 
-            (bt.querySelector("img").src = (r.t + M.img)),
+            (bt.querySelector("img").src = `/f/image/svg+xml/${M.id}.svg`),
 
             (
                 bt

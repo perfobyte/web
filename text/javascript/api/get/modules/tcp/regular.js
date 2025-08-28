@@ -4,7 +4,7 @@ export default {
 
     description: "Simple chat with no encryption, with multidevice and server storage",
 
-    img: "/image/svg+xml/server.svg",
+    id:1,
 
     type: [
         "centralized messengers with server-side message storage",

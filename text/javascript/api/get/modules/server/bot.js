@@ -2,13 +2,13 @@
 export default {
     name: "Bot",
 
+    id:3,
+
     description: (
         "Cloud-based chat designed for bots and automated workflows, "
         + "messages are routed through central servers via webhooks. "
         + "No end-to-end encryption; suitable for integration and automation."
     ),
-
-    img: "/image/svg+xml/bot.svg",
 
     type: [
         "Communication",
