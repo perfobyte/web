@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>PerfoByte</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        
+        <link rel="icon" href="/f/image/x-icon/favicon.ico" type="image/x-icon">
+        <link href="/f/text/css/0.css" rel="stylesheet" />
+    </head>
+    <body class="hideable">
+
+        <template>
+            <div class="mt"><span></span></div>
+
+            <div data-a="0" class="msg">
+                <span></span>
+            </div>
+
+            <li class="cbr">
+                <button>
+                    <div></div>
+                    <div></div>
+                    <div>
+                        <p></p>
+                        <p></p>
+                    </div>
+                </button>
+            </li>
+            
+            <li class="mdbr" style="height:50px">
+                <button>
+                    <img />
+                    <span></span>
+                </button>
+                <div class="c"></div>
+            </li>
+            <li class="chbr">
+                <button>
+                    <div>
+                        <div>
+                        </div>
+                        <div>
+                            <p></p>
+                            <p>
+                                <span></span>
+                                <span></span>
+                            </p>
+                        </div>
+                    </div>
+                </button>
+            </li>
+
+            <li class="msgti"></li>
+            <li class="msgbr"></li>
+            
+        </template>
+
+        <div id="loader" class="hideable a">
+
+            <form class="pass fcol">
+                <p class="title">Enter the password</p>
+                <label>
+                    <input id="password" placeholder="Password" type="text" maxlength="32">
+                </label>
+                <button>Enter</button>
+            </form>
+
+        </div>
+        
+        <div id="create">
+            <button id="c_c">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M12 3C7.85113 3 4 5.73396 4 10C4 11.5704 4.38842 12.7289 5.08252 13.6554C5.79003 14.5998 6.87746 15.3863 8.41627 16.0908L9.2326 16.4645L8.94868 17.3162C8.54129 18.5384 7.84997 19.6611 7.15156 20.5844C9.56467 19.8263 12.7167 18.6537 14.9453 17.1679C17.1551 15.6948 18.3969 14.5353 19.0991 13.455C19.7758 12.4139 20 11.371 20 10C20 5.73396 16.1489 3 12 3ZM2 10C2 4.26604 7.14887 1 12 1C16.8511 1 22 4.26604 22 10C22 11.629 21.7242 13.0861 20.7759 14.545C19.8531 15.9647 18.3449 17.3052 16.0547 18.8321C13.0781 20.8164 8.76589 22.2232 6.29772 22.9281C5.48665 23.1597 4.84055 22.6838 4.56243 22.1881C4.28848 21.6998 4.22087 20.9454 4.74413 20.3614C5.44439 19.5798 6.21203 18.5732 6.72616 17.4871C5.40034 16.7841 4.29326 15.9376 3.48189 14.8545C2.48785 13.5277 2 11.9296 2 10Z" fill="currentColor"/>
+                    <path d="M12 6C11.4477 6 11 6.44771 11 7V9H9C8.44772 9 8 9.44771 8 10C8 10.5523 8.44772 11 9 11H11V13C11 13.5523 11.4477 14 12 14C12.5523 14 13 13.5523 13 13V11H15C15.5523 11 16 10.5523 16 10C16 9.44772 15.5523 9 15 9H13V7C13 6.44771 12.5523 6 12 6Z" fill="currentColor"/>
+                </svg>
+                <span>Create</span>
+            </button>
+            <button id="c_j">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
+                    <path d="M13.9,44a10,10,0,0,1-7-2.9,9.8,9.8,0,0,1,0-14l7.2-7.2a9.8,9.8,0,0,1,14,0,2,2,0,0,1-2.8,2.8,6,6,0,0,0-8.4,0L9.7,29.9a5.9,5.9,0,0,0,8.4,8.4l4.5-4.7a2,2,0,0,1,2.8,2.8l-4.5,4.7A10,10,0,0,1,13.9,44Z" fill="currentColor"/>
+                    <path d="M26.9,31a10,10,0,0,1-7-2.9,2,2,0,0,1,2.8-2.8,6,6,0,0,0,8.4,0l7.2-7.2a5.9,5.9,0,0,0-8.4-8.4l-4.5,4.7a2,2,0,0,1-2.8-2.8l4.5-4.7a9.9,9.9,0,0,1,14,14l-7.2,7.2A10,10,0,0,1,26.9,31Z" fill="currentColor"/>
+                </svg>
+                <span>Join</span>
+            </button>
+        </div>
+        
+        <div id="ap">
+            <input class="a" type="file" accept="*/*"/>
+            <input class="i" type="file" accept="image/png, image/jpeg">
+            <input class="v" type="file" accept="video/webm, video/mp4" />
+            <canvas></canvas>
+        </div>
+        
+        <main id="c">
+            <div id="c0" class="frow">
+                <div id="left_panel" class="fixed inner_scroll">
+                    <div class="tp">
+                        <input
+                            type="text"
+                            class="df"
+                            id="cs"
+                        />
+                    </div>
+                    <div id="chap">
+                        <ul id="cha"></ul>
+                    </div>
+                </div>
+
+                <div id="chat_menu_0" class="chat_menu ctx_menu hideable">
+                    <div class="info">
+                        <div class="wrinfo">
+                            <div class="t">
+                                Created at 10:20 on 01.01.1970
+                            </div>
+                        </div>
+                    </div>
+                    <div class="acts">
+                        <button class="m_btn" style="--c:var(--warn-red-c)">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M5.755,20.283,4,8H20L18.245,20.283A2,2,0,0,1,16.265,22H7.735A2,2,0,0,1,5.755,20.283ZM21,4H16V3a1,1,0,0,0-1-1H9A1,1,0,0,0,8,3V4H3A1,1,0,0,0,3,6H21a1,1,0,0,0,0-2Z"/>
+                            </svg>
+                            <span>Delete</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div id="c1">
+                <div id="rl">
+                    <div id="msg_menu" class="hideable">
+                        <button id="msg_delete" title="Delete" style="--c:var(--warn-red-c)" class="m_btn">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M5.755,20.283,4,8H20L18.245,20.283A2,2,0,0,1,16.265,22H7.735A2,2,0,0,1,5.755,20.283ZM21,4H16V3a1,1,0,0,0-1-1H9A1,1,0,0,0,8,3V4H3A1,1,0,0,0,3,6H21a1,1,0,0,0,0-2Z"/>
+                            </svg>
+                        </button>
+                        <button id="msg_edit" title="Edit" class="m_btn">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
+                                <path d="M20.1497 7.93997L8.27971 19.81C7.21971 20.88 4.04971 21.3699 3.27971 20.6599C2.50971 19.9499 3.06969 16.78 4.12969 15.71L15.9997 3.84C16.5478 3.31801 17.2783 3.03097 18.0351 3.04019C18.7919 3.04942 19.5151 3.35418 20.0503 3.88938C20.5855 4.42457 20.8903 5.14781 20.8995 5.90463C20.9088 6.66146 20.6217 7.39189 20.0997 7.93997H20.1497Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M21 21H12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </button>
+                    </div>
+                    <div id="msg_select" class="hideable"></div>
+
+                    <div id="chatbar" class="fixed">
+                        <div id="c_av"></div>
+                        <h1></h1>
+                        <div id="cbtns">
+                            <button id="c_a" class="bti" data-tc="0">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                                    <path d="m 14.234375 11.714844 c -0.382813 0.382812 -1 0.382812 -1.386719 0 l -1.039062 -1.039063 l -1.039063 -1.042969 c -0.386719 -0.382812 -0.386719 -1 0 -1.386718 l 0.492188 -0.492188 c -2.035157 -1.109375 -4.5 -1.109375 -6.535157 0 l 0.492188 0.492188 c 0.386719 0.386718 0.386719 1.003906 0 1.386718 l -1.039062 1.042969 l -1.039063 1.039063 c -0.386719 0.382812 -1.003906 0.382812 -1.386719 0 l -1.042968 -1.039063 c -0.957032 -0.957031 -0.957032 -2.511719 0 -3.46875 l 0.347656 -0.347656 c 3.816406 -3.816406 10.054687 -3.816406 13.871094 0 l 0.347656 0.347656 c 0.957031 0.957031 0.957031 2.511719 0 3.46875 z m 0 0" fill="currentColor"/>
+                                </svg>
+                            </button>
+                            <button id="c_v" class="bti" data-tc="1">
+                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="currentColor" viewBox="0 0 45.615 45.615" xml:space="preserve">
+                                    <g>
+                                        <g>
+                                            <path d="M38.277,3.668H7.312C3.266,3.668,0,6.935,0,10.981v23.635c0,4.046,3.266,7.331,7.312,7.331h30.965    c4.046,0,7.338-3.285,7.338-7.331V10.982C45.616,6.935,42.324,3.668,38.277,3.668z M40.475,34.6c0,1.221-0.988,2.209-2.207,2.209    H7.296c-1.22,0-2.209-0.988-2.209-2.209V10.963c0-1.22,0.989-2.209,2.209-2.209h30.972c1.22,0,2.207,0.989,2.207,2.209V34.6z"/>
+                                            <path d="M27.124,23.266c-0.585-1.078-2.149-1.023-2.659,0.092l-0.766,1.677l-4.288-7.89c-0.92-1.692-3.377-1.607-4.177,0.146    L9.123,30.67c-0.707,1.547,0.424,3.303,2.125,3.303h19.2c1.127,0,1.845-1.201,1.306-2.192L27.124,23.266z"/>
+                                            <circle cx="32.428" cy="15.778" r="4.78"/>
+                                        </g>
+                                    </g>
+                                </svg>
+                            </button>
+                            <button id="c_va" class="bti" data-tc="2">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M6 4C3.79086 4 2 5.79086 2 8V16C2 18.2091 3.79086 20 6 20H13C15.2091 20 17 18.2091 17 16V15.7454L18.6621 17.2412C19.9491 18.3996 22 17.4862 22 15.7547V8.24538C22 6.51384 19.9491 5.60045 18.6621 6.75879L17 8.25466V8C17 5.79086 15.2091 4 13 4H6Z" fill="currentColor"/>
+                                </svg>
+                            </button>
+                            <button class="bti" id="c_o">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    fill="currentColor"
+                                    viewBox="0 0 32 32"
+                                >
+                                    <path
+                                        d="M10.429 16a2.715 2.715 0 1 1-5.43 0 2.715 2.715 0 0 1 5.43 0zM16 13.286a2.715 2.715 0 1 0 .001 5.429A2.715 2.715 0 0 0 16 13.286zm8.285 0a2.714 2.714 0 1 0 0 5.428 2.714 2.714 0 0 0 0-5.428z"
+                                    />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div id="msgs">
+                        <div class="time"></div>
+                        <div class="list"></div>
+                    </div>
+                    
+                    <div id="minp" class="fixed">
+                        <div id="minpl">
+                            <button
+                                id="fadd"
+                                class="bti"
+                            >
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                    <line fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="4" x1="12" x2="12" y1="19" y2="5"/>
+                                    <line fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="4" x1="5" x2="19" y1="12" y2="12"/>
+                                </svg>
+                            </button>
+                        </div>
+                        <div
+                            id="ctxt"
+                            contenteditable="true"
+                            class="df"
+                        >
+                            <p></p>
+                        </div>
+                        
+                        <div id="minpr">
+                            <button id="cm" class="bti">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                >
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M10.2902 2C8.49207 2 6.89571 3.15059 6.3271 4.85641C6.26345 5.04736 6.10666 5.19256 5.91139 5.24138L5.10615 5.44269C3.28064 5.89906 2 7.53928 2 9.42097V17C2 19.7614 4.23858 22 7 22H17C19.7614 22 22 19.7614 22 17V9.42097C22 7.53928 20.7194 5.89906 18.8938 5.44268L18.0886 5.24138C17.8933 5.19256 17.7365 5.04736 17.6729 4.85641C17.1043 3.15059 15.5079 2 13.7098 2H10.2902ZM12 11C10.8954 11 10 11.8954 10 13C10 14.1046 10.8954 15 12 15C13.1046 15 14 14.1046 14 13C14 11.8954 13.1046 11 12 11ZM8 13C8 10.7909 9.79086 9 12 9C14.2091 9 16 10.7909 16 13C16 15.2091 14.2091 17 12 17C9.79086 17 8 15.2091 8 13Z" fill="currentColor"/>
+                                </svg>
+                            </button>
+                            <button id="mc" class="bti">
+                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 64 64" enable-background="new 0 0 64 64" xml:space="preserve">
+                                    <path fill="currentColor" d="M32,44c6.629,0,12-5.371,12-12V12c0-6.629-5.371-12-12-12S20,5.371,20,12v20C20,38.629,25.371,44,32,44z"/>
+                                    <path fill="currentColor" d="M52,28c-2.211,0-4,1.789-4,4c0,8.836-7.164,16-16,16s-16-7.164-16-16c0-2.211-1.789-4-4-4s-4,1.789-4,4   c0,11.887,8.656,21.73,20,23.641V60c0,2.211,1.789,4,4,4s4-1.789,4-4v-4.359C47.344,53.73,56,43.887,56,32   C56,29.789,54.211,28,52,28z"/>
+                                </svg>
+                            </button>
+                            <button id="nt" class="bti">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
+                                    <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" fill="currentColor"/>
+                                    <path d="M9.09961 12V10.52C9.09961 8.60999 10.4496 7.83999 12.0996 8.78999L13.3796 9.52999L14.6596 10.27C16.3096 11.22 16.3096 12.78 14.6596 13.73L13.3796 14.47L12.0996 15.21C10.4496 16.16 9.09961 15.38 9.09961 13.48V12Z" fill="white"/>
+                                </svg>
+                            </button>
+                            <button id="send" class="bti">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path
+                                        d="M21.66,12a2,2,0,0,1-1.14,1.81L5.87,20.75A2.08,2.08,0,0,1,5,21a2,2,0,0,1-1.82-2.82L5.46,13H11a1,1,0,0,0,0-2H5.46L3.18,5.87A2,2,0,0,1,5.86,3.25h0l14.65,6.94A2,2,0,0,1,21.66,12Z"
+                                        fill="currentColor"
+                                    />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div id="mcin">
+                        <span></span>
+                    </div>
+                    <div id="mcin_b"></div>
+                    <div id="ntin_bl">
+                        <div id="ntin_ts">00:00</div>
+                        <div id="ntin">
+                            <video></video>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div id="chat_menu" class="chat_menu ctx_menu hideable">
+                    <div class="info">
+                        <div class="wrinfo">
+                            <div class="t">
+                                Created at 10:20 on 01.01.1970
+                            </div>
+                        </div>
+                    </div>
+                    <div class="acts">
+                        <button class="m_btn" style="--c:var(--warn-red-c)">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M5.755,20.283,4,8H20L18.245,20.283A2,2,0,0,1,16.265,22H7.735A2,2,0,0,1,5.755,20.283ZM21,4H16V3a1,1,0,0,0-1-1H9A1,1,0,0,0,8,3V4H3A1,1,0,0,0,3,6H21a1,1,0,0,0,0-2Z"/>
+                            </svg>
+                            <span>Delete</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div id="c2">
+                <div>
+                    <ul>
+                        
+                    </ul>
+                </div>
+            </div>
+            <div id=c3>
+                <div>
+                    <div class="sp">
+                        <div class="l"></div>
+                        <span>Customization</span>
+                    </div>
+
+                    <label class="md">
+                        <p>Language</p>
+                        <div class="n">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M4 0H6V2H10V4H8.86807C8.57073 5.66996 7.78574 7.17117 6.6656 8.35112C7.46567 8.73941 8.35737 8.96842 9.29948 8.99697L10.2735 6H12.7265L15.9765 16H13.8735L13.2235 14H9.77647L9.12647 16H7.0235L8.66176 10.9592C7.32639 10.8285 6.08165 10.3888 4.99999 9.71246C3.69496 10.5284 2.15255 11 0.5 11H0V9H0.5C1.5161 9 2.47775 8.76685 3.33437 8.35112C2.68381 7.66582 2.14629 6.87215 1.75171 6H4.02179C4.30023 6.43491 4.62904 6.83446 4.99999 7.19044C5.88743 6.33881 6.53369 5.23777 6.82607 4H0V2H4V0ZM12.5735 12L11.5 8.69688L10.4265 12H12.5735Z" fill="currentColor"/>
+                            </svg>
+                            <select class="df">
+                                <option value="0">English (american)</option>
+                                <option value="1">Deutsch</option>
+                                <option value="2">Polski</option>
+                                <option value="3">Українська</option>
+                                <option value="4">Беларуская</option>
+                                <option value="5">Русский</option>
+                            </select>
+                        </div>
+                    </label>
+
+                    <label class="md">
+                        <p>Theme</p>
+                        <div class="n">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 48 48">
+                                <path d="M18,6 C18,9.3137085 20.6862915,12 24,12 C27.3137085,12 30,9.3137085 30,6 L35.4545455,6 L42,15.8181818 L36.2727273,20.7272727 L36.2727273,42 L11.7272727,42 L11.7272727,20.7272727 L6,15.8181818 L12.5454545,6 L18,6 Z" stroke="currentColor" stroke-width="4" fill="currentColor" fill-rule="nonzero">
+                                </path>
+                            </svg>
+                            <select class="df">
+                                <option value=0>System</option>
+                                <option value=1>Dark</option>
+                                <option value=2>Light</option>
+                            </select>
+                        </div>
+                    </label>
+
+                    
+
+                    <label class="md">
+                        <p>Time format</p>
+                        <div class="n">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 32 32">
+                                <path d="M0 16q0-3.232 1.28-6.208t3.392-5.12 5.12-3.392 6.208-1.28q3.264 0 6.24 1.28t5.088 3.392 3.392 5.12 1.28 6.208q0 3.264-1.28 6.208t-3.392 5.12-5.12 3.424-6.208 1.248-6.208-1.248-5.12-3.424-3.392-5.12-1.28-6.208zM4 16q0 3.264 1.6 6.048t4.384 4.352 6.016 1.6 6.016-1.6 4.384-4.352 1.6-6.048-1.6-6.016-4.384-4.352-6.016-1.632-6.016 1.632-4.384 4.352-1.6 6.016zM14.016 16v-5.984q0-0.832 0.576-1.408t1.408-0.608 1.408 0.608 0.608 1.408v4h4q0.8 0 1.408 0.576t0.576 1.408-0.576 1.44-1.408 0.576h-6.016q-0.832 0-1.408-0.576t-0.576-1.44z"/>
+                            </svg>
+                            <select class="df">
+                                <option value=0>12-hour clock (00:00 am - 11:59 pm)</option>
+                                <option value=1>24-hour clock (00:00 - 23:59)</option>
+                            </select>
+                        </div>
+                    </label>
+                    
+                    <div class="sp">
+                        <div class="l"></div>
+                        <span>Audio note</span>
+                    </div>
+
+                    <label class="md">
+                        <p>Device</p>
+                        <div class="n">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 64 64" enable-background="new 0 0 64 64" xml:space="preserve">
+                                <path fill="currentColor" d="M32,44c6.629,0,12-5.371,12-12V12c0-6.629-5.371-12-12-12S20,5.371,20,12v20C20,38.629,25.371,44,32,44z"/>
+                                <path fill="currentColor" d="M52,28c-2.211,0-4,1.789-4,4c0,8.836-7.164,16-16,16s-16-7.164-16-16c0-2.211-1.789-4-4-4s-4,1.789-4,4   c0,11.887,8.656,21.73,20,23.641V60c0,2.211,1.789,4,4,4s4-1.789,4-4v-4.359C47.344,53.73,56,43.887,56,32   C56,29.789,54.211,28,52,28z"/>
+                            </svg>
+                            <select id="mc_se" class="df">
+                                <option></option>
+                            </select>
+                        </div>
+                    </label>
+
+                    <div class="sp">
+                        <div class="l"></div>
+                        <span>Video note</span>
+                    </div>
+
+                    <label class="md">
+                        <p>Audio device</p>
+                        <div class="n">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
+                                <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" fill="currentColor"/>
+                                <path d="M9.09961 12V10.52C9.09961 8.60999 10.4496 7.83999 12.0996 8.78999L13.3796 9.52999L14.6596 10.27C16.3096 11.22 16.3096 12.78 14.6596 13.73L13.3796 14.47L12.0996 15.21C10.4496 16.16 9.09961 15.38 9.09961 13.48V12Z" fill="white"/>
+                            </svg>
+                            <select id="nt_au_se" class="df">
+                                <option></option>
+                            </select>
+                        </div>
+                    </label>
+                    <label class="md">
+                        <p>Video</p>
+                        <div class="n">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
+                                <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" fill="currentColor"/>
+                                <path d="M9.09961 12V10.52C9.09961 8.60999 10.4496 7.83999 12.0996 8.78999L13.3796 9.52999L14.6596 10.27C16.3096 11.22 16.3096 12.78 14.6596 13.73L13.3796 14.47L12.0996 15.21C10.4496 16.16 9.09961 15.38 9.09961 13.48V12Z" fill="white"/>
+                            </svg>
+                            <select id="nt_vd_se" class="df">
+                                <option></option>
+                            </select>
+                        </div>
+                    </label>
+                    
+
+                    <div class="sp">
+                        <div class="l"></div>
+                        <span></span>
+                    </div>
+
+                    <label id="copyright">
+                        <span>
+                            Copyright © 2025 PerfoByte LCC.<br/>All rights reserved.
+                        </span><br/><br/>
+                        <a href="/policies" target="_blank">Policies</a> |
+                        <a href="/about" target="_blank">About</a>
+                    </label>
+                    
+                </div>
+                
+            </div>
+        </main>
+        <header id="nv">
+            <ul>
+                <li>
+                    <button title="Chats" data-a=0 class="n">
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 24 24"
+                            fill="currentColor"
+                        >
+                            <path
+                                d="M5.59961 19.9203L7.12357 18.7012L7.13478 18.6926C7.45249 18.4384 7.61281 18.3101 7.79168 18.2188C7.95216 18.1368 8.12328 18.0771 8.2998 18.0408C8.49877 18 8.70603 18 9.12207 18H17.8031C18.921 18 19.4806 18 19.908 17.7822C20.2843 17.5905 20.5905 17.2842 20.7822 16.9079C21 16.4805 21 15.9215 21 14.8036V7.19691C21 6.07899 21 5.5192 20.7822 5.0918C20.5905 4.71547 20.2837 4.40973 19.9074 4.21799C19.4796 4 18.9203 4 17.8002 4H6.2002C5.08009 4 4.51962 4 4.0918 4.21799C3.71547 4.40973 3.40973 4.71547 3.21799 5.0918C3 5.51962 3 6.08009 3 7.2002V18.6712C3 19.7369 3 20.2696 3.21846 20.5433C3.40845 20.7813 3.69644 20.9198 4.00098 20.9195C4.35115 20.9191 4.76744 20.5861 5.59961 19.9203Z"
+                                stroke="currentColor"
+                                stroke-width="1"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                            />
+                        </svg>
+                        <span>Chats</span>
+                    </button>
+                </li>
+                <li>
+                    <button title="Conversation" data-a=1 class="n">
+                        <svg id="nav_chat_av" viewBox="0 0 20 20" width="100" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx=10 cy=10 r=10 fill="currentColor" />
+                        </svg>
+                          
+                        <span>Conversation</span>
+                    </button>
+                </li>
+                <li>
+                    <button id="cadd">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 96 96">
+                            <path d="M66,42H54V30a6,6,0,0,0-12,0V42H30a6,6,0,0,0,0,12H42V66a6,6,0,0,0,12,0V54H66a6,6,0,0,0,0-12Z"/>
+                            <path d="M48,0A48,48,0,1,0,96,48,48.0512,48.0512,0,0,0,48,0Zm0,84A36,36,0,1,1,84,48,36.0393,36.0393,0,0,1,48,84Z"/>
+                        </svg>
+                    </button>
+                </li>
+                <li>
+                    <button title="Modules" data-a=2 class="n">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
+                            <path d="M22 8.52V3.98C22 2.57 21.36 2 19.77 2H15.73C14.14 2 13.5 2.57 13.5 3.98V8.51C13.5 9.93 14.14 10.49 15.73 10.49H19.77C21.36 10.5 22 9.93 22 8.52Z" fill="currentColor"/>
+                            <path d="M22 19.77V15.73C22 14.14 21.36 13.5 19.77 13.5H15.73C14.14 13.5 13.5 14.14 13.5 15.73V19.77C13.5 21.36 14.14 22 15.73 22H19.77C21.36 22 22 21.36 22 19.77Z" fill="currentColor"/>
+                            <path d="M10.5 8.52V3.98C10.5 2.57 9.86 2 8.27 2H4.23C2.64 2 2 2.57 2 3.98V8.51C2 9.93 2.64 10.49 4.23 10.49H8.27C9.86 10.5 10.5 9.93 10.5 8.52Z" fill="currentColor"/>
+                            <path d="M10.5 19.77V15.73C10.5 14.14 9.86 13.5 8.27 13.5H4.23C2.64 13.5 2 14.14 2 15.73V19.77C2 21.36 2.64 22 4.23 22H8.27C9.86 22 10.5 21.36 10.5 19.77Z" fill="currentColor"/>
+                        </svg>
+                        <span>Modules</span>
+                    </button>
+                </li>
+                <li>
+                    <button title="Settings" data-a=3 class="n">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12ZM15 9C15 10.6569 13.6569 12 12 12C10.3431 12 9 10.6569 9 9C9 7.34315 10.3431 6 12 6C13.6569 6 15 7.34315 15 9ZM12 20.5C13.784 20.5 15.4397 19.9504 16.8069 19.0112C17.4108 18.5964 17.6688 17.8062 17.3178 17.1632C16.59 15.8303 15.0902 15 11.9999 15C8.90969 15 7.40997 15.8302 6.68214 17.1632C6.33105 17.8062 6.5891 18.5963 7.19296 19.0111C8.56018 19.9503 10.2159 20.5 12 20.5Z" fill="currentColor"/>
+                        </svg>
+                        <span>Settings</span>
+                    </button>
+                </li>
+            </ul>
+        </header>
+
+        <script type="module" src="/f/text/javascript/0.js"></script>
+    </body>
+</html>

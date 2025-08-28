@@ -1,3 +1,0 @@
-/home/dencelman/gt/space/app/perfobyte/code/cdn/static/build/CMakeFiles/i.dir
-/home/dencelman/gt/space/app/perfobyte/code/cdn/static/build/CMakeFiles/edit_cache.dir
-/home/dencelman/gt/space/app/perfobyte/code/cdn/static/build/CMakeFiles/rebuild_cache.dir

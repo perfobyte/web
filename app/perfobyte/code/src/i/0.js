@@ -1,0 +1,22 @@
+
+
+import {createServer} from "node:http";
+import cb from '../cb.js';
+
+(
+    (cb,PORT, HOST,mode) => {
+        return (
+            createServer(cb(mode))
+            .listen(
+                PORT,
+                HOST,
+                () => console.log(PORT)
+            )
+        );
+    }
+)(
+    cb,
+    3000,
+    '::',
+    0,
+);

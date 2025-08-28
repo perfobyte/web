@@ -1,0 +1,7 @@
+
+**/code/f/**
+!**/code/f/
+!**/code/f/.git/
+
+node_modules
+package-lock.json

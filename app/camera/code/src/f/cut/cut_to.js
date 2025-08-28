@@ -1,0 +1,1 @@
+export default (p,i)=>p.substring(0,i);
