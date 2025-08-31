@@ -34,7 +34,7 @@
     transition:.5s opacity;
     opacity:0;
 
-    position:fixed;
+    position:absolute;
     right:130px;
     bottom:90px;
 

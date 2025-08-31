@@ -96,5 +96,9 @@ export var
 
     
 
-    MT_EL = tmpl.querySelector(".mt")
+    MT_EL = tmpl.querySelector(".mt"),
+
+    scrolly = document.querySelectorAll(".scrolly"),
+
+    scrollo = Array.from(scrolly, (e) => e.querySelector(".scrollo"))
 ;

@@ -3,11 +3,12 @@
 #msgs {
     display:flex;
     flex-direction:row;
-    width:100%;
+    width:var(--w);
     height:fit-content;
     z-index:100;
     position:relative;
-    min-height: calc(100% - 130px);
+    margin-top:50px;
+    height: calc(var(--h) - 170px);
 }
 
 #msgs .time {
@@ -42,6 +43,8 @@
     width:calc(100% - 220px);
     display:flex;
     flex-direction:column;
+
+    height: fit-content;
 }
 
 #msgs > .list > * {

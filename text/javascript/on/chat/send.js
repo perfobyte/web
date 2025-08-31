@@ -1,5 +1,5 @@
 import {chat} from '../../state/i.js'
-import {ctxt, rl} from '../../elems.js';
+import {ctxt, rl, html} from '../../elems.js';
 import {count_char} from '../../f/i.js';
 import {msg_set} from '../../render/i.js';
 
@@ -29,7 +29,7 @@ export default (
 
                 msg_set(v,(++chat.loaded),t),
                 
-                (rl.scrollTop = rl.scrollHeight)
+                (html.scrollTop = html.scrollHeight)
             )
         )
     }

@@ -1,6 +1,6 @@
-import {O} from '../../state/i.js';
+import {O,scroll,scroll_value} from '../../state/i.js';
 import {title} from '../../api/i.js';
-import {ct,el_cache,html} from '../../elems.js';
+import {ct,el_cache,html,scrolly,scrollo,} from '../../elems.js';
 
 
 export default (
@@ -25,7 +25,16 @@ export default (
 
             (document.title = title[_]),
 
-            (html.scrollLeft = (_ * window.innerWidth))
+            (
+                html.style.height =
+                    `${scrollo[_].clientHeight}px`
+            ),
+
+            (
+                html.scrollTop = scroll_value[_]
+            ),
+
+            (ct.scrollLeft = (_ * window.innerWidth))
         );
     }
 )

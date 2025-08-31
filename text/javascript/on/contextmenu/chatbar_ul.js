@@ -2,7 +2,7 @@
 
 import {chatbar_h1, c_av,msgs, chat_menu, chat_menu_time, el_cache} from '../../elems.js';
 import {get_chat, get_chats_length} from '../../api/i.js';
-import {full_datetime} from '../../f/i.js';
+import {full_datetime, check_range_x, check_range_y} from '../../f/i.js';
 import {after_chat_menu_0_click} from '../i.js';
 
 export default (
@@ -27,47 +27,55 @@ export default (
                 )
             ),
 
-            cl = chat_menu.classList
+            cl = null,
+
+            scrollTop = 0
         ;
         return (id < get_chats_length()) && (            
             e.preventDefault(),
+            e.stopPropagation(),
+            
             (
-                cl.contains("a")
-                ? (el_cache.ctx_menu_i === id)
-                : (
-                    cl.add("a"),
-                    false
+                chat_menu_time
+                .textContent = (
+                    "Created "
+                    + full_datetime(
+                        new Date(
+                            get_chat(el_cache.ctx_menu_i = id)
+                            .t
+                        )
+                    )
                 )
+            ),
+
+            (scrollTop = document.getElementById("c0").scrollTop),
+
+            (
+                (st = (st_el = document.getElementById("chat_menu_0")).style)
+                .top = `${
+                    check_range_y(e.pageY,st_el.offsetHeight,window.innerHeight-40,scrollTop)
+                }px`
+            ),
+
+            (st.left = `${
+                check_range_x(e.pageX,st_el.offsetWidth,window.innerWidth-20)
+            }px`),
+
+            
+
+            (cl=st_el.classList).contains("a")
+            ? (
+                cha.querySelector('.chbr > button.ctx').classList.remove("ctx")
             )
-            ? cl.remove('a')
             : (
                 window.addEventListener("click",after_chat_menu_0_click),
                 window.addEventListener("contextmenu",after_chat_menu_0_click),
+                cl.add('a')
+            ),
 
-                e.stopPropagation(),
+            cha.querySelector(`.chbr > button[data-a="${id}"]`).classList.add("ctx"),
 
-                (
-                    chat_menu_time
-                    .textContent = (
-                        "Created "
-                        + full_datetime(
-                            new Date(
-                                get_chat(el_cache.ctx_menu_i = id)
-                                .t
-                            )
-                        )
-                    )
-                ),
-
-                (st_el = document.getElementById("chat_menu_0")).classList.add('a'),
-
-                (
-                    (st = st_el.style)
-                    .top = e.pageY + "px"
-                ),
-
-                (st.left = e.pageX + "px")
-            )
+            undefined
         )
     }
 )

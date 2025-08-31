@@ -9,6 +9,8 @@ import {
     nt_au_se,nt_vd_se,mc_se,
     nt_au_se_fc,nt_vd_se_fc,mc_se_fc,
     mc,nt,
+    
+    scrollo
 } from '../../elems.js';
 
 import {get_chats, get_modules, get_msgs, get_chat} from '../../api/i.js';
@@ -28,9 +30,10 @@ import {
     nt_au_se_change,nt_vd_se_change,
     mc_se_click,mc_se_change,
     mc_mdown,nt_mdown,
-    
+
+    on_html_wheel,on_html_scroll,
 } from '../i.js';
-import {O,chat,modules,note, } from '../../state/i.js';
+import {O,chat,modules,note,scroll_value} from '../../state/i.js';
 
 
 export default (
@@ -74,7 +77,9 @@ export default (
 
                         chat_id = (chat.i = 0),
 
-                        MSGS = get_msgs(0)
+                        MSGS = get_msgs(0),
+
+                        I = O.I
                     ;
                     return (
                         (O.key = key),
@@ -116,8 +121,11 @@ export default (
 
                         open_chat(chat_id, get_chat(chat_id)),
                         (chat.loaded = MSGS.length),
+
+                        document.addEventListener('wheel', on_html_wheel, { passive: false }),
+                        (window.onscroll = on_html_scroll),
                         
-                        D.querySelector(`#nv button.n[data-a="${O.I}"]`).dispatchEvent(click_event),
+                        D.querySelector(`#nv button.n[data-a="${I}"]`).dispatchEvent(click_event),
                         window.dispatchEvent(resize_event),
 
                         (rl.scrollTop = rl.scrollHeight),
@@ -136,7 +144,7 @@ export default (
             
                         (mc.onmousedown = mc_mdown),
                         (nt.onmousedown = nt_mdown),
-
+                    
                         loader_cl.remove("a")
                     );
                 }

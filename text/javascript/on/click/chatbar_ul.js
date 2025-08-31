@@ -1,5 +1,5 @@
 
-import {msgs} from '../../elems.js';
+import {msgs, html} from '../../elems.js';
 import {get_chat,get_chats_length} from '../../api/i.js';
 import {open_chat} from "../../render/i.js";
 
@@ -22,7 +22,9 @@ export default (
             &&
             (
                 open_chat(id, chat),
-                (msgs.scrollTop = msgs.scrollHeight)
+                document.querySelector('#nv button[data-a="1"]').click(),
+                
+                (html.scrollTop = html.scrollHeight)
             )
         )
     }

@@ -17,7 +17,7 @@
     z-index:200;
     background-color:white;
 
-    position:sticky;
+    position:absolute;
     top:0;
     left:0;
     display:flex;

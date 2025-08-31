@@ -1,4 +1,6 @@
 import {O} from '../../state/i.js';
+import {ct} from '../../elems.js';
+
 
 export default (
     (e) => {
@@ -12,7 +14,7 @@ export default (
         return (
             html_st.setProperty("--w", (w=window.innerWidth) + "px"),
             html_st.setProperty("--h", window.innerHeight + "px"),
-            (html.scrollLeft = (w * O.I))
+            (ct.scrollLeft = (w * O.I))
         );
     }
 );

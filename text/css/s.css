@@ -1,9 +1,8 @@
 
-
 #c > * {
     position:relative;
     
-    width:var(--w);
+    min-width:var(--w);
     height:calc(var(--h) - 40px);
 }
 
