@@ -4,6 +4,8 @@ export default [
         PerfoByte;
         PerfoByte Camera;
         PerfoByte Call;
+        
+        PerfoByte State;
         PerfoByte Spell;
 
         Bosend;

@@ -1,10 +1,11 @@
 
-rewrite into NodeJS version;
-
-contextmenu c0;
 c1 [
     minp sticky,
 ]
+html.scrollTop in chat list click and chat choose;
+
+sound waves in audio note;
+
 
 encrypt all app data;
 open db;
