@@ -6,7 +6,6 @@ import {mdi,vdi,start_o} from '../../../conf.js';
 
 export default (
     (e) => (
-        console.dir(e),
         (
             (e.constraint === "deviceId")
             &&

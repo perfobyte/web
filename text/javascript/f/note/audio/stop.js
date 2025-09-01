@@ -24,13 +24,14 @@ export default (
 
             s&&s.getAudioTracks().reduce(stop,s),
             rl_cl.remove("f"),
-
+            
             cha
             &&
             (cha.length>0)
             &&
             (
-                URL.revokeObjectURL(
+                // URL.revokeObjectURL
+                alert(
                     u = URL.createObjectURL(new Blob(cha, vd_o))
                 )
             ),

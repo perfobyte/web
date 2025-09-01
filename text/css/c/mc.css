@@ -9,7 +9,7 @@
 
 #mcin{
     
-    z-index:30;
+    z-index:201;
     &>span{
         color:white;
         font-size:16px;
@@ -26,7 +26,8 @@
 }
 
 #mcin_b{
-    z-index:20;
+    z-index:200;
+    pointer-events:none;
 }
 
 #mcin_b,

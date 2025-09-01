@@ -13,6 +13,9 @@ import {
     scrollo
 } from '../../elems.js';
 
+import '../../lib/cha3js/0.js';
+
+
 import {get_chats, get_modules, get_msgs, get_chat} from '../../api/i.js';
 import {open_chat} from '../../render/i.js';
 
@@ -38,138 +41,137 @@ import {O,chat,modules,note,scroll_value} from '../../state/i.js';
 
 export default (
     () => {
-        var
-            length = {
-                name: "AES-GCM",
-                length: 256
-            },
-            salt = crypto.getRandomValues(new Uint8Array(16)),
-            import_method = ["deriveKey"],
-            import_conf = { name: "PBKDF2" },
-            method = ["encrypt", "decrypt"],
-            conf = { name: "PBKDF2", salt, iterations: 100000, hash: "SHA-256" },
-
-            import_key = (
-                (key_mat) => {
-                    return crypto.subtle.deriveKey(
-                        conf,
-                        key_mat,
-                        length,
-                        false,
-                        method,
-                    )
-                }
-            ),
-
-            app_key = (
-                (key) => {
-                    var
-                        w = window,
-
-                        p = w.location.search,
-
-                        h = w.history,
-                        D = w.document,
-
-                        chats = get_chats(),
-                        
-                        M = get_modules(),
-
-                        chat_id = (chat.i = 0),
-
-                        MSGS = get_msgs(0),
-
-                        I = O.I
-                    ;
-                    return (
-                        (O.key = key),
-                        
-                        (D.getElementById("c_c").onclick = chat_create),
-                        (D.getElementById("c_j").onclick = chat_join),
-                        (D.getElementById("cadd").onclick = chat_choose_add),
-                        
-                        (w.onresize = window_resize),
-                        (msgs.querySelector(".list").oncopy = chat_copy),
-                        (msgs.oncontextmenu=msgs_contextmenu),
-                        (ctxt.onkeydown=chat_keydown),
-                        (D.getElementById("send").onclick=chat_send),
-                        (D.getElementById("fadd").onclick=chat_file_select),
-                        (file.onchange = chat_file_change),
-                        el_cache.bi.add("a"),
-                        (D.getElementById("msg_delete").onclick=msg_delete_click),
-                        (D.getElementById("msg_edit").onclick=msg_edit_click),
-                        (D.getElementById("c_o").onclick=chat_opts_click),
-                        (CHA.onclick=chatbar_ul_click),
-                        (CHA.oncontextmenu=chatbar_ul_contextmenu),
-
-                        b.forEach(a => (a.onclick=section_click)),
-                        
-                        (modules.M = M)
-                        .reduce(modules_reduce,modules),
-
-                        chats
-                        .reduce(
-                            chats_reduce,
-                            0,
-                        ),
-
-                        MSGS
-                        .reduce(
-                            messages_reduce,
-                            chat
-                        ),
-
-                        open_chat(chat_id, get_chat(chat_id)),
-                        (chat.loaded = MSGS.length),
-
-                        document.addEventListener('wheel', on_html_wheel, { passive: false }),
-                        (window.onscroll = on_html_scroll),
-                        
-                        D.querySelector(`#nv button.n[data-a="${I}"]`).dispatchEvent(click_event),
-                        window.dispatchEvent(resize_event),
-
-                        (rl.scrollTop = rl.scrollHeight),
-                        
-                        (nt_au_se.onfocus =  nt_au_se_click),
-                        (nt_au_se.onchange = nt_au_se_change),
-                        (nt_au_se_fc.textContent = note.nt_au_l),
-            
-                        (nt_vd_se.onfocus =  nt_vd_se_click),
-                        (nt_vd_se.onchange = nt_vd_se_change),
-                        (nt_vd_se_fc.textContent = note.nt_vd_l),
-
-                        (mc_se.onfocus = mc_se_click),
-                        (mc_se.onchange = mc_se_change),
-                        (mc_se_fc.textContent = note.au_l),
-            
-                        (mc.onmousedown = mc_mdown),
-                        (nt.onmousedown = nt_mdown),
-                    
-                        loader_cl.remove("a")
-                    );
-                }
-            )
-        ;
         return (e) => {
             var
-                v = e.currentTarget.querySelector("input").value
+                v = e.currentTarget.querySelector("input").value,
+
+                w = window,
+
+                p = w.location.search,
+
+                h = w.history,
+                D = w.document,
+
+                chats = get_chats(),
+                
+                M = get_modules(),
+
+                chat_id = (chat.i = 0),
+
+                MSGS = get_msgs(0),
+
+                I = O.I
             ;
+            // var
+            //     message_value = `{"hello":"world"}`,
+            //     key_value = "пішов нахуй ",
+
+            //     te = new TextEncoder(),
+            //     td = new TextDecoder(),
+
+            //     block_size = 64,
+            //     key_length = 32,
+            //     nonce_length = 12,
+            //     param_length = 16,
+
+            //     key = new Uint8Array(key_length),
+            //     nonce = crypto.getRandomValues(new Uint8Array(nonce_length)),
+            //     byte_counter = 0,
+            //     rounds = 20,
+            //     data = te.encode(message_value),
+
+            //     key_stream = new Uint8Array(block_size),
+
+            //     param = (
+            //         key.set(te.encode(key_value).subarray(0, 32)),
+
+            //         cc20_param(key,byte_counter,nonce,SIGMA,cc20_to32)
+            //     ),
+            //     param_bf = new Uint32Array(param),
+
+            //     mix = new Uint32Array(param_length)
+            // ;
+
+            console.dir(td.decode(data));
+
+            cc20_update(data, key_stream, byte_counter, rounds, block_size, mix, param_bf, ROUND_DATA);
+
+            console.dir(td.decode(data)); // encoded
+
+            key_stream.fill(0);
+            param_bf.set(param);
+
+            cc20_update(data, key_stream, byte_counter, rounds, block_size, mix, param_bf, ROUND_DATA);
+
+            console.dir(td.decode(data));
+
             return (
                 e.preventDefault(),
 
-                crypto.subtle.importKey(
-                    "raw",
-                    new TextEncoder().encode(v),
-                    import_conf,
-                    false,
-                    import_method,
-                )
-                .then(
-                    import_key
-                )
-                .then(
-                    app_key
-                )
+                (O.key = ""),//TODO:
+                        
+                (D.getElementById("c_c").onclick = chat_create),
+                (D.getElementById("c_j").onclick = chat_join),
+                (D.getElementById("cadd").onclick = chat_choose_add),
+                
+                (w.onresize = window_resize),
+                (msgs.querySelector(".list").oncopy = chat_copy),
+                (msgs.oncontextmenu=msgs_contextmenu),
+                (ctxt.onkeydown=chat_keydown),
+                (D.getElementById("send").onclick=chat_send),
+                (D.getElementById("fadd").onclick=chat_file_select),
+                (file.onchange = chat_file_change),
+                el_cache.bi.add("a"),
+                (D.getElementById("msg_delete").onclick=msg_delete_click),
+                (D.getElementById("msg_edit").onclick=msg_edit_click),
+                (D.getElementById("c_o").onclick=chat_opts_click),
+                (CHA.onclick=chatbar_ul_click),
+                (CHA.oncontextmenu=chatbar_ul_contextmenu),
+
+                b.forEach(a => (a.onclick=section_click)),
+                
+                (modules.M = M)
+                .reduce(modules_reduce,modules),
+
+                chats
+                .reduce(
+                    chats_reduce,
+                    0,
+                ),
+
+                MSGS
+                .reduce(
+                    messages_reduce,
+                    chat
+                ),
+
+                open_chat(chat_id, get_chat(chat_id)),
+                (chat.loaded = MSGS.length),
+
+                document.addEventListener('wheel', on_html_wheel, { passive: false }),
+                (window.onscroll = on_html_scroll),
+                
+                D.querySelector(`#nv button.n[data-a="${I}"]`).dispatchEvent(click_event),
+                window.dispatchEvent(resize_event),
+
+                (rl.scrollTop = rl.scrollHeight),
+                
+                (nt_au_se.onfocus =  nt_au_se_click),
+                (nt_au_se.onchange = nt_au_se_change),
+                (nt_au_se_fc.textContent = note.nt_au_l),
+    
+                (nt_vd_se.onfocus =  nt_vd_se_click),
+                (nt_vd_se.onchange = nt_vd_se_change),
+                (nt_vd_se_fc.textContent = note.nt_vd_l),
+
+                (mc_se.onfocus = mc_se_click),
+                (mc_se.onchange = mc_se_change),
+                (mc_se_fc.textContent = note.au_l),
+    
+                (mc.onmousedown = mc_mdown),
+                (nt.onmousedown = nt_mdown),
+            
+                loader_cl.remove("a")
             )
             
         }

@@ -82,6 +82,9 @@ export var
     mcin_t = rl.querySelector("#mcin > span"),
     mcin_b_s = rl.querySelector("#mcin_b").style,
 
+    ntin_ts_b = document.getElementById("ntin_ts_b"),
+    ntin_ts_b_s = ntin_ts_b.style,
+
     nt_au_se = document.getElementById("nt_au_se"),
     nt_vd_se = document.getElementById("nt_vd_se"),
 

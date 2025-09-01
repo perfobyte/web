@@ -16,24 +16,34 @@
     }
 }
 
+#ntin_ts_b {
+    content:"";
+    transition:100ms transform;
+    
+    z-index:100;
+}
+
+#ntin_ts_b,
 #ntin_ts {
     position:absolute;
-
-    right:104px;
-    bottom:120px;
-
+    display:block;
     width:64px;
     height:32px;
-
     background:rgb(208, 1, 1);
-    color:white;
+    border-radius:16px;
 
+    right:88px;
+    bottom:120px;
+}
+
+#ntin_ts {
+    color:white;
     text-align:center;
     line-height:32px;
     font-weight:600;
     font-size:16px;
 
-    border-radius:20px;
+    z-index:101;
 }
 
 #ntin {

@@ -4,7 +4,7 @@ import {sm} from '../../media/i.js';
 import {fftSize} from '../../../conf.js';
 
 export default (
-    () => {
+    (bg) => {
         var
             a = (
                 () => {
@@ -14,7 +14,18 @@ export default (
                     return (note.s) && (
                         note.a.getByteFrequencyData(d = note.d),
 
-                        (mcin_b_s.transform=`scale(${1.0 + ((d.reduce(sm,0) / note.l) / fftSize)})`),
+                        (
+                            bg
+                            .transform = (
+                                `scale(${
+                                    d.reduce(sm,0)
+                                    / note.l
+                                    / fftSize
+                                    * 3
+                                    + 1
+                                })`
+                            )
+                        ),
                         
                         requestAnimationFrame(a)
                     );
