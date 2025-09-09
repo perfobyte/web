@@ -20,4 +20,4 @@
     ],
 
     create chat,
-]
+];

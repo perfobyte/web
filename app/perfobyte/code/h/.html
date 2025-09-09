@@ -16,6 +16,8 @@
     <body class="hideable">
 
         <template>
+            <button class="ej_el"></button>
+            
             <div class="mt"><span></span></div>
 
             <div data-a="0" class="msg">
@@ -189,6 +191,12 @@
                         <div class="time"></div>
                         <div class="list scrollo"></div>
                     </div>
+
+                    <div id="ej_p" class="hideable">
+                        <div class="in">
+                            <ul class="list"></ul>
+                        </div>
+                    </div>
                     
                     <div id="minp" class="fixed">
                         <div id="minpl">
@@ -201,16 +209,6 @@
                                     <line fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="4" x1="5" x2="19" y1="12" y2="12"/>
                                 </svg>
                             </button>
-                        </div>
-                        <div
-                            id="ctxt"
-                            contenteditable="true"
-                            class="df"
-                        >
-                            <p></p>
-                        </div>
-                        
-                        <div id="minpr">
                             <button id="cm" class="bti">
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
@@ -218,6 +216,16 @@
                                     <path fill-rule="evenodd" clip-rule="evenodd" d="M10.2902 2C8.49207 2 6.89571 3.15059 6.3271 4.85641C6.26345 5.04736 6.10666 5.19256 5.91139 5.24138L5.10615 5.44269C3.28064 5.89906 2 7.53928 2 9.42097V17C2 19.7614 4.23858 22 7 22H17C19.7614 22 22 19.7614 22 17V9.42097C22 7.53928 20.7194 5.89906 18.8938 5.44268L18.0886 5.24138C17.8933 5.19256 17.7365 5.04736 17.6729 4.85641C17.1043 3.15059 15.5079 2 13.7098 2H10.2902ZM12 11C10.8954 11 10 11.8954 10 13C10 14.1046 10.8954 15 12 15C13.1046 15 14 14.1046 14 13C14 11.8954 13.1046 11 12 11ZM8 13C8 10.7909 9.79086 9 12 9C14.2091 9 16 10.7909 16 13C16 15.2091 14.2091 17 12 17C9.79086 17 8 15.2091 8 13Z" fill="currentColor"/>
                                 </svg>
                             </button>
+                        </div>
+
+                        <div
+                            id="ctxt"
+                        >
+                            <div class="I" contenteditable="true"></div>
+                        </div>
+                        
+                        <div id="minpr">
+                            <button id="ej" class="bti"></button>
                             <button id="mc" class="bti">
                                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 64 64" enable-background="new 0 0 64 64" xml:space="preserve">
                                     <path fill="currentColor" d="M32,44c6.629,0,12-5.371,12-12V12c0-6.629-5.371-12-12-12S20,5.371,20,12v20C20,38.629,25.371,44,32,44z"/>
@@ -248,10 +256,13 @@
                         <span></span>
                     </div>
                     <div id="mcin_b"></div>
+                    
                     <div id="ntin_bl">
+                        <div id="ntin_ts_b"></div>
                         <div id="ntin_ts">00:00</div>
+
                         <div id="ntin">
-                            <video></video>
+                            <video muted></video>
                         </div>
                     </div>
                 </div>
@@ -293,7 +304,7 @@
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none">
                                 <path fill-rule="evenodd" clip-rule="evenodd" d="M4 0H6V2H10V4H8.86807C8.57073 5.66996 7.78574 7.17117 6.6656 8.35112C7.46567 8.73941 8.35737 8.96842 9.29948 8.99697L10.2735 6H12.7265L15.9765 16H13.8735L13.2235 14H9.77647L9.12647 16H7.0235L8.66176 10.9592C7.32639 10.8285 6.08165 10.3888 4.99999 9.71246C3.69496 10.5284 2.15255 11 0.5 11H0V9H0.5C1.5161 9 2.47775 8.76685 3.33437 8.35112C2.68381 7.66582 2.14629 6.87215 1.75171 6H4.02179C4.30023 6.43491 4.62904 6.83446 4.99999 7.19044C5.88743 6.33881 6.53369 5.23777 6.82607 4H0V2H4V0ZM12.5735 12L11.5 8.69688L10.4265 12H12.5735Z" fill="currentColor"/>
                             </svg>
-                            <select class="df">
+                            <select class="df" id="s0">
                                 <option value="0">English (american)</option>
                                 <option value="1">Deutsch</option>
                                 <option value="2">Polski</option>
@@ -311,7 +322,7 @@
                                 <path d="M18,6 C18,9.3137085 20.6862915,12 24,12 C27.3137085,12 30,9.3137085 30,6 L35.4545455,6 L42,15.8181818 L36.2727273,20.7272727 L36.2727273,42 L11.7272727,42 L11.7272727,20.7272727 L6,15.8181818 L12.5454545,6 L18,6 Z" stroke="currentColor" stroke-width="4" fill="currentColor" fill-rule="nonzero">
                                 </path>
                             </svg>
-                            <select class="df">
+                            <select class="df" id="s1">
                                 <option value=0>System</option>
                                 <option value=1>Dark</option>
                                 <option value=2>Light</option>
@@ -319,15 +330,13 @@
                         </div>
                     </label>
 
-                    
-
                     <label class="md">
                         <p>Time format</p>
                         <div class="n">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 32 32">
                                 <path d="M0 16q0-3.232 1.28-6.208t3.392-5.12 5.12-3.392 6.208-1.28q3.264 0 6.24 1.28t5.088 3.392 3.392 5.12 1.28 6.208q0 3.264-1.28 6.208t-3.392 5.12-5.12 3.424-6.208 1.248-6.208-1.248-5.12-3.424-3.392-5.12-1.28-6.208zM4 16q0 3.264 1.6 6.048t4.384 4.352 6.016 1.6 6.016-1.6 4.384-4.352 1.6-6.048-1.6-6.016-4.384-4.352-6.016-1.632-6.016 1.632-4.384 4.352-1.6 6.016zM14.016 16v-5.984q0-0.832 0.576-1.408t1.408-0.608 1.408 0.608 0.608 1.408v4h4q0.8 0 1.408 0.576t0.576 1.408-0.576 1.44-1.408 0.576h-6.016q-0.832 0-1.408-0.576t-0.576-1.44z"/>
                             </svg>
-                            <select class="df">
+                            <select class="df" id="s2">
                                 <option value=0>12-hour clock (00:00 am - 11:59 pm)</option>
                                 <option value=1>24-hour clock (00:00 - 23:59)</option>
                             </select>

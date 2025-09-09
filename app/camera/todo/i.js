@@ -1,21 +1,43 @@
 
 add audio;
 sound in video view;
-exit (if not window.open then hide close top-right button);
-device_rotation (mobile);
+
+window.open=only for applications [
+    exit (if not window.open then hide close top-right button);
+]
+
+device_rotation=(0|1|2);
 
 video_mute;
+shot_delay = n_seconds;
 
 query [
-    mode,
-    
-    choose_by=[
-        deviceId,
-        index,
-        CONST=[first,last,]+formula("-+*/"),
-    ],
+    mode [
+        value [
+            device_rotation,
+            shot_delay (seconds to start),
+            
+            choose_by=[
+                deviceId,
+                index,
+                CONST=(
+                    [first,last,]
+                    + formula("-+*/")
+                ),
+            ],
+            
+            0 [
+                shots=amount,
+            ],
 
-    shot_delay=n_seconds,
-    device_rotation=(0|1),
-    video_mute=bool,
+            1 [
+                time=ms,
+            ],
+
+            2 [
+                time=ms,
+                video_mute=bool,
+            ]
+        ]
+    ],
 ];

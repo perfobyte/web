@@ -1,32 +1,35 @@
 
-c1 [
-    minp sticky,
-]
-html.scrollTop in chat list click and chat choose;
 
-sound waves in audio note;
+msg_buffer;
 
+import "format.js": (
+    image,
+    audio,
+    video,
+);
 
-encrypt all app data;
 open db;
-image,video,audio message;
-
 chat add;
+chat add scroll height;
+
+chat choose and load;
 message send;
 
-create_link_form
-+
-("./link_action.js");
+internet presence and speed;
+
+(
+    create_link_form
+    +
+    "./link_action.js"
+);
 
 export;
 import;
 
-
-
 Internet [
-    module.local,
+    "./db/i.js",
     "./login.js",
-
+    
     module.regular,
     module.email,
 
@@ -39,46 +42,61 @@ program [
     ],
 ];
 
+real-time chat [
+    in session (SS chat) (zedrit module)
+];
+
 search chats by name;
+
+crypto parameters [
+    app.password = {
+        rounds = in settings;
+        byte_counter = in settings;
+
+        query [
+            &rounds=20,
+            &byte_count=0 (from 0 to 64),
+        ]
+    }
+];
+
 settings on;
+settings change;
 
 adapt mobile;
 visuability;
 
-tag(1);
+second [
 
+    LAN [
+        module.wifi_router,
+        module.bluetooth_low_energy,
+    ];
 
-LAN [
-    module.wifi_router,
-    module.bluetooth_low_energy,
-];
+    protection [
+        module.secure,
+        module.email_confidential,
+        module.email_protected,
+    ];
 
-protection [
-    module.secure,
-    module.email_confidential,
-    module.email_protected,
-];
+    VoIP [
+        module.voip,
+    ];
 
-VoIP [
-    module.voip,
-];
+    finance [
+        module.bitcoin_remote_access,
+    ];
 
-finance [
-    module.bitcoin_remote_access,
-];
+    Local network [
+        module.bluetooth_two_way,
 
-open(LLC);
-native([perfobyte_js]),
+        module.wifi_direct,
+        module.wifi_ibss,
+        module.wifi_aware,
+        module.wifi_apple_mc,
+    ];
 
-Local network [
-    module.bluetooth_two_way,
-
-    module.wifi_direct,
-    module.wifi_ibss,
-    module.wifi_aware,
-    module.wifi_apple_mc,
-];
-
-program [
-    ssh,
+    program [
+        ssh,
+    ];
 ];

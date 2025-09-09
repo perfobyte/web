@@ -1,11 +1,5 @@
 
-device [
-    phone,
-    desktop,
-
-    laptop,
-    tablet,
-];
+import "./formats.js";
 
 [
     * includes [

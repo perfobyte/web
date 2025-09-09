@@ -2,22 +2,24 @@
 export default [
     [
         PerfoByte;
+        PerfoByte Map;
+
         PerfoByte Camera;
         PerfoByte Call;
         
-        PerfoByte State;
         PerfoByte Spell;
-
-        Bosend;
-        PerfoByte Detect;
-        
-        perfobytes;
-        PerfoByte Table;
-        PerfoByte Structure;
         PerfoByte Home;
 
+        PerfoByte Tec;
         PerfoByte Lock;
-        Zedrit;
+        
+        [Zedrit] += [
+            perfobytes;
+            Bosend;
+        ];
+        
+        PerfoByte Table;
+        PerfoByte Structure;
     ],
 
     [H],
