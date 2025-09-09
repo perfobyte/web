@@ -1,0 +1,3 @@
+[submodule "text/javascript/lib/cha3js"]
+	path = text/javascript/lib/cha3js
+	url = https://github.com/perfobyte/cha3js
