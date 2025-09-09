@@ -4,17 +4,6 @@
 
 export default (
     (p,s) => ({
-        key:null,
-        
-        
-        l: (
-            localStorage.getItem("1")
-            ||
-            (
-                localStorage.setItem("1", "0"),
-                "0"
-            )
-        ),
         I: (
             (p.length > 1)
             ? (

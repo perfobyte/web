@@ -4,4 +4,10 @@
     overflow:hidden;
 }
 
+html::-webkit-scrollbar-track {
+    background: var(--scrollbar-c);
+}
 
+html::-webkit-scrollbar-thumb {
+    background: var(--scrollсrawler-c);
+}

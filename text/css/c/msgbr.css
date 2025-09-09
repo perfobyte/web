@@ -13,7 +13,7 @@
 
 #msgs .time {
     width:80px;
-    margin-left:80px;
+    margin-left:120px;
 
     & > .m > * {
         top:12px;

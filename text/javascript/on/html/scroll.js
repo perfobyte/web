@@ -1,13 +1,12 @@
 
-import {scroll,O,scroll_value} from '../../state/i.js';
+import {scroll,scroll_value,O} from '../../state/i.js';
 import {scrolly,} from '../../elems.js';
 
 
 export default (
     (e) => {
         var
-            i = O.I,
-            el = scrolly[i],
+            el = scroll.starget,
             window = e.currentTarget,
             html = window.document.documentElement,
             
@@ -18,7 +17,10 @@ export default (
         ;
         return (
             (scroll.top = (
-                scroll_value[i]=scale*document.documentElement.scrollTop
+                scroll_value[O.I] = (
+                    scale
+                    * html.scrollTop
+                )
             )),
 
             el.scrollTo(scroll)

@@ -27,5 +27,12 @@ export var
     vdcf = { mimeType },
     vd_o = { type: mimeType },
 
-    o = { video, audio }
+    o = { video, audio },
+
+    TE = new TextEncoder(),
+    TD = new TextDecoder(),
+
+    ES = "",
+
+    not_passive = { passive: false }
 ;

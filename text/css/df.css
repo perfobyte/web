@@ -18,7 +18,7 @@ html {
     
     min-height:var(--h);
 
-
+    scrollbar-color: var(--scrollсrawler-c) var(--scrollbar-c);
     overflow-x:hidden;
     overflow-y:scroll;
 }

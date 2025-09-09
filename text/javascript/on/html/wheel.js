@@ -4,7 +4,7 @@ import {scroll} from '../../state/i.js';
 export default (
     (e) => {
         var
-            html = e.currentTarget.documentElement
+            html = scroll.target
         ;
         return (
             e.preventDefault(),

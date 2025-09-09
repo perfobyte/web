@@ -5,6 +5,7 @@ export var
 
     resize_event = new Event("resize"),
     click_event = new Event("click"),
+    mouseleave_event = new MouseEvent("mouseleave"),
 
     loader = document.getElementById("loader"),
     loader_cl = loader.classList,
@@ -34,6 +35,7 @@ export var
     chap = document.getElementById("chap"),
 
     ctxt = document.getElementById("ctxt"),
+    ctxt_i = ctxt.querySelector(".I"),
     
     msgs_ul = msgs.querySelector(".list"),
 
@@ -97,11 +99,22 @@ export var
     nt_au_se_fc = nt_au_se.querySelector("option"),
     nt_vd_se_fc = nt_vd_se.querySelector("option"),
 
-    
-
     MT_EL = tmpl.querySelector(".mt"),
+
+    EJ_EL = tmpl.querySelector(".ej_el"),
 
     scrolly = document.querySelectorAll(".scrolly"),
 
-    scrollo = Array.from(scrolly, (e) => e.querySelector(".scrollo"))
+    scrollo = Array.from(scrolly, (e) => e.querySelector(".scrollo")),
+
+    ej = document.getElementById("ej"),
+    
+    ej_p_el = document.getElementById("ej_p"),
+    ej_p = ej_p_el.classList,
+
+    ej_p_in = ej_p_el.querySelector(".in"),
+
+    ej_p_list = ej_p_in.querySelector(".list")
 ;
+
+EJ_EL.removeAttribute("class");

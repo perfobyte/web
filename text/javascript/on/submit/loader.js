@@ -5,15 +5,28 @@ import {
     msgs,tmpl,el_cache,b,CHA,file,msgs_ul,msgs_time_ul,loader_cl,
     resize_event,
     click_event,
+    mouseleave_event,
     rl,
     nt_au_se,nt_vd_se,mc_se,
     nt_au_se_fc,nt_vd_se_fc,mc_se_fc,
     mc,nt,
     
-    scrollo
+    scrollo,
+    EJ_EL,
+    ctxt_i,
+
+    ej, ej_p_el, ej_p, ej_p_list, ej_p_in,
 } from '../../elems.js';
 
-import '../../lib/cha3js/0.js';
+import {
+    ROUND_DATA,
+    SIGMA,
+    c3_update,
+    c3_param_setup,
+    c3_param,
+    c3_to32,
+    
+} from '../../lib/cha3js/0.js';
 
 
 import {get_chats, get_modules, get_msgs, get_chat} from '../../api/i.js';
@@ -35,145 +48,179 @@ import {
     mc_mdown,nt_mdown,
 
     on_html_wheel,on_html_scroll,
+    on_ctxt_click,
+    on_scroll_target,
+    on_ej_p_click,
+    on_ej_mouseleave,
+    on_ej_click,
+    on_ej_contextmenu,
+    on_ej_p_in_scroll,
 } from '../i.js';
-import {O,chat,modules,note,scroll_value} from '../../state/i.js';
+import {
+    O,chat,modules,note,scroll_value,
+
+    app_params,
+
+    app_key,
+    app_key_stream,
+    app_mix,
+    app_nonce,
+    app_param,
+    app_param_bf,
+    app_value,
+    app_value_copy,
+    app_value_str,
+    app_value_view,
+
+    EMOJI,
+    emoji,
+    emoji_view,
+    
+} from '../../state/i.js';
+import {TE, TD, ES, not_passive} from '../../conf.js';
+import {to_binary, to_base64, emoji_load} from '../../f/i.js';
 
 
 export default (
-    () => {
-        return (e) => {
-            var
-                v = e.currentTarget.querySelector("input").value,
-
-                w = window,
-
-                p = w.location.search,
-
-                h = w.history,
-                D = w.document,
-
-                chats = get_chats(),
-                
-                M = get_modules(),
-
-                chat_id = (chat.i = 0),
-
-                MSGS = get_msgs(0),
-
-                I = O.I
-            ;
-            // var
-            //     message_value = `{"hello":"world"}`,
-            //     key_value = "пішов нахуй ",
-
-            //     te = new TextEncoder(),
-            //     td = new TextDecoder(),
-
-            //     block_size = 64,
-            //     key_length = 32,
-            //     nonce_length = 12,
-            //     param_length = 16,
-
-            //     key = new Uint8Array(key_length),
-            //     nonce = crypto.getRandomValues(new Uint8Array(nonce_length)),
-            //     byte_counter = 0,
-            //     rounds = 20,
-            //     data = te.encode(message_value),
-
-            //     key_stream = new Uint8Array(block_size),
-
-            //     param = (
-            //         key.set(te.encode(key_value).subarray(0, 32)),
-
-            //         cc20_param(key,byte_counter,nonce,SIGMA,cc20_to32)
-            //     ),
-            //     param_bf = new Uint32Array(param),
-
-            //     mix = new Uint32Array(param_length)
-            // ;
-
-            console.dir(td.decode(data));
-
-            cc20_update(data, key_stream, byte_counter, rounds, block_size, mix, param_bf, ROUND_DATA);
-
-            console.dir(td.decode(data)); // encoded
-
-            key_stream.fill(0);
-            param_bf.set(param);
-
-            cc20_update(data, key_stream, byte_counter, rounds, block_size, mix, param_bf, ROUND_DATA);
-
-            console.dir(td.decode(data));
-
-            return (
-                e.preventDefault(),
-
-                (O.key = ""),//TODO:
-                        
-                (D.getElementById("c_c").onclick = chat_create),
-                (D.getElementById("c_j").onclick = chat_join),
-                (D.getElementById("cadd").onclick = chat_choose_add),
-                
-                (w.onresize = window_resize),
-                (msgs.querySelector(".list").oncopy = chat_copy),
-                (msgs.oncontextmenu=msgs_contextmenu),
-                (ctxt.onkeydown=chat_keydown),
-                (D.getElementById("send").onclick=chat_send),
-                (D.getElementById("fadd").onclick=chat_file_select),
-                (file.onchange = chat_file_change),
-                el_cache.bi.add("a"),
-                (D.getElementById("msg_delete").onclick=msg_delete_click),
-                (D.getElementById("msg_edit").onclick=msg_edit_click),
-                (D.getElementById("c_o").onclick=chat_opts_click),
-                (CHA.onclick=chatbar_ul_click),
-                (CHA.oncontextmenu=chatbar_ul_contextmenu),
-
-                b.forEach(a => (a.onclick=section_click)),
-                
-                (modules.M = M)
-                .reduce(modules_reduce,modules),
-
-                chats
-                .reduce(
-                    chats_reduce,
-                    0,
-                ),
-
-                MSGS
-                .reduce(
-                    messages_reduce,
-                    chat
-                ),
-
-                open_chat(chat_id, get_chat(chat_id)),
-                (chat.loaded = MSGS.length),
-
-                document.addEventListener('wheel', on_html_wheel, { passive: false }),
-                (window.onscroll = on_html_scroll),
-                
-                D.querySelector(`#nv button.n[data-a="${I}"]`).dispatchEvent(click_event),
-                window.dispatchEvent(resize_event),
-
-                (rl.scrollTop = rl.scrollHeight),
-                
-                (nt_au_se.onfocus =  nt_au_se_click),
-                (nt_au_se.onchange = nt_au_se_change),
-                (nt_au_se_fc.textContent = note.nt_au_l),
-    
-                (nt_vd_se.onfocus =  nt_vd_se_click),
-                (nt_vd_se.onchange = nt_vd_se_change),
-                (nt_vd_se_fc.textContent = note.nt_vd_l),
-
-                (mc_se.onfocus = mc_se_click),
-                (mc_se.onchange = mc_se_change),
-                (mc_se_fc.textContent = note.au_l),
-    
-                (mc.onmousedown = mc_mdown),
-                (nt.onmousedown = nt_mdown),
+    (e) => {
+        var
             
-                loader_cl.remove("a")
+            ls_0 = localStorage.getItem("\x00"),
+            key_value = e.currentTarget.querySelector("input").value,
+
+            w = window,
+
+            p = w.location.search,
+
+            h = w.history,
+            D = w.document,
+
+            chats = get_chats(),
+            
+            M = get_modules(),
+
+            chat_id = (chat.i = 0),
+
+            MSGS = get_msgs(0),
+
+            I = O.I,
+
+            bc = app_params[0],
+            r = app_params[1],
+            bs = app_params[2],
+            kl = app_params[3],
+            vl = app_params[6]
+        ;
+        return (
+            e.preventDefault(),
+            
+            app_key.set(TE.encode(key_value).subarray(0, kl)),
+            app_param_bf.set(c3_param(c3_param_setup(app_param,SIGMA),app_key,bc,app_nonce,c3_to32)),
+
+            (ls_0 === null)
+            ? (
+                app_value_copy.set(app_value),
+                localStorage
+                .setItem(
+                    "\x00",
+                    to_base64(
+                        app_value_str,
+                        c3_update(
+                            app_value_copy,0,vl,app_key_stream,bc,r,bs,app_mix,app_param_bf,ROUND_DATA
+                        ),
+                        0,
+                        vl,
+                    ),
+                )
             )
+            : (
+                c3_update(
+                    to_binary(
+                        app_value,
+                        globalThis.atob(ls_0),
+                        0,
+                        vl,
+                    ),
+                    0,vl,app_key_stream,bc,r,bs,app_mix,app_param_bf,ROUND_DATA
+                )
+            ),
+
+            (D.getElementById("c_c").onclick = chat_create),
+            (D.getElementById("c_j").onclick = chat_join),
+            (D.getElementById("cadd").onclick = chat_choose_add),
             
-        }
+            (w.onresize = window_resize),
+            (msgs.querySelector(".list").oncopy = chat_copy),
+            (msgs.oncontextmenu=msgs_contextmenu),
+
+            on_scroll_target(ej_p_el.firstElementChild),
+
+            (ctxt.onkeydown = chat_keydown),
+            (ctxt.onclick = on_ctxt_click),
+
+            (ej.onclick = on_ej_click),
+            (ej.oncontextmenu = on_ej_contextmenu),
+            (ej.onmouseleave = on_ej_mouseleave),
+
+            (D.getElementById("send").onclick=chat_send),
+            (D.getElementById("fadd").onclick=chat_file_select),
+            (file.onchange = chat_file_change),
+            el_cache.bi.add("a"),
+            (D.getElementById("msg_delete").onclick=msg_delete_click),
+            (D.getElementById("msg_edit").onclick=msg_edit_click),
+            (D.getElementById("c_o").onclick=chat_opts_click),
+            (CHA.onclick=chatbar_ul_click),
+            (CHA.oncontextmenu=chatbar_ul_contextmenu),
+
+
+            ej_p_in.addEventListener("scroll",on_ej_p_in_scroll),
+            (ej_p_list.style.height = `${(EMOJI.length/emoji[0])*40}px`),
+
+            b.forEach(a => (a.onclick=section_click)),
+
+            (D.getElementById(`s0`).value = app_value_view.getUint16(0, true).toString()),
+            (D.getElementById(`s1`).value = app_value[2].toString()),
+            (D.getElementById(`s2`).value = app_value[3].toString()),
+            
+            emoji_view.setUint16(6,emoji_load(0,emoji[2]*2,EMOJI,EJ_EL,ej_p_list),true),
+
+            (ej_p_list.onclick = on_ej_p_click),
+            
+            (modules.M = M).reduce(modules_reduce,modules),
+
+            chats.reduce(chats_reduce,0),
+            MSGS.reduce(messages_reduce,chat),
+
+            open_chat(chat_id, get_chat(chat_id)),
+            (chat.loaded = MSGS.length),
+
+            document.addEventListener('wheel', on_html_wheel, not_passive),
+            (window.onscroll = on_html_scroll),
+            
+            D.querySelector(`#nv button.n[data-a="${I}"]`).dispatchEvent(click_event),
+
+            window.dispatchEvent(resize_event),
+            ej.dispatchEvent(mouseleave_event),
+            ej.setAttribute("title", "Emoji"),
+
+            (rl.scrollTop = rl.scrollHeight),
+            
+            (nt_au_se.onfocus =  nt_au_se_click),
+            (nt_au_se.onchange = nt_au_se_change),
+            (nt_au_se_fc.textContent = note.nt_au_l),
+
+            (nt_vd_se.onfocus =  nt_vd_se_click),
+            (nt_vd_se.onchange = nt_vd_se_change),
+            (nt_vd_se_fc.textContent = note.nt_vd_l),
+
+            (mc_se.onfocus = mc_se_click),
+            (mc_se.onchange = mc_se_change),
+            (mc_se_fc.textContent = note.au_l),
+
+            (mc.onmousedown = mc_mdown),
+            (nt.onmousedown = nt_mdown),
+        
+            loader_cl.remove("a")
+        )
     }
-)();
+);

@@ -1,6 +1,7 @@
 import {O,scroll,scroll_value} from '../../state/i.js';
 import {title} from '../../api/i.js';
-import {ct,el_cache,html,scrolly,scrollo,} from '../../elems.js';
+import {ct,el_cache,} from '../../elems.js';
+import {update_height} from '../../f/i.js';
 
 
 export default (
@@ -13,28 +14,15 @@ export default (
         ;
         return (
             el_cache.bi.remove("a"),
-
             document.querySelector("#c > .a")?.classList.remove("a"),
-
             document.getElementById(`c${_}`).classList.add('a'),
             
-            (el_cache.bi = t.classList)
-            .add("a"),
-            
+            (el_cache.bi = t.classList).add("a"),
             window.history.pushState(I, title[I], `/?${O.I = _}`),
 
             (document.title = title[_]),
-
-            (
-                html.style.height =
-                    `${scrollo[_].clientHeight}px`
-            ),
-
-            (
-                html.scrollTop = scroll_value[_]
-            ),
-
-            (ct.scrollLeft = (_ * window.innerWidth))
+            
+            (ct.scrollLeft = (update_height(_) * window.innerWidth))
         );
     }
 )
