@@ -10,16 +10,16 @@ export default [
         PerfoByte Spell;
         PerfoByte Home;
 
+        Bosend;
+        perfobyte.s;
+
+        PerfoByte Table;
+        PerfoByte Structure;
+
         PerfoByte Tec;
         PerfoByte Lock;
         
-        [Zedrit] += [
-            perfobytes;
-            Bosend;
-        ];
-        
-        PerfoByte Table;
-        PerfoByte Structure;
+        Zedrit;
     ],
 
     [H],
