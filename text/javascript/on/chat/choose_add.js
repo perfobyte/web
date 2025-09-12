@@ -5,7 +5,7 @@ export default (
     (e) => {
         return (
             chat.clear("Add chat"),
-            document.querySelector("#nv > ul > li:nth-child(2) > button").click()
+            document.querySelector("#nv > * > li:nth-child(2) > button").click()
         );
     }
 )

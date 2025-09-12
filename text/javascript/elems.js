@@ -114,7 +114,16 @@ export var
 
     ej_p_in = ej_p_el.querySelector(".in"),
 
-    ej_p_list = ej_p_in.querySelector(".list")
+    ej_p_list = ej_p_in.querySelector(".list"),
+
+    MSG_FILE = tmpl.querySelector(".msg_file"),
+    MSG_IMAGE = tmpl.querySelector(".msg_image")
 ;
+
+MSG_IMAGE.removeAttribute("class");
+MSG_FILE.removeAttribute("class");
+
+MSG_EL.removeAttribute("class");
+MT_EL.removeAttribute("class");
 
 EJ_EL.removeAttribute("class");

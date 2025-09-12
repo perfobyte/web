@@ -1,6 +1,9 @@
 @import url("./svg.css");
 @import url("./flex.css");
 
+.dn {
+    display:none;
+}
 
 .hide_tr {
     transition:.1s opacity;

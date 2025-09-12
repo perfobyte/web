@@ -16,6 +16,11 @@ import {
     ctxt_i,
 
     ej, ej_p_el, ej_p, ej_p_list, ej_p_in,
+
+    MSG_FILE,
+    MSG_IMAGE,
+
+    html,
 } from '../../elems.js';
 
 import {
@@ -30,7 +35,7 @@ import {
 
 
 import {get_chats, get_modules, get_msgs, get_chat} from '../../api/i.js';
-import {open_chat} from '../../render/i.js';
+import {open_chat, msg_file_el, msg_image_el} from '../../render/i.js';
 
 import {chats_reduce,messages_reduce,modules_reduce} from '../../reduce/i.js';
 import {
@@ -55,6 +60,7 @@ import {
     on_ej_click,
     on_ej_contextmenu,
     on_ej_p_in_scroll,
+    on_ctxt_beforeinput,
 } from '../i.js';
 import {
     O,chat,modules,note,scroll_value,
@@ -76,9 +82,12 @@ import {
     emoji,
     emoji_view,
     
+    support_format_text,
+    support_format_image,
+    
 } from '../../state/i.js';
-import {TE, TD, ES, not_passive} from '../../conf.js';
-import {to_binary, to_base64, emoji_load} from '../../f/i.js';
+import {TE, TD, ES, not_passive, IMG} from '../../conf.js';
+import {to_binary, to_base64, emoji_load, update_height} from '../../f/i.js';
 
 
 export default (
@@ -109,8 +118,26 @@ export default (
             r = app_params[1],
             bs = app_params[2],
             kl = app_params[3],
-            vl = app_params[6]
+            vl = app_params[6],
+
+            image_test = 0,
+
+            image_mime = [
+                'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD/2wBDAAMCAgMCAgMDAwMEAwMEBQgFBQQEBQoHBwYIDAoMDAsKCwsNDhIQDQ4RDgsLEBYQERMUFRUVDA8XGBYUGBIUFRT/wAALCAABAAEBAREA/8QAFAABAAAAAAAAAAAAAAAAAAAACf/EABQQAQAAAAAAAAAAAAAAAAAAAAD/2gAIAQEAAD8AKp//2Q==',
+                'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=',
+                'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7',
+                "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='1' height='1'/>",
+                'data:image/bmp;base64,Qk0eAAAAAAAAABoAAAAMAAAAAQABAAEAGAD///8A',
+                'data:image/webp;base64,UklGRiwAAABXRUJQVlA4ICAAAAAUAgCdASoBAAEAL/3+/3+CAB/AAAFzrNsAAP5QAAAAAA==',
+                'data:image/avif;base64,AAAAHGZ0eXBhdmlmAAAAAGF2aWZtaWYxbWlhZgAAAOptZXRhAAAAAAAAACFoZGxyAAAAAAAAAABwaWN0AAAAAAAAAAAAAAAAAAAAAA5waXRtAAAAAAABAAAAImlsb2MAAAAAREAAAQABAAAAAAEOAAEAAAAAAAAAEgAAACNpaW5mAAAAAAABAAAAFWluZmUCAAAAAAEAAGF2MDEAAAAAamlwcnAAAABLaXBjbwAAABNjb2xybmNseAABAA0ABoAAAAAMYXYxQ4EgAgAAAAAUaXNwZQAAAAAAAAABAAAAAQAAABBwaXhpAAAAAAMICAgAAAAXaXBtYQAAAAAAAAABAAEEAYIDBAAAABptZGF0EgAKBzgABhAQ0GkyBRAAAAtA', // 'data:image/avif;base64,AAAAFGZ0eXBhdmlmAAAAAG1pZjEAAACgbWV0YQAAAAAAAAAOcGl0bQAAAAAAAQAAAB5pbG9jAAAAAEQAAAEAAQAAAAEAAAC8AAAAGwAAACNpaW5mAAAAAAABAAAAFWluZmUCAAAAAAEAAGF2MDEAAAAARWlwcnAAAAAoaXBjbwAAABRpc3BlAAAAAAAAAAQAAAAEAAAADGF2MUOBAAAAAAAAFWlwbWEAAAAAAAAAAQABAgECAAAAI21kYXQSAAoIP8R8hAQ0BUAyDWeeUy0JG+QAACANEkA='
+
+                "data:image/heic;base64,AAAAGGZ0eXBoZWljAAAAAG1pZjFoZWljAAABMG1ldGEAAAAAAAAAIWhkbHIAAAAAAAAAAHBpY3QAAAAAAAAAAAAAAAAAAAAADnBpdG0AAAAAAAIAAAAi",
+                "data:image/heif;base64,AAAAGGZ0eXBoZWlmAAAAAG1pZjFoZWlmAAABMG1ldGEAAAAAAAAAIWhkbHIAAAAAAAAAAHBpY3QAAAAAAAAAAAAAAAAAAAAADnBpdG0AAAAAAAIAAAAi",
+            ],
+
+            image_mime_l = image_mime.length
         ;
+        
         return (
             e.preventDefault(),
             
@@ -155,8 +182,9 @@ export default (
 
             on_scroll_target(ej_p_el.firstElementChild),
 
-            (ctxt.onkeydown = chat_keydown),
+            (ctxt_i.onkeydown = chat_keydown),
             (ctxt.onclick = on_ctxt_click),
+            
 
             (ej.onclick = on_ej_click),
             (ej.oncontextmenu = on_ej_contextmenu),
@@ -203,7 +231,7 @@ export default (
             ej.dispatchEvent(mouseleave_event),
             ej.setAttribute("title", "Emoji"),
 
-            (rl.scrollTop = rl.scrollHeight),
+            
             
             (nt_au_se.onfocus =  nt_au_se_click),
             (nt_au_se.onchange = nt_au_se_change),
@@ -219,7 +247,76 @@ export default (
 
             (mc.onmousedown = mc_mdown),
             (nt.onmousedown = nt_mdown),
-        
+
+            (support_format_text[0] = 1),
+
+            (IMG.onload = IMG.onerror = (
+                function(e) {
+                    support_format_image[image_test++] = Number(e.type === "load");
+                    return (
+                        (image_mime_l === image_test)
+                        ? (
+                            (
+                                this.onload =
+                                this.onerror =
+                                    null
+                            )
+                        )
+                        : console.dir(
+                            IMG.src = image_mime[image_test]
+                        )
+                    )
+                }
+            )),
+            (IMG.src = image_mime[image_test]),
+
+
+            //TODO:
+            msgs_ul.appendChild(msg_file_el(MSG_FILE.cloneNode(true), 0, 1203201321)),
+            msgs_ul.appendChild(msg_file_el(MSG_FILE.cloneNode(true), 1, 1203201321+1)),
+            msgs_ul.appendChild(msg_file_el(MSG_FILE.cloneNode(true), 2, 1203201321+2)),
+            msgs_ul.appendChild(msg_file_el(MSG_FILE.cloneNode(true), 3, 1203201321+3)),
+
+            
+
+            fetch("https://picsum.photos/536/354")
+            .then(r=>r.arrayBuffer())
+            .then(bf => {
+                var
+                    blob = new Blob([bf], { type: "image/png" }),
+                    NEW_IMG = new Image(),
+                    url = URL.createObjectURL(blob)
+                ;
+                return (
+                    (NEW_IMG.onload = function() {
+                        return (
+                            (NEW_IMG.onload=null),
+                            msgs_ul.appendChild(
+                                msg_image_el(
+                                    MSG_IMAGE.cloneNode(true),
+                                    this,
+                                    12312312,
+                                    this.naturalWidth,
+                                    this.naturalHeight,
+                                )
+                            ),
+                            URL.revokeObjectURL(url),
+
+                            update_height(1),
+                            (html.scrollTop = html.scrollHeight)
+                        )
+                    }),
+                    (NEW_IMG.onerror=function(e) {
+                        URL.revokeObjectURL(url);
+                        console.error(e)
+                    }),
+                    (NEW_IMG.src=url)
+                )
+            }),
+            
+            update_height(1),
+            (html.scrollTop = html.scrollHeight),
+            
             loader_cl.remove("a")
         )
     }

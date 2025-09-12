@@ -8,3 +8,4 @@ export * from './window/i.js';
 export * from './html/i.js';
 export * from './scroll/i.js';
 export * from './mouse/i.js';
+export * from './beforeinput/i.js';

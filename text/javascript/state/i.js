@@ -5,6 +5,9 @@ export {default as modules} from './modules.js';
 export {default as note} from './note.js';
 export {default as EMOJI} from "./EMOJI.js";
 
+
+export * from "./support/i.js";
+
 export * from './emoji.js';
 
 export * from './msg.js';

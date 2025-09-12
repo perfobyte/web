@@ -21,10 +21,7 @@ export default (
             (
                 (t = chat.t = Date.now()),
 
-                (
-                    ctxt_i.innerText =
-                        ""
-                ),
+                (ctxt_i.innerText = ""),
 
                 msg_set(v,(++chat.loaded),t),
 

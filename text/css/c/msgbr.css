@@ -54,9 +54,10 @@
     display:flex;
     flex-direction:column;
     
-    font-family:var(--msg-font);
+    
     
     border-radius:4px;
+    overflow:hidden;
 
     height:fit-content;
     min-height:30px;
@@ -64,17 +65,21 @@
     width:fit-content;
     max-width:100%;
 
-    &>span {
-        overflow-wrap: break-word;
+    & > button {
         height:fit-content;
+    }
+
+    & > .t {
+        overflow-wrap: break-word;
         line-height:14px;
         font-size:14px;
 
         padding-right:16px;
         padding-left:8px;
+        font-family:var(--msg-font);
     }
 
-    &.o > span {
+    &.o > button {
         padding-top:8px;
         padding-bottom:8px;
     }
@@ -83,12 +88,34 @@
         border-radius:8px;
     }
     
-    &.f > span {
+    &.f > button {
         padding-top:12px;
         padding-bottom:4px;
     }
 
-    &.l > span {
+    & > .F:hover {
+        color:var(--nv-fc-c);
+    }
+
+    & > .I {
+        border-radius:8px;
+        overflow:hidden;
+    }
+
+    & > .F {
+        color:gray;
+        cursor:pointer;
+        transition:.2s color;
+        width:40px;
+        height:40px;
+    }
+
+    & > .F > svg {
+        width:24px;
+        height:24px;
+    }
+
+    &.l > button {
         padding-top:4px;
         padding-bottom:12px;
     }
@@ -97,7 +124,7 @@
         height:24px;
     };
 
-    &.i > span {
+    &.i > button {
         padding-top:5px;
         padding-bottom:5px;
     }

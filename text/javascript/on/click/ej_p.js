@@ -1,11 +1,12 @@
 import {ctxt_i} from '../../elems.js';
-import {EMOJI} from '../../state/i.js';
+import {EMOJI, emoji} from '../../state/i.js';
 
 export default (
     (e) => {
         var
             t = e.currentTarget,
             r = t.getBoundingClientRect(),
+            size = emoji[3],
             i = (
                 (
                     Math.floor(
@@ -14,29 +15,31 @@ export default (
                                 e.clientY
                                 - r.top
                             )
-                            + t.scrollTop
+                            // + t.scrollTop
                         )
-                        / 40
+                        / size
                     )
-                    * 7
+                    * emoji[0]
                 )
                 + Math.floor(
                     (
                         e.clientX
                         - r.left
                     )
-                    / 40
+                    / size
                 )
-            )
+            ),
+            l = EMOJI.length
         ;
         return (
             ctxt_i.innerText += (
-                ((i>=0)&&(i<EMOJI.length))
+                ((i>=0)&&(i<l))
                 ? EMOJI[i]
-                :
-                (document.activeElement.textContent)
-                ||
-                EMOJI[0]
+                : (
+                    (document.activeElement.textContent)
+                    ||
+                    EMOJI[l-1]
+                )
             )
         )
     }

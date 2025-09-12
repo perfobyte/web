@@ -34,5 +34,8 @@ export var
 
     ES = "",
 
-    not_passive = { passive: false }
+    not_passive = { passive: false },
+
+    IMG = new Image()
+    
 ;

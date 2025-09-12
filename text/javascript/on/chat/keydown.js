@@ -5,9 +5,11 @@ export default (
         return (
             (e.keyCode === 13)
             &&
-            (!e.shiftKey)
-            &&
-            (e.preventDefault(), send(e)),
+            (
+                (e.shiftKey)
+                ||
+                (e.preventDefault(), send(e))
+            ),
             0
         );
     }
