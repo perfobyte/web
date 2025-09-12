@@ -72,7 +72,9 @@ import {
     on_msg_image_error,
     on_view_image_mousedown,
     view_image_zoom_cb,
+    on_v1dl_click,
 } from '../i.js';
+
 import {
     O,chat,modules,note,scroll_value,
 
@@ -264,6 +266,8 @@ export default (
                     (view[7] = setTimeout(VIEW_PN_CB,4_000))
                 );
             }),
+
+            (D.getElementById("v1dl").onclick = on_v1dl_click),
 
             
             //TODO:
