@@ -14,7 +14,7 @@
 
 @import "./df.css";
 @import "./scroll.css";
-
+@import "./view/i.css";
 
 .hi {
     opacity:0 !important;

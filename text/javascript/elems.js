@@ -117,7 +117,14 @@ export var
     ej_p_list = ej_p_in.querySelector(".list"),
 
     MSG_FILE = tmpl.querySelector(".msg_file"),
-    MSG_IMAGE = tmpl.querySelector(".msg_image")
+    MSG_IMAGE = tmpl.querySelector(".msg_image"),
+
+    VIEW_1 = document.getElementById("view1"),
+    VIEW_1_IMG = VIEW_1.querySelector("img"),
+
+    VIEW_1_PN = VIEW_1.querySelector(".pn").classList,
+
+    view1_zoom_p_st = view1.querySelector(".zoom .p").style
 ;
 
 MSG_IMAGE.removeAttribute("class");

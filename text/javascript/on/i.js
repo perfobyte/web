@@ -9,3 +9,11 @@ export * from './html/i.js';
 export * from './scroll/i.js';
 export * from './mouse/i.js';
 export * from './beforeinput/i.js';
+export * from "./wheel/i.js";
+export * from './load/i.js';
+export * from './error/i.js';
+export * from './cb/i.js';
+
+export {default as stop_prevent} from './stop_prevent.js';
+export {default as on_test_image_type} from './test_image_type.js';
+

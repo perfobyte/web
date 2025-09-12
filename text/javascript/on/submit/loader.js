@@ -21,6 +21,7 @@ import {
     MSG_IMAGE,
 
     html,
+    VIEW_1, VIEW_1_IMG, VIEW_1_PN,
 } from '../../elems.js';
 
 import {
@@ -61,6 +62,16 @@ import {
     on_ej_contextmenu,
     on_ej_p_in_scroll,
     on_ctxt_beforeinput,
+    on_view_scroll_bar_mousedown,
+
+    on_v1cl_click,
+    on_view_image_wheel,
+    stop_prevent,
+    on_test_image_type,
+    on_view_image_load,
+    on_msg_image_error,
+    on_view_image_mousedown,
+    view_image_zoom_cb,
 } from '../i.js';
 import {
     O,chat,modules,note,scroll_value,
@@ -84,9 +95,11 @@ import {
     
     support_format_text,
     support_format_image,
+
+    view,
     
 } from '../../state/i.js';
-import {TE, TD, ES, not_passive, IMG} from '../../conf.js';
+import {TE, TD, ES, not_passive, IMG, image_mime} from '../../conf.js';
 import {to_binary, to_base64, emoji_load, update_height} from '../../f/i.js';
 
 
@@ -120,22 +133,7 @@ export default (
             kl = app_params[3],
             vl = app_params[6],
 
-            image_test = 0,
-
-            image_mime = [
-                'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD/2wBDAAMCAgMCAgMDAwMEAwMEBQgFBQQEBQoHBwYIDAoMDAsKCwsNDhIQDQ4RDgsLEBYQERMUFRUVDA8XGBYUGBIUFRT/wAALCAABAAEBAREA/8QAFAABAAAAAAAAAAAAAAAAAAAACf/EABQQAQAAAAAAAAAAAAAAAAAAAAD/2gAIAQEAAD8AKp//2Q==',
-                'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=',
-                'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7',
-                "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='1' height='1'/>",
-                'data:image/bmp;base64,Qk0eAAAAAAAAABoAAAAMAAAAAQABAAEAGAD///8A',
-                'data:image/webp;base64,UklGRiwAAABXRUJQVlA4ICAAAAAUAgCdASoBAAEAL/3+/3+CAB/AAAFzrNsAAP5QAAAAAA==',
-                'data:image/avif;base64,AAAAHGZ0eXBhdmlmAAAAAGF2aWZtaWYxbWlhZgAAAOptZXRhAAAAAAAAACFoZGxyAAAAAAAAAABwaWN0AAAAAAAAAAAAAAAAAAAAAA5waXRtAAAAAAABAAAAImlsb2MAAAAAREAAAQABAAAAAAEOAAEAAAAAAAAAEgAAACNpaW5mAAAAAAABAAAAFWluZmUCAAAAAAEAAGF2MDEAAAAAamlwcnAAAABLaXBjbwAAABNjb2xybmNseAABAA0ABoAAAAAMYXYxQ4EgAgAAAAAUaXNwZQAAAAAAAAABAAAAAQAAABBwaXhpAAAAAAMICAgAAAAXaXBtYQAAAAAAAAABAAEEAYIDBAAAABptZGF0EgAKBzgABhAQ0GkyBRAAAAtA', // 'data:image/avif;base64,AAAAFGZ0eXBhdmlmAAAAAG1pZjEAAACgbWV0YQAAAAAAAAAOcGl0bQAAAAAAAQAAAB5pbG9jAAAAAEQAAAEAAQAAAAEAAAC8AAAAGwAAACNpaW5mAAAAAAABAAAAFWluZmUCAAAAAAEAAGF2MDEAAAAARWlwcnAAAAAoaXBjbwAAABRpc3BlAAAAAAAAAAQAAAAEAAAADGF2MUOBAAAAAAAAFWlwbWEAAAAAAAAAAQABAgECAAAAI21kYXQSAAoIP8R8hAQ0BUAyDWeeUy0JG+QAACANEkA='
-
-                "data:image/heic;base64,AAAAGGZ0eXBoZWljAAAAAG1pZjFoZWljAAABMG1ldGEAAAAAAAAAIWhkbHIAAAAAAAAAAHBpY3QAAAAAAAAAAAAAAAAAAAAADnBpdG0AAAAAAAIAAAAi",
-                "data:image/heif;base64,AAAAGGZ0eXBoZWlmAAAAAG1pZjFoZWlmAAABMG1ldGEAAAAAAAAAIWhkbHIAAAAAAAAAAHBpY3QAAAAAAAAAAAAAAAAAAAAADnBpdG0AAAAAAAIAAAAi",
-            ],
-
-            image_mime_l = image_mime.length
+            VIEW_PN_CB = () => VIEW_1_PN.remove("a")
         ;
         
         return (
@@ -248,36 +246,31 @@ export default (
             (mc.onmousedown = mc_mdown),
             (nt.onmousedown = nt_mdown),
 
+            (D.getElementById("v1cl").onclick = on_v1cl_click),
+
             (support_format_text[0] = 1),
 
-            (IMG.onload = IMG.onerror = (
-                function(e) {
-                    support_format_image[image_test++] = Number(e.type === "load");
-                    return (
-                        (image_mime_l === image_test)
-                        ? (
-                            (
-                                this.onload =
-                                this.onerror =
-                                    null
-                            )
-                        )
-                        : console.dir(
-                            IMG.src = image_mime[image_test]
-                        )
-                    )
-                }
-            )),
-            (IMG.src = image_mime[image_test]),
+            (IMG.onload = IMG.onerror = on_test_image_type),
+            (IMG.src = image_mime[0]),
 
+            VIEW_1.addEventListener("wheel",on_view_image_wheel,not_passive),
+            on_view_image_mousedown(VIEW_1,view),
 
+            //TODO:
+            window.addEventListener("mousemove", () => {
+                return (
+                    clearTimeout(view[7]),
+                    VIEW_1_PN.add("a"),
+                    (view[7] = setTimeout(VIEW_PN_CB,4_000))
+                );
+            }),
+
+            
             //TODO:
             msgs_ul.appendChild(msg_file_el(MSG_FILE.cloneNode(true), 0, 1203201321)),
             msgs_ul.appendChild(msg_file_el(MSG_FILE.cloneNode(true), 1, 1203201321+1)),
             msgs_ul.appendChild(msg_file_el(MSG_FILE.cloneNode(true), 2, 1203201321+2)),
             msgs_ul.appendChild(msg_file_el(MSG_FILE.cloneNode(true), 3, 1203201321+3)),
-
-            
 
             fetch("https://picsum.photos/536/354")
             .then(r=>r.arrayBuffer())
@@ -289,6 +282,7 @@ export default (
                 ;
                 return (
                     (NEW_IMG.onload = function() {
+                        
                         return (
                             (NEW_IMG.onload=null),
                             msgs_ul.appendChild(
@@ -300,24 +294,26 @@ export default (
                                     this.naturalHeight,
                                 )
                             ),
-                            URL.revokeObjectURL(url),
+                            
+                            on_view_scroll_bar_mousedown(
+                                window,
+                                D.querySelector("#view1 .zoom"),
+                                view_image_zoom_cb,
+                            ),
+
+                            (VIEW_1_IMG.onload = on_view_image_load),
+                            (VIEW_1_IMG.src = url),
 
                             update_height(1),
                             (html.scrollTop = html.scrollHeight)
-                        )
+                        );
                     }),
-                    (NEW_IMG.onerror=function(e) {
-                        URL.revokeObjectURL(url);
-                        console.error(e)
-                    }),
+                    (NEW_IMG.onerror=on_msg_image_error),
                     (NEW_IMG.src=url)
                 )
-            }),
+            })
             
-            update_height(1),
-            (html.scrollTop = html.scrollHeight),
             
-            loader_cl.remove("a")
         )
     }
 );
