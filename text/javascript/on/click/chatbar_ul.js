@@ -8,9 +8,12 @@ import {open_chat} from "../../render/i.js";
 export default (
     (e) => {
         var
+            chap = e.currentTarget,
+            cha = chap.querySelector("#cha"),
+
             id = Math.floor(
                 (
-                    e.clientY - e.currentTarget.getBoundingClientRect().top
+                    e.clientY - cha.getBoundingClientRect().top
                 )
                 / 50
             ),
@@ -18,14 +21,9 @@ export default (
             chat = get_chat(id)
         ;
         return (
-            (id < get_chats_length())
-            &&
-            (
-                open_chat(id, chat),
-                document.querySelector('#nv button[data-a="1"]').click(),
-                
-                (html.scrollTop = html.scrollHeight)
-            )
+            open_chat(id, chat),
+            document.querySelector('#nv button[data-a="1"]').click(),
+            (html.scrollTop = html.scrollHeight)
         )
     }
 )

@@ -9,6 +9,8 @@ export var
 
     loader = document.getElementById("loader"),
     loader_cl = loader.classList,
+
+    loader_form = loader.querySelector("form"),
     
     chatbar_h1 = document.querySelector("#chatbar > h1"),
 
@@ -103,7 +105,17 @@ export var
 
     EJ_EL = tmpl.querySelector(".ej_el"),
 
-    scrolly = document.querySelectorAll(".scrolly"),
+    scrolly = (
+        Array.from(document.querySelectorAll(".scrolly"))
+        .sort(
+            (a,b) => (
+                Number(
+                    a.getAttribute("data-i")
+                )
+                - Number(b.getAttribute("data-i"))
+            )
+        )
+    ),
 
     scrollo = Array.from(scrolly, (e) => e.querySelector(".scrollo")),
 

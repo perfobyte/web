@@ -83,7 +83,7 @@
     cursor:text;
     
 
-    & > .I {        
+    & > .I {
         overflow:hidden;
         
         height:40px;

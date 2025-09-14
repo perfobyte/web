@@ -1,6 +1,6 @@
 
 
-import {chatbar_h1, c_av,msgs, chat_menu, chat_menu_time, el_cache} from '../../elems.js';
+import {chatbar_h1, c_av,msgs, chat_menu, chat_menu_time, el_cache, html} from '../../elems.js';
 import {get_chat, get_chats_length} from '../../api/i.js';
 import {full_datetime, check_range_x, check_range_y} from '../../f/i.js';
 import {after_chat_menu_0_click} from '../i.js';
@@ -17,21 +17,26 @@ export default (
             chat_menu_h = 0,
             chat_menu_w = 0,
             
-            cha = e.currentTarget,
-
+            chap = e.currentTarget,
+            cha = chap.querySelector("#cha"),
+            
             st_el = null,
 
-            id = (
-                Math.floor(
-                    (e.clientY - cha.getBoundingClientRect().top) / 50
-                )
-            ),
 
-            cl = null,
+            scrollTop = html.scrollTop,
 
-            scrollTop = 0
+            Y = (cha.getBoundingClientRect().top),
+
+            pos_y = (e.clientY - Y),
+
+            id = Math.floor(pos_y / 50),
+
+            cl = null
         ;
-        return (id < get_chats_length()) && (            
+        console.log(pos_y);
+
+
+        return (id < get_chats_length()) && (
             e.preventDefault(),
             e.stopPropagation(),
             
@@ -48,20 +53,16 @@ export default (
                 )
             ),
 
-            (scrollTop = document.getElementById("c0").scrollTop),
-
             (
                 (st = (st_el = document.getElementById("chat_menu_0")).style)
                 .top = `${
-                    check_range_y(e.pageY,st_el.offsetHeight,window.innerHeight-40,scrollTop)
+                    check_range_y(e.pageY,st_el.clientHeight,(window.innerHeight-40), scrollTop)
                 }px`
             ),
 
             (st.left = `${
-                check_range_x(e.pageX,st_el.offsetWidth,window.innerWidth-20)
+                check_range_x(e.pageX,st_el.offsetWidth,(window.innerWidth-20))
             }px`),
-
-            
 
             (cl=st_el.classList).contains("a")
             ? (

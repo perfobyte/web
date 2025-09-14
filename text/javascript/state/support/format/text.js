@@ -1,4 +1,2 @@
 
-// text, html, markdown
-
-export default new Uint8Array(4);
+export default new Uint8Array(8);

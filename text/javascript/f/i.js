@@ -4,6 +4,8 @@ export {default as escape_html} from './escape_html.js';
 export {default as full_datetime} from './full_datetime.js';
 export {default as emoji_load} from './emoji_load.js';
 export {default as update_height} from './update_height.js';
+export {default as app_start} from './app_start.js';
+
 
 export * from "./CONST.js";
 export * from './check_range/i.js';

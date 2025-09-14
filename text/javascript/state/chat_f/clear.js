@@ -1,4 +1,4 @@
-import {msgs_ul, c_av, msgs_time_ul, chatbar_h1, ctxt} from '../../elems.js';
+import {msgs_ul, c_av, msgs_time_ul, chatbar_h1, ctxt_i} from '../../elems.js';
 
 
 export default (
@@ -9,7 +9,7 @@ export default (
 
         this.sl = -1;
         
-        ctxt.innerText =
+        ctxt_i.innerText =
         msgs_time_ul.innerHTML = 
         msgs_ul.innerHTML =
         this.v = 

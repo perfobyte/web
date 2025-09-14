@@ -28,7 +28,7 @@ export default (
                         note.a =
                         an = (
                             (
-                                note.c = ct = new window.AudioContext()
+                                note.c = ct = new (globalThis.AudioContext)()
                             )
                             .createAnalyser()
                         )

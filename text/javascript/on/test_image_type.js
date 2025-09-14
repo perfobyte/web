@@ -1,18 +1,17 @@
-import {support_format_image, support} from '../state/i.js';
-import {IMG, image_mime, image_mime_l} from '../conf.js';
-import {loader_cl, html} from '../elems.js';
-import {update_height} from '../f/i.js';
-
+import {support_codec, support_format, support} from '../state/i.js';
+import {API_1} from '../conf.js';
+import {app_start} from '../f/i.js';
 
 export default (
     function(e) {
         var
-            image_test = support[0]
+            image_test = support[0],
+            image_mime = support_codec[1]
         ;
         return (
-            (support_format_image[image_test] = Number(e.type === "load")),
+            (support_format[1][image_test] = Number(e.type === "load")),
             (
-                image_mime_l === (
+                image_mime.length === (
                     support[0] = (
                         ++image_test
                     )
@@ -24,12 +23,11 @@ export default (
                     this.onerror =
                         null
                 ),
-                update_height(1),
-                (html.scrollTop = html.scrollHeight),
-                loader_cl.remove("a")
+                
+                app_start()
             )
             : (
-                IMG.src = image_mime[image_test]
+                API_1.src = image_mime[image_test]
             )
         )
     }
