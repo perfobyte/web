@@ -1,12 +1,17 @@
 
+audio [
+    play,
+    volume,
+    speed,
+    focus_on_current_media_message,
+];
 
-msg_buffer;
-
-import "format.js": (
-    image,
-    audio,
-    video,
-);
+video [
+    video_player = [
+        [...audio] + fullscreen,
+    ],
+    in_fullsreen = video_player,
+];
 
 open db;
 chat add;

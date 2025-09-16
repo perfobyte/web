@@ -19,7 +19,7 @@
 
     format (1),
 
-    sent_from (1) [
+    utm_source (1) [
         push_notification,
         ui_chat,
         code,

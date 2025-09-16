@@ -3,39 +3,42 @@ import { readFileSync, createReadStream, statSync, existsSync } from 'fs';
 import {send_file, within_frame, stream_file, to_index, cut_to, file_size, route_value} from './f/i.js';
 
 import {path_files,F} from "#var";
-
-import {minify} from "html-minifier";
-import {render as swig_render} from 'swig-templates';
-
-
+import html from 'nunjucks';
 
 
 export default (
     (mode) => {
         var
-            html_minify_conf = {
-                collapseWhitespace: true,
-                removeComments: true,
-                removeAttributeQuotes: true,
-            },
             r_data = {
-                locals: {
-                    mode,
-                }
+                mode,
             },
-            dev = mode === 0
+            dev = mode === 0,
+
+            file_v = (
+                dev
+                ? (
+                    (route) => {
+                        var v = route.v;
+                        return (
+                            route.r
+                            &&
+                            (route.l=(v=html.renderString(v.toString(), r_data)).length),
+                            
+
+                            v
+                        );
+                    }
+                )
+                : route_value
+            )
         ;
         return (
             (q,s) => {
                 var
-                    u = q.url,
-
-                    U = u.substring(0,to_index(u.indexOf("?"))),
-
+                    U = q.url,
                     p = "",
                     fp = "",
-                    route = null,
-                    _ = null
+                    route = null
                 ;
                 return (
                     U.startsWith("/f/")
@@ -48,14 +51,8 @@ export default (
                     send_file(
                         s,
                         (route=path_files[U]).t,
-                        (_=Buffer.from(minify(
-                            swig_render(
-                                readFileSync(route.v).toString(),
-                                r_data
-                            ),
-                            html_minify_conf
-                        ))),
-                        (_.byteLength),
+                        file_v(route),
+                        route.l,
                     )
                 );
             }

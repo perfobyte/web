@@ -1,7 +1,8 @@
 
-* extension;
-
-remote [
-    read,
-    read-n-write,
+[
+    *(search engine);
+    tec;
 ];
+
+finalize entity folder;
+string_table separated system;

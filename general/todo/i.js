@@ -1,29 +1,20 @@
 
 export default [
-    [
-        PerfoByte;
-        PerfoByte Map;
+    PerfoByte;
+    bosend (map);
 
-        PerfoByte Camera;
-        PerfoByte Call;
-        
-        PerfoByte Spell;
-        PerfoByte Home;
+    PerfoByte Camera;
+    PerfoByte Call;
 
-        Bosend;
-        perfobyte.s;
+    PerfoByte Spell;
+    PerfoByte Home;
+    
+    bosend;
+    perfobytes;
 
-        PerfoByte Table;
-        PerfoByte Structure;
-
-        PerfoByte Tec;
-        PerfoByte Lock;
-        
-        Zedrit;
-    ],
-
-    [H],
-
-    [POST],
-    [LMGFPIO],
+    PerfoByte Lock;
+    
+    Zedrit;
+    Zedrit Post;
+    Zedrit Return;
 ];
