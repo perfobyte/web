@@ -1,0 +1,45 @@
+
+
+.point_slider {
+    display:flex;
+    flex-direction:row;
+    gap:0;
+    
+}
+
+.point_slider:hover > .v {
+    opacity:1;
+}
+
+.point_slider:hover svg {
+    color:var(--media-c) !important;
+}
+
+.point_slider > .v {
+    height:40px;
+    width:60px;
+    position:relative;
+
+    transition:.2s opacity;
+    opacity:0;
+
+    & .sl {
+        transform-origin: left center;
+    }
+
+    & > :nth-child(1) > :nth-child(1) {
+        background:var(--media-c);
+        width:1px;
+        height:100%;
+    }
+
+    & > :nth-child(1) {
+        
+        background:rgba(0,0,0,.2);
+        width:60px;
+        height:4px;
+        border-radius:2px;
+        overflow:hidden;
+        position:relative;
+    }
+}

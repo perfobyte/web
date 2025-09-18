@@ -26,7 +26,6 @@ export default (
                 msg_set(v,(++chat.loaded),t),
 
                 update_height(1),
-                
                 (html.scrollTop = html.scrollHeight)
             )
         )

@@ -42,5 +42,7 @@ export var
 
     API_1 = new Image(),
     API_2 = new Audio(),
-    API_3 = document.createElement("video")
+    API_3 = document.createElement("video"),
+
+    AUDIO_HEIGHT = 40
 ;

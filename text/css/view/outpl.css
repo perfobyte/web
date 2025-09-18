@@ -1,15 +1,29 @@
 
-.point_slider {
 
-}
 
 #jump {
     position:absolute;
     right:0;
-    bottom:60px;
+    bottom:80px;
+    color: var(--inp-fc-c);
+    outline: 1px solid var(--inp-fc-c);
 }
 
-.outpl {
+#outpl._0 .fs {
+    display:none;
+}
+
+#minp.M #ctxt:hover {
+    outline-color:var(--media-c);
+}
+#minp.M #outpl {
+    display:flex;
+}
+#minp.M #pline {
+    display:block;
+}
+
+#outpl {
     position:absolute;
     top:0;
     left:0;
@@ -17,13 +31,30 @@
     height:100%;
     z-index:100;
 
-    display:flex;
+    display:none;
     flex-direction:row;
+
+    
+
+    & > :nth-child(1) > .ts {
+        gap:2px;
+        font-size:12px;
+    }
+
+    & button:hover svg {
+        color:var(--media-c);
+    }
 
     & > :nth-child(1) {
         margin-left:5px;
         margin-right:auto;
+        gap:4px;
     }
+    & > :nth-child(1) > .ts > * {
+        height:fit-content;
+        margin:auto 0;
+    }
+
     & > :nth-child(2) {
         margin-left:auto;
         margin-right:5px;
@@ -38,12 +69,8 @@
     }
 
     & svg {
-        color:gray;
+        color:var(--easy-media-c);
         width:24px;
         height:24px;
-    }
-
-    & .sp {
-        
     }
 }

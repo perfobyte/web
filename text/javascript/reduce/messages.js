@@ -1,4 +1,4 @@
-import {msg_to_html, msg_time_to_html, count_char, date, time, msg_time_format, detail_time} from '../f/i.js';
+import {msg_to_html, msg_time_to_html, count_char, date, time, msg_time_format, detail_time, msg_height} from '../f/i.js';
 import {msg_rows_reduce} from './i.js';
 
 export default (
@@ -30,6 +30,7 @@ export default (
             r.time_ul.appendChild(
                 msg_time_to_html(
                     msg_time_format(ts,r,T,D),
+                    msg_height(rows),
                     rows,
                     `${D} ${detail_time(T, ts_o)}`,
                     r.MT_EL.cloneNode(true),

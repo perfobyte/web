@@ -1,7 +1,7 @@
 
 import {chat} from "../../state/i.js";
 import {count_char} from '../../f/i.js';
-import {msg_to_html, msg_time_to_html, msg_time_format, detail_time, time, date} from '../../f/i.js';
+import {msg_to_html, msg_time_to_html, msg_time_format, detail_time, time, date, msg_height} from '../../f/i.js';
 
 
 export default (
@@ -28,6 +28,7 @@ export default (
             chat.time_ul.appendChild(
                 msg_time_to_html(
                     msg_time_format(t,chat,T,D),
+                    msg_height(rows),
                     rows,
                     `${D} ${detail_time(T, ts_o)}`,
                     chat.MT_EL.cloneNode(true),

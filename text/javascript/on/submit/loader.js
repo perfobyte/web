@@ -96,8 +96,6 @@ export default (
 
             support_codec[2].reduce((r,v,i) => ((r[i]=Number(API_2.canPlayType(v)==="probably")),r), support_format[2]),
             support_codec[3].reduce((r,v,i) => ((r[i]=Number(API_3.canPlayType(v)==="probably")),r), support_format[3]),
-
-            console.dir(support_format),
             
             (API_1.onload = API_1.onerror = on_test_image_type),
             (API_1.src = support_codec[1][0]),

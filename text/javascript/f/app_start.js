@@ -25,6 +25,7 @@ import {
     html,
     chap,
     VIEW_1, VIEW_1_IMG,
+    audio_vl_v,
 } from '../elems.js';
 
 import {get_chats, get_modules, get_msgs, get_chat} from '../api/i.js';
@@ -65,6 +66,10 @@ import {
 
     on_target_mouseenter,
     on_target_mouseleave,
+    
+    on_audio_click,
+    on_2_volumechange,
+    on_audio_vl_slider_mousedown,
 } from '../on/i.js';
 
 import {
@@ -77,8 +82,12 @@ import {
     emoji,
     emoji_view,
 } from '../state/i.js';
-import {not_passive} from '../conf.js';
+import {not_passive, AUDIO_HEIGHT, API_2} from '../conf.js';
 import {emoji_load, update_height} from '../f/i.js';
+
+//
+import {msg_time_format, msg_time_to_html, date, detail_time,time,} from '../f/i.js';
+
 
 
 export default (
@@ -166,16 +175,87 @@ export default (
             D.addEventListener('wheel', on_html_wheel, not_passive),
             VIEW_1.addEventListener("wheel",on_view_image_wheel,not_passive),
 
+            (outpl.querySelector(".vl .i").onclick = on_audio_click),
+            (API_2.onvolumechange = on_2_volumechange),
+            (audio_vl_v.onmousedown = on_audio_vl_slider_mousedown),
+            
+
             window.dispatchEvent(resize_event),
             ej.dispatchEvent(mouseleave_event),
             el_cache.bi.add("a"),
             
             //TEST:
-            msgs_ul.appendChild(msg_file_el(MSG_FILE.cloneNode(true), 0, 1203201321)),
-            msgs_ul.appendChild(msg_file_el(MSG_FILE.cloneNode(true), 1, 1203201321+1)),
-            msgs_ul.appendChild(msg_file_el(MSG_FILE.cloneNode(true), 2, 1203201321+2)),
-            msgs_ul.appendChild(msg_file_el(MSG_FILE.cloneNode(true), 3, 1203201321+3)),
+            
+            (() => {
+                var
+                    time_el = () => {
+                        var
+                            ts = Date.now(),
+                            ts_o = new Date(ts),
+
+                            T = time(ts_o),
+                            D = date(ts_o)
+                        ;
+                        return msg_time_to_html(
+                            msg_time_format(ts,chat,T,D),
+                            AUDIO_HEIGHT,
+                            1,
+                            `${D} ${detail_time(T, ts_o)}`,
+                            chat.MT_EL.cloneNode(true),
+                            chat.mt_v_el,
+                        )
+                    },
+                    time_ul = chat.time_ul
+                ;
+                return (
+                    msgs_ul.appendChild(msg_file_el(MSG_FILE.cloneNode(true), 0, 1203201321)),
+                    msgs_ul.appendChild(msg_file_el(MSG_FILE.cloneNode(true), 1, 1203201321+1)),
+                    msgs_ul.appendChild(msg_file_el(MSG_FILE.cloneNode(true), 2, 1203201321+2)),
+                    msgs_ul.appendChild(msg_file_el(MSG_FILE.cloneNode(true), 3, 1203201321+3)),
+
+                    time_ul.appendChild(time_el()),
+                    time_ul.appendChild(time_el()),
+                    time_ul.appendChild(time_el()),
+                    time_ul.appendChild(time_el()),
+
+                    audio.addEventListener("volumechange", ),
+
+                    audio.addEventListener("loadstart", ),
+                    audio.addEventListener("progress", ),
+                    audio.addEventListener("suspend", ),
+                    audio.addEventListener("abort", ),
+                    audio.addEventListener("error", ),
+                    audio.addEventListener("stalled", ),
+
+                    audio.addEventListener("loadedmetadata", ),
+                    audio.addEventListener("loadeddata", ),
+                    audio.addEventListener("canplay", ),
+                    audio.addEventListener("canplaythrough", ),
+                    audio.addEventListener("durationchange", ),
+                    audio.addEventListener("ratechange", ),
+                    audio.addEventListener("emptied", ),
+
+                    /* --- Управление воспроизведением --- */
+                    audio.addEventListener("play", ),
+                    audio.addEventListener("playing", ),
+                    audio.addEventListener("pause", ),
+                    audio.addEventListener("ended", ),
+                    audio.addEventListener("waiting", ),
+
+                    /* --- Перемотка --- */
+                    audio.addEventListener("seeking", ),
+                    audio.addEventListener("seeked", ),
+
+                    /* --- Текущая позиция --- */
+                    audio.addEventListener("timeupdate", )
+
+                    /* --- Звук --- */
+                    
+                );
+            }),
+            
             //
+
 
             D.querySelector(`#nv button.n[data-a="${I}"]`).dispatchEvent(click_event),
             update_height(I),

@@ -136,7 +136,12 @@ export var
 
     VIEW_1_PN = VIEW_1.querySelector(".pn").classList,
 
-    view1_zoom_p_st = view1.querySelector(".zoom .p").style
+    view1_zoom_p_st = view1.querySelector(".zoom .p").style,
+
+    outpl = document.getElementById('outpl'),
+    audio_vl = outpl.querySelector(".vl"),
+    audio_vl_v = audio_vl.querySelector(".v"),
+    audio_vl_slider = audio_vl.querySelector(".sl").style
 ;
 
 MSG_IMAGE.removeAttribute("class");
