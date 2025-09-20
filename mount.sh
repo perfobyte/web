@@ -39,8 +39,8 @@ cd /run/media/dencelman/23054a74-912b-4801-9347-ddde27ef7528
 cd ~/gt/space
 
 git remote remove usb
-git remote add usb /run/usb/space.git
-git remote set-url usb /run/usb/space.git
+git remote add usb /media/usb/space.git
+git remote set-url usb /media/usb/space.git
 
 # git remote set-url origin git@github.com:perfobyte/cha3js.git
 # git add . && git commit -m "a" && git push -u origin main
