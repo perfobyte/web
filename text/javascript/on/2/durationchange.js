@@ -1,5 +1,3 @@
+import _ from './loadedmetadata.js'
 
-
-export default (
-    () => console.log("⏱ durationchange — изменилась длительность")
-);
+export default _;

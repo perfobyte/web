@@ -1,3 +1,9 @@
+import {audio_st_use} from '../../elems.js';
+
 export default (
-    () => console.log("🔄 loadstart — началась загрузка")
+    () => {
+        return (
+            audio_st_use.setAttribute("href", "#cross_i")
+        )
+    }
 );

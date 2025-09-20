@@ -1,5 +1,9 @@
-
+import {audio_pl_use} from '../../elems.js';
 
 export default (
-    () => console.log("⏹ ended — трек закончился")
+    () => {
+        return (
+            audio_pl_use.setAttribute("href", "#reload_i")
+        )
+    }
 );

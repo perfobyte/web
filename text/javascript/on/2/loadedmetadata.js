@@ -1,5 +1,9 @@
+import {audio_ts_2} from '../../elems.js';
+import {audio_time} from '../../f/i.js';
 
 
 export default (
-    () => console.log("ℹ️ loadedmetadata — метаданные доступны (длительность и пр.)")
+    (e) => {
+        return (audio_ts_2.textContent = audio_time(e.currentTarget.duration));
+    }
 );

@@ -1,4 +1,9 @@
+import {audio_pl_use} from '../../elems.js';
 
 export default (
-    () => console.log("⏸ pause — воспроизведение приостановлено")
+    () => {
+        return (
+            audio_pl_use.setAttribute("href", "#pause_i")
+        )
+    }
 );

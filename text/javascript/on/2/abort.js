@@ -1,5 +1,9 @@
-
+import {audio_st_use} from '../../elems.js';
 
 export default (
-    () => console.log("🛑 abort — загрузка прервана")
+    () => {
+        return (
+            audio_st_use.setAttribute("href", "#download_i")
+        )
+    }
 );

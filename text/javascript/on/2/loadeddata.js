@@ -1,5 +1,9 @@
 
 
 export default (
-    () => console.log("✅ loadeddata — первые данные загружены")
+    () => {
+        return (
+            console.log(0)
+        )
+    }
 );

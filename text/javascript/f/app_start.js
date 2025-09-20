@@ -26,6 +26,9 @@ import {
     chap,
     VIEW_1, VIEW_1_IMG,
     audio_vl_v,
+    audio_vl,
+    pline,
+    outpl,
 } from '../elems.js';
 
 import {get_chats, get_modules, get_msgs, get_chat} from '../api/i.js';
@@ -70,6 +73,32 @@ import {
     on_audio_click,
     on_2_volumechange,
     on_audio_vl_slider_mousedown,
+
+    on_audio_mouseenter,
+    on_audio_mouseleave,
+    on_2_timeupdate,
+    on_2_loadedmetadata,
+    on_2_canplay,
+    on_2_playing,
+    on_2_pause,
+    on_2_error,
+    on_2_durationchange,
+    on_2_ended,
+    on_2_play,
+    on_2_waiting,
+    on_2_progress,
+    on_2_abort,
+    on_2_canplaythrough,
+    on_2_emptied,
+
+    on_2_seeked,
+    on_2_seeking,
+
+    on_audio_pline_hover_mouseenter,
+
+    on_audio_write_click,
+
+    on_audio_pline_mousedown,
 } from '../on/i.js';
 
 import {
@@ -142,6 +171,7 @@ export default (
             (D.getElementById("v1dl").onclick = on_v1dl_click),
             (ctxt.onclick = on_ctxt_click),
             (ej_p_list.onclick = on_ej_p_click),
+            (outpl.querySelector(".wr").onclick = on_audio_write_click),
 
             (ej.oncontextmenu = on_ej_contextmenu),
             (msgs.oncontextmenu = msgs_contextmenu),
@@ -177,9 +207,35 @@ export default (
 
             (outpl.querySelector(".vl .i").onclick = on_audio_click),
             (API_2.onvolumechange = on_2_volumechange),
-            (audio_vl_v.onmousedown = on_audio_vl_slider_mousedown),
-            
+            (API_2.ontimeupdate = on_2_timeupdate),
 
+            (API_2.onloadedmetadata = on_2_loadedmetadata),
+            (API_2.ondurationchange = on_2_durationchange),
+
+            (API_2.oncanplay = on_2_canplay),
+            (API_2.onplaying = on_2_playing),
+            (API_2.onpause = on_2_pause),
+            (API_2.onerror = on_2_error),
+            (API_2.onended = on_2_ended),
+            (API_2.onplay = on_2_play),
+            (API_2.onwaiting = on_2_waiting),
+            (API_2.onprogress = on_2_progress),
+            (API_2.onabort = on_2_abort),
+            (API_2.oncanplaythrough = on_2_canplaythrough),
+            (API_2.onemptied = on_2_emptied),
+
+            (API_2.onseeking = on_2_seeking),
+            (API_2.onseeked = on_2_seeked),
+            
+            
+            (audio_vl_v.onmousedown = on_audio_vl_slider_mousedown),
+
+            (audio_vl.onmouseenter = on_audio_mouseenter),
+            (audio_vl.onmouseleave = on_audio_mouseleave),
+
+            (pline.onmousedown = on_audio_pline_mousedown),
+            (pline.onmouseenter = on_audio_pline_hover_mouseenter),
+            
             window.dispatchEvent(resize_event),
             ej.dispatchEvent(mouseleave_event),
             el_cache.bi.add("a"),
@@ -248,8 +304,9 @@ export default (
 
                     /* --- Текущая позиция --- */
                     audio.addEventListener("timeupdate", )
+                    
 
-                    /* --- Звук --- */
+                    // turn_on_audio_player
                     
                 );
             }),

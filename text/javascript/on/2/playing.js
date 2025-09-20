@@ -1,5 +1,9 @@
-
+import {audio_pl_use} from '../../elems.js';
 
 export default (
-    () => console.log("🎶 playing — началось воспроизведение")
+    () => {
+        return (
+            audio_pl_use.setAttribute("href", "#play_i")
+        )
+    }
 );

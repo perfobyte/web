@@ -6,7 +6,7 @@ export {default as emoji_load} from './emoji_load.js';
 export {default as update_height} from './update_height.js';
 export {default as app_start} from './app_start.js';
 
-
+export * from './audio/i.js';
 export * from "./CONST.js";
 export * from './check_range/i.js';
 

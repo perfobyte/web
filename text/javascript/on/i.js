@@ -13,7 +13,9 @@ export * from "./wheel/i.js";
 export * from './load/i.js';
 export * from './error/i.js';
 export * from './cb/i.js';
+export * from './blur/i.js';
 export * from './2/i.js';
+
 
 export {default as stop_prevent} from './stop_prevent.js';
 export {default as on_test_image_type} from './test_image_type.js';

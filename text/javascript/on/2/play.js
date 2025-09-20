@@ -1,5 +1,9 @@
-
+import {audio_pl_use} from '../../elems.js';
 
 export default (
-    () => console.log("▶️ play — вызван метод .play()")
+    () => {
+        return (
+            audio_pl_use.setAttribute("href", "#loading_i")
+        )
+    }
 );

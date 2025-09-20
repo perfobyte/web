@@ -1,5 +1,2 @@
-
-
-export default (
-    () => console.log("⌛ waiting — ожидание подзагрузки данных")
-);
+import _ from './play.js';
+export default _;

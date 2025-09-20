@@ -1,5 +1,9 @@
-
+import {audio_st_use} from '../../elems.js';
 
 export default (
-    () => console.log("🚀 canplaythrough — можно воспроизвести до конца без подзагрузки")
+    () => {
+        return (
+            audio_st_use.setAttribute("href", "#done_i")
+        )
+    }
 );

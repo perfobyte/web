@@ -139,7 +139,32 @@ export var
     view1_zoom_p_st = view1.querySelector(".zoom .p").style,
 
     outpl = document.getElementById('outpl'),
+    outpl_cl = outpl.classList,
+
+    pline = document.getElementById("pline"),
+
+    audio_st = outpl.querySelector(".st"),
+    audio_st_use = audio_st.querySelector("use"),
+    
     audio_vl = outpl.querySelector(".vl"),
+
+    
+    audio_pl = outpl.querySelector(".pl"),
+    audio_pl_use = audio_pl.querySelector("use"),
+
+    audio_ts = outpl.querySelector(".ts"),
+
+    audio_ts_1 = audio_ts.firstElementChild,
+    audio_ts_2 = audio_ts.querySelector(":nth-child(3)"),
+
+    audio_vl_cl = audio_vl.classList,
+
+    
+    audio_pline_loaded = pline.querySelector(":nth-child(1)").style,
+    audio_pline_hover  = pline.querySelector(":nth-child(2)").style,
+    audio_pline_viewed = pline.querySelector(":nth-child(3)").style,
+    audio_pline_cursor = pline.querySelector(":nth-child(4)").style,
+    
     audio_vl_v = audio_vl.querySelector(".v"),
     audio_vl_slider = audio_vl.querySelector(".sl").style
 ;

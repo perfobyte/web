@@ -1,5 +1,9 @@
 
 
 export default (
-    () => console.log("▶️ canplay — можно начать воспроизведение")
+    (e) => {
+        return (
+            e.currentTarget.play()
+        )
+    }
 );

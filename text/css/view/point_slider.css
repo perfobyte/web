@@ -7,11 +7,11 @@
     
 }
 
-.point_slider:hover > .v {
+.point_slider._ > .v {
     opacity:1;
 }
 
-.point_slider:hover svg {
+.point_slider._ svg {
     color:var(--media-c) !important;
 }
 
