@@ -1,10 +1,11 @@
 
 # sudo cryptsetup luksFormat /dev/sdb
-sudo cryptsetup open /dev/sdb usb_crypt
+sudo cryptsetup open /dev/sdb _
 # sudo mkfs.ext4 /dev/mapper/usb_crypt
 
-sudo mkdir -p /media/usb
-sudo mount /dev/mapper/u /media/usb
+sudo mkdir -p /media/_
+sudo mount /dev/mapper/_ /media/_
+
 
 cd /media/usb
 
@@ -38,8 +39,8 @@ cd /run/media/dencelman/23054a74-912b-4801-9347-ddde27ef7528
 cd ~/gt/space
 
 git remote remove usb
-git remote add usb /run/media/dencelman/23054a74-912b-4801-9347-ddde27ef7528/space.git
-git remote set-url usb /run/media/dencelman/23054a74-912b-4801-9347-ddde27ef7528/space.git
+git remote add usb /run/usb/space.git
+git remote set-url usb /run/usb/space.git
 
 # git remote set-url origin git@github.com:perfobyte/cha3js.git
 # git add . && git commit -m "a" && git push -u origin main

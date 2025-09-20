@@ -1,20 +1,18 @@
 
 export default [
     PerfoByte;
-    bosend (map);
-
     PerfoByte Camera;
     PerfoByte Call;
 
-    PerfoByte Spell;
     PerfoByte Home;
-    
-    bosend;
-    perfobytes;
+    PerfoByte Spell;
 
     PerfoByte Lock;
     
+    bosend;
+    perfobytes;
     Zedrit;
+    
     Zedrit Post;
     Zedrit Return;
 ];

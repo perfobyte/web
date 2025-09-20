@@ -1,12 +1,8 @@
 
-audio [
-    play,
-    volume,
-    speed,
-    focus_on_current_media_message,
-];
+audio player settings;
+audio message;
 
-video [
+video message [
     video_player = [
         [...audio] + fullscreen,
     ],

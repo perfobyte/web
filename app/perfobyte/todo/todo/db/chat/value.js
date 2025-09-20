@@ -23,9 +23,11 @@ export default {
     initiator_session_id(8),
     receiver_session_id(8),
 
-    size(16),
+    size(8),
     response_time(4),
     average_message_length(4),
+
+    
 } = (
     128
 );
