@@ -50,5 +50,5 @@ git push usb master
 
 # exit:
 sudo umount /media/usb
-sudo cryptsetup luksClose luks-e46ad816-59b1-45b8-b776-959f4406d6bf
+sudo cryptsetup luksClose usb_crypt
 udisksctl power-off -b /dev/sdb

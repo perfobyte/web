@@ -3,16 +3,15 @@ export default [
     PerfoByte;
     PerfoByte Camera;
     PerfoByte Call;
-
     PerfoByte Home;
     PerfoByte Spell;
-
-    PerfoByte Lock;
     
-    bosend;
     perfobytes;
-    Zedrit;
+    bosend;
     
+    PerfoByte Lock;
+    Zedrit;
+
     Zedrit Post;
     Zedrit Return;
 ];
