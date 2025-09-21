@@ -1,5 +1,5 @@
-import {audio} from '../../../state/i.js';
-import {API_2} from '../../../conf.js';
+import {audio} from '../../../../state/i.js';
+import {API_2} from '../../../../conf.js';
 
 export default (
     (e) => {

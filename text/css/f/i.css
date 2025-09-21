@@ -27,3 +27,9 @@
     overflow-x:hidden;
     overflow-y:scroll;
 }
+
+.txt_of {
+    text-overflow:ellipsis;
+    overflow:hidden;
+    
+}

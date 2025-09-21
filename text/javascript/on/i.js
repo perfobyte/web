@@ -14,6 +14,7 @@ export * from './load/i.js';
 export * from './error/i.js';
 export * from './cb/i.js';
 export * from './blur/i.js';
+export * from './input/i.js';
 export * from './2/i.js';
 
 

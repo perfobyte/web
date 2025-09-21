@@ -1,3 +1,5 @@
+import {CHA} from '../../../elems.js';
+import {after_chat_menu_0_scroll} from '../../i.js';
 
 
 export default (
@@ -13,11 +15,7 @@ export default (
                         e.target.closest("#chat_menu_0")
                         ||
                         (
-                            t.removeEventListener("click",a),
-                            t.removeEventListener("contextmenu",a),
-
-                            cha.querySelector('.chbr > button.ctx').classList.remove("ctx"),
-                            document.getElementById("chat_menu_0").classList.remove('a')
+                            after_chat_menu_0_scroll(e)
                         )
                     );
                 }

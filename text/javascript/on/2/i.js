@@ -21,9 +21,7 @@ export {default as on_2_emptied} from "./emptied.js";
 
 export {default as on_2_seeking} from "./seeking.js";
 export {default as on_2_seeked} from "./seeked.js";
-
-//TODO:
-export {default as ratechange} from './ratechange.js';
+export {default as on_2_ratechange} from './ratechange.js';
 
 /*
     Analytics:

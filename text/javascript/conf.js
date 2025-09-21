@@ -36,7 +36,12 @@ export var
 
     not_passive = { passive: false },
 
-    
+    scrollTo = (
+        {
+            left:0,
+            behavior: "smooth"
+        }
+    ),
 
     EA = [],
 
@@ -44,5 +49,16 @@ export var
     API_2 = new Audio(),
     API_3 = document.createElement("video"),
 
-    AUDIO_HEIGHT = 40
+    AUDIO_HEIGHT = 40,
+    AUDIO_MENU_WIDTH = 200,
+
+    AUDIO_SPEED_MIN = 0.0625,
+    AUDIO_SPEED_MAX = 16,
+
+    AUDIO_MDOWN_FROM = 0.25,
+    AUDIO_MDOWN_TO = 3,
+
+    AUDIO_MDOWN_VALUE = AUDIO_MDOWN_TO - AUDIO_MDOWN_FROM,
+
+    AUDIO_DECINC_STEP = 0.1
 ;

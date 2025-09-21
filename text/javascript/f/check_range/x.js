@@ -1,9 +1,10 @@
 
 export default (
     (page,el,range) => {
+        page
         return (
             ((page + el) >= range)
-            ? (range - el)
+            ? (page - el)
             : page
         );
     }

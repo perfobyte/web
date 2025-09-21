@@ -2,6 +2,7 @@
 @import "./outpl.css";
 @import "./pline.css";
 @import "./point_slider.css";
+@import "./menu.css";
 
 .view_pl {
     position:fixed;

@@ -9,6 +9,29 @@
     outline: 1px solid var(--inp-fc-c);
 }
 
+#outpl .ss_b {
+    position:absolute;
+    bottom:49px;
+    right:0;
+
+    width:200px;
+    
+    background:white;
+    overflow:hidden;
+
+    border-left:1px solid var(--easy-media-c);
+    border-top:1px solid var(--easy-media-c);
+    border-right:1px solid var(--easy-media-c);
+    border-bottom:1px solid var(--background-color);
+
+    transition:.2s height;
+
+    & > * {
+        min-width:200px;
+        height:fit-content;
+    }
+}
+
 #outpl._0 .fs {
     display:none;
 }
@@ -32,12 +55,13 @@
     z-index:100;
 
     outline:1px solid var(--easy-media-c);
-
+    outline-offset:-1px;
+    
     display:none;
     flex-direction:row;
 
     
-
+    
     & > :nth-child(1) > .ts {
         gap:2px;
         font-size:12px;

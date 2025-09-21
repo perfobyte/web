@@ -78,6 +78,8 @@
 
     border:none;
     outline:1px solid gray;
+    outline-offset:-1px;
+    
     border-radius:4px;
 
     background-color:white;

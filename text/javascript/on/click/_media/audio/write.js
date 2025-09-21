@@ -1,5 +1,5 @@
-import {outpl_cl, ctxt_i} from '../../../elems.js';
-import {on_audio_write_blur} from '../../blur/i.js';
+import {outpl_cl, ctxt_i} from '../../../../elems.js';
+import {on_audio_write_blur} from '../../../blur/i.js';
 
 export default (
     (e) => {

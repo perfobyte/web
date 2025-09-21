@@ -109,10 +109,7 @@ export var
         Array.from(document.querySelectorAll(".scrolly"))
         .sort(
             (a,b) => (
-                Number(
-                    a.getAttribute("data-i")
-                )
-                - Number(b.getAttribute("data-i"))
+                Number(a.getAttribute("data-i")) - Number(b.getAttribute("data-i"))
             )
         )
     ),
@@ -143,11 +140,15 @@ export var
 
     pline = document.getElementById("pline"),
 
+    audio_ss_b_el = outpl.querySelector(".ss_b"),
+    audio_ss_b = audio_ss_b_el.classList,
+
+    audio_menu = audio_ss_b_el.querySelector(".menu"),
+
     audio_st = outpl.querySelector(".st"),
     audio_st_use = audio_st.querySelector("use"),
     
     audio_vl = outpl.querySelector(".vl"),
-
     
     audio_pl = outpl.querySelector(".pl"),
     audio_pl_use = audio_pl.querySelector("use"),
@@ -159,14 +160,22 @@ export var
 
     audio_vl_cl = audio_vl.classList,
 
-    
     audio_pline_loaded = pline.querySelector(":nth-child(1)").style,
     audio_pline_hover  = pline.querySelector(":nth-child(2)").style,
     audio_pline_viewed = pline.querySelector(":nth-child(3)").style,
     audio_pline_cursor = pline.querySelector(":nth-child(4)").style,
     
     audio_vl_v = audio_vl.querySelector(".v"),
-    audio_vl_slider = audio_vl.querySelector(".sl").style
+    audio_vl_slider = audio_vl.querySelector(".sl").style,
+
+    audio_pbsp = document.getElementById("pbsp"),
+
+    audio_pbsp_slider = audio_ss_b_el.querySelector(".pbsp"),
+
+    audio_pbsp_v = audio_pbsp_slider.querySelector(".v"),
+    audio_pbsp_sl = audio_pbsp_v.querySelector(".sl").style,
+
+    audio_menu_spb_v = audio_menu.querySelector(".spb .v")
 ;
 
 MSG_IMAGE.removeAttribute("class");

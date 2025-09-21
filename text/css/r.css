@@ -4,6 +4,7 @@
     --gray-200: rgb(228, 228, 228);
     --gray-400: rgb(170, 170, 170);
     --gray-800: rgb(60, 59, 59);
+    --gray-1000: rgb(43, 43, 43);
     
     --lbar-w:320px;
     --minp-h:80px;
@@ -19,6 +20,7 @@
     --call-red-focus-c:rgb(197, 0, 0);
 
     --media-c:#d96f00;
+    --media-dark-c:#6d4400;
     --loaded-media-c:#ff840052;
     
     --easy-media-c:#947a4f;

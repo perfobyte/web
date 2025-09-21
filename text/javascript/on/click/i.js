@@ -11,5 +11,5 @@ export {default as on_v1dl_click} from './v1dl.js';
 
 export * from "./after/i.js";
 export * from './msg/i.js';
-export * from './audio/i.js';
+export * from './_media/i.js';
 

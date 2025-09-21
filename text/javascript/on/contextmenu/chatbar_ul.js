@@ -3,7 +3,8 @@
 import {chatbar_h1, c_av,msgs, chat_menu, chat_menu_time, el_cache, html} from '../../elems.js';
 import {get_chat, get_chats_length} from '../../api/i.js';
 import {full_datetime, check_range_x, check_range_y} from '../../f/i.js';
-import {after_chat_menu_0_click} from '../i.js';
+import {after_chat_menu_0_click, after_chat_menu_0_scroll} from '../i.js';
+
 
 export default (
     (e) => {
@@ -31,11 +32,10 @@ export default (
 
             id = Math.floor(pos_y / 50),
 
-            cl = null
+            cl = null,
+
+            window = e.view
         ;
-        console.log(pos_y);
-
-
         return (id < get_chats_length()) && (
             e.preventDefault(),
             e.stopPropagation(),
@@ -55,14 +55,20 @@ export default (
 
             (
                 (st = (st_el = document.getElementById("chat_menu_0")).style)
-                .top = `${
-                    check_range_y(e.pageY,st_el.clientHeight,(window.innerHeight-40), scrollTop)
-                }px`
+                .top = (
+                    `${
+                        check_range_x(e.clientY,st_el.clientHeight,(window.innerHeight-40))
+                    }px`
+                )
             ),
 
-            (st.left = `${
-                check_range_x(e.pageX,st_el.offsetWidth,(window.innerWidth-20))
-            }px`),
+            (
+                st.left = (
+                    `${
+                        check_range_x(e.pageX,st_el.offsetWidth,(window.innerWidth-20))
+                    }px`
+                )
+            ),
 
             (cl=st_el.classList).contains("a")
             ? (
@@ -71,6 +77,7 @@ export default (
             : (
                 window.addEventListener("click",after_chat_menu_0_click),
                 window.addEventListener("contextmenu",after_chat_menu_0_click),
+                window.addEventListener("scroll",after_chat_menu_0_scroll),
                 cl.add('a')
             ),
 

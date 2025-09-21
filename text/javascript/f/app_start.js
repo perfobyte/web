@@ -29,6 +29,11 @@ import {
     audio_vl,
     pline,
     outpl,
+    audio_menu,
+    audio_ss_b_el,
+    audio_pbsp,
+    audio_pbsp_v,
+    
 } from '../elems.js';
 
 import {get_chats, get_modules, get_msgs, get_chat} from '../api/i.js';
@@ -90,6 +95,7 @@ import {
     on_2_abort,
     on_2_canplaythrough,
     on_2_emptied,
+    on_2_ratechange,
 
     on_2_seeked,
     on_2_seeking,
@@ -97,8 +103,14 @@ import {
     on_audio_pline_hover_mouseenter,
 
     on_audio_write_click,
+    on_audio_ss_click,
+    on_menu_goto_click,
 
     on_audio_pline_mousedown,
+    on_audio_pbsp_input,
+    on_audio_pbsp_mousedown,
+    on_audio_decinc_click,
+    
 } from '../on/i.js';
 
 import {
@@ -112,10 +124,8 @@ import {
     emoji_view,
 } from '../state/i.js';
 import {not_passive, AUDIO_HEIGHT, API_2} from '../conf.js';
-import {emoji_load, update_height} from '../f/i.js';
-
 //
-import {msg_time_format, msg_time_to_html, date, detail_time,time,} from '../f/i.js';
+import {msg_time_format, msg_time_to_html, date, detail_time,time, emoji_load, update_height} from '../f/i.js';
 
 
 
@@ -223,22 +233,43 @@ export default (
             (API_2.onabort = on_2_abort),
             (API_2.oncanplaythrough = on_2_canplaythrough),
             (API_2.onemptied = on_2_emptied),
+            (API_2.onratechange = on_2_ratechange),
 
             (API_2.onseeking = on_2_seeking),
             (API_2.onseeked = on_2_seeked),
-            
-            
+
+            (outpl.querySelector(".ss").onclick = on_audio_ss_click),
             (audio_vl_v.onmousedown = on_audio_vl_slider_mousedown),
 
             (audio_vl.onmouseenter = on_audio_mouseenter),
             (audio_vl.onmouseleave = on_audio_mouseleave),
-
+            
             (pline.onmousedown = on_audio_pline_mousedown),
             (pline.onmouseenter = on_audio_pline_hover_mouseenter),
+
+            (audio_pbsp_v.onmousedown = on_audio_pbsp_mousedown),
+            (audio_pbsp.oninput = on_audio_pbsp_input),
+
+            (
+                audio_ss_b_el.querySelector(".inc").onclick =
+                audio_ss_b_el.querySelector(".dec").onclick =
+                    on_audio_decinc_click
+            ),
+            
+            (
+                audio_ss_b_el
+                .querySelectorAll(".gt")
+                .forEach(
+                    (v) => (
+                        v.onclick = on_menu_goto_click
+                    )
+                )
+            ),
             
             window.dispatchEvent(resize_event),
             ej.dispatchEvent(mouseleave_event),
             el_cache.bi.add("a"),
+            (audio_pbsp.value = "1"),
             
             //TEST:
             
@@ -272,46 +303,9 @@ export default (
                     time_ul.appendChild(time_el()),
                     time_ul.appendChild(time_el()),
                     time_ul.appendChild(time_el()),
-                    time_ul.appendChild(time_el()),
-
-                    audio.addEventListener("volumechange", ),
-
-                    audio.addEventListener("loadstart", ),
-                    audio.addEventListener("progress", ),
-                    audio.addEventListener("suspend", ),
-                    audio.addEventListener("abort", ),
-                    audio.addEventListener("error", ),
-                    audio.addEventListener("stalled", ),
-
-                    audio.addEventListener("loadedmetadata", ),
-                    audio.addEventListener("loadeddata", ),
-                    audio.addEventListener("canplay", ),
-                    audio.addEventListener("canplaythrough", ),
-                    audio.addEventListener("durationchange", ),
-                    audio.addEventListener("ratechange", ),
-                    audio.addEventListener("emptied", ),
-
-                    /* --- Управление воспроизведением --- */
-                    audio.addEventListener("play", ),
-                    audio.addEventListener("playing", ),
-                    audio.addEventListener("pause", ),
-                    audio.addEventListener("ended", ),
-                    audio.addEventListener("waiting", ),
-
-                    /* --- Перемотка --- */
-                    audio.addEventListener("seeking", ),
-                    audio.addEventListener("seeked", ),
-
-                    /* --- Текущая позиция --- */
-                    audio.addEventListener("timeupdate", )
-                    
-
-                    // turn_on_audio_player
-                    
-                );
-            }),
-            
-            //
+                    time_ul.appendChild(time_el())
+                )
+            })(),
 
 
             D.querySelector(`#nv button.n[data-a="${I}"]`).dispatchEvent(click_event),
