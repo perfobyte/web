@@ -1,4 +1,4 @@
-import {mdi,start_a_o} from '../../../conf.js';
+import {mdi,start_a_o} from '../../../conf/i.js';
 import start from './start.js';
 import {mc_mup} from '../../../on/i.js';
 

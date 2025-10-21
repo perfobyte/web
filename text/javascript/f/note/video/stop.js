@@ -1,8 +1,8 @@
 
 import {note} from '../../../state/i.js';
 import {stop} from '../../media/i.js';
-import {ch,vd_o} from '../../../conf.js';
-import {ntin_bl,ntin_V} from '../../../elems.js';
+import {ch,vd_o} from '../../../conf/i.js';
+import {ntin_bl,ntin_V} from '../../../elems/i.js';
 
 
 export default (

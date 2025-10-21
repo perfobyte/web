@@ -1,7 +1,6 @@
-import {get_modules} from '../api/get/i.js';
-import {origin} from '../api/data/i.js';
-import {mdbr} from '../elems.js';
 
+import {origin} from '../conf/i.js';
+import {mdbr} from '../elems/i.js';
 
 export default {
     M:null,

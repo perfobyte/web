@@ -1,6 +1,6 @@
 import {on_audio_vl_slider_mousemove} from '../move/i.js'
 import {on_audio_vl_slider_mouseup} from './i.js';
-import {audio_vl, outpl, audio_vl_cl} from '../../../elems.js';
+import {audio_vl, outpl, audio_vl_cl} from '../../../elems/i.js';
 import {on_audio_mouseenter, on_audio_mouseleave} from '../i.js';
 
 

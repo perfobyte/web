@@ -9,9 +9,9 @@ import {
     AUDIO_MDOWN_TO,
     AUDIO_MDOWN_VALUE,
 
-} from '../../../../conf.js';
+} from '../../../../conf/i.js';
 import {audio_pbsp_value} from '../../../../f/i.js';
-import {audio_pbsp_sl} from '../../../../elems.js';
+import {audio_pbsp_sl} from '../../../../elems/i.js';
 
 
 export default (

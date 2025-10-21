@@ -5,7 +5,7 @@ import {
     
     audio_ts_1,
     audio_ts_2,
-} from '../../elems.js';
+} from '../../elems/i.js';
 
 export default (
     (e) => {

@@ -1,4 +1,4 @@
-import {AUDIO_MENU_WIDTH, scrollTo} from '../../../../conf.js';
+import {AUDIO_MENU_WIDTH, scrollTo} from '../../../../conf/i.js';
 
 
 export default (

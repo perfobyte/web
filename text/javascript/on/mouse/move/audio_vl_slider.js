@@ -1,5 +1,5 @@
-import {API_2} from '../../../conf.js';
-import {audio_vl_v} from '../../../elems.js';
+import {API_2} from '../../../conf/i.js';
+import {audio_vl_v} from '../../../elems/i.js';
 
 
 export default (

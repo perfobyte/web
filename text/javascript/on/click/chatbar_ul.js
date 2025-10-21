@@ -1,7 +1,6 @@
 
-import {msgs, html} from '../../elems.js';
-import {get_chat,get_chats_length} from '../../api/i.js';
-import {open_chat} from "../../render/i.js";
+import {msgs, html} from '../../elems/i.js';
+import {open_chat, get_chat, get_chats_length} from "../../f/i.js";
 
 // TODO: cache for each chat, else msgs.scrollHeight
 

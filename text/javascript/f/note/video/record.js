@@ -3,12 +3,12 @@ import { stop as stop_track } from '../../media/i.js';
 import {push,} from '../both/i.js';
 import {anote_check} from '../audio/i.js';
 
-import {ch,vdcf, fftSize} from '../../../conf.js';
+import {ch,vdcf, fftSize} from '../../../conf/i.js';
 
 import stop from './stop.js';
 import update_T from './update_T.js';
 
-import {ntin_bl,ntin_ts,ntin_V, ntin_ts_b_s} from '../../../elems.js';
+import {ntin_bl,ntin_ts,ntin_V, ntin_ts_b_s} from '../../../elems/i.js';
 import {note} from '../../../state/i.js';
 
 export default (

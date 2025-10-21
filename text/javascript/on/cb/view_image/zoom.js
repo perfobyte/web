@@ -1,4 +1,4 @@
-import {VIEW_1_IMG, view1_zoom_p_st} from '../../../elems.js';
+import {VIEW_1_IMG, view1_zoom_p_st} from '../../../elems/i.js';
 import {view} from '../../../state/i.js';
 
 

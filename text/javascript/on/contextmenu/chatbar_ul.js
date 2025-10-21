@@ -1,8 +1,7 @@
 
 
-import {chatbar_h1, c_av,msgs, chat_menu, chat_menu_time, el_cache, html} from '../../elems.js';
-import {get_chat, get_chats_length} from '../../api/i.js';
-import {full_datetime, check_range_x, check_range_y} from '../../f/i.js';
+import {chatbar_h1, c_av,msgs, chat_menu, chat_menu_time, el_cache, html} from '../../elems/i.js';
+import {full_datetime, check_range_x, check_range_y, get_chat, get_chats_length} from '../../f/i.js';
 import {after_chat_menu_0_click, after_chat_menu_0_scroll} from '../i.js';
 
 

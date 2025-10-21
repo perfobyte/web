@@ -1,7 +1,7 @@
 import {chat} from '../../state/i.js'
-import {ctxt_i, rl, html} from '../../elems.js';
-import {count_char, update_height} from '../../f/i.js';
-import {msg_set} from '../../render/i.js';
+import {ctxt_i, rl, html} from '../../elems/i.js';
+import {count_char, msg_set} from '../../f/i.js';
+
 
 
 // TODO:
@@ -23,10 +23,7 @@ export default (
 
                 (ctxt_i.innerText = ""),
 
-                msg_set(v,(++chat.loaded),t),
-
-                update_height(1),
-                (html.scrollTop = html.scrollHeight)
+                msg_set(v,(++chat.loaded),t)
             )
         )
     }

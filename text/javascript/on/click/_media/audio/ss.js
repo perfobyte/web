@@ -1,4 +1,4 @@
-import {audio_ss_b} from '../../../../elems.js';
+import {audio_ss_b} from '../../../../elems/i.js';
 
 export default (
     () => {

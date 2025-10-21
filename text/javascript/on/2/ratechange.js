@@ -2,8 +2,8 @@ import {
     AUDIO_MDOWN_FROM,
     AUDIO_MDOWN_TO,
     AUDIO_MDOWN_VALUE,
-} from '../../conf.js';
-import {audio_menu_spb_v, audio_pbsp, audio_pbsp_sl} from "../../elems.js";
+} from '../../conf/i.js';
+import {audio_menu_spb_v, audio_pbsp, audio_pbsp_sl} from "../../elems/i.js";
 
 export default (
     (e) => {

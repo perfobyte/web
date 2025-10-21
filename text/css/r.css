@@ -8,8 +8,9 @@
     
     --lbar-w:320px;
     --minp-h:80px;
+    --header-h:40px;
     
-    --msg-font: Consolas, Monaco, 'Courier New', monospace;
+    --msg-font: monospace;
     
     --inp-fc-c: rgb(16, 74, 248);
     --nv-fc-c: #0078D4;
@@ -30,4 +31,10 @@
 
     --scrollbar-c:var(--background-color);
     --scrollсrawler-c:gray;
+
+    --logo-color:#FAA43C;
+    --soft-blue:rgb(37 85 231);
+    --muted-blue:#5f7ecf;
+
+    --msg-ls:0px;
 }

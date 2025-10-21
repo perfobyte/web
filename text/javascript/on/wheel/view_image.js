@@ -1,5 +1,5 @@
 import {view} from '../../state/i.js';
-import {view1_zoom_p_st, VIEW_1_IMG as t} from '../../elems.js';
+import {view1_zoom_p_st, VIEW_1_IMG as t} from '../../elems/i.js';
 
 
 export default (

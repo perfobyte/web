@@ -1,4 +1,4 @@
-import {audio_ts_1, audio_pline_cursor, audio_pline_viewed, pline} from '../../elems.js';
+import {audio_ts_1, audio_pline_cursor, audio_pline_viewed, pline} from '../../elems/i.js';
 import {audio_time} from '../../f/i.js';
 
 

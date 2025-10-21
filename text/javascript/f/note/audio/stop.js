@@ -1,6 +1,6 @@
 import {note} from '../../../state/i.js';
-import {ch,vd_o} from '../../../conf.js';
-import {rl_cl} from '../../../elems.js';
+import {ch,vd_o} from '../../../conf/i.js';
+import {rl_cl} from '../../../elems/i.js';
 import {stop} from '../../media/i.js';
 
 

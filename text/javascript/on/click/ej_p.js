@@ -1,4 +1,4 @@
-import {ctxt_i} from '../../elems.js';
+import {ctxt_i} from '../../elems/i.js';
 import {EMOJI, emoji} from '../../state/i.js';
 
 export default (

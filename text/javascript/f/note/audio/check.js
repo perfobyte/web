@@ -1,7 +1,7 @@
 import {note} from '../../../state/i.js';
-import {mcin_b_s} from '../../../elems.js';
+import {mcin_b_s} from '../../../elems/i.js';
 import {sm} from '../../media/i.js';
-import {fftSize} from '../../../conf.js';
+import {fftSize} from '../../../conf/i.js';
 
 export default (
     (bg) => {

@@ -1,5 +1,5 @@
 
-import {VIEW_1_IMG} from "../../elems.js";
+import {VIEW_1_IMG} from "../../elems/i.js";
 
 
 export default (

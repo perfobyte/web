@@ -1,4 +1,4 @@
-import {chat_menu} from '../../../elems.js';
+import {chat_menu} from '../../../elems/i.js';
 
 export default (
     () => {

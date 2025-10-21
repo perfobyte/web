@@ -1,4 +1,4 @@
-import {ej_p} from '../../elems.js';
+import {ej_p} from '../../elems/i.js';
 
 export default (() => {
     var

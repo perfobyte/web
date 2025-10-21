@@ -1,4 +1,4 @@
-import {CHA} from '../../elems.js';
+import {CHA} from '../../elems/i.js';
 import {
     after_chat_menu_0_click,
 } from '../i.js';

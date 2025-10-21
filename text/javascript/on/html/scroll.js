@@ -1,6 +1,6 @@
 
 import {scroll,scroll_value,O} from '../../state/i.js';
-import {scrolly,} from '../../elems.js';
+import {scrolly,} from '../../elems/i.js';
 
 
 export default (

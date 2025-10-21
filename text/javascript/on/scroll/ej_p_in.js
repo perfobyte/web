@@ -1,5 +1,5 @@
 import {emoji_load} from '../../f/i.js';
-import {EJ_EL, ej_p_list} from '../../elems.js';
+import {EJ_EL, ej_p_list} from '../../elems/i.js';
 import {EMOJI, emoji, emoji_view} from '../../state/i.js';
 
 export default (

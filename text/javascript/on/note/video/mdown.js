@@ -1,4 +1,4 @@
-import {mdi,vdi,o, vd_o,vdcf, mimeType} from "../../../conf.js";
+import {mdi,vdi,o, vd_o,vdcf, mimeType} from "../../../conf/i.js";
 import {vnote_start,vnote_fix_e} from '../../../f/i.js';
 
 import nt_mup from './mup.js';

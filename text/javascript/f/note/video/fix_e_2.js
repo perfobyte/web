@@ -2,7 +2,7 @@
 import start from './start.js';
 
 import {nt_mup} from "../../../on/i.js";
-import {mdi,vdi, start_v_o, vd_o, vdcf, videoType} from '../../../conf.js';
+import {mdi,vdi, start_v_o, vd_o, vdcf, videoType} from '../../../conf/i.js';
 
 export default (
     (e) => (

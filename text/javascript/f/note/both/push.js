@@ -1,4 +1,4 @@
-import {ch} from "../../../conf.js";
+import {ch} from "../../../conf/i.js";
 
 export default (
     (e) => {

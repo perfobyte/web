@@ -1,4 +1,4 @@
-import {msgs_ul, c_av, msgs_time_ul, chatbar_h1, ctxt_i} from '../../elems.js';
+import {msgs_ul, c_av, msgs_time_ul, chatbar_h1, ctxt_i} from '../../elems/i.js';
 
 
 export default (

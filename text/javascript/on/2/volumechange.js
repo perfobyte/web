@@ -1,4 +1,4 @@
-import {audio_vl_slider} from '../../elems.js';
+import {audio_vl_slider} from '../../elems/i.js';
 
 
 export default (

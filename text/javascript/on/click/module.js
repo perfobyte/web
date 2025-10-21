@@ -10,7 +10,7 @@ export default (
         return (
             pe.style.height = (
                 pe.classList.toggle("a")
-                ? (50+pe.querySelector(".c").clientHeight).toString() + "px"
+                ? (50 + pe.querySelector(".c").clientHeight + 40).toString() + "px"
                 : "50px"
             )
         )

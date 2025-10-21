@@ -2,7 +2,7 @@ import devices_deploy from './devices_deploy.js';
 import no_device from './no_device.js';
 import {start_clear} from '../both/i.js';
 
-import {mc_se} from "../../../elems.js";
+import {mc_se} from "../../../elems/i.js";
 import {note} from '../../../state/i.js';
 
 export default (

@@ -1,5 +1,5 @@
-import {pline, audio_pline_viewed, audio_pline_cursor, audio_ts_1} from "../../../elems.js";
-import {API_2} from '../../../conf.js';
+import {pline, audio_pline_viewed, audio_pline_cursor, audio_ts_1} from "../../../elems/i.js";
+import {API_2} from '../../../conf/i.js';
 import {audio_time} from '../../../f/i.js';
 import {audio} from '../../../state/i.js';
 

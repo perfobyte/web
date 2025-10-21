@@ -5,8 +5,8 @@ import update_T from './update_T.js';
 import {push,} from '../both/i.js';
 import { stop as stop_track } from '../../media/i.js';
 
-import {mcin_t,rl_cl, mcin_b_s,ntin_ts_b_s} from '../../../elems.js';
-import { AU_T, ch, fftSize, vd_o, vdcf } from '../../../conf.js';
+import {mcin_t,rl_cl, mcin_b_s,ntin_ts_b_s} from '../../../elems/i.js';
+import { AU_T, ch, fftSize, vd_o, vdcf } from '../../../conf/i.js';
 import {note} from '../../../state/i.js';
 
 export default (

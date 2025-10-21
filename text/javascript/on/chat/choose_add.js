@@ -1,4 +1,4 @@
-import {create} from '../../elems.js';
+import {create} from '../../elems/i.js';
 import {chat} from '../../state/i.js';
 
 export default (

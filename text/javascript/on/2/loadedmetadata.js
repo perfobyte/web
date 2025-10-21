@@ -1,4 +1,4 @@
-import {audio_ts_2} from '../../elems.js';
+import {audio_ts_2} from '../../elems/i.js';
 import {audio_time} from '../../f/i.js';
 
 

@@ -1,5 +1,5 @@
-import {audio_pbsp_v, audio_pbsp_sl, audio_pbsp} from '../../../elems.js';
-import {AUDIO_MDOWN_FROM, AUDIO_MDOWN_TO, AUDIO_MDOWN_VALUE,} from '../../../conf.js';
+import {audio_pbsp_v, audio_pbsp_sl, audio_pbsp} from '../../../elems/i.js';
+import {AUDIO_MDOWN_FROM, AUDIO_MDOWN_TO, AUDIO_MDOWN_VALUE,} from '../../../conf/i.js';
 import {audio_pbsp_value} from '../../../f/i.js';
 
 

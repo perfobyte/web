@@ -1,8 +1,6 @@
-import {O,scroll,scroll_value} from '../../state/i.js';
-import {title} from '../../api/i.js';
-import {ct,el_cache,} from '../../elems.js';
-import {update_height} from '../../f/i.js';
-
+import {O,scroll,scroll_value, scrollo_height, } from '../../state/i.js';
+import {title} from '../../conf/i.js';
+import {ct,el_cache, html,html_st,scrolly} from '../../elems/i.js';
 
 export default (
     (e) => {
@@ -22,7 +20,11 @@ export default (
 
             (document.title = title[_]),
             
-            (ct.scrollLeft = (update_height(_) * window.innerWidth))
+            (html_st.height = `${scrollo_height[_]}px`),
+            (html.scrollTop = scroll_value[_]),
+            (scroll.starget = scrolly[_]),
+
+            (ct.scrollLeft = (_ * window.innerWidth))
         );
     }
 )

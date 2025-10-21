@@ -19,23 +19,14 @@
         padding:0;
     }
 
-    & input {
-        padding: 0 10px;
-    }
-
     & select {
         padding: 0 5px;
         width:256px;
     }
 
-    & input {
-        width:236px;
-    }
-
     & input,
     & select {
         display:block;
-        
         
         font-size:14px;
         height:26px;
@@ -116,7 +107,7 @@
     }
 }
 
-#c3 label.md:has(select:focus)  {
+#c3 label.md:has(:focus) {
     &,& svg{
         color:var(--inp-fc-c);
     }
@@ -140,6 +131,14 @@
         position:absolute;
     }
 
+    &>input.sm {
+        padding:0 10px;
+        width:210px;
+    }
+
+    
+
+    &>input,
     &>select{
         left:26px;
         height:24px;
@@ -159,6 +158,6 @@
 }
 
 #c3 > :nth-child(1) {
-    height:calc(100% - 40px);
+    height:fit-content;
     position:relative;
 }

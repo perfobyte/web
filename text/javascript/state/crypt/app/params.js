@@ -6,8 +6,9 @@ export default ((_) => {
     _[3] = 32; // key_length
     _[4] = 12; // nonce_length
     _[5] = 16; // param_length
-    _[6] = 4; // app_value_length
 
+    _[6] = 8;// 7 // app_value_length
+    
     return _;
 })(
     new Uint8Array(8),

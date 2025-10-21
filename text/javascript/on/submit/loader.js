@@ -12,6 +12,7 @@ import {
     support_codec,
     support_format,
 } from '../../state/i.js';
+
 import {
     c3_param,
     c3_param_setup,
@@ -27,7 +28,11 @@ import {
 } from '../../f/i.js';
 import {
     TE,API_1,API_2,API_3,
-} from '../../conf.js';
+
+    DEFAULT_LETTER_SPACING,
+    DEFAULT_LINE_HEIGHT,
+    DEFAULT_FONT_SIZE,
+} from '../../conf/i.js';
 import {
     on_test_image_type,
 } from '../i.js';
@@ -65,6 +70,10 @@ export default (
 
             (ls_0 === null)
             ? (
+                (app_value[3] = DEFAULT_LETTER_SPACING),
+                (app_value[4] = DEFAULT_LINE_HEIGHT),
+                (app_value[5] = DEFAULT_FONT_SIZE),
+                
                 app_value_copy.set(app_value),
 
                 localStorage

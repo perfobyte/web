@@ -2,7 +2,7 @@
 import start from './start.js';
 import fix_e_2 from './fix_e_2.js';
 
-import {mdi,vdi,start_o} from '../../../conf.js';
+import {mdi,vdi,start_o} from '../../../conf/i.js';
 
 export default (
     (e) => (

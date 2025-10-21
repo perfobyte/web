@@ -1,4 +1,4 @@
-import {scrolly} from '../../elems.js';
+import {scrolly} from '../../elems/i.js';
 import {O} from '../../state/i.js';
 
 export default (

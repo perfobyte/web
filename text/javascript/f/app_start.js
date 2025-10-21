@@ -1,10 +1,4 @@
 
-
-
-
-
-
-
 import {
     msgs,el_cache,b,file,msgs_ul,loader_cl,
     resize_event,
@@ -18,10 +12,7 @@ import {
     ctxt_i,
 
     ej, ej_p_el, ej_p_list, ej_p_in,
-
-    MSG_FILE,
-    MSG_IMAGE,
-
+    
     html,
     chap,
     VIEW_1, VIEW_1_IMG,
@@ -33,13 +24,14 @@ import {
     audio_ss_b_el,
     audio_pbsp,
     audio_pbsp_v,
-    
-} from '../elems.js';
+    MSG_AUDIO_EL,
+    html_st,
 
-import {get_chats, get_modules, get_msgs, get_chat} from '../api/i.js';
-import {open_chat, msg_file_el, msg_image_el} from '../render/i.js';
+    scrolly,
+    scrollo,
+} from '../elems/i.js';
 
-import {chats_reduce,messages_reduce,modules_reduce} from '../reduce/i.js';
+
 import {
     chatbar_ul_click, section_click,
     chatbar_ul_contextmenu, msgs_contextmenu,
@@ -122,10 +114,21 @@ import {
     EMOJI,
     emoji,
     emoji_view,
+    scroll,
+    scroll_value,
+    scrollo_height,
 } from '../state/i.js';
-import {not_passive, AUDIO_HEIGHT, API_2} from '../conf.js';
-//
-import {msg_time_format, msg_time_to_html, date, detail_time,time, emoji_load, update_height} from '../f/i.js';
+import {not_passive, AUDIO_HEIGHT, API_2} from '../conf/i.js';
+import {
+    msg_time_format, msg_time_to_html, date, detail_time,time, emoji_load,
+
+    open_chat, msg_file_el, msg_image_el,
+    get_chats, get_modules, get_msgs, get_chat,
+    chats_reduce, messages_reduce, modules_reduce,
+} from './i.js';
+
+import start_scroll from './start_scroll.js';
+
 
 
 
@@ -144,7 +147,6 @@ export default (
 
             I = O.I
         ;
-        
         return (
             ej.setAttribute("title", "Emoji"),
             (nt_au_se_fc.textContent = note.nt_au_l),
@@ -270,93 +272,15 @@ export default (
             ej.dispatchEvent(mouseleave_event),
             el_cache.bi.add("a"),
             (audio_pbsp.value = "1"),
-            
-            //TEST:
-            
-            (() => {
-                var
-                    time_el = () => {
-                        var
-                            ts = Date.now(),
-                            ts_o = new Date(ts),
-
-                            T = time(ts_o),
-                            D = date(ts_o)
-                        ;
-                        return msg_time_to_html(
-                            msg_time_format(ts,chat,T,D),
-                            AUDIO_HEIGHT,
-                            1,
-                            `${D} ${detail_time(T, ts_o)}`,
-                            chat.MT_EL.cloneNode(true),
-                            chat.mt_v_el,
-                        )
-                    },
-                    time_ul = chat.time_ul
-                ;
-                return (
-                    msgs_ul.appendChild(msg_file_el(MSG_FILE.cloneNode(true), 0, 1203201321)),
-                    msgs_ul.appendChild(msg_file_el(MSG_FILE.cloneNode(true), 1, 1203201321+1)),
-                    msgs_ul.appendChild(msg_file_el(MSG_FILE.cloneNode(true), 2, 1203201321+2)),
-                    msgs_ul.appendChild(msg_file_el(MSG_FILE.cloneNode(true), 3, 1203201321+3)),
-
-                    time_ul.appendChild(time_el()),
-                    time_ul.appendChild(time_el()),
-                    time_ul.appendChild(time_el()),
-                    time_ul.appendChild(time_el())
-                )
-            })(),
-
 
             D.querySelector(`#nv button.n[data-a="${I}"]`).dispatchEvent(click_event),
-            update_height(I),
-            (html.scrollTop = html.scrollHeight),
+            
+            (html_st.height = `${scrollo_height[I]}px`),
+            (scroll.starget = scrolly[I]),
+
+            (html.scrollTop = start_scroll[I](html)),
 
             loader_cl.remove("a")
-
-            // false && fetch("https://picsum.photos/536/354")
-            // .then(r=>r.arrayBuffer())
-            // .then(bf => {
-            //     var
-            //         blob = new Blob([bf], { type: "image/png" }),
-            //         NEW_IMG = new Image(),
-            //         url = URL.createObjectURL(blob)
-            //     ;
-            //     return (
-            //         (NEW_IMG.onload = function() {
-                        
-            //             return (
-            //                 (NEW_IMG.onload=null),
-
-            //                 window.addEventListener("mousemove", on_view_image_window_mousemove),
-
-            //                 msgs_ul.appendChild(
-            //                     msg_image_el(
-            //                         MSG_IMAGE.cloneNode(true),
-            //                         this,
-            //                         12312312,
-            //                         this.naturalWidth,
-            //                         this.naturalHeight,
-            //                     )
-            //                 ),
-                            
-            //                 on_view_scroll_bar_mousedown(
-            //                     window,
-            //                     D.querySelector("#view1 .zoom"),
-            //                     on_view_image_zoom_cb,
-            //                 ),
-
-            //                 (VIEW_1_IMG.onload = on_view_image_load),
-            //                 (VIEW_1_IMG.src = url),
-
-            //                 update_height(I),
-            //                 (html.scrollTop = html.scrollHeight)
-            //             );
-            //         }),
-            //         (NEW_IMG.onerror=on_msg_image_error),
-            //         (NEW_IMG.src=url)
-            //     )
-            // })
         )
     }
 );

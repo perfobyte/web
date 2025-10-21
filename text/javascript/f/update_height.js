@@ -1,13 +1,18 @@
-import {scroll,scroll_value} from '../state/i.js';
-import {html,scrolly,scrollo,} from '../elems.js';
 
 export default (
-    (_) => {
+    (
+        scroll,
+        html,
+        html_st,
+
+        starget, // scrolly[_]
+        height, // scrollo_height[_]
+        stop, // scroll_value[_]
+    ) => {
         return (
-            (scroll.starget = scrolly[_]),
-            (html.style.height = `${scrollo[_].clientHeight}px`),
-            (html.scrollTop = scroll_value[_]),
-            _
+            (html_st.height = `${height}px`),
+            (html.scrollTop = stop),
+            (scroll.starget = starget)
         )
     }
 );

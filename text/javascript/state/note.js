@@ -1,13 +1,13 @@
 
 export default {
-    au: (localStorage.getItem("5") || "default"),
-    au_l: (localStorage.getItem("6") || "Default"),
+    au: "",
+    au_l: "Choose",
 
-    nt_au: (localStorage.getItem("7") || "default"),
-    nt_au_l: (localStorage.getItem("8") || "Default"),
+    nt_au: "",
+    nt_au_l: "Choose",
 
-    nt_vd: (localStorage.getItem("9") || "default"),
-    nt_vd_l: (localStorage.getItem("a") || "Default"),
+    nt_vd: "",
+    nt_vd_l: "Choose",
 
     r:null,
     a:null,
@@ -26,4 +26,4 @@ export default {
     SE:null,
     O:null,
     TYPE:null,
-}
+};

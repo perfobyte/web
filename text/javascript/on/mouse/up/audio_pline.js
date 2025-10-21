@@ -1,5 +1,5 @@
 import {on_audio_pline_mousemove, on_audio_pline_mouseup} from '../i.js';
-import {API_2} from '../../../conf.js';
+import {API_2} from '../../../conf/i.js';
 import {audio} from '../../../state/i.js';
 
 export default (

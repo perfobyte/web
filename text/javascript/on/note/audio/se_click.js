@@ -1,8 +1,8 @@
-import {perm_mc,start_a_o} from '../../../conf.js';
+import {perm_mc,start_a_o} from '../../../conf/i.js';
 
 import {anote_perm_check,anote_no_device} from '../../../f/i.js';
 
-import {mc_se} from '../../../elems.js';
+import {mc_se} from '../../../elems/i.js';
 import {note} from "../../../state/i.js";
 
 export default (

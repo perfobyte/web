@@ -1,5 +1,4 @@
-import {file} from '../../../elems.js';
-
+import {file} from '../../../elems/i.js';
 
 export default (
     (e) => (

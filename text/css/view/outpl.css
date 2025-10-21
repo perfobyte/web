@@ -7,6 +7,8 @@
     bottom:80px;
     color: var(--inp-fc-c);
     outline: 1px solid var(--inp-fc-c);
+    z-index:400;
+    background-color:var(--background-color);
 }
 
 #outpl .ss_b {

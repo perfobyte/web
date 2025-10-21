@@ -1,4 +1,4 @@
-import {only_a_o,mdi} from '../../../conf.js';
+import {only_a_o,mdi} from '../../../conf/i.js';
 import {note} from "../../../state/i.js";
 
 import mc_mup from './m_up.js';

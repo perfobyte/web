@@ -1,10 +1,7 @@
-import {chat_menu,chat_menu_time} from '../../elems.js';
+import {chat_menu,chat_menu_time} from '../../elems/i.js';
 import {after_chatbar_ul_click} from '../i.js';
-import {full_datetime} from '../../f/i.js';
+import {full_datetime, get_chat} from '../../f/i.js';
 import {chat} from '../../state/i.js';
-import {get_chat} from '../../api/i.js';
-
-
 
 export default (
     (e) => {
