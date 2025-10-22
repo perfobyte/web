@@ -4,5 +4,5 @@ export default {
     n: "Journal",
     d: "Chat for storing your data without going online, nothing will go beyond your phone",
     a: '#journal_i',
-    t: 0,
+    t: 1,
 };

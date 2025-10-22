@@ -1,6 +1,4 @@
-
-
-// TODO: calculate height of content and open only content part;
+import {MODULE_GAP_PX, MODULE_MARGIN} from "../../conf/i.js";
 
 export default (
     (e) => {
@@ -10,8 +8,13 @@ export default (
         return (
             pe.style.height = (
                 pe.classList.toggle("a")
-                ? (50 + pe.querySelector(".c").clientHeight + 40).toString() + "px"
-                : "50px"
+                ? (
+                    `${
+                        MODULE_MARGIN
+                        + pe.querySelector(".c").clientHeight
+                    }px`
+                )
+                : MODULE_GAP_PX
             )
         )
     }

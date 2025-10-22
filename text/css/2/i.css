@@ -9,6 +9,30 @@
 
 #c2 > div > * {
     padding:0;
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+}
+
+#c2 > div > * > .a > button,
+#c2 > div > * > * > button:is(:focus, :focus-visible)  {
+    background-color: rgba(26, 115, 232, 0.045);
+    box-shadow: 0 2px 8px rgba(26, 115, 232, 0.12);
+
+    & svg {
+        color: #1a73e8;
+        opacity: 1;
+    }
+
+    & > .title {
+        color: #1a73e8;
+        opacity: 1;
+    }
+}
+
+
+#c2 > div > * > .a {
+    outline-color: rgba(26, 115, 232, 0.5);
 }
 
 #c2 > div > * > * {
@@ -16,14 +40,41 @@
     overflow:hidden;
     transition:.4s height;
     
+    outline-color: #c8d2e8;
+    outline-style:solid;
+    outline-width:1px;
+    
+    border-radius:10px;
+
+    transition: all 0.25s ease-in-out;
+    
     & > .c {
         font-family:sans-serif;
         width:85%;
-        margin: 10px auto 18px auto;
+        margin: 8px auto 18px auto;
         color: #202124;
         font-size: 13.5px;
         font-weight:400;
         line-height: 1.55;
+    }
+
+
+    & > button > .i > svg {
+        height:14px;
+        width:14px;
+        stroke-width: 1.5;
+        vertical-align: middle;
+    }
+
+    & > button > .i {
+        position:absolute;
+        
+        display:flex;
+        flex-direction:row;
+        gap:4px;
+        right:20px;
+        top:13px;
+        height:14px;
     }
     
     & > button > svg {
@@ -32,55 +83,33 @@
         margin-top:10px;
         margin-left:20px;
         margin-right:20px;
-        
+    }
+
+    & > button svg {
         color:#637ad0;
         opacity: 0.95;
-        /* var(--muted-blue); */
     }
-    
+
     & > button:hover {
         box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
         background-color: #f5f8ff;
     }
 
-    &.a > button > svg {
-        color: #1a73e8;
-        opacity: 1;
-    }
-
-    &.a > button > span {
-        color: #1a73e8;
-        opacity: 1;
-        /* color:var(--muted-blue); */
-    }
-
-    &.a > button {
-        outline-color: rgba(26, 115, 232, 0.5);
-        background-color: rgba(26, 115, 232, 0.045);
-        box-shadow: 0 2px 8px rgba(26, 115, 232, 0.12);
-        
-        outline-width:1.5px;
-    }
-
     & > button {
-        outline-color: #c8d2e8;
         background-color: #fafbff;
         box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
-
-        transition: all 0.25s ease-in-out;
-
-        outline-style:solid;
-        outline-width:1px;
+        border:none;
+        outline:none;
 
         width:100%;
         display:flex;
         flex-direction:row;
-        border-radius:10px;
+        
+        position:relative;
         height:40px;
-        outline-offset:-1.5px;
     }
 
-    & > button > span {
+    & > button > .title {
         height:20px;
         line-height:20px;
         margin-top:10px;
@@ -90,5 +119,17 @@
 
         color: #5168b5;
         opacity: 0.9;
+    }
+
+    & .c > .t {
+        margin-top:4px;
+    }
+
+    & .tags {
+        display:flex;
+        flex-direction:row;
+        flex-wrap:wrap;
+        gap:8px;
+        margin-bottom:4px;
     }
 }

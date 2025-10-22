@@ -179,9 +179,13 @@ export var
 
     audio_menu_spb_v = audio_menu.querySelector(".spb .v"),
 
-    MSG_AUDIO_EL = tmpl.querySelector('.msg_audio')
-;
+    MSG_AUDIO_EL = tmpl.querySelector('.msg_audio'),
 
+    SIMPLE_ICON = tmpl.querySelector(".simple_icon"),
+
+    MODULE_TAG = tmpl.querySelector(".module.tag")
+;
+SIMPLE_ICON.removeAttribute("class");
 MSG_EL.removeAttribute("class");
 MT_EL.removeAttribute("class");
 EJ_EL.removeAttribute("class");

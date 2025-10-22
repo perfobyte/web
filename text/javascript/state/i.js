@@ -8,7 +8,7 @@ export {default as view} from './view.js';
 export {default as lang} from './lang.js';
 export {default as audio} from './audio.js';
 
-
+export * from './module_type/i.js';
 export * from "./support/i.js";
 export * from './emoji.js';
 export * from './msg.js';

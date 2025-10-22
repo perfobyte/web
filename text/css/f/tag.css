@@ -1,0 +1,30 @@
+
+
+
+.tag {
+    display:flex;
+    flex-direction:row;
+    
+    background-color: rgba(37, 99, 235, 0.1);
+    outline: 1px solid rgba(37, 99, 235, 0.25);
+
+    width:fit-content;
+    gap:4px;
+    padding: 2px 8px;
+    border-radius:14px;
+    height:20px;
+    
+    & > svg {
+        width:12px;
+        height:12px;
+        margin-top:4px;
+        color: #2563eb;
+    }
+    
+    & > .t {
+        line-height: 20px;
+        font-size: 0.8em;
+        font-weight: 500;
+        color:#374151;
+    }
+}

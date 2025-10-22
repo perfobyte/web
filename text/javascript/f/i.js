@@ -10,7 +10,7 @@ export * from './general/i.js';
 export * from './api/i.js';
 export * from "./reduce/i.js";
 export * from './render/i.js';
-
+export * from './bit/i.js';
 
 export * from './audio/i.js';
 export * from "./CONST.js";

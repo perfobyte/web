@@ -4,5 +4,5 @@ export default {
     n: "Cloudy",
     d: "Simple chat with no encryption, but with multidevice and cloud storage",
     a: "#cloud_i",
-    t: 0,
+    t: 1,
 };
