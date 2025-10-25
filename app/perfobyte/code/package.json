@@ -1,6 +1,7 @@
 {
   "name": "perfobyte_web",
   "version": "1.0.0",
+  
   "main": "./src/i.js",
   "type": "module",
   "scripts": {

@@ -47,14 +47,20 @@ export default (
                     :
                     send_file(
                         s,
-                        (route=path_files[U]).t,
-                        (_=Buffer.from(minify(
-                            swig_render(
-                                readFileSync(route.v).toString(),
-                                r_data
-                            ),
-                            html_minify_conf
-                        ))),
+
+                        (route=path_files[U])
+                        .t,
+
+                        (
+                            _ = Buffer.from(minify(
+                                swig_render(
+                                    readFileSync(route.v).toString(),
+                                    r_data
+                                ),
+                                html_minify_conf
+                            ))
+                        ),
+
                         (_.byteLength),
                     )
                 );

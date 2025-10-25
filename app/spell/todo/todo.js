@@ -8,6 +8,4 @@
     ios,
 ])([
     perfobyte,
-    perfobyte_camera,
-    perfobyte_call,
 ]);

@@ -12,7 +12,9 @@
     env [
         web,
         nodejs,
-        [perfobyte_os],
+        [
+            perfobyte_os
+        ],
     ],
     
     [compile for a specific device architecture]=config,

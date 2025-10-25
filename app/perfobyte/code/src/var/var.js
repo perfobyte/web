@@ -8,5 +8,5 @@ export var
     main = (join(cwd, "./h/.html")),
     _404 = (join(cwd, "./h/404.html")),
     seo = (join(F, "./text/plain/robots.txt")),
-    sw = (join(F, "./text/javascript/sw.js"))
+    sw = (join(F, "./text/javascript/sw/i.js"))
 ;

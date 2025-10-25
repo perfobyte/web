@@ -1,2 +1,0 @@
-
-[EXECUTE] EMPIRICAL INSTRUCTIONS from Artisan;

@@ -1,17 +1,21 @@
 
 export default [
-    PerfoByte;
-    PerfoByte Camera;
-    PerfoByte Call;
-    PerfoByte Home;
-    PerfoByte Spell;
-    
-    perfobytes;
-    bosend;
-    
-    PerfoByte Lock;
-    Zedrit;
+    PerfoByte [
+        protocol (_);
+        encryption (spell);
+        enviroment (zedrit);
+    ];
 
-    Zedrit Post;
-    Zedrit Return;
+    Zedrit [
+        zedrit;
+        devices;
+    ];
+
+    [h] [
+        info;
+        defence;
+        attack;
+    ];
+
+    lmgfpio;
 ];

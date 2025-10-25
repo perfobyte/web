@@ -1,0 +1,6 @@
+[submodule "app/perfobyte/code/src/lib/strucdom"]
+	path = app/perfobyte/code/src/lib/strucdom
+	url = https://github.com/perfobyte/strucdom.git
+[submodule "app/perfobyte/code/src/lib/zedrit"]
+	path = app/perfobyte/code/src/lib/zedrit
+	url = https://github.com/perfobyte/zedrit.git

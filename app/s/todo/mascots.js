@@ -1,4 +1,0 @@
-
-perfo;
-tec;
-artisan;

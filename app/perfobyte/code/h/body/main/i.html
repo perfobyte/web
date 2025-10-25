@@ -1,0 +1,248 @@
+<div id="c1">
+    <div id="rl">
+        <div id="msg_menu" class="hideable">
+            <button id="msg_delete" title="Delete" style="--c:var(--warn-red-c)" class="m_btn">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M5.755,20.283,4,8H20L18.245,20.283A2,2,0,0,1,16.265,22H7.735A2,2,0,0,1,5.755,20.283ZM21,4H16V3a1,1,0,0,0-1-1H9A1,1,0,0,0,8,3V4H3A1,1,0,0,0,3,6H21a1,1,0,0,0,0-2Z"/>
+                </svg>
+            </button>
+            <button id="msg_edit" title="Edit" class="m_btn">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
+                    <path d="M20.1497 7.93997L8.27971 19.81C7.21971 20.88 4.04971 21.3699 3.27971 20.6599C2.50971 19.9499 3.06969 16.78 4.12969 15.71L15.9997 3.84C16.5478 3.31801 17.2783 3.03097 18.0351 3.04019C18.7919 3.04942 19.5151 3.35418 20.0503 3.88938C20.5855 4.42457 20.8903 5.14781 20.8995 5.90463C20.9088 6.66146 20.6217 7.39189 20.0997 7.93997H20.1497Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M21 21H12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </button>
+        </div>
+        <div id="msg_select" class="hideable"></div>
+
+        <div id="chatbar" class="fixed">
+            <div id="c_av"></div>
+            <h1></h1>
+            <div id="cbtns">
+                <button id="c_a" class="bti" data-tc="0">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                        <path d="m 14.234375 11.714844 c -0.382813 0.382812 -1 0.382812 -1.386719 0 l -1.039062 -1.039063 l -1.039063 -1.042969 c -0.386719 -0.382812 -0.386719 -1 0 -1.386718 l 0.492188 -0.492188 c -2.035157 -1.109375 -4.5 -1.109375 -6.535157 0 l 0.492188 0.492188 c 0.386719 0.386718 0.386719 1.003906 0 1.386718 l -1.039062 1.042969 l -1.039063 1.039063 c -0.386719 0.382812 -1.003906 0.382812 -1.386719 0 l -1.042968 -1.039063 c -0.957032 -0.957031 -0.957032 -2.511719 0 -3.46875 l 0.347656 -0.347656 c 3.816406 -3.816406 10.054687 -3.816406 13.871094 0 l 0.347656 0.347656 c 0.957031 0.957031 0.957031 2.511719 0 3.46875 z m 0 0" fill="currentColor"/>
+                    </svg>
+                </button>
+                <button id="c_v" class="bti" data-tc="1">
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="currentColor" viewBox="0 0 45.615 45.615" xml:space="preserve">
+                        <g>
+                            <g>
+                                <path d="M38.277,3.668H7.312C3.266,3.668,0,6.935,0,10.981v23.635c0,4.046,3.266,7.331,7.312,7.331h30.965    c4.046,0,7.338-3.285,7.338-7.331V10.982C45.616,6.935,42.324,3.668,38.277,3.668z M40.475,34.6c0,1.221-0.988,2.209-2.207,2.209    H7.296c-1.22,0-2.209-0.988-2.209-2.209V10.963c0-1.22,0.989-2.209,2.209-2.209h30.972c1.22,0,2.207,0.989,2.207,2.209V34.6z"/>
+                                <path d="M27.124,23.266c-0.585-1.078-2.149-1.023-2.659,0.092l-0.766,1.677l-4.288-7.89c-0.92-1.692-3.377-1.607-4.177,0.146    L9.123,30.67c-0.707,1.547,0.424,3.303,2.125,3.303h19.2c1.127,0,1.845-1.201,1.306-2.192L27.124,23.266z"/>
+                                <circle cx="32.428" cy="15.778" r="4.78"/>
+                            </g>
+                        </g>
+                    </svg>
+                </button>
+                <button id="c_va" class="bti" data-tc="2">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M6 4C3.79086 4 2 5.79086 2 8V16C2 18.2091 3.79086 20 6 20H13C15.2091 20 17 18.2091 17 16V15.7454L18.6621 17.2412C19.9491 18.3996 22 17.4862 22 15.7547V8.24538C22 6.51384 19.9491 5.60045 18.6621 6.75879L17 8.25466V8C17 5.79086 15.2091 4 13 4H6Z" fill="currentColor"/>
+                    </svg>
+                </button>
+                <button class="bti" id="c_o">
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="currentColor"
+                        viewBox="0 0 32 32"
+                    >
+                        <path
+                            d="M10.429 16a2.715 2.715 0 1 1-5.43 0 2.715 2.715 0 0 1 5.43 0zM16 13.286a2.715 2.715 0 1 0 .001 5.429A2.715 2.715 0 0 0 16 13.286zm8.285 0a2.714 2.714 0 1 0 0 5.428 2.714 2.714 0 0 0 0-5.428z"
+                        />
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <div id="msgs" class="scrolly" data-i="1">
+            <ol class="time"></ol>
+            <ol class="list scrollo" data-a="1"></ol>
+        </div>
+
+        <div id="ej_p" class="hideable">
+            <div class="in">
+                <ol class="list"></ol>
+            </div>
+        </div>
+        
+        <div id="minp" class="M">
+            <div id="pline">
+                <div class="a" style="transform:scaleX(.5)"></div>
+                <div class="a" style="transform:scaleX(.75)"></div>
+                <div class="a" style="transform:scaleX(.25)"></div>
+                <div></div>
+            </div>
+
+            <div id="minpl">
+                <button
+                    id="fadd"
+                    class="bti"
+                >
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <line fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="4" x1="12" x2="12" y1="19" y2="5"/>
+                        <line fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="4" x1="5" x2="19" y1="12" y2="12"/>
+                    </svg>
+                </button>
+                <button id="cm" class="bti">
+                    <svg><use href="#camera_i"></use></svg>
+                </button>
+            </div>
+
+            <div
+                id="ctxt"
+            >
+                <div class="I" contenteditable="true"></div>
+            </div>
+
+            <div id="outpl" class="hideable a">
+                <div>
+                    <button class="pl bti">
+                        <svg><use href="#pause_i"></use></svg>
+                    </button>
+                    <div class="ts frow">
+                        <span>00:00</span>
+                        <span>/</span>
+                        <span>00:00</span>
+                    </div>
+
+                    <div class="vl point_slider">
+                        <button class="i bti">
+                            <svg><use href="#volume_i"></use></svg>
+                        </button>
+                        <button class="v">
+                            <div>
+                                <div class="sl" style="transform:scaleX(1)"></div>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+
+                <div>
+                    <button class="st bti">
+                        <svg><use href="#cross_i"></use></svg>
+                    </button>
+
+                    <button class="wr bti">
+                        <svg><use href="#write_i"></use></svg>
+                    </button>
+
+                    <button class="ss bti">
+                        <svg><use href="#set_i"></use></svg>
+                    </button>
+
+                    <div class="ss_b dn frow" style="height:80px;">
+                        <div class="menu fcol">
+                            <button class="spb gt" data-a="1">
+                                <div class="frow">
+                                    <svg><use href="#speed_i"></use></svg>
+                                    <span>Playback speed</span>
+                                </div>
+                                <span class="v txt_of">1</span>
+                            </button>
+                            <button>
+                                <div class="frow">
+                                    <svg><use href="#cc_i"></use></svg>
+                                    <span>Subtitles / CC</span>
+                                </div>
+                                <span>Soon</span>
+                            </button>
+                        </div>
+                        <div class="speed">
+                            <div class="frow">
+                                <button class="gt bti" data-a="0">
+                                    <svg><use href="#back_i"></use></svg>
+                                </button>
+                                <span>
+                                    Playback speed
+                                </span>
+                            </div>
+                            <div class="frow">
+                                <button class="dec bti" data-a="-1"><svg><use href="#minus_i"></use></svg></button>
+                                <input type="text" id="pbsp"></input>
+                                <button class="inc bti" data-a="1"><svg><use href="#plus_i"></use></svg></button>
+                            </div>
+                            <div>
+                                <div class="tsm">
+                                    <div style="left:8px;">0.25</div>
+                                    <div style="left:60px;">1</div>
+                                    <div style="left:120px;">2</div>
+                                    <div style="left:180px">3</div>
+                                </div>
+                                <div class="pbsp point_slider _">
+                                    <button class="v">
+                                        <div>
+                                            <div class="sl" style="transform:scaleX(1)"></div>
+                                        </div>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="minpr">
+                <button id="jump" class="bti">
+                    <svg><use href="#jump_i"></use></svg>
+                </button>
+                
+                <button id="ej" class="bti"></button>
+                <button id="mc" class="bti">
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 64 64" enable-background="new 0 0 64 64" xml:space="preserve">
+                        <path fill="currentColor" d="M32,44c6.629,0,12-5.371,12-12V12c0-6.629-5.371-12-12-12S20,5.371,20,12v20C20,38.629,25.371,44,32,44z"/>
+                        <path fill="currentColor" d="M52,28c-2.211,0-4,1.789-4,4c0,8.836-7.164,16-16,16s-16-7.164-16-16c0-2.211-1.789-4-4-4s-4,1.789-4,4   c0,11.887,8.656,21.73,20,23.641V60c0,2.211,1.789,4,4,4s4-1.789,4-4v-4.359C47.344,53.73,56,43.887,56,32   C56,29.789,54.211,28,52,28z"/>
+                    </svg>
+                </button>
+                <button id="nt" class="bti">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
+                        <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" fill="currentColor"/>
+                        <path d="M9.09961 12V10.52C9.09961 8.60999 10.4496 7.83999 12.0996 8.78999L13.3796 9.52999L14.6596 10.27C16.3096 11.22 16.3096 12.78 14.6596 13.73L13.3796 14.47L12.0996 15.21C10.4496 16.16 9.09961 15.38 9.09961 13.48V12Z" fill="white"/>
+                    </svg>
+                </button>
+                <button id="send" class="bti">
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24"
+                    >
+                        <path
+                            d="M21.66,12a2,2,0,0,1-1.14,1.81L5.87,20.75A2.08,2.08,0,0,1,5,21a2,2,0,0,1-1.82-2.82L5.46,13H11a1,1,0,0,0,0-2H5.46L3.18,5.87A2,2,0,0,1,5.86,3.25h0l14.65,6.94A2,2,0,0,1,21.66,12Z"
+                            fill="currentColor"
+                        />
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <div id="mcin">
+            <span></span>
+        </div>
+        <div id="mcin_b"></div>
+        
+        <div id="ntin_bl">
+            <div id="ntin_ts_b"></div>
+            <div id="ntin_ts">00:00</div>
+
+            <div id="ntin">
+                <video muted></video>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="chat_menu" class="chat_menu ctx_menu hideable">
+        <div class="info">
+            <div class="wrinfo">
+                <div class="t">
+                    Created at 10:20 on 01.01.1970
+                </div>
+            </div>
+        </div>
+        <div class="acts">
+            <button class="m_btn" style="--c:var(--warn-red-c)">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M5.755,20.283,4,8H20L18.245,20.283A2,2,0,0,1,16.265,22H7.735A2,2,0,0,1,5.755,20.283ZM21,4H16V3a1,1,0,0,0-1-1H9A1,1,0,0,0,8,3V4H3A1,1,0,0,0,3,6H21a1,1,0,0,0,0-2Z"/>
+                </svg>
+                <span>Delete</span>
+            </button>
+        </div>
+    </div>
+</div>
