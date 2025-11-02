@@ -5,6 +5,8 @@ export {default as full_datetime} from './full_datetime.js';
 export {default as emoji_load} from './emoji_load.js';
 export {default as app_start} from './app_start.js';
 export {default as start_scroll} from './start_scroll.js';
+export {default as chat_clear} from './chat_clear.js';
+
 
 export * from './general/i.js';
 export * from './api/i.js';

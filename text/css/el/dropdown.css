@@ -1,41 +1,6 @@
 
 
-
-#c2 > div {
-    width:500px;
-    margin: 0 auto;
-    padding-top:40px;
-}
-
-#c2 > div > * {
-    padding:0;
-    display:flex;
-    flex-direction:column;
-    gap:8px;
-}
-
-#c2 > div > * > .a > button,
-#c2 > div > * > * > button:is(:focus, :focus-visible)  {
-    background-color: rgba(26, 115, 232, 0.045);
-    box-shadow: 0 2px 8px rgba(26, 115, 232, 0.12);
-
-    & svg {
-        color: #1a73e8;
-        opacity: 1;
-    }
-
-    & > .title {
-        color: #1a73e8;
-        opacity: 1;
-    }
-}
-
-
-#c2 > div > * > .a {
-    outline-color: rgba(26, 115, 232, 0.5);
-}
-
-#c2 > div > * > * {
+.dropdown {
     list-style:none;
     overflow:hidden;
     transition:.4s height;
@@ -47,6 +12,26 @@
     border-radius:10px;
 
     transition: all 0.25s ease-in-out;
+    
+    & > button:is(:focus, :focus-visible),
+    &.a > button {
+        background-color: rgba(26, 115, 232, 0.045);
+        box-shadow: 0 2px 8px rgba(26, 115, 232, 0.12);
+    
+        & svg {
+            color: #1a73e8;
+            opacity: 1;
+        }
+    
+        & > .title {
+            color: #1a73e8;
+            opacity: 1;
+        }
+    }
+
+    &.a {
+        outline-color: rgba(26, 115, 232, 0.5);
+    }
     
     & > .c {
         font-family:sans-serif;

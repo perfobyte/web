@@ -1,9 +1,4 @@
 
-
-.scrolly {
-    overflow:hidden;
-}
-
 html::-webkit-scrollbar-track {
     background: var(--scrollbar-c);
 }

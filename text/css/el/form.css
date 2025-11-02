@@ -1,6 +1,6 @@
 
 
-form {
+.form {
     & input:focus {
         outline-color:blue;
     }
