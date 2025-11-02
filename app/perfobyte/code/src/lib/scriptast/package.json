@@ -1,0 +1,49 @@
+{
+  "maintainers": [
+    {
+      "name": "Marijn Haverbeke",
+      "email": "marijnh@gmail.com",
+      "web": "http://marijnhaverbeke.nl"
+    },
+    {
+      "name": "Ingvar Stepanyan",
+      "email": "me@rreverser.com",
+      "web": "http://rreverser.com/"
+    },
+    {
+      "name": "Adrian Heine",
+      "web": "http://adrianheine.de"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/acornjs/acorn.git"
+  },
+  "license": "MIT",
+  "scripts": {
+    "build": "npm run build:main && npm run build:walk && npm run build:loose",
+    "build:loose": "rollup -c acorn-loose/rollup.config.mjs",
+    "build:main": "rollup -c acorn/rollup.config.mjs",
+    "build:walk": "rollup -c acorn-walk/rollup.config.mjs",
+    "generate": "npm run generate:identifier-regex && npm run generate:unicode-script-values",
+    "generate:identifier-regex": "node bin/generate-identifier-regex.js",
+    "generate:unicode-script-values": "node bin/generate-unicode-script-values.js",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "prepare": "npm run test",
+    "pretest": "npm run build:main && npm run build:loose",
+    "test": "node test/run.js",
+    "test:test262": "node bin/run_test262.js"
+  },
+  "devDependencies": {
+    "@rollup/plugin-buble": "^1.0.2",
+    "@unicode/unicode-17.0.0": "^1.6.10",
+    "eslint": "^8.57.0",
+    "eslint-config-standard": "^17.1.0",
+    "eslint-plugin-import": "^2.30.0",
+    "eslint-plugin-n": "^16.6.2",
+    "rollup": "^3.29.4",
+    "test262": "git+https://github.com/tc39/test262.git#9b127c190cd418b2451c556784aae3d0ac7e9bcf",
+    "test262-parser-runner": "^0.5.0"
+  }
+}
