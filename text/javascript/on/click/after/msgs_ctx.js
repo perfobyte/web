@@ -1,4 +1,4 @@
-import {chat} from "../../../state/i.js";
+import {chat, message} from "../../../state/i.js";
 import {remove_s_foreach} from '../../../f/i.js';
 import {msg_menu_cl, msgs, msg_select} from '../../../elems/i.js';
 
@@ -10,7 +10,7 @@ export default (
                     var t = e.currentTarget;
                     
                     return (
-                        (chat.sl = -1),
+                        (message.i = -1),
 
                         msgs.removeEventListener("scroll",a),
                         t.removeEventListener("click", a),

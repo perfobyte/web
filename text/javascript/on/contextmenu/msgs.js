@@ -1,6 +1,6 @@
-import {msg_menu_st, msg_menu_cl, msgs, msg_select_st, msg_select_cl, rl} from '../../elems/i.js';
-import {chat} from "../../state/i.js";
-import {after_msgs_ctx_click} from "../../on/i.js";
+import {msg_menu_st, msg_menu_cl, msgs, msg_select_st, msg_select_cl} from '../../elems/i.js';
+import {chat, message} from "../../state/i.js";
+import {on_after_msgs_ctx_click} from "../../on/i.js";
 import {msg_height, remove_s_foreach} from '../../f/i.js';
 
 
@@ -11,8 +11,6 @@ export default (
             x = e.clientX,
             y = e.clientY,
 
-            scroll_top = rl.scrollTop,
-            
             ID = "",
 
             target = e.target,
@@ -31,11 +29,9 @@ export default (
         if (
             li
         ) {
-            msg_menu_st.top = `${scroll_top + (li.getBoundingClientRect()).top}px`;
+            msg_menu_st.top = `${(li.getBoundingClientRect()).top}px`;
             
             msg_select_st.top = (
-                scroll_top
-                +
                 (
                     r = (
                         (
@@ -58,7 +54,7 @@ export default (
             .toString()
             + "px";
 
-            chat.sl = Number(ID);
+            message.i = Number(ID);
 
             msg_menu_cl.add("a");
 
@@ -77,8 +73,8 @@ export default (
             msg_select_st.height = `${sm}px`;
             msg_select_st.width = `${y}px`;
             
-            window.addEventListener("click",after_msgs_ctx_click);
-            msgs.addEventListener("scroll",after_msgs_ctx_click);
+            window.addEventListener("click",on_after_msgs_ctx_click);
+            msgs.addEventListener("scroll",on_after_msgs_ctx_click);
         }
 
         return (

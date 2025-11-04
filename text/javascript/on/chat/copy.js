@@ -1,9 +1,20 @@
 
 export default (
     (e) => {
+        var
+            clipboardData = e.clipboardData
+        ;
         return (
             e.preventDefault(),
-            e.clipboardData.setData('text/plain', window.getSelection().toString())
+
+            clipboardData.setData(
+                'text/plain',
+                (
+                    window
+                    .getSelection()
+                    .toString()
+                )
+            )
         );
     }
 );

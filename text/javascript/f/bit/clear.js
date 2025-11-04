@@ -1,4 +1,4 @@
 
 export default (
-    (v,i) => v & ~(1 << i)
+    (v,i) => (v & ~(1 << i))
 );

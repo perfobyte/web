@@ -1,10 +1,8 @@
 import {chat} from '../../state/i.js'
-import {ctxt_i, rl, html} from '../../elems/i.js';
+import {ctxt_i, html} from '../../elems/i.js';
 import {count_char, msg_set} from '../../f/i.js';
 
 
-
-// TODO:
 export default (
     (e) => {
         var

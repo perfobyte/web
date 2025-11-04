@@ -1,4 +1,4 @@
-
+export {default as support_rd_o} from './support_rd_o.js';
 
 export var
     TE = new TextEncoder(),

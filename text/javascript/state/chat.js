@@ -5,8 +5,7 @@ export default (
         msgs: new Map(), // TODO:
 
         t: 0,
-
-        sl: -1,
+        
         last_t: 0,
         loaded: 0,
 
