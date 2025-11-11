@@ -1,3 +1,3 @@
-import {firstElementChild} from '../../i.js';
+import firstElementChild from '../../general/dom/firstElementChild.js';
 
 export default firstElementChild;

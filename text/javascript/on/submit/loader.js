@@ -59,11 +59,26 @@ export default (
             kl = app_params[3],
             vl = app_params[6]
         ;
-        return (
+        return void (
             e.preventDefault(),
 
-            app_key.set(TE.encode(key_value).subarray(0, kl)),
-            app_param_bf.set(c3_param(c3_param_setup(app_param,SIGMA),app_key,bc,app_nonce,c3_to32)),
+            app_key.set(
+                TE
+                .encode(key_value)
+                .subarray(0, kl)
+            ),
+            app_param_bf.set(
+                c3_param(
+                    c3_param_setup(
+                        app_param,
+                        SIGMA
+                    ),
+                    app_key,
+                    bc,
+                    app_nonce,
+                    c3_to32
+                )
+            ),
 
             (ls_0 === null)
             ? (
@@ -92,15 +107,7 @@ export default (
                     ),
                     0,vl,app_key_stream,bc,r,bs,app_mix,app_param_bf,ROUND_DATA
                 )
-            ),
-            
-            support_codec[2].reduce(check_can_play_type, support_rd_o[2]),
-            support_codec[3].reduce(check_can_play_type, support_rd_o[3]),
-            
-            (API_1.onload = API_1.onerror = on_test_image_type),
-            (API_1.src = support_codec[1][0]),
-
-            undefined
+            )
         );
     }
 );

@@ -61,34 +61,14 @@ export default (
             w = globalThis.window,
             D = w.document,
 
-            chats = get_chats(),
-            M = get_modules(),
-
-            chat_id = (chat.i = 0),
-            MSGS = get_msgs(chat_id),
-
             I = O.I
         ;
         return (
-            // [ message_editor ]
-            (D.getElementById("send").onclick=chat_send),
-            (D.getElementById("msg_delete").onclick=on_msg_delete_click),
-            (D.getElementById("msg_edit").onclick=on_msg_edit_click),
-            (ctxt.onclick = on_ctxt_click),
-            (ctxt_i.onkeydown = chat_keydown),
-
-            // [ messages ]
-            (msgs.oncontextmenu = msgs_contextmenu),
-            (msgs_list.oncopy = chat_copy),
-
-            // [ window ]
-            (w.onresize = window_resize),
-
-            MSGS.reduce(messages_reduce,chat),
-            open_chat(chat_id, get_chat(chat_id)),
-            (chat.loaded = MSGS.length),
-
-            window.dispatchEvent(resize_event)
+            support_codec[2].reduce(check_can_play_type, support_rd_o[2]),
+            support_codec[3].reduce(check_can_play_type, support_rd_o[3])
+            
+            (API_1.onload = API_1.onerror = on_test_image_type),
+            (API_1.src = support_codec[1][0])
         )
     }
 );

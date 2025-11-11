@@ -26,6 +26,5 @@ body {
     transition:
         .2s opacity
     ;
-    width:fit-content;
-    height:fit-content;
+    
 }

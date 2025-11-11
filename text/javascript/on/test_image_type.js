@@ -1,6 +1,6 @@
 import {support_codec, support_format, support} from '../state/i.js';
 import {API_1} from '../conf/i.js';
-import {app_start} from '../f/i.js';
+// import {app_start} from '../f/i.js';
 
 export default (
     function(e) {

@@ -2,9 +2,14 @@ export * from "./event.js";
 
 export var
     document = globalThis.document,
+    window = globalThis.window,
+    console = globalThis.console,
 
     html = document.documentElement,
     html_st = html.style,
+
+    body = document.body,
+    body_cl = body.classList,
 
     ctxt = document.getElementById("ctxt"),
     ctxt_i = ctxt.querySelector(".I"),
@@ -19,6 +24,7 @@ export var
 
     template = document.querySelector("template").content,
     MSG_EL = template.querySelector(".msg"),
+    MT_EL = template.querySelector(".mt"),
     chatbar = template.querySelector(".chbr"),
     
     msg_menu = document.getElementById("msg_menu"),

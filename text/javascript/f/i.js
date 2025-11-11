@@ -2,10 +2,11 @@
 export {default as datetime} from './datetime.js';
 export {default as escape_html} from './escape_html.js';
 export {default as full_datetime} from './full_datetime.js';
-export {default as app_start} from './app_start.js';
+// export {default as app_start} from './app_start.js';
 
 export {default as chat_clear} from './chat_clear.js';
 
+export * from './check/i.js';
 
 export * from './general/i.js';
 export * from './api/i.js';
