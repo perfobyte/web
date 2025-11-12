@@ -1,3 +1,3 @@
-import {msg_view} from '../msg.js';
+import m from '../message.js';
 
-export default new Uint8Array(msg_view.getUint16(0,true));
+export default new Uint8Array(m.max_l);

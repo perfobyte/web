@@ -4,6 +4,8 @@
 
 export default (
     (p,s) => ({
+        stage: 0,
+        
         I: (
             (p.length > 1)
             ? (

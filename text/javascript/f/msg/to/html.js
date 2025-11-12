@@ -1,5 +1,4 @@
 import escape_html from '../../escape_html.js';
-import {msg_rows_reduce} from '../../i.js';
 
 // TODO: finish it
 

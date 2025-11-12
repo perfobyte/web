@@ -1,5 +1,5 @@
 
 
 export default (
-    e=>e.preventDefault()
+    (e) => (e.preventDefault())
 );

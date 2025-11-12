@@ -1,5 +1,4 @@
 import {msg_to_html, msg_time_to_html, count_char, date, time, msg_time_format, detail_time, msg_height} from '../i.js';
-import {msg_rows_reduce} from './i.js';
 
 export default (
     (r,a,id) => {

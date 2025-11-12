@@ -1,4 +1,4 @@
-import {today, MINUTE, DAY} from '../../i.js';
+import {today, } from '../../i.js';
 
 
 export default (
@@ -7,7 +7,7 @@ export default (
         return (
             today(r.t, ts)
             ? (
-                ((ts_round = ts - (ts % MINUTE)) === r.last_t)
+                ((ts_round = ts - (ts % 60_000)) === r.last_t)
                 ? ""
                 : (
                     (r.last_t = ts_round),
@@ -15,7 +15,7 @@ export default (
                 )
             )
             : (
-                ((ts_round = ts - (ts % DAY)) === r.last_t)
+                ((ts_round = ts - (ts % 86_400_000)) === r.last_t)
                 ? ""
                 : (
                     (r.last_t = ts_round),

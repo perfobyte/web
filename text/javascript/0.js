@@ -2,12 +2,7 @@
 
 import {
     preventDefault,
-    check_can_play_type,
-
     get_msgs,
-    get_chat,
-    open_chat,
-
     messages_reduce,
 } from './f/i.js';
 import {API_1, support_rd_o} from "./conf/i.js";
@@ -22,11 +17,12 @@ import {
     ctxt,
     msgs_list,
     ej_open_button,
+    send_button,
 } from "./elems/i.js";
 import {support_codec, chat, EMOJI} from './state/i.js';
 
 import {
-    on_chat_send,
+    on_message_send_click,
     on_msg_delete_click,
     on_msg_edit_click,
     on_ctxt_click,
@@ -40,9 +36,6 @@ import {
 (
     (w,D,c, Math) => {
         var
-            // chats = get_chats(),
-            // M = get_modules(),
-
             chat_id = (chat.i = 0),
             chat_msgs = get_msgs(chat_id)
         ;
@@ -50,7 +43,7 @@ import {
             (w.onerror = c.error),
             w.addEventListener("contextmenu",preventDefault),
 
-            (D.getElementById("send").onclick=on_chat_send),
+            (send_button.onclick=on_message_send_click),
             (D.getElementById("msg_delete").onclick=on_msg_delete_click),
             (D.getElementById("msg_edit").onclick=on_msg_edit_click),
             (ctxt.onclick = on_ctxt_click),
@@ -61,12 +54,12 @@ import {
             (w.onresize = on_window_resize),
 
             chat_msgs.reduce(messages_reduce,chat),
-            open_chat(chat_id, get_chat(chat_id)),
+            
             (chat.loaded = chat_msgs.length),
 
             w.dispatchEvent(resize_event),
 
-            (c_av.backgroundImage = 'url("/f/image/png/logo_full30.png")'),
+            (c_av.background = 'url("/f/image/png/logo_full30.png")'),
             (chatbar_h1.textContent = "Enter password"),
 
             (ej_open_button.textContent = EMOJI[Math.floor(Math.random() * EMOJI.length)]),

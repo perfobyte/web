@@ -1,7 +1,7 @@
 import {msg_menu_st, msg_menu_cl, msg_select_st, msg_select_cl, body} from '../../elems/i.js';
 import {chat, message} from "../../state/i.js";
 import {on_after_msgs_ctx_click} from "../../on/i.js";
-import {msg_height, remove_s_foreach} from '../../f/i.js';
+import {msg_height, } from '../../f/i.js';
 
 
 

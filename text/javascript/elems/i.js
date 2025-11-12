@@ -34,5 +34,7 @@ export var
     msg_select_st = msg_select.style,
     msg_select_cl = msg_select.classList,
 
-    ej_open_button = document.getElementById('ej')
+    ej_open_button = document.getElementById('ej'),
+    
+    send_button = document.getElementById('send')
 ;
