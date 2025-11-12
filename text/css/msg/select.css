@@ -1,0 +1,9 @@
+
+#msg_select {
+    position:absolute;
+    outline:1px solid blue;
+    border-radius:8px;
+    z-index:200;
+    outline-offset:-1px;
+    left:200px;
+}

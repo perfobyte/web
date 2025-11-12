@@ -1,4 +1,4 @@
-import {msg_menu_st, msg_menu_cl, msgs, msg_select_st, msg_select_cl} from '../../elems/i.js';
+import {msg_menu_st, msg_menu_cl, msg_select_st, msg_select_cl, body} from '../../elems/i.js';
 import {chat, message} from "../../state/i.js";
 import {on_after_msgs_ctx_click} from "../../on/i.js";
 import {msg_height, remove_s_foreach} from '../../f/i.js';
@@ -14,7 +14,7 @@ export default (
             ID = "",
 
             target = e.target,
-            li = target.closest(".list > li"),
+            li = target.closest(".msg"),
 
             i = 0,
             l = 0,
@@ -39,7 +39,7 @@ export default (
                                 found = (
                                     document
                                     .querySelectorAll(
-                                        `#msgs > .list > *[data-a="${
+                                        `#list > .msg[data-a="${
                                             ID = li.getAttribute("data-a")
                                         }"] > button`
                                     )
@@ -74,7 +74,7 @@ export default (
             msg_select_st.width = `${y}px`;
             
             window.addEventListener("click",on_after_msgs_ctx_click);
-            msgs.addEventListener("scroll",on_after_msgs_ctx_click);
+            body.addEventListener("scroll",on_after_msgs_ctx_click);
         }
 
         return (

@@ -1,6 +1,6 @@
 import {chat, message} from "../../../state/i.js";
 import {remove_s_foreach} from '../../../f/i.js';
-import {msg_menu_cl, msgs, msg_select} from '../../../elems/i.js';
+import {msg_menu_cl,  msg_select, body} from '../../../elems/i.js';
 
 export default (
     () => {
@@ -12,11 +12,11 @@ export default (
                     return (
                         (message.i = -1),
 
-                        msgs.removeEventListener("scroll",a),
+                        body.removeEventListener("scroll",a),
                         t.removeEventListener("click", a),
                         
-                        document
-                        .querySelectorAll("#msgs > .list > *.s")
+                        body
+                        .querySelectorAll(".list > *.s")
                         .forEach(remove_s_foreach),
 
                         msg_menu_cl.remove("a"),

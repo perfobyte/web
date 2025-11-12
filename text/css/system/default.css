@@ -2,7 +2,6 @@ input {
     border:none;
     outline:none;
 }
-
 ul, ol, p, input, body {
     margin:0;
     padding:0;
@@ -15,16 +14,4 @@ button {
     padding:0;
     background:none;
     cursor:pointer;
-}
-
-body {
-    font-family:
-        'Inter',
-        sans-serif
-    ;
-    position:relative;
-    transition:
-        .2s opacity
-    ;
-    
 }

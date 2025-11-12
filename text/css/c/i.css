@@ -1,11 +1,3 @@
-@import "./minp.css";
-@import "./chatbar.css";
-@import "./msgbr.css";
-
-
-
-#c1 {
-    position:absolute;
-    width:100%;
-    height:100%;
-}
+@import "./chatbar/i.css";
+@import "./minp/i.css";
+@import "./msgbr/i.css";

@@ -1,0 +1,14 @@
+#chatbar > #cbtns {
+    height:40px;
+    top:5px;
+    width:160px;
+
+    right:40px;
+
+    display:flex;
+    flex-direction:row;
+
+    & > * {
+        margin:0;
+    }
+}

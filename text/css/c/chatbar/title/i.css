@@ -1,0 +1,29 @@
+
+
+#chatbar > .title {
+    border-bottom:1px solid var(--background-color);
+
+    font-size:22px;
+    color:rgb(65, 65, 65);
+    
+    max-width:calc(100% - 320px);
+    width:fit-content;
+
+    cursor:default;
+    border-radius:5px 5px 0 0;
+
+    cursor:text;
+    font-weight:bold;
+
+    padding-left:5px;
+    padding-right:5px;
+    
+    left:90px;
+    top:10px;
+    margin:0;
+    height:30px;
+    
+    &:hover {
+        border-color:rgb(140, 140, 140);
+    }
+}

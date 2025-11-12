@@ -1,4 +1,3 @@
-import EMOJI from './EMOJI.js';
 
 export var
     emoji = new Uint8Array(8),

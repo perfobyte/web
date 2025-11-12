@@ -1,0 +1,10 @@
+@import "./p.css";
+
+#ej {
+    font-size:18px;
+    filter:grayscale(100%);
+
+    &:hover {
+        filter:grayscale(0%);
+    }
+}

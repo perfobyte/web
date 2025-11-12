@@ -1,5 +1,5 @@
 
-import {msgs, html} from '../../../elems/i.js';
+import {html} from '../../../elems/i.js';
 import {open_chat, get_chat, get_chats_length} from "../../../f/i.js";
 
 export default (

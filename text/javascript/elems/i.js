@@ -14,9 +14,8 @@ export var
     ctxt = document.getElementById("ctxt"),
     ctxt_i = ctxt.querySelector(".I"),
 
-    msgs = document.getElementById("msgs"),
-    msgs_list = msgs.querySelector(".list"),
-    msgs_time_ul = msgs.querySelector(".time"),
+    msgs_list = document.getElementById("list"),
+    msgs_time_ul = document.getElementById("time"),
 
     chatbar_h1 = document.querySelector("#chatbar > h1"),
 
@@ -33,5 +32,7 @@ export var
 
     msg_select = document.getElementById("msg_select"),
     msg_select_st = msg_select.style,
-    msg_select_cl = msg_select.classList
+    msg_select_cl = msg_select.classList,
+
+    ej_open_button = document.getElementById('ej')
 ;

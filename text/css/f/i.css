@@ -1,36 +1,3 @@
-@import "./svg.css";
+@import "./button.css";
+@import "./display.css";
 @import "./flex.css";
-@import "./tag.css";
-
-.dn {
-    display:none;
-}
-
-.hide_tr {
-    transition:.1s opacity;
-}
-
-.hideable {
-    opacity:0;
-    pointer-events:none;
-
-    &.a {
-        opacity:1;
-        pointer-events:auto;
-    }
-
-    &.b {
-        opacity:1;
-    }
-}
-
-.scroll_y {
-    overflow-x:hidden;
-    overflow-y:scroll;
-}
-
-.txt_of {
-    text-overflow:ellipsis;
-    overflow:hidden;
-    
-}

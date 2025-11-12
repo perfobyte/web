@@ -20,11 +20,10 @@ import {
     resize_event,
     ctxt_i,
     ctxt,
-    msgs,
     msgs_list,
-
+    ej_open_button,
 } from "./elems/i.js";
-import {support_codec, chat} from './state/i.js';
+import {support_codec, chat, EMOJI} from './state/i.js';
 
 import {
     on_chat_send,
@@ -39,7 +38,7 @@ import {
 
 
 (
-    (w,D,c) => {
+    (w,D,c, Math) => {
         var
             // chats = get_chats(),
             // M = get_modules(),
@@ -57,7 +56,6 @@ import {
             (ctxt.onclick = on_ctxt_click),
             (ctxt_i.onkeydown = on_chat_keydown),
 
-            (msgs.oncontextmenu = on_msgs_contextmenu),
             (msgs_list.oncopy = on_chat_copy),
 
             (w.onresize = on_window_resize),
@@ -71,6 +69,8 @@ import {
             (c_av.backgroundImage = 'url("/f/image/png/logo_full30.png")'),
             (chatbar_h1.textContent = "Enter password"),
 
+            (ej_open_button.textContent = EMOJI[Math.floor(Math.random() * EMOJI.length)]),
+            
             body_cl.add('a')
         )
     }
@@ -78,4 +78,5 @@ import {
     window,
     document,
     console,
+    globalThis.Math,
 );

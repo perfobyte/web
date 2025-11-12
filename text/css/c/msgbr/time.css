@@ -1,0 +1,29 @@
+
+#time {
+    width:80px;
+    margin-left:120px;
+    padding-bottom:8px;
+
+    & > .m > * {
+        top:12px;
+    }
+
+    & > * > * {
+        position:absolute;
+        display:block;
+
+        right:10px;
+        top:8px;
+
+        height:12px;
+        font-size:12px;
+        line-height:12px;
+    }
+
+    & > * {
+        position:relative;
+        width:80px;
+        user-select:none;
+        color:rgb(80, 80, 80);
+    }
+}

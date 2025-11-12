@@ -1,0 +1,23 @@
+#minpr,
+#minpl {
+    width:fit-content;
+    height:40px;
+    top:20px;
+}
+
+#minpr {
+    width:160px;
+    right:40px;
+}
+
+#minpl {
+    width:80px;
+    left:40px;
+}
+
+#minpr,
+#minpl,
+#minp {
+    display:flex;
+    flex-direction:row;
+}

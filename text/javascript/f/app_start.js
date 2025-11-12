@@ -1,6 +1,6 @@
 
 import {
-    msgs,
+    
     msgs_list,
     
     ctxt_i,
