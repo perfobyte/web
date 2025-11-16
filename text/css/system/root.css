@@ -19,12 +19,6 @@
     --gray-800: rgb(60, 59, 59);
     --gray-1000: rgb(43, 43, 43);
     
-    --lbar-w:320px;
-    --minp-h:80px;
-    --header-h:40px;
-    
-    --msg-font: monospace;
-    
     --inp-fc-c: rgb(16, 74, 248);
     --nv-fc-c: #0078D4;
 
@@ -48,6 +42,4 @@
     --logo-color:#FAA43C;
     --soft-blue:rgb(37 85 231);
     --muted-blue:#5f7ecf;
-
-    --msg-ls:0px;
 }

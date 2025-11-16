@@ -1,5 +1,4 @@
-@import "./c/i.css";
-@import "./el/i.css";
+@import "./content/i.css";
 @import "./f/i.css";
-@import "./msg/i.css";
+@import "./message/i.css";
 @import "./system/i.css";

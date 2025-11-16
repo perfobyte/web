@@ -2,7 +2,7 @@ input {
     border:none;
     outline:none;
 }
-ul, ol, p, input, body {
+ol, body {
     margin:0;
     padding:0;
 }

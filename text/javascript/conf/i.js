@@ -7,8 +7,6 @@ export var
     ES = "",
     EA = [],
 
-    not_passive = { passive: false },
-
     origin = [
         "",
         "",

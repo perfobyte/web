@@ -41,20 +41,19 @@ import {
         ;
         return void (
             (w.onerror = c.error),
-            w.addEventListener("contextmenu",preventDefault),
+            (w.onresize = on_window_resize),
+            (w.contextmenu = preventDefault),
 
-            (send_button.onclick=on_message_send_click),
-            (D.getElementById("msg_delete").onclick=on_msg_delete_click),
-            (D.getElementById("msg_edit").onclick=on_msg_edit_click),
+            (send_button.onclick = on_message_send_click),
+
+            (D.getElementById("msg_delete").onclick = on_msg_delete_click),
+            (D.getElementById("msg_edit").onclick = on_msg_edit_click),
+
             (ctxt.onclick = on_ctxt_click),
             (ctxt_i.onkeydown = on_chat_keydown),
-
             (msgs_list.oncopy = on_chat_copy),
 
-            (w.onresize = on_window_resize),
-
             chat_msgs.reduce(messages_reduce,chat),
-            
             (chat.loaded = chat_msgs.length),
 
             w.dispatchEvent(resize_event),
@@ -62,7 +61,7 @@ import {
             (c_av.background = 'url("/f/image/png/logo_full30.png")'),
             (chatbar_h1.textContent = "Enter password"),
 
-            (ej_open_button.textContent = EMOJI[Math.floor(Math.random() * EMOJI.length)]),
+            // (ej_open_button.textContent = EMOJI[Math.floor(Math.random() * EMOJI.length)]),
             
             body_cl.add('a')
         )
