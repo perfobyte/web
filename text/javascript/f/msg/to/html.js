@@ -3,7 +3,7 @@ import escape_html from '../../escape_html.js';
 // TODO: finish it
 
 export default (
-    (s,id,rows,ul, msg_el, template, msg_v_el) => {
+    (src,id,rows,list,template) => {
         var
             i = 0,
             
@@ -12,48 +12,59 @@ export default (
             c = "",
 
             el = null,
-            cl = null,
             span = null
         ;
+
         template.setAttribute("data-a",id);
 
         if (rows > 1) {
+
             
-            span = msg_v_el(el = msg_el(template.cloneNode(true), "f"));
-            
+            span = (
+                (el = template.cloneNode(true))
+                .firstElementChild
+            );
+
+            el.className = "f";
+
             i = 0;
-            l = s.lastIndexOf("\n");
+            l = src.lastIndexOf("\n");
             
-            for(;i<l;i++) {
-                
-                ((c = s[i]) === "\n")
+            while(i<l) {
+                ((c = src[i++]) === "\n")
                 ? (
                     (span.textContent = v),
-                    ul.appendChild(el),
-                    (span = msg_v_el(el = msg_el(template.cloneNode(true), "i")))
+                    list.appendChild(el),
+
+                    (span = (
+                        (el = template.cloneNode(true))
+                        .firstElementChild
+                    )),
+
+                    (el.className = "i")
                 )
-                : (v += escape_html(c))
+                : (v += c);
             };
             
             span.textContent = v;
-            ul.appendChild(el);
-            
-            (msg_v_el(el = msg_el(template.cloneNode(true), "l")))
-            .textContent =
-                s.substring(1+l);
-            ul.appendChild(el);
+            list.appendChild(el);
+
+            (el = template.cloneNode(true))
+            .className = "l";
+
+            el.firstElementChild.textContent = src.substring(l+1);
+            list.appendChild(el);
         }
         else {
-            msg_v_el(
-                el = msg_el(template, "o")
-            )
-            .textContent =
-                Array.from(s, escape_html).join("")
-            ;
+            template.className = 'o';
 
-            ul.appendChild(el);
+            template
+            .firstElementChild.textContent = src;
+
+            list.appendChild(template);
         };
+        
 
-        return undefined;
+        return list;
     }
 )

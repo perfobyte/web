@@ -1,9 +1,9 @@
 
 
 export default (
-    (c) => {
+    () => (c) => {
         return (
-            c === "<"
+            (c === "<")
             ? "&lt;"
             :
             c === ">"

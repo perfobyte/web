@@ -6,7 +6,6 @@ export {default as time_opts} from './time_opts.js';
 export * from './api/i.js';
 export * from './bit/i.js';
 export * from './count/i.js';
-export * from './foreach/i.js';
 export * from './general/i.js';
 export * from './msg/i.js';
 export * from "./reduce/i.js";

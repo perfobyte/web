@@ -6,14 +6,7 @@ export var
 
     ES = "",
     EA = [],
-
-    origin = [
-        "",
-        "",
-        "http://localhost:2001",
-        "http://localhost:2002",
-    ],
-
+    
     API_1 = new Image(),
     API_2 = new Audio(),
     API_3 = document.createElement("video"),

@@ -1,3 +1,1 @@
-export * from "./el/i.js";
-export * from "./set/i.js";
-
+export {default as message_render} from "./message.js";

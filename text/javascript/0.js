@@ -6,6 +6,7 @@ import {
     messages_reduce,
 } from './f/i.js';
 import {API_1, support_rd_o} from "./conf/i.js";
+
 import {
     c_av,
     chatbar_h1,
@@ -31,7 +32,6 @@ import {
     on_chat_copy,
     on_window_resize,
 } from './on/i.js';
-
 
 (
     (w,D,c, Math) => {
