@@ -1,10 +1,10 @@
 
 
 export default (
-    (s,c,v, i,l) => {
+    (src,char,found, i,l) => {
         for(;i<l;i++) {
-            (c === s[i]) && (v++);
+            (char === src[i]) && (found++);
         };
-        return v;
+        return found;
     }
 );

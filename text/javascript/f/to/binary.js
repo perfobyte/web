@@ -2,10 +2,10 @@
 // s = globalThis.atob(base64);
 
 export default (
-    (_,s,i,l) => {
+    (buffer,src, i,l) => {
         for (; i < l; i++) {
-            _[i] = s.charCodeAt(i);
+            buffer[i] = src.charCodeAt(i);
         }
-        return _;
+        return buffer;
     }
 );

@@ -1,0 +1,14 @@
+
+
+.message {
+    position:static;
+}
+
+.message_row {
+    position:absolute;
+}
+
+.message_inline {
+    font-size:14px;
+    line-height:22px;
+}

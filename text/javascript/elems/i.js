@@ -15,5 +15,6 @@ export var
 
     list = document.getElementById("list"),
     
-    MSG_EL = template.querySelector(".msg")
+    MESSAGE_EL = template.querySelector(".message"),
+    MESSAGE_ROW_EL = template.querySelector(".message_row")
 ;

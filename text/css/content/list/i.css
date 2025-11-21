@@ -1,5 +1,9 @@
 
 #list {
+    width:var(--w);
+    height:var(--h);
+
+    position:relative;
     display:flex;
     flex-direction:column;
 }

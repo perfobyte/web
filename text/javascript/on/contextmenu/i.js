@@ -1,2 +1,1 @@
-
-export {default as on_msgs_contextmenu} from './msgs.js';
+export {default as on_contextmenu} from './_.js';
