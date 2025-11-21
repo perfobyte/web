@@ -31,7 +31,8 @@ export default (
             )
             .setAttribute("data-a",message.id);
             
-
+            console.dir(lines);
+            
             fragment.appendChild(
                 message_to_html(
                     message.value,

@@ -13,20 +13,8 @@ export default (
         message_append,
     ) => {
         var
-            v = "",
-            c = "",
-
-            el = null,
-            el_style = null,
-            span = null,
-            cl = null,
-
-
-            line = null,
             start = chat_state.loaded_height
         ;
-
-        
         
         if (rows > 1) {
             message_append(
@@ -38,6 +26,8 @@ export default (
             );
             start += height();
             i += 2;
+            l -= 2;
+
             while (i < l) {
                 message_append(
                     template.cloneNode(true),
@@ -48,6 +38,7 @@ export default (
                 );
                 start += height();
             }
+
             message_append(
                 template.cloneNode(true),
                 "l",
@@ -57,13 +48,7 @@ export default (
             );
         }
         else {
-            message_append(
-                template,
-                "o",
-                src,
-                `${start}px`,
-                list
-            );
+            message_append(template,"o",src,`${start}px`,list);
         };
         chat_state.loaded_height = (start + height());
         

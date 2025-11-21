@@ -44,12 +44,15 @@ export default (
                                 0,
                                 value.length
                             )
+                            + 1
                         ),
                         lines_length = rows*2,
                         lines = (
                             Array(lines_length).fill(0)
                         )
                     ;
+                    console.log(rows);
+
                     
                     message_split(
                         lines,value, "\n", 0,lines_length, 0,value.length
