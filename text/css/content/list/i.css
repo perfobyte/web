@@ -1,10 +1,15 @@
 
 #list {
-    width:var(--w);
-    height:var(--h);
-
-    position:relative;
+    position:absolute;
     display:flex;
-    flex-direction:column;
     cursor:text;
+    overflow:hidden;
+
+    user-select: none;
+
+    top:var(--list-top);
+    left:var(--list-left);
+
+    width:var(--list-width);
+    height:var(--list-height);
 }

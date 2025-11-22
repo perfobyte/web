@@ -15,5 +15,7 @@ export var
     support_rd_o = {
         2: [support_format[2], API_2],
         3: [support_format[3], API_3]
-    }
+    },
+
+    window_event_object = {currentTarget: null}
 ;

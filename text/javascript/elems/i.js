@@ -8,7 +8,7 @@ export var
     template = document.querySelector("template").content,
 
     html = document.documentElement,
-    html_st = html.style,
+    html_style = html.style,
 
     body = document.body,
     body_cl = body.classList,

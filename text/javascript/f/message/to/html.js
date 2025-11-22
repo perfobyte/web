@@ -5,17 +5,19 @@ export default (
         src,
         lines,
         rows,
-        i,l,
+        i,
+        l,
+        start,
+
         list,
         template,
         chat_state,
-        height,
+        row_height,
         message_append,
     ) => {
         var
-            start = chat_state.loaded_height
+            number = 0
         ;
-        
         if (rows > 1) {
             message_append(
                 template,
@@ -24,7 +26,7 @@ export default (
                 `${start}px`,
                 list
             );
-            start += height();
+            start += row_height;
             i += 2;
             l -= 2;
 
@@ -36,7 +38,7 @@ export default (
                     `${start}px`,
                     list
                 );
-                start += height();
+                start += row_height;
             }
 
             message_append(
@@ -50,9 +52,6 @@ export default (
         else {
             message_append(template,"o",src,`${start}px`,list);
         };
-        chat_state.loaded_height = (start + height());
-        
-        
-        return list;
+        return (start + row_height);
     }
 )
