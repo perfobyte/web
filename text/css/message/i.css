@@ -13,8 +13,8 @@
     position:absolute;
     color:var(--color);
     left:0;
-    font-size:14px;
-    height:22px;
-    line-height:22px;
+    font-size:var(--font-size);
+    height:var(--row-height);
+    line-height:var(--row-height);
     width:fit-content;
 }

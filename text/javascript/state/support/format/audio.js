@@ -1,2 +1,2 @@
 
-export default new Uint8Array(8);
+export default new Uint8Array(1);
