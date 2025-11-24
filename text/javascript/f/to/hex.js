@@ -1,0 +1,7 @@
+export default (
+    (v) => (
+        v
+        .toString(16)
+        .padStart(2, "0")
+    )
+);

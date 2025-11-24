@@ -1,4 +1,65 @@
-
-// jpeg, png, gif, svg, bmp, webp, avif, heic, heif
-
-export default new Uint8Array(2);
+export default [
+    {
+        id: 0,
+        format: "image/jpeg",
+        extension: "jpg",
+        test: 'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD/2wBDAAMCAgMCAgMDAwMEAwMEBQgFBQQEBQoHBwYIDAoMDAsKCwsNDhIQDQ4RDgsLEBYQERMUFRUVDA8XGBYUGBIUFRT/wAALCAABAAEBAREA/8QAFAABAAAAAAAAAAAAAAAAAAAACf/EABQQAQAAAAAAAAAAAAAAAAAAAAD/2gAIAQEAAD8AKp//2Q==',
+        supported: false,
+    },
+    {
+        id: 1,
+        format: "image/png",
+        extension: "png",
+        test: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=',
+        supported: false,
+    },
+    {
+        id: 2,
+        format: "image/gif",
+        extension: "gif",
+        test: 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7',
+        supported: false,
+    },
+    {
+        id: 3,
+        format: "image/svg+xml",
+        extension: "svg",
+        test: "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='1' height='1'/>",
+        supported: false,
+    },
+    {
+        id: 4,
+        format: "image/bmp",
+        extension: "bmp",
+        test: 'data:image/bmp;base64,Qk0eAAAAAAAAABoAAAAMAAAAAQABAAEAGAD///8A',
+        supported: false,
+    },
+    {
+        id: 5,
+        format: "image/webp",
+        extension: "webp",
+        test: 'data:image/webp;base64,UklGRiwAAABXRUJQVlA4ICAAAAAUAgCdASoBAAEAL/3+/3+CAB/AAAFzrNsAAP5QAAAAAA==',
+        supported: false,
+    },
+    {
+        id: 6,
+        format: "image/avif",
+        extension: "avif",
+        test: 'data:image/avif;base64,AAAAHGZ0eXBhdmlmAAAAAGF2aWZtaWYxbWlhZgAAAOptZXRhAAAAAAAAACFoZGxyAAAAAAAAAABwaWN0AAAAAAAAAAAAAAAAAAAAAA5waXRtAAAAAAABAAAAImlsb2MAAAAAREAAAQABAAAAAAEOAAEAAAAAAAAAEgAAACNpaW5mAAAAAAABAAAAFWluZmUCAAAAAAEAAGF2MDEAAAAAamlwcnAAAABLaXBjbwAAABNjb2xybmNseAABAA0ABoAAAAAMYXYxQ4EgAgAAAAAUaXNwZQAAAAAAAAABAAAAAQAAABBwaXhpAAAAAAMICAgAAAAXaXBtYQAAAAAAAAABAAEEAYIDBAAAABptZGF0EgAKBzgABhAQ0GkyBRAAAAtA',
+        supported: false,
+    },
+    {
+        id: 7,
+        format: "image/heic",
+        extension: "heic",
+        test: "data:image/heic;base64,AAAAGGZ0eXBoZWljAAAAAG1pZjFoZWljAAABMG1ldGEAAAAAAAAAIWhkbHIAAAAAAAAAAHBpY3QAAAAAAAAAAAAAAAAAAAAADnBpdG0AAAAAAAIAAAAi",
+        supported: false,
+    },
+    {
+        id: 8,
+        format: "image/heif",
+        extension: "heif",
+        test: "data:image/heif;base64,AAAAGGZ0eXBoZWlmAAAAAG1pZjFoZWlmAAABMG1ldGEAAAAAAAAAIWhkbHIAAAAAAAAAAHBpY3QAAAAAAAAAAAAAAAAAAAAADnBpdG0AAAAAAAIAAAAi",
+        supported: false,
+    },
+];

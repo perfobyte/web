@@ -1,4 +1,3 @@
-import {support_format} from '../state/i.js';
 
 export var
     TE = new TextEncoder(),
@@ -7,15 +6,12 @@ export var
     ES = "",
     EA = [],
     
-    API_1 = new Image(),
-    API_2 = new Audio(),
-    API_3 = document.createElement("video"),
-    API_CANVAS = document.createElement("canvas"),
+    IMAGE = new Image(),
+    AUDIO = new Audio(),
+    VIDEO = document.createElement("video"),
 
-    support_rd_o = {
-        2: [support_format[2], API_2],
-        3: [support_format[3], API_3]
-    },
+    CANVAS = document.createElement("canvas"),
+    CANVAS_2D_CONTEXT = CANVAS.getContext("2d"),
 
     window_event_object = {currentTarget: null}
 ;

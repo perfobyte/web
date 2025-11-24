@@ -4,7 +4,7 @@ export default {
     cols:0,
 
     row_height:22,
-    col_width:22,
+    col_width:0,
 
     font_id:0,
     font_size:16,
@@ -13,4 +13,10 @@ export default {
     style: "normal",
     weight: "400",
     stretch: "normal",
+    display: "swap",
+
+    unicodeRange: undefined,
+    featureSettings: undefined,    
 };
+
+

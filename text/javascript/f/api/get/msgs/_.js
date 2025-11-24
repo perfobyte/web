@@ -51,8 +51,6 @@ export default (
                             Array(lines_length).fill(0)
                         )
                     ;
-                    console.log(rows);
-
                     
                     message_split(
                         lines,value, "\n", 0,lines_length, 0,value.length

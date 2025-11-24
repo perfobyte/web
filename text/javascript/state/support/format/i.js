@@ -1,12 +1,5 @@
-
-import image from './image.js';
-import audio from './audio.js';
-import video from './video.js';
-import font from './font.js';
-
-export default {
-    1: image,
-    2: audio,
-    3: video,
-    4: font,
-};
+export * from './text/i.js';
+export {default as support_image_format} from './image.js';
+export {default as support_audio_format} from './audio.js';
+export {default as support_video_format} from './video.js';
+export {default as support_font_format} from './font.js';

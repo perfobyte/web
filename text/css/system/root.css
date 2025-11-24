@@ -1,11 +1,5 @@
 
 :root {
-    --list-top:var(--row-height);
-    --list-left:var(--row-height);
-    
-    --background-color:white;
-    --color:black;
-
     position:relative;
     
     overflow:hidden;

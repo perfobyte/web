@@ -9,9 +9,6 @@ import {
     app_key_stream,
     app_mix,
     app_value,
-
-    support_codec,
-    support_format,
 } from '../../state/i.js';
 
 import {
@@ -28,9 +25,7 @@ import {
     to_binary,
 } from '../../f/i.js';
 import {
-    TE,API_1,API_2,API_3,
-
-    support_rd_o,
+    TE,
 } from '../../conf/i.js';
 
 
