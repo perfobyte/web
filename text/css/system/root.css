@@ -1,5 +1,7 @@
 
 :root {
+    --list-left_2: calc(var(--list-left) * 2);
+    
     position:relative;
     
     overflow:hidden;

@@ -13,5 +13,7 @@ export var
     CANVAS = document.createElement("canvas"),
     CANVAS_2D_CONTEXT = CANVAS.getContext("2d"),
 
-    window_event_object = {currentTarget: null}
+    window_event_object = {currentTarget: null},
+
+    default_lines = [[0,0]]
 ;

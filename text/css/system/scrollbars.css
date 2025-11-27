@@ -1,0 +1,54 @@
+
+
+#scrollbars {
+    position:static;
+}
+
+.scrollbar {
+    position:absolute;
+    
+}
+
+/* .scrollbar_thumb.hover {
+    background:rgba(121, 121, 121, 0.4);
+} */
+
+.scrollbar_thumb {
+    transition:.2s background-color;
+    background:rgba(121, 121, 121, 0.4);
+    z-index:0;
+}
+
+.scrollbar_thumb:hover {
+    background:rgba(116, 116, 116, 0.5);
+}
+
+.scrollbar_thumb.hover {
+    background:rgba(110, 110, 110, 0.7);
+}
+
+#scrollbar_thumb_x {
+    transform-origin: left center;
+    width:100%;
+    height:var(--list-top);
+}
+#scrollbar_thumb_y {
+    transform-origin: top center;
+    width:var(--list-left);
+    height:100%;
+}
+
+
+#scrollbar_x {
+    bottom:0;
+    left:var(--list-left);
+    height:var(--list-top);
+    width:calc(100% - var(--list-left_2));
+}
+
+#scrollbar_y {
+    top:0;
+    right:0;
+    height:100%;
+    width:var(--list-left);
+}

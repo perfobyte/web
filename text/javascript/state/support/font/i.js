@@ -1,7 +1,7 @@
 export default [
     {
         id: 0,
-        name: "DejaVu",
+        name: "Open Sans",
         supported: true,
     }
 ];

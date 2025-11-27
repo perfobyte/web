@@ -16,5 +16,21 @@ export var
     list = document.getElementById("list"),
     
     MESSAGE_EL = template.querySelector(".message"),
-    MESSAGE_ROW_EL = template.querySelector(".message_row")
+    MESSAGE_ROW_EL = template.querySelector(".message_row"),
+
+    char_width = document.getElementById('char_width'),
+
+    scrollbar_x = document.getElementById("scrollbar_x"),
+    scrollbar_y = document.getElementById("scrollbar_y"),
+
+    scrollbar_thumb_x = document.getElementById("scrollbar_thumb_x"),
+    scrollbar_thumb_y = document.getElementById("scrollbar_thumb_y"),
+
+    scrollbar_thumb_x_style = scrollbar_thumb_x.style,
+    scrollbar_thumb_y_style = scrollbar_thumb_y.style,
+
+    scrollbar_thumb = [
+        scrollbar_thumb_x,
+        scrollbar_thumb_y,
+    ]
 ;

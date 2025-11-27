@@ -11,7 +11,10 @@
     
     top:var(--list-top);
     left:var(--list-left);
+    right:var(--list-right);
+    bottom:var(--list-bottom);
 
     width:var(--list-width);
     height:var(--list-height);
 }
+

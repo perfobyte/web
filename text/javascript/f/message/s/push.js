@@ -54,12 +54,10 @@ export default (
             
             fragment.appendChild(block);
         };
-
-        list.appendChild(fragment);
-
+        
         chat_state.loaded += i;
         chat_state.loaded_height = loaded_height;
 
-        return i;
+        return fragment;
     }
 );
