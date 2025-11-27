@@ -27,9 +27,6 @@ export default (
             ;
             
             return void (
-                e.preventDefault(),
-                e.stopPropagation(),
-
                 (scrollbar_thumb.style.transform = scrollbar_thumb_transform(
                     scrolled,
                     get_scale(style_state)

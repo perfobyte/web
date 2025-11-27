@@ -18,6 +18,7 @@ import {
     window_event_object,
     CANVAS_2D_CONTEXT,
     default_lines,
+    passive_false,
 } from "./conf/i.js";
 
 import {
@@ -53,6 +54,7 @@ import {
     on_list_selectstart,
 
     on_scrollbar_thumb_mousedown,
+    on_list_wheel,
 } from './on/i.js';
 
 (
@@ -135,10 +137,7 @@ import {
                         
                         SIMPLE_MESSAGE_ROW = MESSAGE_ROW_EL.cloneNode(true)
                     ;
-                    CANVAS_2D_CONTEXT.font = `${font_size_str} ${font_id_str}`;
-
-                    (style_state.col_width = CANVAS_2D_CONTEXT.measureText("a").width)
-
+                    
                     SIMPLE_MESSAGE_ROW.querySelector(".message_inline").classList.add('simple');
                     
                     fragment = messages_push(
@@ -189,6 +188,9 @@ import {
                     scrollbar_x.onmousedown =
                     scrollbar_y.onmousedown =
                         on_scrollbar_thumb_mousedown;
+
+
+                    window.addEventListener("wheel", on_list_wheel, passive_false);
 
                     // (c_av.background = 'url("/f/image/png/logo_full30.png")'),
                     // (chatbar_h1.textContent = "Enter password"),

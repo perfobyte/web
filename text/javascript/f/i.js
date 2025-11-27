@@ -8,5 +8,6 @@ export * from './message/i.js';
 export * from "./reduce/i.js";
 export * from './to/i.js';
 export * from './scrollbar/i.js';
+export * from "./wheel/i.js";
 
 export {default as get_char_width} from "./get_char_width.js";
