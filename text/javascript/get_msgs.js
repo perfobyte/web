@@ -1,4 +1,4 @@
-import {count_char, message_split} from '../../../i.js';
+import {count_char, message_split} from './f/i.js';
 
 export default (
     (chat_id) => {

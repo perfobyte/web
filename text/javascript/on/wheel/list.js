@@ -3,10 +3,12 @@ import {wheel_delta_value} from '../../f/i.js';
 import {style_state} from '../../state/i.js';
 
 export default (
-    (event) => {
+    (event_objects) => (event) => {
         var
             delta = 0,
             direction_key = "",
+            
+
             direction = (
                 (event.shiftKey)
                 ? (
@@ -20,21 +22,26 @@ export default (
                     1
                 )
             ),
+            event_object = event_objects[direction],
 
             move = on_scrollbar_thumb_mousemove[direction],
             
-            unit = wheel_delta_value[direction][event.deltaMode](style_state),
-
-            event_object = {
-                currentTarget: event.currentTarget,
-                [direction_key]: (unit * delta),
-            }
+            unit = wheel_delta_value[direction][event.deltaMode](style_state)
         ;
-        console.dir({unit, delta, direction, direction_key, event_object});
-
         return void (
+            (event_object[direction_key] = (delta * unit)),
+
             move(event_object),
             event.preventDefault()
         );
     }
-);
+)([
+    {
+        currentTarget: window,
+        movementX: 0,
+    },
+    {
+        currentTarget: window,
+        movementY: 0,
+    }
+]);

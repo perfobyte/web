@@ -2,10 +2,18 @@ import language from './language.js';
 
 export default (() => {
     var
-        row_height = 22
+        row_height = 22,
+        font_size = 16
     ;
     return {
         row_height,
+
+        zoom:1,
+        zoom_step:0.1,
+
+        wheel_x_pixel_value:1,
+        wheel_y_pixel_value:1,
+
         wheel_x_string_value:row_height,
         wheel_y_string_value:row_height,
         
@@ -24,8 +32,10 @@ export default (() => {
         list_height:1,
         
         font_id:0,
-        font_size:16,
+        font_size,
         font_face:null,
+
+        row_ratio: (font_size / row_height),
 
         style: "normal",
         weight: "400",

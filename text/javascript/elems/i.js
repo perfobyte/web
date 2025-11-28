@@ -18,7 +18,7 @@ export var
     MESSAGE_EL = template.querySelector(".message"),
     MESSAGE_ROW_EL = template.querySelector(".message_row"),
 
-    char_width = document.getElementById('char_width'),
+    text_width_container = document.getElementById('text_width_container'),
 
     scrollbar_x = document.getElementById("scrollbar_x"),
     scrollbar_y = document.getElementById("scrollbar_y"),

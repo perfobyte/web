@@ -1,16 +1,28 @@
 
+import get_msgs from "./get_msgs.js";
+
 import {
-    get_msgs,
+    download_buffer,
+
+    standart_text_all_chars_number_reduce,
+    standart_text_all_chars_width,
+} from './f/dev/i.js';
+
+import {
     messages_push,
     message_to_html,
     
     message_append,
     font_path,
     font_src,
-    get_char_width,
 
     scrollbar_thumb_x_transform,
     scrollbar_thumb_y_transform,
+
+    dom_text_width,
+
+    standart_text_unicode_coords,
+    
 } from './f/i.js';
 
 import {
@@ -31,7 +43,7 @@ import {
     MESSAGE_EL,
     MESSAGE_ROW_EL,
     list,
-    char_width,
+    text_width_container,
 
     scrollbar_x,
     scrollbar_y,
@@ -39,6 +51,7 @@ import {
     scrollbar_thumb_x_style,
     scrollbar_thumb_y_style
 } from "./elems/i.js";
+
 import {
     chat_state,
     style_state,
@@ -55,6 +68,9 @@ import {
 
     on_scrollbar_thumb_mousedown,
     on_list_wheel,
+
+    on_window_keydown,
+
 } from './on/i.js';
 
 (
@@ -101,11 +117,9 @@ import {
         html_style.setProperty("--color", "#000000FF");
         html_style.setProperty("--placeholder-color", '#808080FF');
         
-        console.dir(get_char_width(char_width, "a"));
-
         document_fonts.add(
             (
-                font_face =
+                font_face = (
                     new FontFace(
                         font_id_bare_str,
                         font_src(
@@ -118,6 +132,7 @@ import {
                         ),
                         style_state
                     )
+                )
             )
         );
 
@@ -188,9 +203,24 @@ import {
                     scrollbar_x.onmousedown =
                     scrollbar_y.onmousedown =
                         on_scrollbar_thumb_mousedown;
-
-
+                    
                     window.addEventListener("wheel", on_list_wheel, passive_false);
+                    window.addEventListener("keydown",on_window_keydown);
+                    
+                    // download_buffer(
+                    //     "name",
+                    //     standart_text_all_chars_width(
+                    //         standart_text_unicode_coords,
+                    //         standart_text_all_chars_number_reduce,
+                    //         1000,
+
+                    //         String.fromCodePoint,
+                    //         Float32Array,
+
+                    //         dom_text_width,
+                    //         text_width_container,
+                    //     )
+                    // );
 
                     // (c_av.background = 'url("/f/image/png/logo_full30.png")'),
                     // (chatbar_h1.textContent = "Enter password"),
