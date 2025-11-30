@@ -1,6 +1,7 @@
 
 export * from './bit/i.js';
 export * from './count/i.js';
+export * from "./data_types/i.js";
 export * from './dom/i.js';
 export * from './font/i.js';
 export * from './general/i.js';

@@ -6,10 +6,21 @@ export default (() => {
         font_size = 16
     ;
     return {
+        font_size,
         row_height,
+        
+        font_size_default:16,
+        row_height_default:22,
+
+        font_size_step:1,
 
         zoom:1,
         zoom_step:0.1,
+
+        zoom_min: 0.375,
+        zoom_max: 62.5,
+
+        zoom_default:1,
 
         wheel_x_pixel_value:1,
         wheel_y_pixel_value:1,
@@ -32,7 +43,6 @@ export default (() => {
         list_height:1,
         
         font_id:0,
-        font_size,
         font_face:null,
 
         row_ratio: (font_size / row_height),
