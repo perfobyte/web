@@ -1,14 +1,16 @@
 import {on_scrollbar_thumb_mousemove} from '../mouse/i.js';
 import {wheel_delta_value} from '../../f/i.js';
 import {style_state} from '../../state/i.js';
+import {
+    xy_move_event,
+} from '../../conf/i.js';
 
 export default (
-    (event_objects) => (event) => {
+    (event) => {
         var
             delta = 0,
             direction_key = "",
             
-
             direction = (
                 (event.shiftKey)
                 ? (
@@ -22,7 +24,7 @@ export default (
                     1
                 )
             ),
-            event_object = event_objects[direction],
+            event_object = xy_move_event[direction],
 
             move = on_scrollbar_thumb_mousemove[direction],
             
@@ -35,13 +37,4 @@ export default (
             event.preventDefault()
         );
     }
-)([
-    {
-        currentTarget: window,
-        movementX: 0,
-    },
-    {
-        currentTarget: window,
-        movementY: 0,
-    }
-]);
+);

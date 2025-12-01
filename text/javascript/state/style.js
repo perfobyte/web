@@ -41,11 +41,10 @@ export default (() => {
 
         list_width:1,
         list_height:1,
+        list_ratio:1,
         
         font_id:0,
         font_face:null,
-
-        row_ratio: (font_size / row_height),
 
         style: "normal",
         weight: "400",

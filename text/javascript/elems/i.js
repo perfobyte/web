@@ -28,7 +28,7 @@ export var
 
     scrollbar_thumb_x_style = scrollbar_thumb_x.style,
     scrollbar_thumb_y_style = scrollbar_thumb_y.style,
-
+    
     scrollbar_thumb = [
         scrollbar_thumb_x,
         scrollbar_thumb_y,

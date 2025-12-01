@@ -1,3 +1,4 @@
+export * from './crossplatform.js';
 
 export var
     TE = new TextEncoder(),
@@ -16,5 +17,20 @@ export var
     window_event_object = {currentTarget: window},
     passive_false = { passive: false },
     
-    default_lines = [[0,0]]
+    default_lines = [[0,0]],
+
+    x_move_event = {
+        currentTarget: window,
+        movementX: 0,
+    },
+
+    y_move_event = {
+        currentTarget: window,
+        movementY: 0,
+    },
+
+    xy_move_event = [
+        x_move_event,
+        y_move_event,
+    ]
 ;

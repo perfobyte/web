@@ -3,24 +3,36 @@ import {
     list,
     scrollbar_x,
     scrollbar_y,
-    scrollbar_thumb_x,
-    scrollbar_thumb_y,
-
+    
+    scrollbar_thumb_x_style,
+    scrollbar_thumb_y_style,
 } from '../../../elems/i.js';
-import {style_state, chat_state} from '../../../state/i.js';
+import {
+    style_state,
+    chat_state,
+} from '../../../state/i.js';
 import {
     scrollbar_thumb_x_transform,
     scrollbar_thumb_y_transform,
+    set_scroll,
+    set_list_scroll_x,
+    set_list_scroll_y,
+    get_scale_x,
+    get_scale_y,
+    
+    get_offset_size_x,
+    get_offset_size_y,
+
+    get_scroll_size_x,
+    get_scroll_size_y,
 } from '../../../f/i.js';
-
-
 
 export default [
     scroll_template(
         list,
         style_state,
 
-        (e, style_state, window, thumb, scrollbar) => {
+        (e, style_state, window, scrollbar) => {
             var
                 prev = style_state.thumb_x_translate,
                 new_value = (prev + e.movementX),
@@ -30,8 +42,7 @@ export default [
             ;
             return (
                 style_state
-                .thumb_x_translate =
-                    
+                .thumb_x_translate = (
                     Math.max(
                         0,
                         Math.min(
@@ -39,24 +50,27 @@ export default [
                             new_value
                         )
                     )
+                )
             )
         },
-        (scrollbar) => (scrollbar.offsetWidth),
+        get_offset_size_x,
 
-        (list, new_value) => (list.scrollLeft = new_value),
+        set_list_scroll_x,
 
         scrollbar_x,
-        scrollbar_thumb_x,
+        scrollbar_thumb_x_style,
 
-        (list) => list.scrollWidth,
+        get_scroll_size_x,
         scrollbar_thumb_x_transform,
-        (style_state) => style_state.thumb_x_scale,
+        get_scale_x,
+
+        set_scroll,
     ),
     scroll_template(
         list,
         style_state,
 
-        (e,style_state,window, thumb, scrollbar) => {
+        (e,style_state,window,scrollbar) => {
             var
                 prev = style_state.thumb_y_translate,
                 new_value = (prev + e.movementY),
@@ -66,7 +80,7 @@ export default [
             ;
             return (
                 style_state
-                .thumb_y_translate =
+                .thumb_y_translate = (
                     Math.max(
                         0,
                         Math.min(
@@ -74,17 +88,20 @@ export default [
                             new_value,
                         )
                     )
+                )
             )
         },
-        (scrollbar) => (scrollbar.offsetHeight),
+        get_offset_size_y,
 
-        (list, new_value) => (list.scrollTop = new_value),
+        set_list_scroll_y,
 
         scrollbar_y,
-        scrollbar_thumb_y,
+        scrollbar_thumb_y_style,
 
-        (list) => list.scrollHeight,
+        get_scroll_size_y,
         scrollbar_thumb_y_transform,
-        (style_state) => style_state.thumb_y_scale,
+        get_scale_y,
+
+        set_scroll,
     )
 ];

@@ -1,37 +1,15 @@
 
 
 export default (
-    (state, zoom_code, style, number_clamp, list) => {
+    (
+        state,
+        new_zoom,
+        style,
+        number_clamp,
+        list,
+        recalculate_rows_top,
+    ) => {
         var
-            new_zoom = (
-                state.zoom = (
-                    (zoom_code < 4)
-                    ? (
-                        number_clamp(
-                            (
-                                (zoom_code < 2)
-                                ? (
-                                    state.zoom
-                                    + state.zoom_step
-                                )
-                                : (
-                                    state.zoom
-                                    - state.zoom_step
-                                )
-                            ),
-                            state.zoom_min,
-                            state.zoom_max,
-
-                            Math.min,
-                            Math.max,
-                        )
-                    )
-                    : (
-                        state.zoom_default
-                    )
-                )
-            ),
-
             new_row_height = (
                 state
                 .row_height = (
@@ -48,21 +26,12 @@ export default (
                 )
             ),
 
-            rows = list.querySelectorAll(".message_row"),
-
-            i = 0,
-            l = rows.length,
-            top = 0
+            rows = list.querySelectorAll(".message_row")
         ;
-        
-        for(;i<l;i++){
-            rows[i].style.top = `${top}px`;
-            top += new_row_height;
-        };
-
-        return void (
-            style.setProperty("--row-height",`${new_row_height}px`),
-            style.setProperty("--font-size",`${new_font_size}px`)
+        return (
+            recalculate_rows_top(rows, 0, new_row_height, 0, rows.length),
+            style.setProperty("--row-height",`${state.row_height = new_row_height}px`),
+            style.setProperty("--font-size",`${state.font_size = new_font_size}px`)
         );
     }
 );
