@@ -48,7 +48,10 @@ export default (
             var_number_4 = 0,
 
             min = Math.min,
-            max = Math.max
+            max = Math.max,
+
+            keyCode = e.keyCode,
+            window = e.view
         ;
         return (
             (
@@ -57,7 +60,7 @@ export default (
                 (
                     (
                         var_number_1 =
-                            zoom_keys.indexOf(e.keyCode)
+                            zoom_keys.indexOf(keyCode)
                     ) > -1
                 )
             )
@@ -154,7 +157,7 @@ export default (
                                 number_clamp(
                                     (
                                         var_number_3
-                                        * (var_number_1 = e.view.innerHeight)
+                                        * (var_number_1 = window.innerHeight)
                                     ),
                                     0,
                                     (

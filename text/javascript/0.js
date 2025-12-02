@@ -70,7 +70,7 @@ import {
     on_list_wheel,
 
     on_window_keydown,
-
+    on_window_keyup,
 } from './on/i.js';
 
 (
@@ -206,6 +206,7 @@ import {
                     
                     window.addEventListener("wheel", on_list_wheel, passive_false);
                     window.addEventListener("keydown",on_window_keydown);
+                    window.addEventListener("keyup",on_window_keyup);
                     
                     // download_buffer(
                     //     "name",
