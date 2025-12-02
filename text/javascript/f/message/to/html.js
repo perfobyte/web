@@ -19,39 +19,42 @@ export default (
             number = 0
         ;
         if (rows > 1) {
-            message_append(
+            start = message_append(
                 template,
                 "f",
-                src.substring(lines[0], lines[1]),
-                `${start}px`,
-                list
+                src.substring(lines[i++], lines[i++]),
+                list,
+
+                start,
+                row_height
             );
-            start += row_height;
-            i += 2;
             l -= 2;
 
             while (i < l) {
-                message_append(
+                start = message_append(
                     template.cloneNode(true),
                     "i",
                     src.substring(lines[i++], lines[i++]),
-                    `${start}px`,
-                    list
+                    list,
+
+                    start,
+                    row_height
                 );
-                start += row_height;
             }
 
-            message_append(
+            start = message_append(
                 template.cloneNode(true),
                 "l",
                 src.substring(lines[i++], lines[i++]),
-                `${start}px`,
-                list
+                list,
+
+                start,
+                row_height
             );
         }
         else {
-            message_append(template,"o",src,`${start}px`,list);
+            start = message_append(template,"o",src,list, start,row_height);
         };
-        return (start + row_height);
+        return (start);
     }
 )

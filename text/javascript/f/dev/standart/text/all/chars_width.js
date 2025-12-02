@@ -31,8 +31,6 @@ export default (
             l = coord[1];
 
             while (i < l) {
-                console.log((loaded / length)*100);
-
                 map[loaded++] = (
                     dom_text_width(
                         text_width_container,

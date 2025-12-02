@@ -212,7 +212,7 @@ import {
                     //     standart_text_all_chars_width(
                     //         standart_text_unicode_coords,
                     //         standart_text_all_chars_number_reduce,
-                    //         1000,
+                    //         200,
 
                     //         String.fromCodePoint,
                     //         Float32Array,
