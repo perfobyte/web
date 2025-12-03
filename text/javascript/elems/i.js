@@ -9,13 +9,12 @@ export var
 
     html = document.documentElement,
     html_style = html.style,
-
+    
     body = document.body,
     body_cl = body.classList,
 
     list = document.getElementById("list"),
     
-    MESSAGE_EL = template.querySelector(".message"),
     MESSAGE_ROW_EL = template.querySelector(".message_row"),
 
     text_width_container = document.getElementById('text_width_container'),

@@ -8,7 +8,7 @@ import {style_state} from '../../../state/i.js';
 import {
     number_clamp,
     ctrl_key,
-    recalculate_rows_top,
+    recalc_rows_top,
 
     set_list_scroll_x,
     set_list_scroll_y,
@@ -50,7 +50,7 @@ export default (
             min = Math.min,
             max = Math.max,
 
-            keyCode = e.keyCode,
+            key = e.key,
             window = e.view
         ;
         return (
@@ -60,7 +60,7 @@ export default (
                 (
                     (
                         var_number_1 =
-                            zoom_keys.indexOf(keyCode)
+                            zoom_keys.indexOf(key)
                     ) > -1
                 )
             )
@@ -72,21 +72,23 @@ export default (
                 (var_number_2 = (list.scrollLeft / list.scrollWidth)),
                 (var_number_3 = (list.scrollTop / list.scrollHeight)),
 
+                (style_state.zoom_prev = var_number_4 = style_state.zoom),
+
                 on_custom_zoom(
                     style_state,
                     (
                         style_state.zoom = (
-                            (var_number_1 < 4)
+                            (var_number_1 < 2)
                             ? (
                                 number_clamp(
                                     (
-                                        (var_number_1 < 2)
+                                        (var_number_1 === 0)
                                         ? (
-                                            (style_state.zoom)
+                                            (var_number_4)
                                             + (style_state.zoom_step)
                                         )
                                         : (
-                                            (style_state.zoom)
+                                            (var_number_4)
                                             - (style_state.zoom_step)
                                         )
                                     ),
@@ -103,7 +105,7 @@ export default (
                     html_style,
                     number_clamp,
                     list,
-                    recalculate_rows_top,
+                    recalc_rows_top,
                 ),
 
                 on_window_resize(window_event_object),

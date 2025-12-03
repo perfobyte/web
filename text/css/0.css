@@ -3,7 +3,8 @@
 @import "./message/i.css";
 @import "./system/i.css";
 
-#char_width {
+
+#text_width_container {
     position: absolute;
     visibility: hidden;
     white-space: pre;

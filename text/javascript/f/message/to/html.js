@@ -4,57 +4,66 @@ export default (
     (
         src,
         lines,
-        rows,
         i,
         l,
-        start,
+        loaded_height,
 
         list,
         template,
-        chat_state,
+
         row_height,
         message_append,
+
+        text_width_container,
+        dom_text_width,
+
+        max_width,
+
+        append_child,
     ) => {
         var
-            number = 0
+            number = 0,
+
+            cloned = null
         ;
-        if (rows > 1) {
-            start = message_append(
-                template,
-                "f",
-                src.substring(lines[i++], lines[i++]),
-                list,
 
-                start,
-                row_height
-            );
-            l -= 2;
-
+        if (l > 2) {
             while (i < l) {
-                start = message_append(
-                    template.cloneNode(true),
-                    "i",
+                loaded_height = message_append(
+                    (template.cloneNode(true)),
                     src.substring(lines[i++], lines[i++]),
+
+                    append_child,
                     list,
+                    
+                    loaded_height,
+                    row_height,
 
-                    start,
-                    row_height
+                    text_width_container,
+                    dom_text_width,
+
+                    max_width,
                 );
-            }
-
-            start = message_append(
-                template.cloneNode(true),
-                "l",
-                src.substring(lines[i++], lines[i++]),
-                list,
-
-                start,
-                row_height
-            );
+            };
         }
         else {
-            start = message_append(template,"o",src,list, start,row_height);
+            loaded_height = message_append(
+                (template.cloneNode(true)),
+                src,
+
+                append_child,
+                list,
+                
+                loaded_height,
+                row_height,
+
+                text_width_container,
+                dom_text_width,
+
+                max_width,
+            );
         };
-        return (start);
+
+        return (loaded_height);
     }
 )

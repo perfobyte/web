@@ -14,6 +14,7 @@ export default (() => {
 
         font_size_step:1,
 
+        zoom_prev:1,
         zoom:1,
         zoom_step:0.1,
 
@@ -41,7 +42,6 @@ export default (() => {
 
         list_width:1,
         list_height:1,
-        list_ratio:1,
         
         font_id:0,
         font_face:null,
@@ -55,5 +55,7 @@ export default (() => {
         featureSettings: undefined,
 
         language,
+
+        row_width_mode: 1,
     }
 })();

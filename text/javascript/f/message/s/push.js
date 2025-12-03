@@ -1,63 +1,58 @@
 export default (
     (
-        list,
         messages,
 
         i,
         l,
 
-        chat_state,
         row_height,
-        document,
+        loaded_height,
 
-        MESSAGE_EL,
-        MESSAGE_ROW_EL,
+        fragment,
+        template,
 
         message_to_html,
         message_append,
+
+        text_width_container,
+        dom_text_width,
+
+        max_width,
+
+        append_child,
     ) => {
         var
             message = null,
-            fragment = document.createDocumentFragment(),
-            block = null,
-            lines = null,
-            loaded_height = chat_state.loaded_height
+            lines = null
         ;
-        for(;i<l;i++){
-            message = messages[i];
+        while(i<l){
+            message = messages[i++];
             lines = message.lines;
-
-            (
-                block = (
-                    MESSAGE_EL
-                    .cloneNode(true)
-                )
-            )
-            .setAttribute("data-a", message.id);
 
             loaded_height = (
                 message_to_html(
                     message.value,
                     lines,
-                    message.rows,
                     0,
                     lines.length,
                     loaded_height,
 
-                    block,
-                    MESSAGE_ROW_EL.cloneNode(true),
-                    chat_state,
+                    fragment,
+                    template,
+
                     row_height,
                     message_append,
+
+                    text_width_container,
+                    dom_text_width,
+
+                    max_width,
+
+                    append_child,
                 )
             );
-            
-            fragment.appendChild(block);
         };
         
-        chat_state.loaded += i;
-        chat_state.loaded_height = loaded_height;
-
-        return fragment;
+        return loaded_height;
     }
 );

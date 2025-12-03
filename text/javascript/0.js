@@ -20,9 +20,12 @@ import {
     scrollbar_thumb_y_transform,
 
     dom_text_width,
-
     standart_text_unicode_coords,
-    
+
+    calc_list_width,
+    calc_list_height,
+
+    append_child,
 } from './f/i.js';
 
 import {
@@ -31,6 +34,7 @@ import {
     CANVAS_2D_CONTEXT,
     default_lines,
     passive_false,
+    messages_fragment,
 } from "./conf/i.js";
 
 import {
@@ -40,16 +44,16 @@ import {
     window,
     resize_event,
 
-    MESSAGE_EL,
     MESSAGE_ROW_EL,
     list,
-    text_width_container,
-
+    
     scrollbar_x,
     scrollbar_y,
 
     scrollbar_thumb_x_style,
-    scrollbar_thumb_y_style
+    scrollbar_thumb_y_style,
+
+    text_width_container,
 } from "./elems/i.js";
 
 import {
@@ -95,23 +99,62 @@ import {
 
             font_size_str = `${style_state.font_size}px`,
 
-            language_state = style_state.language
+            language_state = style_state.language,
+
+            list_width = 0,
+
+            width = window.innerWidth,
+            height = window.innerHeight,
+
+            list_left = style_state.list_left,
+            list_right = style_state.list_right,
+
+            list_top = style_state.list_top,
+            list_bottom = style_state.list_bottom,
+
+            row_width_mode = style_state.row_width_mode
         ;
 
         window.onerror = on_error;
         window.contextmenu = on_contextmenu;
         list.onmousedown = on_list_mousedown;
         list.onselectstart = on_list_selectstart;
-        window.onresize = on_window_resize;
-
+        
         html_style.setProperty("--row-height", row_height_str);
         html_style.setProperty("--font-size", font_size_str);
         html_style.setProperty("--font-family",font_id_str);
+
+        html_style.setProperty(
+            "--list-width",
+            `${
+                style_state.list_width = (
+                    list_width = (
+                        calc_list_width(
+                            width,
+                            list_left,
+                            list_right
+                        )
+                    )
+                )
+            }px`
+        );
+        html_style.setProperty(
+            "--list-height",
+            `${
+                style_state.list_height = (
+                    calc_list_height(
+                        height,
+                        list_top,
+                        list_bottom
+                    )
+                )
+            }px`
+        );
         
-        html_style.setProperty("--list-top", `${style_state.list_top}px`);
-        html_style.setProperty("--list-left", `${style_state.list_left}px`);
-        html_style.setProperty("--list-right", `${style_state.list_right}px`);
-        html_style.setProperty("--list-bottom", `${style_state.list_bottom}px`);
+        html_style.setProperty("--list-top", `${list_top}px`);
+        html_style.setProperty("--list-left", `${list_left}px`);
+        html_style.setProperty("--list-right", `${list_right}px`);
+        html_style.setProperty("--list-bottom", `${list_bottom}px`);
 
         html_style.setProperty("--background-color", '#FFFFFFFF');
         html_style.setProperty("--color", "#000000FF");
@@ -145,83 +188,91 @@ import {
             .then(
                 () => {
                     var
-                        fragment = null,
                         placeholder_value = language_state.placeholder_value,
-                        element = MESSAGE_ROW_EL.cloneNode(true),
-                        placeholder_block = MESSAGE_EL.cloneNode(true),
-                        
-                        SIMPLE_MESSAGE_ROW = MESSAGE_ROW_EL.cloneNode(true)
+
+                        message_append_specific = (
+                            message_append[
+                                row_width_mode
+                            ]
+                        ),
+                        messages_length = new_messages.length,
+                        placeholder_lines = Array.from(default_lines)
                     ;
+                    placeholder_lines[0][1] = placeholder_value.length;
                     
-                    SIMPLE_MESSAGE_ROW.querySelector(".message_inline").classList.add('simple');
-                    
-                    fragment = messages_push(
-                        list,
-                        new_messages,
-                        0,
-                        new_messages.length,
-                        chat_state,
-            
-                        row_height,
-                        document,
-            
-                        MESSAGE_EL,
-                        SIMPLE_MESSAGE_ROW,
-            
-                        message_to_html,
-                        message_append,
+                    chat_state.loaded_height = (
+                        message_to_html(
+                            placeholder_value,
+                            default_lines,
+                            0,
+                            1,
+                            (
+                                messages_push(
+                                    new_messages,
+
+                                    0,
+                                    messages_length,
+                        
+                                    row_height,
+                                    chat_state.loaded_height,
+                                    
+                                    messages_fragment,
+                                    MESSAGE_ROW_EL,
+                        
+                                    message_to_html,
+                                    message_append_specific,
+                                    
+                                    text_width_container,
+                                    dom_text_width,
+        
+                                    list_width,
+
+                                    append_child,
+                                )
+                            ),
+
+                            messages_fragment,
+                            MESSAGE_ROW_EL,
+
+                            row_height,
+                            message_append_specific,
+
+                            text_width_container,
+                            dom_text_width,
+
+                            list_width,
+
+                            append_child,
+                        )
                     );
 
-                    default_lines[0][1] = placeholder_value.length;
-                    element.querySelector(".message_inline").classList.add("placeholder");
+                    new_messages.push({
+                        id: messages_length,
+                        lines: placeholder_lines,
+                        value: placeholder_value,
+                    });
 
-                    chat_state.loaded_height = message_to_html(
-                        placeholder_value,
-                        default_lines,
-                        1,
-                        0,
-                        1,
-                        chat_state.loaded_height,
-    
-                        placeholder_block,
-                        element,
-                        chat_state,
-                        row_height,
-                        message_append,
-                    );
-
-                    placeholder_block.classList.add("input");
-
-                    chat_state.loaded++;
-                    fragment.appendChild(placeholder_block);
-
-                    list.appendChild(fragment);
-
-                    window_event_object.currentTarget = window;
-                    on_window_resize(window_event_object);
-
-                    scrollbar_x.onmousedown =
-                    scrollbar_y.onmousedown =
-                        on_scrollbar_thumb_mousedown;
+                    chat_state.messages = new_messages;
                     
+                    chat_state.loaded += (messages_length + 1);
+                    list.appendChild(messages_fragment);
+                    
+                    (row_width_mode === 0)
+                    ? (
+                        scrollbar_x.onmousedown = on_scrollbar_thumb_mousedown
+                    )
+                    : (
+                        scrollbar_x.classList.add('none')
+                    );
+                    
+                    scrollbar_y.onmousedown = on_scrollbar_thumb_mousedown;
+
                     window.addEventListener("wheel", on_list_wheel, passive_false);
                     window.addEventListener("keydown",on_window_keydown);
                     window.addEventListener("keyup",on_window_keyup);
-                    
-                    // download_buffer(
-                    //     "name",
-                    //     standart_text_all_chars_width(
-                    //         standart_text_unicode_coords,
-                    //         standart_text_all_chars_number_reduce,
-                    //         200,
 
-                    //         String.fromCodePoint,
-                    //         Float32Array,
-
-                    //         dom_text_width,
-                    //         text_width_container,
-                    //     )
-                    // );
+                    on_window_resize(window_event_object);
+                    window.onresize = on_window_resize;
 
                     // (c_av.background = 'url("/f/image/png/logo_full30.png")'),
                     // (chatbar_h1.textContent = "Enter password"),

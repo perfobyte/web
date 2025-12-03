@@ -8,5 +8,7 @@ export default (
         
         loaded: 0,
         loaded_height:0,
+
+        messages: null,
     }
 );
