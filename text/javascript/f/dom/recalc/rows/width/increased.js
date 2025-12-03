@@ -22,7 +22,6 @@ export default (
         message_append,
         messages_push,
 
-        message_to_html,
         append_child,
     ) => {
         var
@@ -64,13 +63,18 @@ export default (
                     break a;
                 };
                 
-                to_next_i = (content_length = ((
-                    content = (
-                        (to_next)
-                        ||
-                        message_value.substring(lines[lines_i++], lines[lines_i++])
+                to_next_i = (
+                    content_length = (
+                        (
+                            content = (
+                                (to_next)
+                                ||
+                                (message_value.substring(lines[lines_i++], lines[lines_i++]))
+                            )
+                        )
+                        .length
                     )
-                ).length));
+                );
 
                 while (
                     (
@@ -99,7 +103,7 @@ export default (
 
             loaded_height = message_append(
                 (template.cloneNode(true)),
-                (to_next ? to_next + row_content : row_content),
+                (to_next ? (to_next + row_content) : row_content),
 
                 append_child,
                 messages_fragment,
@@ -161,7 +165,6 @@ export default (
                 messages_fragment,
                 template,
 
-                message_to_html,
                 message_append,
                 
                 text_width_container,

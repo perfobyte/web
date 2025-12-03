@@ -35,8 +35,6 @@ export default (
         message_append,
         messages_push,
 
-        message_to_html,
-
         append_child,
         get_null,
     ) => {
@@ -104,11 +102,17 @@ export default (
                         dom_text_width,
                         message_append,
                         messages_push,
-
-                        message_to_html,
+                        
                         append_child,
                     )
-                    : recalc_rows_decreased_width(
+                    :
+                    (
+                        (list_width < prev_list_width)
+                        ||
+                        (zoom < zoom_prev)
+                    )
+                    &&
+                    recalc_rows_decreased_width(
                         messages,
                         0,
                         messages_l,

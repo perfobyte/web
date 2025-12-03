@@ -27,8 +27,6 @@ import {
     message_append,
     messages_push,
 
-    message_to_html,
-
     append_child,
     get_null,
 } from '../../../f/i.js';
@@ -125,8 +123,6 @@ export default (
                 dom_text_width,
                 message_append[row_width_mode],
                 messages_push,
-
-                message_to_html,
 
                 append_child,
                 get_null,

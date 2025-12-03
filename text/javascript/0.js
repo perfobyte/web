@@ -10,7 +10,6 @@ import {
 
 import {
     messages_push,
-    message_to_html,
     
     message_append,
     font_path,
@@ -189,54 +188,42 @@ import {
                 () => {
                     var
                         placeholder_value = language_state.placeholder_value,
+                        placeholder_lines = Array.from(default_lines),
+
+                        messages_length = (
+                            (placeholder_lines[0][1] = placeholder_value.length),
+
+                            new_messages.push({
+                                id: new_messages.length,
+                                lines: placeholder_lines,
+                                value: placeholder_value,
+                            }),
+
+                            new_messages.length
+                        ),
 
                         message_append_specific = (
                             message_append[
                                 row_width_mode
                             ]
-                        ),
-                        messages_length = new_messages.length,
-                        placeholder_lines = Array.from(default_lines)
+                        )
                     ;
-                    placeholder_lines[0][1] = placeholder_value.length;
                     
                     chat_state.loaded_height = (
-                        message_to_html(
-                            placeholder_value,
-                            default_lines,
+                        messages_push(
+                            new_messages,
+
                             0,
-                            1,
-                            (
-                                messages_push(
-                                    new_messages,
-
-                                    0,
-                                    messages_length,
-                        
-                                    row_height,
-                                    chat_state.loaded_height,
-                                    
-                                    messages_fragment,
-                                    MESSAGE_ROW_EL,
-                        
-                                    message_to_html,
-                                    message_append_specific,
-                                    
-                                    text_width_container,
-                                    dom_text_width,
-        
-                                    list_width,
-
-                                    append_child,
-                                )
-                            ),
-
+                            messages_length,
+                
+                            row_height,
+                            chat_state.loaded_height,
+                            
                             messages_fragment,
                             MESSAGE_ROW_EL,
-
-                            row_height,
+                
                             message_append_specific,
-
+                            
                             text_width_container,
                             dom_text_width,
 
@@ -246,15 +233,9 @@ import {
                         )
                     );
 
-                    new_messages.push({
-                        id: messages_length,
-                        lines: placeholder_lines,
-                        value: placeholder_value,
-                    });
-
                     chat_state.messages = new_messages;
-                    
-                    chat_state.loaded += (messages_length + 1);
+                    chat_state.loaded = messages_length;
+
                     list.appendChild(messages_fragment);
                     
                     (row_width_mode === 0)

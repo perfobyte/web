@@ -1,6 +1,9 @@
 export default (
     (
-        element,
+        elements,
+        element_i,
+        element_l,
+
         src,
 
         appendChild,
@@ -19,9 +22,10 @@ export default (
             l = src.length,
 
             loaded_chars = "",
-            chars = ""
+            chars = "",
+            element = elements[element_i++]
         ;
-
+        
         while (i<l) {
             (
                 (
@@ -46,7 +50,7 @@ export default (
 
                 appendChild(list, element),
 
-                (element = element.cloneNode(true))
+                (element = elements[element_i++])
             )
             : (
                 loaded_chars = chars

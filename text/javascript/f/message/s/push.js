@@ -1,6 +1,8 @@
 export default (
     (
-        messages,
+        chat_value,
+        messages_lines,
+        messages_dom,
 
         i,
         l,
@@ -11,7 +13,6 @@ export default (
         fragment,
         template,
 
-        message_to_html,
         message_append,
 
         text_width_container,
@@ -23,34 +24,35 @@ export default (
     ) => {
         var
             message = null,
-            lines = null
+            
+            lines_i = 0,
+            lines_l = 0,
+            element = null,
+
+            message_value = ""
         ;
-        while(i<l){
+        while (i < l) {
             message = messages[i++];
-            lines = message.lines;
+            message_value = message.value;
+            
+            lines_i = 0;
+            lines_l = messages_lines.length;
 
-            loaded_height = (
-                message_to_html(
-                    message.value,
-                    lines,
-                    0,
-                    lines.length,
-                    loaded_height,
+            while (lines_i < lines_l) {
+                element = messages_dom[lines_i];
 
-                    fragment,
-                    template,
+                (element.firstElementChild).textContent = (
+                    message_value.substring(
+                        messages_lines[lines_i++],
+                        messages_lines[lines_i++]
+                    )
+                );
 
-                    row_height,
-                    message_append,
+                (element.style).top = `${start}px`;
 
-                    text_width_container,
-                    dom_text_width,
-
-                    max_width,
-
-                    append_child,
-                )
-            );
+                append_child(fragment, element);
+                loaded_height += row_height;
+            };
         };
         
         return loaded_height;

@@ -35,8 +35,6 @@ export default (
         message_append,
         messages_push,
 
-        message_to_html,
-
         append_child,
         get_null,
     ) => {

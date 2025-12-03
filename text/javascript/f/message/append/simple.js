@@ -1,6 +1,9 @@
 export default (
     (
-        element,
+        elements,
+        element_i,
+        element_l,
+
         src,
 
         appendChild,
@@ -13,6 +16,7 @@ export default (
         dom_text_width,
         max_width,
     ) => {
+        var element = elements[element_i];
         return (
             ((element.firstElementChild).textContent = src),
             ((element.style).top = `${start}px`),
