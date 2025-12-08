@@ -6,4 +6,6 @@ export default {
     root: null,
 
     block_size: 0,
+
+    deployed: false,
 };

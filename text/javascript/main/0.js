@@ -1,8 +1,4 @@
 
-import content from "./msgs_content.js";
-import msgs from "./msgs_msgs.js";
-import {tags_conf, tags_value} from "./msgs_tags.js";
-
 import {
     download_buffer,
 
@@ -58,10 +54,11 @@ import {
 } from "./elems/i.js";
 
 import {
-    chat_state,
     style_state,
     support_font_format,
     support_font,
+    alloc_state,
+    mode_state,
 } from './state/i.js';
 
 import {
@@ -113,10 +110,11 @@ import {
             list_top = style_state.list_top,
             list_bottom = style_state.list_bottom,
 
-            row_width_mode = style_state.row_width_mode
+            row_width_mode = mode_state.row_width
         ;
-        
 
+        alloc_state.worker = new Worker("/f/text/javascript/worker/fs/1.js");
+        
         window.onerror = on_error;
         window.contextmenu = on_contextmenu;
         list.onmousedown = on_list_mousedown;
@@ -212,7 +210,7 @@ import {
                         )
                     ;
                     
-                    chat_state.loaded_height = (
+                    style_state.loaded_height = (
                         messages_push(
                             new_messages,
 
@@ -220,7 +218,7 @@ import {
                             messages_length,
                 
                             row_height,
-                            chat_state.loaded_height,
+                            style_state.loaded_height,
                             
                             messages_fragment,
                             MESSAGE_ROW_EL,
@@ -235,9 +233,6 @@ import {
                             append_child,
                         )
                     );
-
-                    chat_state.messages = new_messages;
-                    chat_state.loaded = messages_length;
 
                     list.appendChild(messages_fragment);
                     

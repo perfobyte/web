@@ -1,5 +1,5 @@
 import {on_scrollbar_thumb_mousemove} from '../mouse/i.js';
-import {wheel_delta_value} from '../../f/i.js';
+import {wheel_delta_value, ctrl_key} from '../../f/i.js';
 import {style_state} from '../../state/i.js';
 import {
     xy_move_event,
@@ -31,10 +31,14 @@ export default (
             unit = wheel_delta_value[direction][event.deltaMode](style_state)
         ;
         return void (
-            (event_object[direction_key] = (delta * unit)),
+            ctrl_key(e)
+            ? 0
+            : (
+                (event_object[direction_key] = (delta * unit)),
 
-            move(event_object),
-            event.preventDefault()
+                move(event_object),
+                event.preventDefault()
+            )
         );
     }
 );

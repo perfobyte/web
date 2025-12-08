@@ -9,7 +9,6 @@ export default (
         scrollbar_thumb_y_transform,
 
         style_state,
-        chat_state,
         
         list,
         messages_fragment,

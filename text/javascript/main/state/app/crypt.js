@@ -1,7 +1,7 @@
-import {get_app_crypt} from './f/i.js';
+import {get_app_crypt_data} from './f/i.js';
 
 export default (
-    get_app_crypt(
+    get_app_crypt_data(
         globalThis.Uint8Array,
         globalThis.Uint32Array,
         globalThis.DataView,

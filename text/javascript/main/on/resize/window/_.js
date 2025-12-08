@@ -4,7 +4,7 @@ import {
     messages_range,
 } from '../../../conf/i.js';
 
-import {style_state, chat_state,} from "../../../state/i.js";
+import {style_state,mode_state} from "../../../state/i.js";
 import {
     scrollbar_thumb_x_style,
     scrollbar_thumb_y_style,
@@ -54,7 +54,7 @@ export default (
             prev_list_width = style_state.list_width,
             prev_list_height = style_state.list_height,
 
-            row_width_mode = style_state.row_width_mode
+            row_width_mode = mode_state.row_width
         ;
         return void (
             html_style.setProperty("--width",`${width}px`),
@@ -86,7 +86,7 @@ export default (
                 }px`
             ),
 
-            (
+            false && (
                 template_cb[
                     row_width_mode
                 ]
@@ -98,7 +98,6 @@ export default (
                 scrollbar_thumb_y_transform,
 
                 style_state,
-                chat_state,
                 
                 list,
                 messages_fragment,

@@ -5,7 +5,7 @@ export var
     window = globalThis.window,
     console = globalThis.console,
 
-    template = document.querySelector("template").content,
+    template = (document.querySelector("template").content),
 
     html = document.documentElement,
     html_style = html.style,

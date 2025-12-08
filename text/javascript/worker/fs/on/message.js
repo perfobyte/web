@@ -24,8 +24,6 @@ export default (
             access = fs_state.access
         ;
         return (
-            
-
             (operation_type === 0)
             ? (
                 (response[0] = operation_id),

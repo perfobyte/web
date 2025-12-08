@@ -2,12 +2,14 @@ import {document} from '../elems/i.js';
 
 export * from './crossplatform/i.js';
 export * from './linebreak/i.js';
+
+export {default as font_faces} from './font_faces.js';
+
 export var
     TE = new TextEncoder(),
     TD = new TextDecoder(),
 
     ES = "",
-    EA = [],
     
     IMAGE = new Image(),
     AUDIO = new Audio(),
@@ -21,8 +23,6 @@ export var
 
     window_event_object = { currentTarget: window },
     passive_false = { passive: false },
-    
-    default_lines = [[0,0]],
 
     x_move_event = {
         currentTarget: window,

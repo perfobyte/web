@@ -1,4 +1,4 @@
 
 export default {
-    placeholder_value: "Type your message here",
+    placeholder_value: "Type here something",
 };

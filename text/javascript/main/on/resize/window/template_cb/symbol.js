@@ -9,7 +9,6 @@ export default (
         scrollbar_thumb_y_transform,
 
         style_state,
-        chat_state,
         
         list,
         messages_fragment,
@@ -42,15 +41,11 @@ export default (
             zoom_prev = style_state.zoom_prev,
             zoom = style_state.zoom,
 
-            messages = chat_state.messages,
-
             row_height = style_state.row_height,
-            loaded_height = chat_state.loaded_height,
+            loaded_height = style_state.loaded_height,
 
             rows = list.children,
-            row_l = rows.length,
-
-            messages_l = chat_state.loaded
+            row_l = rows.length
         ;
         return (
             (
@@ -76,14 +71,13 @@ export default (
             ),
 
             (
-                chat_state.loaded_height = (
+                style_state.loaded_height = (
                     (
                         (list_width > prev_list_width)
                         ||
                         (zoom > zoom_prev)
                     )
                     ? recalc_rows_increased_width(
-                        messages,
                         0,
                         messages_l,
 

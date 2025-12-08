@@ -9,7 +9,6 @@ import {
 } from '../../../elems/i.js';
 import {
     style_state,
-    chat_state,
 } from '../../../state/i.js';
 import {
     scrollbar_thumb_x_transform,

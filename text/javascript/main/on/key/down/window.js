@@ -147,9 +147,7 @@ export default (
                         max,
                     ),
                 ),
-
                 
-
                 set_scroll(
                     scrollbar_thumb_y_style,
                     scrollbar_thumb_y_transform(

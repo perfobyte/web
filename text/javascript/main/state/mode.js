@@ -1,3 +1,3 @@
 export default {
-    length:2,
+    row_width: 0,
 };

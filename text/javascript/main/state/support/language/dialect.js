@@ -6,7 +6,7 @@ export default [
     },
     {
         id: 1,
-        name: 'Received Pronunciation',
+        name: 'Received Pronunciation (Great Britain)',
         parent: 0,
     },
     {
