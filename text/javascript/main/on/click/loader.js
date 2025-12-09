@@ -19,7 +19,7 @@ import {
     
     SIGMA,
     ROUND_DATA,
-} from '../../lib/cha3js/0.js';
+} from '../../../lib/cha3js/0.js';
 import {
     to_base64,
     to_binary,
