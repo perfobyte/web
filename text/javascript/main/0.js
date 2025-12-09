@@ -9,7 +9,6 @@ import {
 
 import {
     window_event_object,
-    default_lines,
     passive_false,
     messages_fragment,
     font_faces,
@@ -66,6 +65,9 @@ import {
             font_face = null,
 
             list_width = 0,
+
+            width = window.innerWidth,
+            height = window.innerHeight,
             
             list_left = style_state.list_left,
             list_right = style_state.list_right,
@@ -100,33 +102,6 @@ import {
         html_style.setProperty("--font-size", `${style_state.font_size}px`);
         html_style.setProperty("--font-family",`"${font_id_bare_str}"`);
 
-        html_style.setProperty(
-            "--list-width",
-            `${
-                style_state.list_width = (
-                    list_width = (
-                        calc_list_width(
-                            window.innerWidth,
-                            list_left,
-                            list_right
-                        )
-                    )
-                )
-            }px`
-        );
-        html_style.setProperty(
-            "--list-height",
-            `${
-                style_state.list_height = (
-                    calc_list_height(
-                        window.innerHeight,
-                        list_top,
-                        list_bottom
-                    )
-                )
-            }px`
-        );
-        
         html_style.setProperty("--list-top", `${list_top}px`);
         html_style.setProperty("--list-left", `${list_left}px`);
         html_style.setProperty("--list-right", `${list_right}px`);
@@ -168,7 +143,7 @@ import {
                     
                     // list.appendChild(messages_fragment);
                     
-                    // on_window_resize(window_event_object);
+                    on_window_resize(window_event_object);
                     
                     // (c_av.background = 'url("/f/image/png/logo_full30.png")'),
                     // (chatbar_h1.textContent = "Enter password"),

@@ -25,15 +25,10 @@ export default (
         prev_list_width,
         prev_list_height,
 
-        recalc_rows_increased_width,
-        recalc_rows_decreased_width,
-
         template,
         text_width_container,
         dom_text_width,
-        message_append,
-        messages_push,
-
+        
         append_child,
         get_null,
     ) => {

@@ -1,6 +1,4 @@
 
-length_// message_length <= block;
-
 export default (
     () => {
         var
@@ -8,7 +6,6 @@ export default (
             number_blocks = 1,
             i = 0,
             
-
             size_blocks = (
                 size_block
                 * number_blocks

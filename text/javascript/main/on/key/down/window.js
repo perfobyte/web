@@ -8,7 +8,7 @@ import {style_state} from '../../../state/i.js';
 import {
     number_clamp,
     ctrl_key,
-    recalc_rows_top,
+    // recalc_rows_top,
 
     set_list_scroll_x,
     set_list_scroll_y,
@@ -105,7 +105,7 @@ export default (
                     html_style,
                     number_clamp,
                     list,
-                    recalc_rows_top,
+                    // recalc_rows_top,
                 ),
 
                 on_window_resize(window_event_object),

@@ -20,9 +20,6 @@ export default (
 
         prev_list_width,
         prev_list_height,
-
-        recalc_rows_increased_width,
-        recalc_rows_decreased_width,
     ) => {
         var
             zoom_prev = style_state.zoom_prev,

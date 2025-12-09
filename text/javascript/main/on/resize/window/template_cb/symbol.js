@@ -25,14 +25,9 @@ export default (
         prev_list_width,
         prev_list_height,
 
-        recalc_rows_increased_width,
-        recalc_rows_decreased_width,
-
         template,
         text_width_container,
         dom_text_width,
-        message_append,
-        messages_push,
 
         append_child,
         get_null,
@@ -92,8 +87,6 @@ export default (
                         text_width_container,
 
                         dom_text_width,
-                        message_append,
-                        messages_push,
                         
                         append_child,
                     )
@@ -104,7 +97,7 @@ export default (
                         (zoom < zoom_prev)
                     )
                     &&
-                    recalc_rows_decreased_width(
+                    (null)(
                         messages,
                         0,
                         messages_l,
@@ -119,7 +112,6 @@ export default (
                         messages_range,
                         text_width_container,
                         dom_text_width,
-                        message_append,
                         
                         get_null,
                     )

@@ -19,13 +19,7 @@ import {
     calc_list_width,
     calc_list_height,
 
-    recalc_rows_increased_width,
-    recalc_rows_decreased_width,
-
     dom_text_width,
-
-    message_append,
-    messages_push,
 
     append_child,
     get_null,
@@ -114,14 +108,9 @@ export default (
                 prev_list_width,
                 prev_list_height,
 
-                recalc_rows_increased_width,
-                recalc_rows_decreased_width,
-
                 MESSAGE_ROW_EL,
                 text_width_container,
                 dom_text_width,
-                message_append[row_width_mode],
-                messages_push,
 
                 append_child,
                 get_null,

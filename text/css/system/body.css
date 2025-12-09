@@ -1,7 +1,7 @@
 
 
-body {
-    position:relative;
+html,body {
+    position:absolute;
     width:var(--width);
     height:var(--height);
     overflow:hidden;
