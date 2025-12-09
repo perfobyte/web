@@ -1,3 +1,6 @@
+import {alloc_state} from '../state/i.js'
+import array_from_object from '../conf/array_from_object.js';
+
 export * from "./event.js";
 
 export var
@@ -31,5 +34,13 @@ export var
     scrollbar_thumb = [
         scrollbar_thumb_x,
         scrollbar_thumb_y,
-    ]
+    ],
+
+    elements = (
+        (array_from_object.length = alloc_state.size_elements),
+        Array.from(
+            array_from_object,
+            () => MESSAGE_ROW_EL.cloneNode(true)
+        )
+    )
 ;

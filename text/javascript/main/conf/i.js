@@ -4,6 +4,7 @@ export * from './crossplatform/i.js';
 export * from './linebreak/i.js';
 
 export {default as font_faces} from './font_faces.js';
+export {default as array_from_object} from './array_from_object.js';
 
 export var
     TE = new TextEncoder(),
@@ -23,7 +24,8 @@ export var
 
     window_event_object = { currentTarget: window },
     passive_false = { passive: false },
-
+    
+ 
     x_move_event = {
         currentTarget: window,
         movementX: 0,

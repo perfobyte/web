@@ -1,7 +1,7 @@
 
 export default (
     (
-        tags,
+        buffer,
         tags_i,
         tags_l,
 
