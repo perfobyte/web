@@ -1,9 +1,0 @@
-[submodule "text/javascript/lib/cha3js"]
-	path = text/javascript/lib/cha3js
-	url = https://github.com/perfobyte/cha3js
-[submodule "text/javascript/lib/hbmf"]
-	path = text/javascript/lib/hbmf
-	url = git@github.com:perfobyte/hbmf.git
-[submodule "text/javascript/lib/strucdom"]
-	path = text/javascript/lib/strucdom
-	url = git@github.com:perfobyte/strucdom.git
