@@ -42,7 +42,6 @@ export default (
             zoom = style_state.zoom,
 
             row_height = style_state.row_height,
-            loaded_height = style_state.loaded_height,
 
             rows = list.children,
             row_l = rows.length
@@ -71,7 +70,7 @@ export default (
             ),
 
             (
-                style_state.loaded_height = (
+                (
                     (
                         (list_width > prev_list_width)
                         ||
@@ -86,7 +85,6 @@ export default (
                         row_l,
 
                         row_height,
-                        loaded_height,
                         list_width,
 
                         template,
@@ -116,7 +114,6 @@ export default (
                         row_l,
 
                         row_height,
-                        loaded_height,
                         list_width,
 
                         messages_range,

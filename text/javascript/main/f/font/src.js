@@ -26,6 +26,6 @@ export default (
                     : ","
                 }`
         };
-        return font_face_src;
+        return (font_face_src);
     }
 );

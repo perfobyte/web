@@ -2,8 +2,8 @@
 
 export default (
     (src,char,found, i,l) => {
-        for(;i<l;i++) {
-            (char === src[i]) && (found++);
+        while (i<l) {
+            (char === src[i++]) && (found++);
         };
         return found;
     }

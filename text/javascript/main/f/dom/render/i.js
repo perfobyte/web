@@ -1,1 +1,1 @@
-export {default as dom_render_rows} from './rows.js';
+export {default as dom_render_rows} from './rows/i.js';

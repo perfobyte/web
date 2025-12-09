@@ -37,5 +37,9 @@ export var
     xy_move_event = [
         x_move_event,
         y_move_event,
+    ],
+
+    workers = [
+        null,
     ]
 ;
