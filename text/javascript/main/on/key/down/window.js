@@ -69,117 +69,31 @@ export default (
                 e.preventDefault(),
                 e.stopPropagation(),
                 
-                (var_number_2 = (list.scrollLeft / list.scrollWidth)),
-                (var_number_3 = (list.scrollTop / list.scrollHeight)),
-
-                (style_state.zoom_prev = var_number_4 = style_state.zoom),
-
-                on_custom_zoom(
-                    style_state,
-                    (
-                        style_state.zoom = (
-                            (var_number_1 < 2)
-                            ? (
-                                number_clamp(
-                                    (
-                                        (var_number_1 === 0)
-                                        ? (
-                                            (var_number_4)
-                                            + (style_state.zoom_step)
+                (
+                    style_state.zoom = (
+                                            (zoom_key_index < 2)
+                                            ? (
+                                                number_clamp(
+                                                    (
+                                                        (zoom_key_index === 0)
+                                                        ? (
+                                                            (var_number_4)
+                                                            + (style_state.zoom_step)
+                                                        )
+                                                        : (
+                                                            (var_number_4)
+                                                            - (style_state.zoom_step)
+                                                        )
+                                                    ),
+                                                    style_state.zoom_min,
+                                                    style_state.zoom_max,
+                        
+                                                    min,
+                                                    max,
+                                                )
+                                            )
+                                            : (style_state.zoom_default)
                                         )
-                                        : (
-                                            (var_number_4)
-                                            - (style_state.zoom_step)
-                                        )
-                                    ),
-                                    style_state.zoom_min,
-                                    style_state.zoom_max,
-        
-                                    min,
-                                    max,
-                                )
-                            )
-                            : (style_state.zoom_default)
-                        )
-                    ),
-                    html_style,
-                    number_clamp,
-                    list,
-                    // recalc_rows_top,
-                ),
-
-                on_window_resize(window_event_object),
-
-                set_scroll(
-                    scrollbar_thumb_x_style,
-                    scrollbar_thumb_x_transform(
-                        (
-                            style_state
-                            .thumb_x_translate = (
-                                number_clamp(
-                                    (
-                                        var_number_2
-                                        * (
-                                            var_number_1 =
-                                                style_state
-                                                .list_width
-                                        )
-                                    ),
-                                    0,
-                                    (
-                                        var_number_1
-                                        * (1 - (var_number_1 = style_state.thumb_x_scale))
-                                    ),
-                                    min,
-                                    max,
-                                )
-                            )
-                        ),
-                        var_number_1,
-                    ),
-                    set_list_scroll_x,
-                    list,
-                    number_clamp(
-                        (var_number_2 * (var_number_1 = list.scrollWidth)),
-                        0,
-                        (var_number_1 - list.offsetWidth),
-                        min,
-                        max,
-                    ),
-                ),
-                
-                set_scroll(
-                    scrollbar_thumb_y_style,
-                    scrollbar_thumb_y_transform(
-                        (
-                            style_state
-                            .thumb_y_translate = (
-                                number_clamp(
-                                    (
-                                        var_number_3
-                                        * (var_number_1 = window.innerHeight)
-                                    ),
-                                    0,
-                                    (
-                                        var_number_1
-                                        * (1 - (var_number_1 = style_state.thumb_y_scale))
-                                    ),
-                                    min,
-                                    max,
-                                )
-                            )
-                        ),
-                        var_number_1
-                    ),
-                    set_list_scroll_y,
-                    list,
-                    number_clamp(
-                        (var_number_3 * (var_number_1 = list.scrollHeight)),
-                        0,
-                        (var_number_1 - list.offsetHeight),
-                        min,
-                        max,
-                    ),
                 )
             )
         );

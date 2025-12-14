@@ -8,7 +8,7 @@ export {default as array_from_object} from './array_from_object.js';
 
 export var
     TE = new TextEncoder(),
-    TD = new TextDecoder(),
+    TD = new TextDecoder("utf8"),
 
     ES = "",
     

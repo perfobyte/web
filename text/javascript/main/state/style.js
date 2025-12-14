@@ -36,6 +36,8 @@ export default ((row_height) => {
 
         list_width:1,
         list_height:1,
+
+        loaded_height:0,
     }
 })(
     22,

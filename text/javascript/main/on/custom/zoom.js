@@ -7,7 +7,6 @@ export default (
         style,
         number_clamp,
         list,
-        // recalc_rows_top,
     ) => {
         var
             new_row_height = (

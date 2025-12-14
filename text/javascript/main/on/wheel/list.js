@@ -31,8 +31,10 @@ export default (
             unit = wheel_delta_value[direction][event.deltaMode](style_state)
         ;
         return void (
-            ctrl_key(e)
-            ? 0
+            ctrl_key(event)
+            ? (
+                
+            )
             : (
                 (event_object[direction_key] = (delta * unit)),
 

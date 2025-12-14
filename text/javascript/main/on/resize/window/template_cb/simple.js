@@ -1,37 +1,42 @@
+import {
+    scrollbar_thumb_x_style,
+    scrollbar_thumb_y_style,
+    list,
+} from '../../../../elems/i.js';
+
+import {
+    style_state
+} from '../../../../state/i.js';
+
+import {
+    scrollbar_thumb_x_transform,
+    scrollbar_thumb_y_transform,
+} from '../../../../f/i.js';
 
 
 export default (
     (
-        scrollbar_thumb_x_style,
-        scrollbar_thumb_y_style,
-
-        scrollbar_thumb_x_transform,
-        scrollbar_thumb_y_transform,
-
-        style_state,
-        
-        list,
-        messages_fragment,
-        messages_range,
-
-        min,
-
         list_width,
         list_height,
-
-        list_scroll_width,
-        list_scroll_height,
-
-        prev_list_width,
-        prev_list_height,
-
-        template,
-        text_width_container,
-        dom_text_width,
-        
-        append_child,
-        get_null,
     ) => {
+        var
+            min = Math.min,
+            list_scroll_width = list.scrollWidth,
+            list_scroll_height = list.scrollHeight,
+
+            i = 0,
+            children = list.children,
+
+            row_height = style_state.row_height,
+            l = children.length
+        ;
+
+        while(i<l) {
+            children[i].style.top = `${row_height*i}px`;
+
+            i++;
+        };
+
         return (
             (
                 scrollbar_thumb_x_style

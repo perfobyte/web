@@ -1,6 +1,6 @@
 
 :root {
-    --list-left_2: calc(var(--list-left) * 2);
+    --list-left_2: var(--list-left);
     
     position:relative;
     

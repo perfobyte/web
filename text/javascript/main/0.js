@@ -5,14 +5,22 @@ import {
 
     calc_list_width,
     calc_list_height,
+
+    push,
+    render_element,
+    is_separation,
+    string_offset_change,
 } from './f/i.js';
 
 import {
     window_event_object,
     passive_false,
     messages_fragment,
+    messages_range,
     font_faces,
     workers,
+    TD,
+    TE,
 } from "./conf/i.js";
 
 import {
@@ -25,6 +33,10 @@ import {
     
     scrollbar_x,
     scrollbar_y,
+
+    elements,
+
+    MESSAGE_ROW_EL,
 } from "./elems/i.js";
 
 import {
@@ -32,8 +44,8 @@ import {
     support_font_format,
     support_font,
     alloc_state,
-    mode_state,
     language_state,
+    mode_state,
 } from './state/i.js';
 
 import {
@@ -51,7 +63,7 @@ import {
 } from './on/i.js';
 
 (
-    (window,document,Math) => {
+    (window, document, Math, FontFace) => {
         var
             document_fonts = document.fonts,
 
@@ -97,6 +109,35 @@ import {
         : (
             scrollbar_x.classList.add('none')
         );
+
+        html_style.setProperty("--width",`${width}px`),
+        html_style.setProperty("--height",`${height}px`),
+
+        html_style.setProperty(
+            "--list-width",
+            `${
+                style_state.list_width = (
+                    calc_list_width(
+                        width,
+                        list_left,
+                        list_right
+                    )
+                )
+            }px`
+        ),
+
+        html_style.setProperty(
+            "--list-height",
+            `${
+                style_state.list_height = (
+                    calc_list_height(
+                        height,
+                        list_top,
+                        list_bottom,
+                    )
+                )
+            }px`
+        ),
         
         html_style.setProperty("--row-height", `${row_height}px`);
         html_style.setProperty("--font-size", `${style_state.font_size}px`);
@@ -138,12 +179,35 @@ import {
             .then(
                 () => {
                     var
-                        placeholder_value = language_state.placeholder_value
+                        placeholder_value = language_state.placeholder_value,
+                        
+                        push_text = push[0][0][0],
+
+                        i = 0,
+                        l = alloc_state.number_blocks,
+
+                        row_width_mode = mode_state.row_width,
+
+                        current_separation = is_separation[row_width_mode]
                     ;
+
+                    push_text(
+                        (alloc_state.string_block),
+                        alloc_state.buffer_messages_view,
+
+                        0,
+                        (alloc_state.length_messages),
+                        alloc_state.size_message,
+
+                        alloc_state.offset_loaded_elements,
+                        alloc_state.length_loaded_elements,
+
+                        render_element,
+                        current_separation,
+                        string_offset_change[row_width_mode]
+                    );
+
                     
-                    // list.appendChild(messages_fragment);
-                    
-                    on_window_resize(window_event_object);
                     
                     // (c_av.background = 'url("/f/image/png/logo_full30.png")'),
                     // (chatbar_h1.textContent = "Enter password"),
@@ -157,4 +221,5 @@ import {
     window,
     document,
     globalThis.Math,
+    globalThis.FontFace,
 );

@@ -4,13 +4,14 @@ import {
     messages_range,
 } from '../../../conf/i.js';
 
-import {style_state,mode_state} from "../../../state/i.js";
+import {style_state,mode_state,alloc_state,} from "../../../state/i.js";
 import {
     scrollbar_thumb_x_style,
     scrollbar_thumb_y_style,
     list,
     MESSAGE_ROW_EL,
     text_width_container,
+    elements,
 } from '../../../elems/i.js';
 import {
     scrollbar_thumb_x_transform,
@@ -23,6 +24,11 @@ import {
 
     append_child,
     get_null,
+    edit,
+    
+    expand_nodes,
+    render_element,
+    
 } from '../../../f/i.js';
 
 import template_cb from './template_cb/i.js';
@@ -41,10 +47,7 @@ export default (
 
             list_width = 0,
             list_height = 0,
-
-            list_scroll_width = list.scrollWidth,
-            list_scroll_height = list.scrollHeight,
-
+            
             prev_list_width = style_state.list_width,
             prev_list_height = style_state.list_height,
 
@@ -80,40 +83,13 @@ export default (
                 }px`
             ),
 
-            false && (
+            (
                 template_cb[
                     row_width_mode
                 ]
             )(
-                scrollbar_thumb_x_style,
-                scrollbar_thumb_y_style,
-
-                scrollbar_thumb_x_transform,
-                scrollbar_thumb_y_transform,
-
-                style_state,
-                
-                list,
-                messages_fragment,
-                messages_range,
-
-                Math.min,
-
                 list_width,
                 list_height,
-
-                list_scroll_width,
-                list_scroll_height,
-
-                prev_list_width,
-                prev_list_height,
-
-                MESSAGE_ROW_EL,
-                text_width_container,
-                dom_text_width,
-
-                append_child,
-                get_null,
             )
         );
     }
