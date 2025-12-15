@@ -17,6 +17,8 @@ import {
     scrollbar_thumb_y_transform,
 
     set_scroll,
+
+    zoom,
 } from '../../../f/i.js';
 import {
     html_style,
@@ -40,7 +42,7 @@ import {on_scrollbar_thumb_mousemove} from '../../mouse/i.js';
 export default (
     (e) => {
         var
-            var_number_1 = 0,
+            zoom_key_index = 0,
 
             var_number_2 = 0,
             var_number_3 = 0,
@@ -59,7 +61,7 @@ export default (
                 &&
                 (
                     (
-                        var_number_1 =
+                        zoom_key_index =
                             zoom_keys.indexOf(key)
                     ) > -1
                 )
@@ -69,31 +71,29 @@ export default (
                 e.preventDefault(),
                 e.stopPropagation(),
                 
-                (
-                    style_state.zoom = (
-                                            (zoom_key_index < 2)
-                                            ? (
-                                                number_clamp(
-                                                    (
-                                                        (zoom_key_index === 0)
-                                                        ? (
-                                                            (var_number_4)
-                                                            + (style_state.zoom_step)
-                                                        )
-                                                        : (
-                                                            (var_number_4)
-                                                            - (style_state.zoom_step)
-                                                        )
-                                                    ),
-                                                    style_state.zoom_min,
-                                                    style_state.zoom_max,
-                        
-                                                    min,
-                                                    max,
-                                                )
-                                            )
-                                            : (style_state.zoom_default)
-                                        )
+                zoom(
+                    (zoom_key_index < 2)
+                    ? (
+                        number_clamp(
+                            (
+                                (zoom_key_index === 0)
+                                ? (
+                                    (style_state.zoom)
+                                    + (style_state.zoom_step)
+                                )
+                                : (
+                                    (style_state.zoom)
+                                    - (style_state.zoom_step)
+                                )
+                            ),
+                            style_state.zoom_min,
+                            style_state.zoom_max,
+
+                            min,
+                            max,
+                        )
+                    )
+                    : (style_state.zoom_default)
                 )
             )
         );

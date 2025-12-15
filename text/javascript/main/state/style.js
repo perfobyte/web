@@ -38,6 +38,8 @@ export default ((row_height) => {
         list_height:1,
 
         loaded_height:0,
+
+        sensitivity_wheel: 0.002,
     }
 })(
     22,

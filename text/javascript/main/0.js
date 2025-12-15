@@ -10,6 +10,9 @@ import {
     render_element,
     is_separation,
     string_offset_change,
+
+    set_scrollbar_x,
+    set_scrollbar_y,
 } from './f/i.js';
 
 import {
@@ -88,7 +91,7 @@ import {
             list_bottom = style_state.list_bottom
         ;
 
-        workers[0] = new Worker("/f/text/javascript/worker/fs/1.js");
+        // workers[0] = new Worker("/f/text/javascript/worker/fs/1.js");
         
         window.onerror = on_error;
         window.contextmenu = on_contextmenu;
@@ -207,7 +210,8 @@ import {
                         string_offset_change[row_width_mode]
                     );
 
-                    
+                    set_scrollbar_x(style_state.list_width / list.scrollWidth)
+                    set_scrollbar_y(style_state.list_height / list.scrollHeight);
                     
                     // (c_av.background = 'url("/f/image/png/logo_full30.png")'),
                     // (chatbar_h1.textContent = "Enter password"),

@@ -14,17 +14,24 @@ import {
     scrollbar_thumb_x_transform,
     scrollbar_thumb_y_transform,
     set_scroll,
-    set_list_scroll_x,
-    set_list_scroll_y,
+    
     get_scale_x,
     get_scale_y,
-    
-    get_offset_size_x,
-    get_offset_size_y,
+} from '../../../f/i.js';
 
+
+import {
     get_scroll_size_x,
     get_scroll_size_y,
-} from '../../../f/i.js';
+    
+    set_list_scroll_x,
+    set_list_scroll_y,
+} from '../../../f/scroll/i.js';
+import {
+    get_offset_size_x,
+    get_offset_size_y,
+} from '../../../f/get/i.js';
+
 
 export default [
     scroll_template(

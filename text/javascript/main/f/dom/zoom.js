@@ -5,9 +5,14 @@ import {
     scrollbar_thumb_y_style,
     html_style,
 } from '../../elems/i.js';
+
+import {
+    on_window_resize,
+    on_custom_zoom,
+} from '../../on/i.js';
+
 import {
     number_clamp,
-    on_window_resize,
     set_scroll,
     scrollbar_thumb_x_transform,
     scrollbar_thumb_y_transform,
@@ -19,24 +24,23 @@ import {window_event_object} from '../../conf/i.js';
 
 
 export default (
-    (zoom_key_index, new_zoom) => {
+    (new_zoom) => {
         var
+            size = 0,
             var_number_2 = 0,
             var_number_3 = 0,
-            var_number_4 = 0,
             min = Math.min,
             max = Math.max
         ;
-        
         return (
             (var_number_2 = (list.scrollLeft / list.scrollWidth)),
             (var_number_3 = (list.scrollTop / list.scrollHeight)),
 
-            (style_state.zoom_prev = var_number_4 = style_state.zoom),
+            (style_state.zoom_prev = style_state.zoom),
 
             on_custom_zoom(
                 style_state,
-                new_zoom,
+                (style_state.zoom = new_zoom),
                 html_style,
                 number_clamp,
                 list,
@@ -54,29 +58,29 @@ export default (
                                 (
                                     var_number_2
                                     * (
-                                        zoom_key_index =
+                                        size =
                                             style_state
                                             .list_width
                                     )
                                 ),
                                 0,
                                 (
-                                    zoom_key_index
-                                    * (1 - (zoom_key_index = style_state.thumb_x_scale))
+                                    size
+                                    * (1 - (size = style_state.thumb_x_scale))
                                 ),
                                 min,
                                 max,
                             )
                         )
                     ),
-                    zoom_key_index,
+                    size,
                 ),
                 set_list_scroll_x,
                 list,
                 number_clamp(
-                    (var_number_2 * (zoom_key_index = list.scrollWidth)),
+                    (var_number_2 * (size = list.scrollWidth)),
                     0,
-                    (zoom_key_index - list.offsetWidth),
+                    (size - list.offsetWidth),
                     min,
                     max,
                 ),
@@ -91,26 +95,26 @@ export default (
                             number_clamp(
                                 (
                                     var_number_3
-                                    * (zoom_key_index = window.innerHeight)
+                                    * (size = window.innerHeight)
                                 ),
                                 0,
                                 (
-                                    zoom_key_index
-                                    * (1 - (zoom_key_index = style_state.thumb_y_scale))
+                                    size
+                                    * (1 - (size = style_state.thumb_y_scale))
                                 ),
                                 min,
                                 max,
                             )
                         )
                     ),
-                    zoom_key_index
+                    size
                 ),
                 set_list_scroll_y,
                 list,
                 number_clamp(
-                    (var_number_3 * (zoom_key_index = list.scrollHeight)),
+                    (var_number_3 * (size = list.scrollHeight)),
                     0,
-                    (zoom_key_index - list.offsetHeight),
+                    (size - list.offsetHeight),
                     min,
                     max,
                 ),
