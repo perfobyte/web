@@ -35,7 +35,6 @@ import {
     scrollbar_thumb_y_style,
 } from '../../../elems/i.js';
 import {on_window_resize} from "../../resize/i.js";
-import {on_custom_zoom} from '../../custom/i.js';
 
 import {on_scrollbar_thumb_mousemove} from '../../mouse/i.js';
 

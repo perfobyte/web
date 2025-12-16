@@ -28,14 +28,14 @@ export default (
 
             move = on_scrollbar_thumb_mousemove[direction],
             
-            unit = wheel_delta_value[direction][event.deltaMode](style_state),
+            unit = (
+                wheel_delta_value[direction][event.deltaMode](style_state)
+            ),
 
             px = delta * unit
         ;
         
         return void (
-            console.log(delta * unit),
-
             event.preventDefault(),
 
             ctrl_key(event)

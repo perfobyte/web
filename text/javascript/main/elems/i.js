@@ -1,13 +1,12 @@
-import {alloc_state} from '../state/i.js'
+import {alloc_state, style_state} from '../state/i.js'
 import array_from_object from '../conf/array_from_object.js';
+import list from './list/i.js';
 
 export * from "./event.js";
+export * from './globalThis.js';
+export {default as list} from './list/i.js';
 
 export var
-    document = globalThis.document,
-    window = globalThis.window,
-    console = globalThis.console,
-
     template = (document.querySelector("template").content),
 
     html = document.documentElement,
@@ -15,8 +14,6 @@ export var
     
     body = document.body,
     body_cl = body.classList,
-
-    list = document.getElementById("list"),
     
     MESSAGE_ROW_EL = template.querySelector(".message_row"),
 
@@ -30,6 +27,9 @@ export var
 
     scrollbar_thumb_x_style = scrollbar_thumb_x.style,
     scrollbar_thumb_y_style = scrollbar_thumb_y.style,
+
+    list_inner = list.firstElementChild,
+    list_inner_style = list_inner.style,
     
     scrollbar_thumb = [
         scrollbar_thumb_x,

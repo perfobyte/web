@@ -11,13 +11,13 @@ import {
 } from '../../i.js';
 
 export default (
-    (ratio) => {
+    (translate, ratio) => {
         return (
             (
                 scrollbar_thumb_x_style
                 .transform = (
                     scrollbar_thumb_x_transform(
-                        style_state.thumb_x_translate,
+                        translate,
                         (
                             style_state
                             .thumb_x_scale = (

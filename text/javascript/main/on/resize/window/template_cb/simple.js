@@ -2,6 +2,7 @@ import {
     scrollbar_thumb_x_style,
     scrollbar_thumb_y_style,
     list,
+    list_inner_style,
 } from '../../../../elems/i.js';
 
 import {
@@ -16,45 +17,59 @@ import {
 
 export default (
     (
+        width,
+        height,
+
         list_width,
         list_height,
+        
+        thumb_x_size,
+        thumb_y_size,
     ) => {
         var
             min = Math.min,
-            list_scroll_width = list.scrollWidth,
-            list_scroll_height = list.scrollHeight,
+            max = Math.max,
 
-            i = 0,
-            children = list.children,
+            scale_x = (
+                min(
+                    1,
+                    (
+                        list_width
+                        / (style_state.content_width)
+                    )
+                )
+            ),
 
-            row_height = style_state.row_height,
-            l = children.length
+            scale_y = (
+                min(
+                    1,
+                    (
+                        list_height
+                        / (style_state.content_height)
+                    )
+                )
+            ),
+
+            move_x = style_state.thumb_x_translate,
+            move_y = style_state.thumb_y_translate,
+
+            excess_x = ((move_x + (thumb_x_size * scale_x)) - thumb_x_size),
+            excess_y = ((move_y + (thumb_y_size * scale_y)) - thumb_y_size),
+
+            row_height = style_state.row_height
         ;
-
-        while(i<l) {
-            children[i].style.top = `${row_height*i}px`;
-
-            i++;
-        };
-
-        return (
+            
+        return void (
             (
                 scrollbar_thumb_x_style
                 .transform = (
                     scrollbar_thumb_x_transform(
-                        style_state.thumb_x_translate,
                         (
-                            style_state
-                            .thumb_x_scale = (
-                                min(
-                                    1,
-                                    (
-                                        list_width
-                                        / list_scroll_width
-                                    )
-                                )
-                            )
-                        )
+                            ((style_state.excess_x = excess_x) > 0)
+                            ? ((style_state.excess_x = excess_x),style_state.thumb_x_translate -= excess_x)
+                            : ((style_state.excess_x = 0),move_x)
+                        ),
+                        (style_state.thumb_x_scale = (scale_x))
                     )
                 )
             ),
@@ -63,20 +78,12 @@ export default (
                 scrollbar_thumb_y_style
                 .transform = (
                     scrollbar_thumb_y_transform(
-                        style_state.thumb_y_translate,
-                        
                         (
-                            style_state
-                            .thumb_y_scale = (
-                                min(
-                                    1,
-                                    (
-                                        list_height
-                                        / list_scroll_height
-                                    )
-                                )
-                            )
-                        )
+                            ((excess_y) > 0)
+                            ? ((style_state.excess_y = excess_y),(style_state.thumb_y_translate -= excess_y))
+                            : ((style_state.excess_y = 0),move_y)
+                        ),
+                        (style_state.thumb_y_scale = (scale_y))
                     )
                 )
             )

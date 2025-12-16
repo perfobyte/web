@@ -1,9 +1,10 @@
 import {alloc_state, style_state} from '../../../../../state/i.js';
 import {
     messages_fragment as fragment,
+    separation_result,
 } from '../../../../../conf/i.js';
 import {
-    list,
+    list_inner,
     elements as elems,
 } from '../../../../../elems/i.js';
 
@@ -21,7 +22,6 @@ export default (
 
         render_element,
         is_separation,
-        string_offset_change,
     ) => {
         var
             element = null,
@@ -41,7 +41,14 @@ export default (
 
                 a: {
                     while (char_i < char_l) {
-                        if (is_separation(string, char_i, string_offset)) {
+                        if (
+                            is_separation(
+                                string,
+                                char_i,
+                                string_offset,
+                                separation_result
+                            )
+                        ) {
                             render_element(
                                 (element = elems[elems_i++]),
                                 string,
@@ -49,37 +56,39 @@ export default (
                                 string_offset,
                                 (char_i),
                             );
-                            string_offset = string_offset_change(char_i, string_offset)
+                            string_offset = separation_result.string_offset;
                             
                             elems_l++;
                             element.style.top = `${height}px`;
                             height += row_height;
 
                             fragment.appendChild(element);
-                        }
-                        char_i++;
+                        };
+
+                        char_i = separation_result.char_i;
                     };
 
-                    render_element(
-                        (element = elems[elems_i++]),
-                        string,
+                    if (string_offset < char_l) {
+                        render_element(
+                            (element = elems[elems_i++]),
+                            string,
 
-                        string_offset,
-                        (char_l),
-                    );
+                            string_offset,
+                            (char_l),
+                        );
+                        elems_l++;
+                        element.style.top = `${height}px`;
+                        height += row_height;
 
-                    elems_l++;
-                    element.style.top = `${height}px`;
-                    height += row_height;
-
-                    fragment.appendChild(element);
+                        fragment.appendChild(element);
+                    }
                 };
 
                 i += size_message;
             };
         };
 
-        list.appendChild(fragment);
+        list_inner.appendChild(fragment);
         alloc_state.length_loaded_elements = elems_l;
         style_state.loaded_height = height;
 

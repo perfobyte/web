@@ -9,11 +9,18 @@
 
     font-family: var(--font-family);
     
-    top:var(--list-top);
-    left:var(--list-left);
+    top:0;
+    left:0;
+
     right:var(--list-right);
     bottom:var(--list-bottom);
 
-    width:var(--list-width);
-    height:var(--list-height);
+    width:calc(100% - var(--list-right));
+    height:calc(100% - var(--list-bottom));
+}
+
+#list_inner {
+    position:absolute;
+    top:var(--list-top);
+    left:var(--list-left);
 }

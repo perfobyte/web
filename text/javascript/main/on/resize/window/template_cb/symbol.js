@@ -27,11 +27,17 @@ import {
 
 export default (
     (
+        width,
+        height,
+        
         list_width,
         list_height,
+
+        thumb_x_size,
+        thumb_y_size,
     ) => {
         var
-            list_scroll_height = list.scrollHeight,
+            list_scroll_height = 0,
             row_height = style_state.row_height,
 
             rows = list.children,
@@ -41,8 +47,6 @@ export default (
 
             blocks = alloc_state.blocks,
 
-            messages = alloc_state.messages,
-
             i = 0,
             l = alloc_state.number_blocks,
 
@@ -50,7 +54,10 @@ export default (
 
             chat_messages = null,
 
-            row_width_mode = mode_state.row_width
+            row_width_mode = mode_state.row_width,
+
+            size_x = 0,
+            size_y = 0
         ;
 
         edit_rows(
@@ -67,11 +74,27 @@ export default (
             expand_nodes,
             render_element,
 
-            is_separation[row_width_mode],
-            string_offset_change[row_width_mode]
+            is_separation[row_width_mode]
         );
+
+        list_scroll_height = style_state.content_height;
+        list_inner_style.height = `${list_scroll_height}px`;
         
-        return (
+        // list_inner_style.width = `${
+        //     size_x = (
+        //         style_state.loaded_width
+        //         + style_state.extra_scroll_width
+        //     )
+        // }px`;
+
+        // list_inner_style.height = `${
+        //     size_y = (
+        //         style_state.loaded_height
+        //         + style_state.extra_scroll_height
+        //     )
+        // }px`;
+        
+        return void (
             (
                 scrollbar_thumb_y_style
                 .transform = (

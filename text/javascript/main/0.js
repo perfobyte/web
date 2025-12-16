@@ -40,6 +40,7 @@ import {
     elements,
 
     MESSAGE_ROW_EL,
+    list_inner_style,
 } from "./elems/i.js";
 
 import {
@@ -79,8 +80,6 @@ import {
             font_name = font.name,
             font_face = null,
 
-            list_width = 0,
-
             width = window.innerWidth,
             height = window.innerHeight,
             
@@ -88,13 +87,18 @@ import {
             list_right = style_state.list_right,
 
             list_top = style_state.list_top,
-            list_bottom = style_state.list_bottom
+            list_bottom = style_state.list_bottom,
+
+            list_width = 0,
+            list_height = 0,
+
+            row_width_mode = mode_state.row_width
         ;
 
         // workers[0] = new Worker("/f/text/javascript/worker/fs/1.js");
         
         window.onerror = on_error;
-        window.contextmenu = on_contextmenu;
+        window.oncontextmenu = on_contextmenu;
         window.onresize = on_window_resize;
         list.onmousedown = on_list_mousedown;
         list.onselectstart = on_list_selectstart;
@@ -105,13 +109,9 @@ import {
 
         scrollbar_y.onmousedown = on_scrollbar_thumb_mousedown;
 
-        (((mode_state).row_width) === 0)
-        ? (
-            scrollbar_x.onmousedown = on_scrollbar_thumb_mousedown
-        )
-        : (
-            scrollbar_x.classList.add('none')
-        );
+        
+        
+        
 
         html_style.setProperty("--width",`${width}px`),
         html_style.setProperty("--height",`${height}px`),
@@ -119,6 +119,7 @@ import {
         html_style.setProperty(
             "--list-width",
             `${
+                list_width = 
                 style_state.list_width = (
                     calc_list_width(
                         width,
@@ -127,11 +128,12 @@ import {
                     )
                 )
             }px`
-        ),
+        );
 
         html_style.setProperty(
             "--list-height",
             `${
+                list_height =
                 style_state.list_height = (
                     calc_list_height(
                         height,
@@ -140,7 +142,40 @@ import {
                     )
                 )
             }px`
-        ),
+        );
+
+        ((row_width_mode) === 0)
+        ? (
+            (scrollbar_x.onmousedown = on_scrollbar_thumb_mousedown),
+
+            (style_state.extra_scroll_width = 100)
+        )
+        :
+        (row_width_mode === 1)
+        && (
+            (style_state.content_width = list_width),
+
+            (
+                list_bottom =
+                style_state.list_bottom =
+                style_state.extra_scroll_width = 0
+            ),
+
+            scrollbar_x.classList.add('none')
+        );
+
+        style_state.extra_scroll_height = (list_height-(row_height-list_top));
+
+        style_state.thumb_x_size = (
+            width
+            - style_state.thumb_x_left
+            - style_state.thumb_x_right
+        );
+        style_state.thumb_y_size = (
+            height
+            - style_state.thumb_y_top
+            - style_state.thumb_y_bottom
+        );
         
         html_style.setProperty("--row-height", `${row_height}px`);
         html_style.setProperty("--font-size", `${style_state.font_size}px`);
@@ -191,7 +226,10 @@ import {
 
                         row_width_mode = mode_state.row_width,
 
-                        current_separation = is_separation[row_width_mode]
+                        current_separation = is_separation[row_width_mode],
+
+                        size_x = 0,
+                        size_y = 0
                     ;
 
                     push_text(
@@ -207,11 +245,32 @@ import {
 
                         render_element,
                         current_separation,
-                        string_offset_change[row_width_mode]
                     );
 
-                    set_scrollbar_x(style_state.list_width / list.scrollWidth)
-                    set_scrollbar_y(style_state.list_height / list.scrollHeight);
+                    list_inner_style.height = `${
+                        style_state.content_height =
+                        size_y = (
+                            style_state.loaded_height
+                            + style_state.extra_scroll_height
+                        )
+                    }px`;
+                    set_scrollbar_y((style_state.thumb_y_translate), style_state.list_height / (size_y));
+
+                    
+                    (mode_state.row_width === 0)
+                    &&
+                    (
+                        (list_inner_style.width = `${
+                            style_state.content_width =
+                            size_x = (
+                                style_state.loaded_width
+                                + style_state.extra_scroll_width
+                            )
+                        }px`),
+
+                        set_scrollbar_x((style_state.thumb_x_translate), style_state.list_width / (size_x))
+                    );
+                    
                     
                     // (c_av.background = 'url("/f/image/png/logo_full30.png")'),
                     // (chatbar_h1.textContent = "Enter password"),

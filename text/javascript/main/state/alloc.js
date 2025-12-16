@@ -1,26 +1,23 @@
 import {array_unumber_update, array_unumber_constructor} from "../f/i.js";
 
 export default (
-    (
-        size_block,
-        size_ram,
-        size_memory_page,
-        size_cpu_cache_line,
-        number_cpu_cache_lines,
-
-        size_content_length,
-        size_tags_length,
-
-        size_tag_amount,
-        size_tag_offsets_length,
-        size_tag_id,
-        size_tag_offset,
-        
-        number_blocks,
-        number_message_blocks,
-        value_le,
-    ) => {
+    () => {
         var
+            size_block = 4096,
+            size_ram = 8083100,
+            size_memory_page = 4096,
+            size_cpu_cache_line = 64,
+            number_cpu_cache_lines = [
+                131072,
+                131072,
+                1048576,
+                3145728,
+            ],
+            
+            number_blocks = 1,
+            number_message_blocks = 1,
+            value_le = true,
+
             size_blocks = (size_block * number_blocks),
             size_message_blocks = (size_block * number_message_blocks),
 
@@ -114,19 +111,5 @@ export default (
         }
     }
 )(
-    4096,
-    8083100,
-    4096,
-    64,
-    [
-        131072,
-        131072,
-        1048576,
-        3145728,
-    ],
-
-    2,2,2,2,2,2,
-
-    1,
-    true,
+    
 );

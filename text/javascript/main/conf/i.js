@@ -43,5 +43,10 @@ export var
 
     workers = [
         null,
-    ]
+    ],
+
+    separation_result = {
+        string_offset: 0,
+        char_i: 0,
+    }
 ;
