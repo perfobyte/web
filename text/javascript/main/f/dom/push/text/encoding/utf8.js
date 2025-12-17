@@ -4,7 +4,7 @@ import {
     separation_result,
 } from '../../../../../conf/i.js';
 import {
-    list_inner,
+    content,
     elements as elems,
 } from '../../../../../elems/i.js';
 
@@ -88,7 +88,7 @@ export default (
             };
         };
 
-        list_inner.appendChild(fragment);
+        content.appendChild(fragment);
         alloc_state.length_loaded_elements = elems_l;
         style_state.loaded_height = height;
 

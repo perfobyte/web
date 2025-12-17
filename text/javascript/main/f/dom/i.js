@@ -1,5 +1,4 @@
 
-export * from './calc/i.js';
 export * from './is/i.js';
 export * from './set_scrollbar/i.js';
 

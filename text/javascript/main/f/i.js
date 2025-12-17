@@ -7,7 +7,6 @@ export * from './dom/i.js';
 export * from './font/i.js';
 export * from './general/i.js';
 export * from './get/i.js';
-export * from './message/i.js';
 export * from "./reduce/i.js";
 export * from './scroll/i.js';
 export * from './standart/i.js';

@@ -35,7 +35,7 @@ export default (
                     1,
                     (
                         list_width
-                        / (style_state.content_width)
+                        / (style_state.loaded_width)
                     )
                 )
             ),
@@ -45,7 +45,7 @@ export default (
                     1,
                     (
                         list_height
-                        / (style_state.content_height)
+                        / (style_state.loaded_height)
                     )
                 )
             ),

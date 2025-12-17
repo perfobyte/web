@@ -7,7 +7,11 @@ export * from './globalThis.js';
 export {default as list} from './list/i.js';
 
 export var
-    template = (document.querySelector("template").content),
+    template = (
+        document
+        .querySelector("template")
+        .content
+    ),
 
     html = document.documentElement,
     html_style = html.style,
@@ -28,8 +32,8 @@ export var
     scrollbar_thumb_x_style = scrollbar_thumb_x.style,
     scrollbar_thumb_y_style = scrollbar_thumb_y.style,
 
-    list_inner = list.firstElementChild,
-    list_inner_style = list_inner.style,
+    content = list.firstElementChild,
+    content_style = content.style,
     
     scrollbar_thumb = [
         scrollbar_thumb_x,

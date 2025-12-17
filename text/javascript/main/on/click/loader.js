@@ -87,6 +87,9 @@ export default (
                         ),
                         0,
                         vl,
+
+                        String.fromCharCode,
+                        globalThis.btoa,
                     ),
                 )
             )

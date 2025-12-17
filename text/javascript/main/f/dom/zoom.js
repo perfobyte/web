@@ -37,8 +37,8 @@ export default (new_zoom) => {
         loaded_height = 0,
         list_width = 0,
         list_height = 0,
-        content_height = 0,
-        content_width = 0,
+        loaded_height = 0,
+        loaded_width = 0,
         new_left = 0,
         new_top = 0,
         max_left = 0,
@@ -71,8 +71,8 @@ export default (new_zoom) => {
     );
     
     list_inner_style.height = `${
-        content_height = (
-            style_state.content_height = (
+        loaded_height = (
+            style_state.loaded_height = (
                 loaded_height
                 + style_state.extra_scroll_height
             )
@@ -80,8 +80,8 @@ export default (new_zoom) => {
     }px`;
   
     if (mode_state.row_width === 0) {
-        content_width = (
-            style_state.content_width = (
+        loaded_width = (
+            style_state.loaded_width = (
                 (
                     style_state.loaded_width
                     * new_zoom
@@ -89,20 +89,20 @@ export default (new_zoom) => {
                 + style_state.extra_scroll_width
             )
         );
-        list_inner_style.width = `${content_width}px`;
+        list_inner_style.width = `${loaded_width}px`;
     }
     else {
-        content_width = style_state.content_width;
+        loaded_width = style_state.loaded_width;
     }
     
-    style_state.thumb_x_scale = Math.min(1, (list_width  = style_state.list_width)  / content_width);
-    style_state.thumb_y_scale = Math.min(1, list_height / content_height);
+    style_state.thumb_x_scale = Math.min(1, (list_width  = style_state.list_width)  / loaded_width);
+    style_state.thumb_y_scale = Math.min(1, list_height / loaded_height);
   
     new_left = prev_left * ratio;
     new_top  = prev_top  * ratio;
   
-    max_left = Math.max(0, content_width  - list_width);
-    max_top  = Math.max(0, content_height - list_height);
+    max_left = Math.max(0, (loaded_width - list_width));
+    max_top  = Math.max(0, (loaded_height - list_height));
   
     (new_left > max_left) && (new_left = max_left);
     (new_top  > max_top) && (new_top = max_top);
@@ -111,14 +111,14 @@ export default (new_zoom) => {
     list.scrollTop  = new_top;
   
     style_state.thumb_x_translate = (
-        (content_width)
-        ? ((new_left / content_width) * (style_state.thumb_x_size))
+        (loaded_width)
+        ? ((new_left / loaded_width) * (style_state.thumb_x_size))
         : 0
     );
 
     style_state.thumb_y_translate = (
-        (content_height)
-        ? (new_top  / content_height) * (style_state.thumb_y_size)
+        (loaded_height)
+        ? (new_top  / loaded_height) * (style_state.thumb_y_size)
         : 0
     );
   

@@ -43,16 +43,10 @@ export default (
         var
             zoom_key_index = 0,
 
-            var_number_2 = 0,
-            var_number_3 = 0,
-
-            var_number_4 = 0,
-
             min = Math.min,
             max = Math.max,
 
-            key = e.key,
-            window = e.view
+            key = e.key
         ;
         return (
             (

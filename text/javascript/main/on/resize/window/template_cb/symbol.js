@@ -77,7 +77,7 @@ export default (
             is_separation[row_width_mode]
         );
 
-        list_scroll_height = style_state.content_height;
+        list_scroll_height = style_state.loaded_height;
         list_inner_style.height = `${list_scroll_height}px`;
         
         // list_inner_style.width = `${

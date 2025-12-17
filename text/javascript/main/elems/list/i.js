@@ -1,6 +1,4 @@
-// import {style_state} from '../../state/i.js'
-// import {document,Proxy} from '../globalThis.js'
-// import * as f from './f/i.js';
+import {document,} from '../globalThis.js'
 
 export default (
     document.getElementById("list")

@@ -153,7 +153,7 @@ import {
         :
         (row_width_mode === 1)
         && (
-            (style_state.content_width = list_width),
+            (style_state.loaded_width = list_width),
 
             (
                 list_bottom =
@@ -248,7 +248,7 @@ import {
                     );
 
                     list_inner_style.height = `${
-                        style_state.content_height =
+                        style_state.loaded_height =
                         size_y = (
                             style_state.loaded_height
                             + style_state.extra_scroll_height
@@ -261,7 +261,7 @@ import {
                     &&
                     (
                         (list_inner_style.width = `${
-                            style_state.content_width =
+                            style_state.loaded_width =
                             size_x = (
                                 style_state.loaded_width
                                 + style_state.extra_scroll_width

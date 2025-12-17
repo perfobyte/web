@@ -1,30 +1,29 @@
+import {list} from '../../../elems/i.js';
+import {style_state} from '../../../state/i.js';
+
+import {set_scroll} from '../../../f/i.js';
 
 export default (
     (
-        list,
-        style_state,
-        
         get_scrolled,
-        get_scrollbar_size,
+        get_scroll_size,
 
         set_list_scroll,
 
         scrollbar,
         scrollbar_thumb_style,
 
-        get_scroll_size,
+        get_loaded_size,
         scrollbar_thumb_transform,
         get_scale,
-        
-        set_scroll,
     ) => {
         return (e) => {
             var
-                scrolled = get_scrolled(e,style_state,e.currentTarget,scrollbar),
-                scrollbar_size = get_scrollbar_size(scrollbar),
-
-                ratio = (scrolled / scrollbar_size),
-                list_scroll = (ratio * get_scroll_size(list))
+                scrolled = get_scrolled(e, style_state),
+                
+                ratio = (scrolled / get_scroll_size(style_state)),
+                
+                list_scroll = (ratio * get_loaded_size(style_state))
             ;
             return void (
                 set_scroll(

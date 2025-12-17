@@ -1,6 +1,6 @@
 import {on_scrollbar_thumb_mousemove} from '../mouse/i.js';
 import {wheel_delta_value, ctrl_key, zoom, number_clamp} from '../../f/i.js';
-import {style_state} from '../../state/i.js';
+import {style_state, mode_state} from '../../state/i.js';
 import {
     xy_move_event,
 } from '../../conf/i.js';
@@ -27,9 +27,11 @@ export default (
             event_object = xy_move_event[direction],
 
             move = on_scrollbar_thumb_mousemove[direction],
+
+            deltaMode = event.deltaMode,
             
             unit = (
-                wheel_delta_value[direction][event.deltaMode](style_state)
+                wheel_delta_value[direction][deltaMode](style_state)
             ),
 
             px = delta * unit

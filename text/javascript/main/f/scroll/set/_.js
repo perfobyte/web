@@ -12,8 +12,9 @@ export default (
         return (
             (
                 scrollbar_thumb_style
-                .transform =
+                .transform = (
                     transform_value
+                )
             ),
             set_list_scroll(list, new_scroll_value)
         );

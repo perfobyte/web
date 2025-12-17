@@ -10,7 +10,7 @@ import {
 } from '../../../../../conf/i.js';
 
 import {
-    list_inner,
+    content,
     list_inner_style,
     MESSAGE_ROW_EL as template,
     elements,
@@ -193,7 +193,7 @@ export default (
         };
 
         if (elems_l > elements_l_start) {
-            list_inner.appendChild(fragment);
+            content.appendChild(fragment);
             alloc_state.length_loaded_elements = elems_l;
             style_state.loaded_height = height;
         }

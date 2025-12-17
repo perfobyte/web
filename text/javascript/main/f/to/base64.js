@@ -1,10 +1,10 @@
 
 
 export default (
-    (buffer,src, i,l) => {
+    (buffer,src, i,l, fromCharCode, btoa) => {
         for (; i < l; i++) {
-            buffer[i] = String.fromCharCode(src[i]);
+            buffer[i] = fromCharCode(src[i]);
         }
-        return globalThis.btoa(buffer.join(""));
+        return btoa(buffer.join(""));
     }
 )

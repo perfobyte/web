@@ -1,1 +1,2 @@
-export * from './offset/i.js';
+
+export * from './scroll/i.js';
