@@ -19,10 +19,9 @@ import {
 import {
     scrollbar_thumb_y_transform,
     edit,
-    expand_nodes,
     render_element,
     is_separation,
-    string_offset_change,
+    
 } from '../../../../f/i.js';
 
 export default (
@@ -71,25 +70,24 @@ export default (
             alloc_state.offset_loaded_elements,
             alloc_state.length_loaded_elements,
 
-            expand_nodes,
             render_element,
 
             is_separation[row_width_mode]
         );
 
-        list_scroll_height = style_state.loaded_height;
-        list_inner_style.height = `${list_scroll_height}px`;
+        list_scroll_height = style_state.content_height;
+        content_style.height = `${list_scroll_height}px`;
         
-        // list_inner_style.width = `${
+        // content_style.width = `${
         //     size_x = (
-        //         style_state.loaded_width
+        //         style_state.content_width
         //         + style_state.extra_scroll_width
         //     )
         // }px`;
 
-        // list_inner_style.height = `${
+        // content_style.height = `${
         //     size_y = (
-        //         style_state.loaded_height
+        //         style_state.content_height
         //         + style_state.extra_scroll_height
         //     )
         // }px`;

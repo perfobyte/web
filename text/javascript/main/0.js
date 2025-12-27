@@ -2,17 +2,10 @@
 import {
     font_path,
     font_src,
-
-    calc_list_width,
-    calc_list_height,
-
+    
     push,
     render_element,
     is_separation,
-    string_offset_change,
-
-    set_scrollbar_x,
-    set_scrollbar_y,
 } from './f/i.js';
 
 import {
@@ -27,10 +20,8 @@ import {
 } from "./conf/i.js";
 
 import {
-    html_style,
+    html_style as st,
     body_cl,
-    document,
-    window,
     
     list,
     
@@ -40,16 +31,17 @@ import {
     elements,
 
     MESSAGE_ROW_EL,
-    list_inner_style,
+    content_style,
 } from "./elems/i.js";
 
 import {
-    style_state,
+    style_state as S,
     support_font_format,
     support_font,
     alloc_state,
     language_state,
     mode_state,
+    font_state,
 } from './state/i.js';
 
 import {
@@ -67,12 +59,12 @@ import {
 } from './on/i.js';
 
 (
-    (window, document, Math, FontFace) => {
+    (window, document) => {
         var
             document_fonts = document.fonts,
 
-            row_height = style_state.row_height,
-            font_id = style_state.font_id,
+            row_height = S.row_height,
+            font_id = S.font_id,
 
             font_id_bare_str = (`_${font_id}`),
 
@@ -83,14 +75,14 @@ import {
             width = window.innerWidth,
             height = window.innerHeight,
             
-            list_left = style_state.list_left,
-            list_right = style_state.list_right,
+            list_left = S.list_left,
+            list_right = S.list_right,
 
-            list_top = style_state.list_top,
-            list_bottom = style_state.list_bottom,
+            list_top = S.list_top,
+            list_bottom = S.list_bottom,
 
-            list_width = 0,
-            list_height = 0,
+            list_width = (S.list_width = (width - list_left - list_right)),
+            list_height = (S.list_height = (height - list_top - list_bottom)),
 
             row_width_mode = mode_state.row_width
         ;
@@ -99,7 +91,6 @@ import {
         
         window.onerror = on_error;
         window.oncontextmenu = on_contextmenu;
-        window.onresize = on_window_resize;
         list.onmousedown = on_list_mousedown;
         list.onselectstart = on_list_selectstart;
 
@@ -109,130 +100,54 @@ import {
 
         scrollbar_y.onmousedown = on_scrollbar_thumb_mousedown;
 
+        if (row_width_mode === 0) {
+            scrollbar_x.onmousedown = on_scrollbar_thumb_mousedown;
+            S.content_right = 100;
+        }
+        else if (row_width_mode === 1) {
+            S.content_width = list_width;
+            S.list_bottom = (list_bottom = 0);
+
+            scrollbar_x.classList.add('none');
+        };
         
+        st.setProperty("--row-height", `${row_height}px`);
+        st.setProperty("--font-size", `${S.font_size}px`);
+        st.setProperty("--font-family",`"${font_id_bare_str}"`);
+
+        st.setProperty("--list-top", `${list_top}px`);
+        st.setProperty("--list-left", `${list_left}px`);
+        st.setProperty("--list-right", `${list_right}px`);
+        st.setProperty("--list-bottom", `${list_bottom}px`);
         
-        
-
-        html_style.setProperty("--width",`${width}px`),
-        html_style.setProperty("--height",`${height}px`),
-
-        html_style.setProperty(
-            "--list-width",
-            `${
-                list_width = 
-                style_state.list_width = (
-                    calc_list_width(
-                        width,
-                        list_left,
-                        list_right
-                    )
-                )
-            }px`
-        );
-
-        html_style.setProperty(
-            "--list-height",
-            `${
-                list_height =
-                style_state.list_height = (
-                    calc_list_height(
-                        height,
-                        list_top,
-                        list_bottom,
-                    )
-                )
-            }px`
-        );
-
-        ((row_width_mode) === 0)
-        ? (
-            (scrollbar_x.onmousedown = on_scrollbar_thumb_mousedown),
-
-            (style_state.extra_scroll_width = 100)
-        )
-        :
-        (row_width_mode === 1)
-        && (
-            (style_state.loaded_width = list_width),
-
-            (
-                list_bottom =
-                style_state.list_bottom =
-                style_state.extra_scroll_width = 0
-            ),
-
-            scrollbar_x.classList.add('none')
-        );
-
-        style_state.extra_scroll_height = (list_height-(row_height-list_top));
-
-        style_state.thumb_x_size = (
-            width
-            - style_state.thumb_x_left
-            - style_state.thumb_x_right
-        );
-        style_state.thumb_y_size = (
-            height
-            - style_state.thumb_y_top
-            - style_state.thumb_y_bottom
-        );
-        
-        html_style.setProperty("--row-height", `${row_height}px`);
-        html_style.setProperty("--font-size", `${style_state.font_size}px`);
-        html_style.setProperty("--font-family",`"${font_id_bare_str}"`);
-
-        html_style.setProperty("--list-top", `${list_top}px`);
-        html_style.setProperty("--list-left", `${list_left}px`);
-        html_style.setProperty("--list-right", `${list_right}px`);
-        html_style.setProperty("--list-bottom", `${list_bottom}px`);
-
-        html_style.setProperty("--background-color", '#FFFFFFFF');
-        html_style.setProperty("--color", "#000000FF");
-        html_style.setProperty("--placeholder-color", '#808080FF');
-        
-        document_fonts.add(
-            (
-                font_face = (
-                    new FontFace(
-                        font_id_bare_str,
-                        font_src(
-                            support_font_format,
-                            font_id,
-                            font_name,
-                            0,
-                            support_font_format.length,
-                            font_path,
-                        ),
-                        style_state
-                    )
-                )
+        font_faces[0] =
+        font_face = (
+            new FontFace(
+                font_id_bare_str,
+                font_src(
+                    support_font_format,
+                    font_id,
+                    font_name,
+                    0,
+                    support_font_format.length,
+                    font_path,
+                ),
+                font_state[0]
             )
         );
+        
+        document_fonts.add(font_face);
 
         return (
-            (
-                font_faces[font_id] = font_face
-            )
+            font_face
             .load()
             .then(
                 () => {
                     var
-                        placeholder_value = language_state.placeholder_value,
-                        
-                        push_text = push[0][0][0],
-
-                        i = 0,
-                        l = alloc_state.number_blocks,
-
-                        row_width_mode = mode_state.row_width,
-
-                        current_separation = is_separation[row_width_mode],
-
-                        size_x = 0,
-                        size_y = 0
+                        current_separation = is_separation[row_width_mode]
                     ;
 
-                    push_text(
+                    push(
                         (alloc_state.string_block),
                         alloc_state.buffer_messages_view,
 
@@ -247,35 +162,28 @@ import {
                         current_separation,
                     );
 
-                    list_inner_style.height = `${
-                        style_state.loaded_height =
-                        size_y = (
-                            style_state.loaded_height
-                            + style_state.extra_scroll_height
+                    content_style.height = `${
+                        S.content_height = (
+                            S.loaded_height
+                            + S.content_bottom
                         )
                     }px`;
-                    set_scrollbar_y((style_state.thumb_y_translate), style_state.list_height / (size_y));
 
-                    
-                    (mode_state.row_width === 0)
-                    &&
-                    (
-                        (list_inner_style.width = `${
-                            style_state.loaded_width =
-                            size_x = (
-                                style_state.loaded_width
-                                + style_state.extra_scroll_width
+                    if (row_width_mode === 0) {
+                        content_style.width = `${
+                            S.content_width = (
+                                S.loaded_width
+                                + S.content_right
                             )
-                        }px`),
+                        }px`;
+                    };
 
-                        set_scrollbar_x((style_state.thumb_x_translate), style_state.list_width / (size_x))
-                    );
-                    
-                    
-                    // (c_av.background = 'url("/f/image/png/logo_full30.png")'),
-                    // (chatbar_h1.textContent = "Enter password"),
-                    
-                    return body_cl.add('a');
+                    // S.content_bottom = (list_height-(row_height-list_top));
+
+                    on_window_resize(window_event_object);
+                    window.onresize = on_window_resize;
+
+                    body_cl.add('a');
                 }
             )
         );
@@ -283,6 +191,4 @@ import {
 )(
     window,
     document,
-    globalThis.Math,
-    globalThis.FontFace,
 );

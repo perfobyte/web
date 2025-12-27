@@ -6,7 +6,7 @@ import {
     html_style,
 
     elements,
-    list_inner_style,
+    content_style,
 } from '../../elems/i.js';
 
 import {
@@ -15,11 +15,9 @@ import {
 
 import {
     number_clamp,
-    set_scroll,
     scrollbar_thumb_x_transform,
     scrollbar_thumb_y_transform,
-    set_list_scroll_x,
-    set_list_scroll_y,
+    
 
 } from '../../f/i.js';
 import {window_event_object} from '../../conf/i.js';
@@ -34,11 +32,11 @@ export default (new_zoom) => {
         ratio = new_zoom / prev_zoom,
         prev_left = list.scrollLeft,
         prev_top = list.scrollTop,
-        loaded_height = 0,
+        
         list_width = 0,
         list_height = 0,
-        loaded_height = 0,
-        loaded_width = 0,
+        content_height = 0,
+        content_width = 0,
         new_left = 0,
         new_top = 0,
         max_left = 0,
@@ -46,13 +44,13 @@ export default (new_zoom) => {
     ;
 
     while (i < l) {
-      elements[i].style.top = `${loaded_height}px`;
-      loaded_height += row_height;
+      elements[i].style.top = `${content_height}px`;
+      content_height += row_height;
       i++;
     }
   
     style_state.zoom = new_zoom;
-    style_state.loaded_height = loaded_height;
+    style_state.content_height = content_height;
   
     html_style.setProperty("--row-height", `${row_height}px`);
     html_style.setProperty(
@@ -70,39 +68,39 @@ export default (new_zoom) => {
         - (row_height - style_state.list_top)
     );
     
-    list_inner_style.height = `${
-        loaded_height = (
-            style_state.loaded_height = (
-                loaded_height
+    content_style.height = `${
+        content_height = (
+            style_state.content_height = (
+                content_height
                 + style_state.extra_scroll_height
             )
         )
     }px`;
   
     if (mode_state.row_width === 0) {
-        loaded_width = (
-            style_state.loaded_width = (
+        content_width = (
+            style_state.content_width = (
                 (
-                    style_state.loaded_width
+                    style_state.content_width
                     * new_zoom
                 )
                 + style_state.extra_scroll_width
             )
         );
-        list_inner_style.width = `${loaded_width}px`;
+        content_style.width = `${content_width}px`;
     }
     else {
-        loaded_width = style_state.loaded_width;
+        content_width = style_state.content_width;
     }
     
-    style_state.thumb_x_scale = Math.min(1, (list_width  = style_state.list_width)  / loaded_width);
-    style_state.thumb_y_scale = Math.min(1, list_height / loaded_height);
+    style_state.thumb_x_scale = Math.min(1, (list_width  = style_state.list_width)  / content_width);
+    style_state.thumb_y_scale = Math.min(1, list_height / content_height);
   
     new_left = prev_left * ratio;
     new_top  = prev_top  * ratio;
   
-    max_left = Math.max(0, (loaded_width - list_width));
-    max_top  = Math.max(0, (loaded_height - list_height));
+    max_left = Math.max(0, (content_width - list_width));
+    max_top  = Math.max(0, (content_height - list_height));
   
     (new_left > max_left) && (new_left = max_left);
     (new_top  > max_top) && (new_top = max_top);
@@ -111,14 +109,14 @@ export default (new_zoom) => {
     list.scrollTop  = new_top;
   
     style_state.thumb_x_translate = (
-        (loaded_width)
-        ? ((new_left / loaded_width) * (style_state.thumb_x_size))
+        (content_width)
+        ? ((new_left / content_width) * (style_state.thumb_x_size))
         : 0
     );
 
     style_state.thumb_y_translate = (
-        (loaded_height)
-        ? (new_top  / loaded_height) * (style_state.thumb_y_size)
+        (content_height)
+        ? (new_top  / content_height) * (style_state.thumb_y_size)
         : 0
     );
   

@@ -1,17 +1,9 @@
-import {alloc_state, style_state} from '../state/i.js'
-import array_from_object from '../conf/array_from_object.js';
-import list from './list/i.js';
-
-export * from "./event.js";
-export * from './globalThis.js';
-export {default as list} from './list/i.js';
+import {alloc_state} from '../state/i.js'
+import template_clone from '../f/general/template_clone.js';
+import {array_from_object} from '../conf/i.js';
 
 export var
-    template = (
-        document
-        .querySelector("template")
-        .content
-    ),
+    template = document.querySelector("template").content,
 
     html = document.documentElement,
     html_style = html.style,
@@ -32,19 +24,16 @@ export var
     scrollbar_thumb_x_style = scrollbar_thumb_x.style,
     scrollbar_thumb_y_style = scrollbar_thumb_y.style,
 
+    list = document.getElementById("list"),
+
     content = list.firstElementChild,
     content_style = content.style,
     
-    scrollbar_thumb = [
-        scrollbar_thumb_x,
-        scrollbar_thumb_y,
-    ],
+    scrollbar_thumb = [scrollbar_thumb_x,scrollbar_thumb_y],
+    
+    elements_block = Array(alloc_state.size_elements).fill(MESSAGE_ROW_EL),
 
-    elements = (
-        (array_from_object.length = alloc_state.size_elements),
-        Array.from(
-            array_from_object,
-            () => MESSAGE_ROW_EL.cloneNode(true)
-        )
-    )
+    elements = Array.from(elements_block,template_clone)
 ;
+
+export * from "./event.js"

@@ -1,10 +1,5 @@
-import {document} from '../elems/i.js';
-
-export * from './crossplatform/i.js';
-export * from './linebreak/i.js';
-
-export {default as font_faces} from './font_faces.js';
-export {default as array_from_object} from './array_from_object.js';
+export * from './crossplatform/i.js'
+export * from './linebreak/i.js'
 
 export var
     TE = new TextEncoder(),
@@ -41,9 +36,9 @@ export var
         y_move_event,
     ],
 
-    workers = [
-        null,
-    ],
+    workers = [null],
+    font_faces = [null],
+    array_from_object = {length:0},
 
     separation_result = {
         string_offset: 0,

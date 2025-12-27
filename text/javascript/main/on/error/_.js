@@ -1,3 +1,3 @@
 
 
-export default globalThis.console.error;
+export default console.error;

@@ -1,9 +1,15 @@
 
 :root {
-    --list-left_2: var(--list-left);
-    
     position:relative;
     
     overflow:hidden;
     background-color:var(--background-color);
+
+    --background-color: #FFFFFFFF;
+    --color: #000000FF;
+    --placeholder-color: #808080FF;
+
+    --scrollbar-bg:rgba(121, 121, 121, 0.4);
+    --scrollbar-bg-hover:rgba(116, 116, 116, 0.5);
+    --scrollbar-bg-active:rgba(110, 110, 110, 0.7);
 }

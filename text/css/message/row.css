@@ -1,0 +1,6 @@
+
+.message_row {
+    position:absolute;
+    width:100%;
+    height:var(--row-height);
+}

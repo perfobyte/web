@@ -2,27 +2,4 @@
 @import "./f/i.css";
 @import "./message/i.css";
 @import "./system/i.css";
-
-
-#text_width_container {
-    position: absolute;
-    visibility: hidden;
-    white-space: pre;
-    
-    font-family: var(--font-family);
-    font-size:var(--font-size);
-
-    line-height:var(--row-height);
-    height:var(--row-height);
-
-    width:fit-content;
-
-    left: 100%;
-    
-    font-weight: normal;
-    font-style: normal;
-    letter-spacing: normal;
-    text-transform: none;
-    word-spacing: normal;
-    tab-size: 4;
-}
+@import "./tool/i.css";

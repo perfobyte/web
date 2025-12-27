@@ -2,7 +2,6 @@ import {
     scrollbar_thumb_x_style,
     scrollbar_thumb_y_style,
     list,
-    list_inner_style,
 } from '../../../../elems/i.js';
 
 import {
@@ -45,7 +44,7 @@ export default (
                     1,
                     (
                         list_height
-                        / (style_state.loaded_height)
+                        / (style_state.content_height)
                     )
                 )
             ),

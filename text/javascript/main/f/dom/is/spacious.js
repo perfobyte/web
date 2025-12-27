@@ -3,14 +3,14 @@ import {text_width_container} from '../../../elems/i.js';
 import {style_state} from '../../../state/i.js';
 import {linebreaks} from '../../../conf/i.js';
 
-import newline from './char/newline.js';
+import newline from './newline.js';
 
 export default (
     (string, char_i, string_offset, separation_result) => {
         var
             next = (char_i + 1),
             w = 0,
-            loaded_width = style_state.loaded_width
+            content_width = style_state.content_width
         ;
         return (
             (separation_result.char_i = next),
@@ -18,9 +18,9 @@ export default (
             (linebreaks.includes(string[char_i]))
             ? (
                 (
-                    style_state.loaded_width =
+                    style_state.content_width =
                         Math.max(
-                            loaded_width,
+                            content_width,
                             text_width(
                                 text_width_container,
                                 string.substring(string_offset, char_i)

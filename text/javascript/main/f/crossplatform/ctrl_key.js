@@ -4,10 +4,6 @@ export default (
         .platform
         .startsWith("Mac")
     )
-    ? (
-        (e) => (e.metaKey)
-    )
-    : (
-        (e) => (e.ctrlKey)
-    )
+    ? ((e) => (e.metaKey))
+    : ((e) => (e.ctrlKey))
 );

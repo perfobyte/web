@@ -1,31 +1,32 @@
 
 export default (
-    (support_font_format, font_id, font_name, i,l, font_path) => {
+    (support_font_format, font_sid, font_name, i,l, font_path) => {
         var
             last_i = (l - 1),
             f = null,
-            font_face_src = ""
+            src = ""
         ;
         for(;i<l;i++){
             f = support_font_format[i];
-            font_face_src +=
+            src += (
                 `url("${
                     font_path(
-                        font_id,
-                        f.extension
+                        f.extension,
+                        font_sid,
                     )
                 }${
                     (f.id === 4)
-                    ? `#${font_name}`
+                    ? `#${font_sid}`
                     : ""
                 }") format("${
-                    f.format
+                    f.type
                 }")${
                     (last_i === i)
                     ? ""
                     : ","
                 }`
+            );
         };
-        return (font_face_src);
+        return (src);
     }
 );

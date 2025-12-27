@@ -13,7 +13,7 @@ export default (
             e.preventDefault(),
             e.stopPropagation(),
             
-            t.querySelector(".scrollbar_thumb").classList.add("hover"),
+            t.querySelector(".scrollbar_thumb").classList.add("active"),
 
             w.addEventListener("mouseup", on_scrollbar_thumb_mouseup[i]),
             w.addEventListener("mousemove", on_scrollbar_thumb_mousemove[i])

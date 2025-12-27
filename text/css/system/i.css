@@ -1,4 +1,4 @@
+@import "./body.css";
 @import './default.css';
 @import "./root.css";
-@import "./body.css";
-@import "./scrollbars.css";
+@import "./scroll.css";

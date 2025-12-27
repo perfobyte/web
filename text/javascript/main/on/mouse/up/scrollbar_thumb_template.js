@@ -8,7 +8,7 @@ export default (
                     t.removeEventListener("mousemove", move),
                     t.removeEventListener("mouseup", up),
 
-                    scrollbar_thumb_cl.remove("hover")
+                    scrollbar_thumb_cl.remove("active")
                 );
             }
         ;

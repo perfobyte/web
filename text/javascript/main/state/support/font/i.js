@@ -1,7 +1,4 @@
 export default [
-    {
-        id: 0,
-        name: "Open Sans",
-        supported: true,
-    }
+    { sid: 4062975092252341068n },
+    
 ];

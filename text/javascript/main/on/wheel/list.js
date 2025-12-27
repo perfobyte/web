@@ -15,28 +15,23 @@ export default (
                 (event.shiftKey)
                 ? (
                     (direction_key = "movementX"),
-                    (delta = (event.deltaX || event.deltaY)),
+                    (delta = (event.deltaX)),
                     0
                 )
                 : (
                     (direction_key = "movementY"),
-                    (delta = event.deltaY),
+                    (delta = (event.deltaY)),
                     1
                 )
             ),
-            event_object = xy_move_event[direction],
+            event_object = null,
 
-            move = on_scrollbar_thumb_mousemove[direction],
-
-            deltaMode = event.deltaMode,
-            
             unit = (
-                wheel_delta_value[direction][deltaMode](style_state)
+                wheel_delta_value[direction][event.deltaMode](style_state)
             ),
 
-            px = delta * unit
+            px = (delta * unit)
         ;
-        
         return void (
             event.preventDefault(),
 
@@ -44,7 +39,7 @@ export default (
             ? (
                 zoom(number_clamp(
                     (
-                        style_state.zoom * Math.exp(-px * style_state.sensitivity_wheel)
+                        style_state.zoom * Math.exp((px) * (mode_state.sensitivity_wheel))
                     ),
                     style_state.zoom_min,
                     style_state.zoom_max,
@@ -53,9 +48,8 @@ export default (
                 ))
             )
             : (
-                (event_object[direction_key] = (px)),
-
-                move(event_object)
+                ((event_object = xy_move_event[direction])[direction_key] = (px)),
+                (on_scrollbar_thumb_mousemove[direction])(event_object)
             )
         );
     }

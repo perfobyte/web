@@ -17,18 +17,10 @@ import {
     scrollbar_thumb_x_transform,
     scrollbar_thumb_y_transform,
 
-    calc_list_width,
-    calc_list_height,
-
-    dom_text_width,
-
-    append_child,
     get_null,
     edit,
     
-    expand_nodes,
     render_element,
-    
 } from '../../../f/i.js';
 
 import template_cb from './template_cb/i.js';
@@ -77,11 +69,9 @@ export default (
                 `${
                     style_state.list_width =
                     list_width = (
-                        calc_list_width(
-                            width,
-                            style_state.list_left,
-                            style_state.list_right
-                        )
+                        width
+                        - style_state.list_left
+                        - style_state.list_right
                     )
                 }px`
             ),
@@ -91,11 +81,9 @@ export default (
                 `${
                     style_state.list_height =
                     list_height = (
-                        calc_list_height(
-                            height,
-                            list_top,
-                            style_state.list_bottom,
-                        )
+                        height
+                        - list_top
+                        - style_state.list_bottom
                     )
                 }px`
             ),

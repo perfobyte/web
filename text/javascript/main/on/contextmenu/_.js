@@ -1,4 +1,8 @@
 
 export default (
-    (e) => e.preventDefault()
+    (e) => {
+        return (
+            e.preventDefault()
+        );
+    }
 );

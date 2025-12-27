@@ -1,11 +1,2 @@
 @import "./display.css";
-
-.hideable {
-    opacity:0;
-    pointer-events:none;
-}
-
-.hideable.a {
-    opacity:1;
-    pointer-events:auto;
-}
+@import "./hideable.css";

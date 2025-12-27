@@ -8,23 +8,16 @@ import {style_state} from '../../../state/i.js';
 import {
     number_clamp,
     ctrl_key,
-    // recalc_rows_top,
-
-    set_list_scroll_x,
-    set_list_scroll_y,
-
+    
     scrollbar_thumb_x_transform,
     scrollbar_thumb_y_transform,
-
-    set_scroll,
 
     zoom,
 } from '../../../f/i.js';
 import {
     html_style,
     list,
-    document,
-
+    
     scrollbar_x,
     scrollbar_y,
 

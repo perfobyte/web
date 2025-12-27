@@ -1,0 +1,22 @@
+
+.message_inline {
+    position:absolute;
+    left:0;
+
+    width:fit-content;
+    height:var(--row-height);
+
+    line-height:var(--row-height);
+    font-size:var(--font-size);
+
+    white-space: pre;
+    overflow: hidden;
+}
+
+.message_inline.simple {
+    color:var(--color);
+}
+
+.message_inline.placeholder {
+    color:var(--placeholder-color);
+}

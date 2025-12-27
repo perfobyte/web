@@ -1,7 +1,7 @@
 export default (
-    (id,format) => {
+    (extension,sid) => {
         return (
-            `/f/font/${format}/${id}.${format}`
+            `/f/font/${extension}/${sid}`
         )
     }
 );

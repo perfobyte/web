@@ -7,7 +7,7 @@ export default (
         fromCodePoint,
         Float32Array,
 
-        dom_text_width,
+        text_width,
         text_width_container,
     ) => {
         var
@@ -32,7 +32,7 @@ export default (
 
             while (i < l) {
                 map[loaded++] = (
-                    dom_text_width(
+                    text_width(
                         text_width_container,
                         fromCodePoint(i++).repeat(count)
                     )
