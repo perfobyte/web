@@ -1,6 +1,6 @@
 
 export default (
-    (support_font_format, font_sid, font_name, i,l, font_path) => {
+    (support_font_format, font_sid, i,l, font_path) => {
         var
             last_i = (l - 1),
             f = null,

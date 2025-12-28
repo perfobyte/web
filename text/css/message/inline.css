@@ -3,20 +3,20 @@
     position:absolute;
     left:0;
 
-    width:fit-content;
-    height:var(--row-height);
-
-    line-height:var(--row-height);
-    font-size:var(--font-size);
-
     white-space: pre;
     overflow: hidden;
 }
 
-.message_inline.simple {
+.default_height {
+    height:var(--row-height);
+    line-height:var(--row-height);
+    font-size:var(--font-size);
+}
+
+.simple_color {
     color:var(--color);
 }
 
-.message_inline.placeholder {
+.placeholder_color {
     color:var(--placeholder-color);
 }

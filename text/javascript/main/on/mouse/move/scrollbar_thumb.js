@@ -17,8 +17,8 @@ export default [
         "thumb_x_translate",
         "movementX",
 
+        "scrollbar_content_width",
         "scroll_content_width",
-        "content_width",
 
         "thumb_x_scale",
         "scrollLeft",
@@ -32,8 +32,8 @@ export default [
         "thumb_y_translate",
         "movementY",
 
+        "scrollbar_content_height",
         "scroll_content_height",
-        "content_height",
 
         "thumb_y_scale",
         "scrollTop",

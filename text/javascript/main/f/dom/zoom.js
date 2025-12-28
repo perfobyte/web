@@ -26,7 +26,7 @@ import {window_event_object} from '../../conf/i.js';
 export default (new_zoom) => {
     var
         row_height = (style_state.row_height = style_state.row_height_default * new_zoom),
-        i = alloc_state.offset_loaded_elements,
+        i = 0,
         l = alloc_state.length_loaded_elements,
         prev_zoom = style_state.zoom,
         ratio = new_zoom / prev_zoom,

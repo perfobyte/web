@@ -2,10 +2,14 @@ import {
     scrollbar_thumb_x_style,
     scrollbar_thumb_y_style,
     list,
+
+    content_style,
+
+    html_style,
 } from '../../../../elems/i.js';
 
 import {
-    style_state
+    style_state as S,
 } from '../../../../state/i.js';
 
 import {
@@ -22,70 +26,69 @@ export default (
         list_width,
         list_height,
         
-        thumb_x_size,
-        thumb_y_size,
+        scrollbar_x_width,
+        scrollbar_y_height,
     ) => {
         var
-            min = Math.min,
-            max = Math.max,
-
-            scale_x = (
-                min(
-                    1,
-                    (
-                        list_width
-                        / (style_state.loaded_width)
-                    )
-                )
-            ),
-
-            scale_y = (
-                min(
-                    1,
-                    (
-                        list_height
-                        / (style_state.content_height)
-                    )
-                )
-            ),
-
-            move_x = style_state.thumb_x_translate,
-            move_y = style_state.thumb_y_translate,
-
-            excess_x = ((move_x + (thumb_x_size * scale_x)) - thumb_x_size),
-            excess_y = ((move_y + (thumb_y_size * scale_y)) - thumb_y_size),
-
-            row_height = style_state.row_height
-        ;
+            row_height = S.row_height,
             
-        return void (
-            (
-                scrollbar_thumb_x_style
-                .transform = (
-                    scrollbar_thumb_x_transform(
-                        (
-                            ((style_state.excess_x = excess_x) > 0)
-                            ? ((style_state.excess_x = excess_x),style_state.thumb_x_translate -= excess_x)
-                            : ((style_state.excess_x = 0),move_x)
-                        ),
-                        (style_state.thumb_x_scale = (scale_x))
+            content_width = (S.content_width),
+            content_height = (
+                (S.content_top)
+                + (S.loaded_height)
+                + (
+                    S.content_bottom = (
+                        list_height - row_height
                     )
                 )
             ),
 
-            (
-                scrollbar_thumb_y_style
-                .transform = (
-                    scrollbar_thumb_y_transform(
-                        (
-                            ((excess_y) > 0)
-                            ? ((style_state.excess_y = excess_y),(style_state.thumb_y_translate -= excess_y))
-                            : ((style_state.excess_y = 0),move_y)
-                        ),
-                        (style_state.thumb_y_scale = (scale_y))
-                    )
-                )
+            scale_x = Math.min(1, (list_width / (content_width))),
+            scale_y = Math.min(1, (list_height / (content_height))),
+
+            move_x = S.thumb_x_translate,
+            move_y = S.thumb_y_translate,
+
+            thumb_x_width = (scrollbar_x_width * scale_x),
+            thumb_y_height = (scrollbar_y_height * scale_y),
+
+            excess_x = ((move_x + thumb_x_width) - scrollbar_x_width),
+            excess_y = ((move_y + thumb_y_height) - scrollbar_y_height)
+        ;
+        
+        S.scroll_content_width = Math.max(0,(content_width - list_width));
+        S.scroll_content_height = Math.max(0,(content_height - list_height));
+
+        S.scrollbar_content_width = (scrollbar_x_width - thumb_x_width);
+        S.scrollbar_content_height = (scrollbar_y_height - thumb_y_height);
+
+        html_style.setProperty(
+            "--content-height",
+            `${S.content_height = content_height}px`
+        );
+        
+        scrollbar_thumb_x_style
+        .transform = (
+            scrollbar_thumb_x_transform(
+                ((excess_x) > 0)
+                ? (S.thumb_x_translate -= excess_x)
+                : (move_x),
+                
+                (S.thumb_x_scale = (scale_x))
             )
         );
+        
+        scrollbar_thumb_y_style
+        .transform = (
+            scrollbar_thumb_y_transform(
+                ((excess_y) > 0)
+                ? (S.thumb_y_translate -= excess_y)
+                : (move_y),
+
+                (S.thumb_y_scale = (scale_y))
+            )
+        );
+
+        
     }
 );

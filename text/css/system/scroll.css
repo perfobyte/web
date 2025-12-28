@@ -9,6 +9,7 @@
 }
 
 .scrollbar_thumb {
+    will-change: transform;
     transition:.2s background-color;
     background:var(--scrollbar-bg);
     z-index:0;

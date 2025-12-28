@@ -8,7 +8,7 @@ import {
 import {
     scrollbar_thumb_x_transform,
     scrollbar_thumb_y_transform,
-} from '../../i.js';
+} from '../../scroll/i.js';
 
 export default [
     template(

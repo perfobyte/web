@@ -1,0 +1,19 @@
+
+#list {
+    position:absolute;
+    display:flex;
+    cursor:text;
+    
+    user-select: none;
+
+    font-family: var(--font-family);
+    
+    top:var(--list-top);
+    left:var(--list-left);
+
+    width:var(--list-width);
+    height:var(--list-height);
+
+    contain: layout paint;
+    overflow: hidden;
+}

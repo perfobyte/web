@@ -47,6 +47,8 @@ export default (
 
             list_scroll = (ratio * content_size)
         ;
+        console.log(ratio);
+        
         return void (
             (
                 scrollbar_thumb_style

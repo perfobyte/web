@@ -92,7 +92,6 @@ export default (
             number_cpu_cache_lines,
             number_memory_pages,
 
-            offset_loaded_elements:0,
             length_loaded_elements:0,
             
             blocks,

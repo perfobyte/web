@@ -2,17 +2,18 @@
 import {
     font_path,
     font_src,
-    
-    push,
-    render_element,
+
+    load_msgs,
+
     is_separation,
+    text_width,
 } from './f/i.js';
 
 import {
     window_event_object,
     passive_false,
-    messages_fragment,
-    messages_range,
+    messages_fragment as fragment,
+    messages_range as range,
     font_faces,
     workers,
     TD,
@@ -32,6 +33,9 @@ import {
 
     MESSAGE_ROW_EL,
     content_style,
+
+    text_width_container,
+    content,
 } from "./elems/i.js";
 
 import {
@@ -42,6 +46,7 @@ import {
     language_state,
     mode_state,
     font_state,
+    
 } from './state/i.js';
 
 import {
@@ -68,8 +73,6 @@ import {
 
             font_id_bare_str = (`_${font_id}`),
 
-            font = support_font[font_id],
-            font_name = font.name,
             font_face = null,
 
             width = window.innerWidth,
@@ -86,6 +89,8 @@ import {
 
             row_width_mode = mode_state.row_width
         ;
+
+        
 
         // workers[0] = new Worker("/f/text/javascript/worker/fs/1.js");
         
@@ -105,12 +110,11 @@ import {
             S.content_right = 100;
         }
         else if (row_width_mode === 1) {
-            S.content_width = list_width;
             S.list_bottom = (list_bottom = 0);
 
             scrollbar_x.classList.add('none');
         };
-        
+
         st.setProperty("--row-height", `${row_height}px`);
         st.setProperty("--font-size", `${S.font_size}px`);
         st.setProperty("--font-family",`"${font_id_bare_str}"`);
@@ -120,6 +124,12 @@ import {
         st.setProperty("--list-right", `${list_right}px`);
         st.setProperty("--list-bottom", `${list_bottom}px`);
         
+        st.setProperty("--scrollbar_x_left", `${S.scrollbar_x_left}px`);
+        st.setProperty("--scrollbar_x_right", `${S.scrollbar_x_right}px`);
+
+        st.setProperty("--scrollbar_y_top", `${S.scrollbar_y_top}px`);
+        st.setProperty("--scrollbar_y_bottom", `${S.scrollbar_y_bottom}px`);
+        
         font_faces[0] =
         font_face = (
             new FontFace(
@@ -127,7 +137,6 @@ import {
                 font_src(
                     support_font_format,
                     font_id,
-                    font_name,
                     0,
                     support_font_format.length,
                     font_path,
@@ -146,40 +155,35 @@ import {
                     var
                         current_separation = is_separation[row_width_mode]
                     ;
-
-                    push(
+                    
+                    load_msgs(
                         (alloc_state.string_block),
                         alloc_state.buffer_messages_view,
 
                         0,
                         (alloc_state.length_messages),
-                        alloc_state.size_message,
 
-                        alloc_state.offset_loaded_elements,
+                        elements,
+                        0,
                         alloc_state.length_loaded_elements,
 
-                        render_element,
-                        current_separation,
+                        MESSAGE_ROW_EL,
+                        alloc_state.size_message,
+                        alloc_state.size_elements,
+                        S.row_height,
+
+                        alloc_state,
+                        S,
+
+                        content,
+                        st,
+                        fragment,
+                        range,
+
+                        text_width,
+                        text_width_container,
                     );
-
-                    content_style.height = `${
-                        S.content_height = (
-                            S.loaded_height
-                            + S.content_bottom
-                        )
-                    }px`;
-
-                    if (row_width_mode === 0) {
-                        content_style.width = `${
-                            S.content_width = (
-                                S.loaded_width
-                                + S.content_right
-                            )
-                        }px`;
-                    };
-
-                    // S.content_bottom = (list_height-(row_height-list_top));
-
+                    
                     on_window_resize(window_event_object);
                     window.onresize = on_window_resize;
 

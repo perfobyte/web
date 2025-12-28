@@ -3,8 +3,6 @@ import {text_width_container} from '../../../elems/i.js';
 import {style_state} from '../../../state/i.js';
 import {linebreaks} from '../../../conf/i.js';
 
-import newline from './newline.js';
-
 export default (
     (string, char_i, string_offset, separation_result) => {
         var

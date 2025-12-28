@@ -15,7 +15,7 @@ export default (
                 (event.shiftKey)
                 ? (
                     (direction_key = "movementX"),
-                    (delta = (event.deltaX)),
+                    (delta = (event.deltaX || event.deltaY)),
                     0
                 )
                 : (

@@ -1,4 +1,5 @@
 import {linebreaks} from '../../../conf/i.js';
+
 import text_width from '../text_width.js';
 import {text_width_container} from '../../../elems/i.js';
 
@@ -15,9 +16,9 @@ export default (
             (linebreaks.includes(string[char_i]))
             ? (
                 (
-                    style_state.loaded_width = (
+                    style_state.content_width = (
                         Math.max(
-                            style_state.loaded_width,
+                            style_state.content_width,
                             text_width(
                                 text_width_container,
                                 string.substring(string_offset, char_i)

@@ -46,7 +46,7 @@ export default ((row_height) => {
         content_bottom: 0,
         
         scrollbar_x_left:0,
-        scrollbar_x_right:row_height,
+        scrollbar_x_right:list_margin,
 
         scrollbar_y_top:0,
         scrollbar_y_bottom:0,
@@ -58,14 +58,17 @@ export default ((row_height) => {
         content_width: 0,
         content_height: 0,
 
-        loaded_width:content_left,
-        loaded_height:content_top,
+        loaded_width:0,
+        loaded_height:0,
 
         scroll_size_x:0,
         scroll_size_y:0,
 
         scroll_content_width:0,
         scroll_content_height:0,
+
+        scrollbar_content_width:0,
+        scrollbar_content_height:0,
 
         // for CSS transform property:
         thumb_x_translate:0,

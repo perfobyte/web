@@ -18,10 +18,7 @@ import {
 
 import {
     scrollbar_thumb_y_transform,
-    edit,
-    render_element,
     is_separation,
-    
 } from '../../../../f/i.js';
 
 export default (
@@ -42,7 +39,7 @@ export default (
             rows = list.children,
             row_l = rows.length,
 
-            edit_rows = edit[0][0][0],
+            edit_rows = null,//edit[0][0][0],
 
             blocks = alloc_state.blocks,
 
@@ -67,10 +64,8 @@ export default (
             alloc_state.length_messages,
             alloc_state.size_message,
 
-            alloc_state.offset_loaded_elements,
+            0,
             alloc_state.length_loaded_elements,
-
-            render_element,
 
             is_separation[row_width_mode]
         );
