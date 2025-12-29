@@ -5,8 +5,6 @@
     cursor:text;
     
     user-select: none;
-
-    font-family: var(--font-family);
     
     top:var(--list-top);
     left:var(--list-left);

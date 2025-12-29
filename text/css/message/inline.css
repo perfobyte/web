@@ -5,6 +5,8 @@
 
     white-space: pre;
     overflow: hidden;
+    
+    font-family: var(--font-family);
 }
 
 .default_height {

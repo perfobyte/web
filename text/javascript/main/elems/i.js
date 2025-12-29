@@ -13,7 +13,8 @@ export var
     
     MESSAGE_ROW_EL = template.querySelector(".message_row"),
 
-    text_width_container = document.getElementById('text_width_container'),
+    text_width_container = (MESSAGE_ROW_EL.cloneNode(true).firstElementChild),
+    default_row_inline_class = text_width_container.className,
 
     scrollbar_x = document.getElementById("scrollbar_x"),
     scrollbar_y = document.getElementById("scrollbar_y"),
@@ -35,5 +36,9 @@ export var
 
     elements = Array.from(elements_block,template_clone)
 ;
+console.log(default_row_inline_class);
+
+text_width_container.setAttribute("id","text_width_container");
+body.appendChild(text_width_container);
 
 export * from "./event.js"

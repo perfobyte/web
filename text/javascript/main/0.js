@@ -4,9 +4,6 @@ import {
     font_src,
 
     load_msgs,
-
-    is_separation,
-    text_width,
 } from './f/i.js';
 
 import {
@@ -36,6 +33,8 @@ import {
 
     text_width_container,
     content,
+
+    default_row_inline_class,
 } from "./elems/i.js";
 
 import {
@@ -152,11 +151,9 @@ import {
             .load()
             .then(
                 () => {
-                    var
-                        current_separation = is_separation[row_width_mode]
-                    ;
-                    
                     load_msgs(
+                        default_row_inline_class,
+
                         (alloc_state.string_block),
                         alloc_state.buffer_messages_view,
 
@@ -180,12 +177,14 @@ import {
                         fragment,
                         range,
 
-                        text_width,
                         text_width_container,
                     );
                     
                     on_window_resize(window_event_object);
                     window.onresize = on_window_resize;
+
+                    list.scrollLeft =
+                    list.scrollTop = 0;
 
                     body_cl.add('a');
                 }

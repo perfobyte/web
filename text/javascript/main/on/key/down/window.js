@@ -3,8 +3,11 @@ import {
     zoom_keys,
     x_move_event,
     y_move_event,
+    
+    messages_fragment as fragment,
 } from '../../../conf/i.js';
-import {style_state} from '../../../state/i.js';
+
+import {style_state, alloc_state} from '../../../state/i.js';
 import {
     number_clamp,
     ctrl_key,
@@ -13,6 +16,7 @@ import {
     scrollbar_thumb_y_transform,
 
     zoom,
+    template_clone,
 } from '../../../f/i.js';
 import {
     html_style,
@@ -26,6 +30,9 @@ import {
 
     scrollbar_thumb_x_style,
     scrollbar_thumb_y_style,
+
+    elements,
+    text_width_container,
 } from '../../../elems/i.js';
 import {on_window_resize} from "../../resize/i.js";
 
@@ -79,7 +86,26 @@ export default (
                             max,
                         )
                     )
-                    : (style_state.zoom_default)
+                    : (style_state.zoom_default),
+
+                    elements,
+                    0,
+                    alloc_state.length_loaded_elements,
+                    
+                    style_state,
+                    
+                    scrollbar_thumb_x_transform,
+                    scrollbar_thumb_y_transform,
+                    Array.from,
+                    template_clone,
+
+                    fragment,
+                    list,
+                    text_width_container,
+
+                    html_style,
+                    scrollbar_thumb_x_style,
+                    scrollbar_thumb_y_style,
                 )
             )
         );

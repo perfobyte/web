@@ -7,7 +7,7 @@ export default (
         fromCodePoint,
         Float32Array,
 
-        text_width,
+        default_row_inline_class,
         text_width_container,
     ) => {
         var
@@ -25,17 +25,18 @@ export default (
             coord = null,
             loaded = 0
         ;
+        
+        text_width_container.className = default_row_inline_class;
 
         for (; coord_i < coord_l; coord_i++) {
             i = (coord = coords[coord_i])[0];
             l = coord[1];
 
             while (i < l) {
+                text_width_container.textContent = fromCodePoint(i++).repeat(count);
+                
                 map[loaded++] = (
-                    text_width(
-                        text_width_container,
-                        fromCodePoint(i++).repeat(count)
-                    )
+                    (text_width_container.getBoundingClientRect().width)
                     / count
                 );
             }

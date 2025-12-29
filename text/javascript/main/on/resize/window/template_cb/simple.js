@@ -55,13 +55,16 @@ export default (
             excess_x = ((move_x + thumb_x_width) - scrollbar_x_width),
             excess_y = ((move_y + thumb_y_height) - scrollbar_y_height)
         ;
-        
+
         S.scroll_content_width = Math.max(0,(content_width - list_width));
         S.scroll_content_height = Math.max(0,(content_height - list_height));
 
+        S.scrollbar_x_width = scrollbar_x_width;
+        S.scrollbar_y_height = scrollbar_y_height;
+        
         S.scrollbar_content_width = (scrollbar_x_width - thumb_x_width);
         S.scrollbar_content_height = (scrollbar_y_height - thumb_y_height);
-
+        
         html_style.setProperty(
             "--content-height",
             `${S.content_height = content_height}px`

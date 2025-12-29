@@ -1,134 +1,173 @@
-import {style_state, alloc_state, mode_state} from '../../state/i.js';
-import {
-    list,
-    scrollbar_thumb_x_style,
-    scrollbar_thumb_y_style,
-    html_style,
+
+// i = 0,
+// l = alloc_state.length_loaded_elements,
+
+export default (
+    new_zoom,
 
     elements,
-    content_style,
-} from '../../elems/i.js';
-
-import {
-    on_window_resize_template,
-} from '../../on/i.js';
-
-import {
-    number_clamp,
+    i,
+    l,
+    
+    S,
+    
     scrollbar_thumb_x_transform,
     scrollbar_thumb_y_transform,
-    
+    array_from,
+    template_clone,
 
-} from '../../f/i.js';
-import {window_event_object} from '../../conf/i.js';
+    fragment,
+    list,
+    text_width_container,
 
-
-export default (new_zoom) => {
+    html_style,
+    scrollbar_thumb_x_style,
+    scrollbar_thumb_y_style,
+) => {
     var
-        row_height = (style_state.row_height = style_state.row_height_default * new_zoom),
-        i = 0,
-        l = alloc_state.length_loaded_elements,
-        prev_zoom = style_state.zoom,
-        ratio = new_zoom / prev_zoom,
-        prev_left = list.scrollLeft,
-        prev_top = list.scrollTop,
+        max = Math.max,
+        min = Math.min,
+
+        list_width = S.list_width,
+        list_height = S.list_height,
+
+        content_top = S.content_top,
+        content_left = S.content_left,
+
+        content_height = content_top,
+        content_width = content_left,
+
+        left = S.scrollLeft,
+        top = S.scrollTop,
+
+        row_height = (S.row_height = S.row_height_default * new_zoom),
+
+        px = 0,
         
-        list_width = 0,
-        list_height = 0,
-        content_height = 0,
-        content_width = 0,
-        new_left = 0,
-        new_top = 0,
+        scroll_top_lines = S.scroll_top_lines,
+        scroll_left_lines = S.scroll_left_lines,
+        
+        prev_zoom = S.zoom,
+        ratio = new_zoom / prev_zoom,
+
+        content_bottom = (S.content_bottom = ((list_height) - (row_height))),
+
+        font_size = (S.font_size = (S.font_size_default * new_zoom)),
+
+        scale_x = 0,
+        scale_y = 0,
+
         max_left = 0,
-        max_top = 0
+        max_top = 0,
+
+        max_width = 0,
+
+        element = null,
+        inline = null,
+        
+        row_width = 0,
+
+        node_i = 0,
+        node_l = 0,
+
+        nodes = null,
+        
+        thumb_x_width = 0,
+        thumb_y_height = 0,
+
+        scrollbar_x_width = S.scrollbar_x_width,
+        scrollbar_y_height = S.scrollbar_y_height,
+
+        scrollbar_content_width = 0,
+        scrollbar_content_height = 0
     ;
 
-    while (i < l) {
-      elements[i].style.top = `${content_height}px`;
-      content_height += row_height;
-      i++;
-    }
-  
-    style_state.zoom = new_zoom;
-    style_state.content_height = content_height;
-  
     html_style.setProperty("--row-height", `${row_height}px`);
-    html_style.setProperty(
-        "--font-size",
-        `${
-            style_state.font_size = (
-                style_state.font_size_default
-                * new_zoom
-            )
-        }px`
-    );
+    html_style.setProperty("--font-size", `${font_size}px`);
+
+    for (;i < l; i++) {
+        element = elements[i];
+        inline = element.firstElementChild;
+
+        text_width_container.className = (inline.className);
+
+        nodes = inline.childNodes;
+        node_i = 0;
+        node_l = nodes.length;
+        
+        while (node_i < node_l) {
+            fragment.appendChild(nodes[node_i++].cloneNode(true))
+        };
+        text_width_container.replaceChildren(fragment);
+        
+        px = (text_width_container.getBoundingClientRect().width);
+        max_width = max(max_width, px);
+
+        // inline.style.width = `${px}px`;
+
+        element.style.top = `${content_height}px`;
+
+        content_height += row_height;
+    };
+
+    S.loaded_height = (content_height - content_top);
+    S.content_height = (content_height += content_bottom);
+    S.zoom = new_zoom;
     
-    style_state.extra_scroll_height = (
-        (list_height = style_state.list_height)
-        - (row_height - style_state.list_top)
-    );
-    
-    content_style.height = `${
-        content_height = (
-            style_state.content_height = (
-                content_height
-                + style_state.extra_scroll_height
-            )
-        )
-    }px`;
-  
-    if (mode_state.row_width === 0) {
-        content_width = (
-            style_state.content_width = (
-                (
-                    style_state.content_width
-                    * new_zoom
-                )
-                + style_state.extra_scroll_width
-            )
-        );
-        content_style.width = `${content_width}px`;
-    }
-    else {
-        content_width = style_state.content_width;
-    }
-    
-    style_state.thumb_x_scale = Math.min(1, (list_width  = style_state.list_width)  / content_width);
-    style_state.thumb_y_scale = Math.min(1, list_height / content_height);
-  
-    new_left = prev_left * ratio;
-    new_top  = prev_top  * ratio;
-  
-    max_left = Math.max(0, (content_width - list_width));
-    max_top  = Math.max(0, (content_height - list_height));
-  
-    (new_left > max_left) && (new_left = max_left);
-    (new_top  > max_top) && (new_top = max_top);
-  
-    list.scrollLeft = new_left;
-    list.scrollTop  = new_top;
-  
-    style_state.thumb_x_translate = (
-        (content_width)
-        ? ((new_left / content_width) * (style_state.thumb_x_size))
-        : 0
+    S.loaded_width = max_width;
+
+    row_width = (S.row_width = (max_width + S.content_right));
+
+    S.content_width = (content_width += (row_width));
+
+    html_style.setProperty("--row-width", `${row_width}px`);
+
+    html_style.setProperty("--content-height",`${content_height}px`);
+    html_style.setProperty("--content-width",`${content_width}px`);
+
+    max_left = (S.scroll_content_width = max(0,(content_width - list_width)));
+    max_top = (S.scroll_content_height = max(0,(content_height - list_height)));
+
+    scale_x = (S.thumb_x_scale = min(1, (list_width / content_width)));
+    scale_y = (S.thumb_y_scale = min(1, (list_height / content_height)));
+
+    scrollbar_content_width = (S.scrollbar_content_width = (scrollbar_x_width * (1 - scale_x)));
+    scrollbar_content_height = (S.scrollbar_content_height = (scrollbar_y_height * (1 - scale_y)));
+
+
+    (scroll_left_lines > 0)
+    &&
+    (
+        left = (list.scrollLeft = (
+            content_left + (scroll_left_lines * row_height)
+        ))
     );
 
-    style_state.thumb_y_translate = (
-        (content_height)
-        ? (new_top  / content_height) * (style_state.thumb_y_size)
-        : 0
+    (scroll_top_lines > 0)
+    &&
+    (
+        top = (list.scrollTop  = (
+            content_top + (scroll_top_lines * row_height)
+        ))
     );
-  
+
     scrollbar_thumb_x_style.transform =
         scrollbar_thumb_x_transform(
-            style_state.thumb_x_translate,
-            style_state.thumb_x_scale
+            (S.thumb_x_translate = (
+                max_left
+                ? ((scrollbar_content_width) * (left / max_left))
+                : 0
+            )),
+            scale_x
         );
 
-    scrollbar_thumb_y_style.transform = 
+    scrollbar_thumb_y_style.transform =
         scrollbar_thumb_y_transform(
-            style_state.thumb_y_translate,
-            style_state.thumb_y_scale
+            (S.thumb_y_translate = (
+                max_top
+                ? ((scrollbar_content_height) * (top / max_top))
+                : 0
+            )),
+            scale_y
         );
 };

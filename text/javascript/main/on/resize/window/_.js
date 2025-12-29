@@ -26,7 +26,7 @@ import {
     get_null,
 } from '../../../f/i.js';
 
-import template_cb from './template_cb/i.js';
+import template_cb from './template_cb/map.js';
 
 
 export default (

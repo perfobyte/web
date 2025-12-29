@@ -18,7 +18,6 @@ import {
 
 import {
     scrollbar_thumb_y_transform,
-    is_separation,
 } from '../../../../f/i.js';
 
 export default (
@@ -66,8 +65,6 @@ export default (
 
             0,
             alloc_state.length_loaded_elements,
-
-            is_separation[row_width_mode]
         );
 
         list_scroll_height = style_state.content_height;

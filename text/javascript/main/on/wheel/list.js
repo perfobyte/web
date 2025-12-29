@@ -1,9 +1,29 @@
 import {on_scrollbar_thumb_mousemove} from '../mouse/i.js';
-import {wheel_delta_value, ctrl_key, zoom, number_clamp} from '../../f/i.js';
-import {style_state, mode_state} from '../../state/i.js';
+import {
+    wheel_delta_value,
+    ctrl_key,
+    zoom,
+    number_clamp,
+
+    scrollbar_thumb_x_transform,
+    scrollbar_thumb_y_transform,
+
+    template_clone,
+} from '../../f/i.js';
+import {style_state, mode_state, alloc_state} from '../../state/i.js';
 import {
     xy_move_event,
+    messages_fragment as fragment,
 } from '../../conf/i.js';
+import {
+    elements,
+    list,
+    text_width_container,
+
+    html_style,
+    scrollbar_thumb_x_style,
+    scrollbar_thumb_y_style,
+} from '../../elems/i.js';
 
 export default (
     (event) => {
@@ -37,15 +57,36 @@ export default (
 
             ctrl_key(event)
             ? (
-                zoom(number_clamp(
-                    (
-                        style_state.zoom * Math.exp((px) * (mode_state.sensitivity_wheel))
+                zoom(
+                    number_clamp(
+                        (
+                            style_state.zoom * Math.exp((px) * (mode_state.sensitivity_wheel))
+                        ),
+                        style_state.zoom_min,
+                        style_state.zoom_max,
+                        Math.min,
+                        Math.max,
                     ),
-                    style_state.zoom_min,
-                    style_state.zoom_max,
-                    Math.min,
-                    Math.max,
-                ))
+
+                    elements,
+                    0,
+                    alloc_state.length_loaded_elements,
+                    
+                    style_state,
+                    
+                    scrollbar_thumb_x_transform,
+                    scrollbar_thumb_y_transform,
+                    Array.from,
+                    template_clone,
+
+                    fragment,
+                    list,
+                    text_width_container,
+
+                    html_style,
+                    scrollbar_thumb_x_style,
+                    scrollbar_thumb_y_style,
+                )
             )
             : (
                 ((event_object = xy_move_event[direction])[direction_key] = (px)),

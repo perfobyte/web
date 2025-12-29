@@ -12,9 +12,10 @@ export default ((row_height) => {
         font_size_step:1,
         font_id: 4062975092252341068n,
 
+        row_width:0,
         row_height,
         row_height_default: 22,
-        
+
         zoom: 1,
         zoom_step: 0.1,
         zoom_default: 1,
@@ -51,6 +52,9 @@ export default ((row_height) => {
         scrollbar_y_top:0,
         scrollbar_y_bottom:0,
 
+        scrollbar_x_width:0,
+        scrollbar_y_height:0,
+
         // to know how far I can scroll
         list_width:1,
         list_height:1,
@@ -76,6 +80,13 @@ export default ((row_height) => {
 
         thumb_x_scale:1,
         thumb_y_scale:1,
+
+        // scroll information
+        scrollLeft:0,
+        scrollTop:0,
+
+        scroll_top_lines:0,
+        scroll_left_lines:0,
     }
 })(
     22,
