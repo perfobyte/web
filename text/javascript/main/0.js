@@ -4,6 +4,11 @@ import {
     font_src,
 
     load_msgs,
+
+    element_cursor,
+    init_cursors,
+
+    element_template,
 } from './f/i.js';
 
 import {
@@ -29,12 +34,17 @@ import {
     elements,
 
     MESSAGE_ROW_EL,
+    CURSOR_EL,
+
     content_style,
 
     text_width_container,
     content,
 
     default_row_inline_class,
+
+    cursors,
+    cursor_elems,
 } from "./elems/i.js";
 
 import {
@@ -90,7 +100,7 @@ import {
         ;
 
         
-
+        
         // workers[0] = new Worker("/f/text/javascript/worker/fs/1.js");
         
         window.onerror = on_error;
@@ -128,6 +138,9 @@ import {
 
         st.setProperty("--scrollbar_y_top", `${S.scrollbar_y_top}px`);
         st.setProperty("--scrollbar_y_bottom", `${S.scrollbar_y_bottom}px`);
+
+            
+        
         
         font_faces[0] =
         font_face = (
@@ -151,21 +164,30 @@ import {
             .load()
             .then(
                 () => {
+                    var
+                        size_message = alloc_state.size_message,
+                        
+                        i = 0,
+                        l = cursor_elems.length,
+
+                        c_el = null
+                    ;
                     load_msgs(
                         default_row_inline_class,
 
-                        (alloc_state.string_block),
-                        alloc_state.buffer_messages_view,
-
+                        alloc_state.blocks,
+                        alloc_state.offset_blocks,
+                        
+                        alloc_state.messages,
                         0,
-                        (alloc_state.length_messages),
+                        alloc_state.length_messages,
 
                         elements,
                         0,
                         alloc_state.length_loaded_elements,
 
                         MESSAGE_ROW_EL,
-                        alloc_state.size_message,
+                        size_message,
                         alloc_state.size_elements,
                         S.row_height,
 
@@ -178,11 +200,34 @@ import {
                         range,
 
                         text_width_container,
+
+                        element_template,
                     );
                     
                     on_window_resize(window_event_object);
                     window.onresize = on_window_resize;
 
+
+                    {
+                        for(;i < l; i++) {
+                            c_el = element_cursor(CURSOR_EL);
+                
+                            cursor_elems[i] = c_el;
+                            
+                            fragment.appendChild(c_el.element);
+                        };
+                
+                        c_el.x = 4;
+                        c_el.y = 1;
+                
+                        init_cursors(
+                            cursor_elems,
+                            elements,
+                            text_width_container,
+                        );
+                        cursors.appendChild(fragment);
+                    }
+                    
                     list.scrollLeft =
                     list.scrollTop = 0;
 

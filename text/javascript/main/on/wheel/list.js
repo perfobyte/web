@@ -9,6 +9,7 @@ import {
     scrollbar_thumb_y_transform,
 
     template_clone,
+    init_cursors,
 } from '../../f/i.js';
 import {style_state, mode_state, alloc_state} from '../../state/i.js';
 import {
@@ -23,6 +24,7 @@ import {
     html_style,
     scrollbar_thumb_x_style,
     scrollbar_thumb_y_style,
+    cursor_elems,
 } from '../../elems/i.js';
 
 export default (
@@ -67,6 +69,7 @@ export default (
                         Math.min,
                         Math.max,
                     ),
+                    cursor_elems,
 
                     elements,
                     0,
@@ -76,8 +79,7 @@ export default (
                     
                     scrollbar_thumb_x_transform,
                     scrollbar_thumb_y_transform,
-                    Array.from,
-                    template_clone,
+                    init_cursors,
 
                     fragment,
                     list,

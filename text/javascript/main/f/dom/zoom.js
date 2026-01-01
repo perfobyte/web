@@ -5,6 +5,8 @@
 export default (
     new_zoom,
 
+    cursor_elems,
+
     elements,
     i,
     l,
@@ -13,9 +15,8 @@ export default (
     
     scrollbar_thumb_x_transform,
     scrollbar_thumb_y_transform,
-    array_from,
-    template_clone,
-
+    init_cursors,
+    
     fragment,
     list,
     text_width_container,
@@ -37,9 +38,11 @@ export default (
         content_height = content_top,
         content_width = content_left,
 
-        left = S.scrollLeft,
-        top = S.scrollTop,
+        left = list.scrollLeft,
+        top = list.scrollTop,
 
+        prev_row_height = S.row_height,
+        
         row_height = (S.row_height = S.row_height_default * new_zoom),
 
         px = 0,
@@ -48,8 +51,7 @@ export default (
         scroll_left_lines = S.scroll_left_lines,
         
         prev_zoom = S.zoom,
-        ratio = new_zoom / prev_zoom,
-
+        
         content_bottom = (S.content_bottom = ((list_height) - (row_height))),
 
         font_size = (S.font_size = (S.font_size_default * new_zoom)),
@@ -79,14 +81,18 @@ export default (
         scrollbar_y_height = S.scrollbar_y_height,
 
         scrollbar_content_width = 0,
-        scrollbar_content_height = 0
-    ;
+        scrollbar_content_height = 0,
 
+        e = null
+    ;
+    
     html_style.setProperty("--row-height", `${row_height}px`);
     html_style.setProperty("--font-size", `${font_size}px`);
-
+    
     for (;i < l; i++) {
-        element = elements[i];
+        e = elements[i];
+
+        element = e.element;
         inline = element.firstElementChild;
 
         text_width_container.className = (inline.className);
@@ -101,14 +107,19 @@ export default (
         text_width_container.replaceChildren(fragment);
         
         px = (text_width_container.getBoundingClientRect().width);
+        e.width = px;
+        
         max_width = max(max_width, px);
 
         // inline.style.width = `${px}px`;
 
         element.style.top = `${content_height}px`;
-
+        e.top = content_height;
+        
         content_height += row_height;
     };
+
+
 
     S.loaded_height = (content_height - content_top);
     S.content_height = (content_height += content_bottom);
@@ -146,7 +157,7 @@ export default (
     (scroll_top_lines > 0)
     &&
     (
-        top = (list.scrollTop  = (
+        top = (list.scrollTop = (
             content_top + (scroll_top_lines * row_height)
         ))
     );
@@ -170,4 +181,10 @@ export default (
             )),
             scale_y
         );
+
+    init_cursors(
+        cursor_elems,
+        elements,
+        text_width_container,
+    )
 };

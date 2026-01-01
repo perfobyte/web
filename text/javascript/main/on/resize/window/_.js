@@ -57,6 +57,9 @@ export default (
 
         html_style.setProperty("--list-width", `${list_width}px`);
         html_style.setProperty("--list-height", `${list_height}px`);
+
+        S.list_width_neg = -list_width;
+        S.list_height_neg = -list_height;
         
         (
             template_cb[

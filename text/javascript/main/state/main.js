@@ -1,4 +1,4 @@
-import section_state from './section.js';
+import app_state from './app.js';
 
 export default (
     (
@@ -39,5 +39,5 @@ export default (
     globalThis.window.location.search,
     0,
     globalThis.Number,
-    section_state.length,
+    app_state.length,
 );

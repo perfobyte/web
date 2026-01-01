@@ -3,9 +3,11 @@ import {linebreaks} from '../../../conf/i.js';
 export default (
     (
         default_row_inline_class,
-        string,
-        msgs,
 
+        blocks,
+        offset_blocks,
+
+        msgs,
         i,
         l,
 
@@ -27,9 +29,12 @@ export default (
         range,
 
         text_width_container,
+
+        element_template,
     ) => {
         var
             element = null,
+            string = '',
             
             char_i = 0,
             char_l = 0,
@@ -57,7 +62,15 @@ export default (
             inline = null,
 
             w = 0,
-            row_width = 0
+            row_width = 0,
+
+            message = null,
+
+            e = null,
+
+            message_id = 0,
+
+            block = null
         ;
 
         text_width_container.className = default_row_inline_class;
@@ -65,8 +78,14 @@ export default (
         general: while (true) {
             append: {
                 while (i < l) {
-                    char_i = msgs.getUint16(i+12,true);
-                    char_l = (char_i + (msgs.getUint16(i+14,true)));
+                    message = msgs[i];
+
+                    char_i = message.offset;
+                    char_l = (char_i + (message.length));
+
+                    block = message.block;
+                    
+                    string = block.value;
                     
                     while (char_i < char_l) {
                         next = (char_i + 1);
@@ -78,18 +97,27 @@ export default (
                                 new_length = (elems_l + block_length);
                                 
                                 for (;elements_l < new_length; elements_l++) {
-                                    elements.push(template.cloneNode(true))
+                                    elements.push(element_template(template))
                                 };
                             };
+                            e = elements[elems_i++];
+                            e.message = message;
+                            e.block = block;
 
-                            chunk = string.substring(string_offset, char_i);
+                            element = e.element;
 
+                            chunk = string.substring((e.start=string_offset), (e.end=char_i));
+                            
+                            e.length = chunk.length;
+                            
                             text_width_container.textContent = chunk;
+
                             w = (text_width_container.getBoundingClientRect().width);
+                            e.width = w;
 
                             max_width = (Math.max(max_width,w));
 
-                            element = elements[elems_i++];
+                            
                             inline = element.firstElementChild;
                             
                             // inline.style.width = `${w}px`;
@@ -99,7 +127,10 @@ export default (
 
                             style.top = `${style_top}px`;
                             style.left = `${element_left}px`;
-                            
+
+                            e.top = style_top;
+                            e.left = element_left;
+
                             style_top += px;
 
                             string_offset = next;
@@ -113,18 +144,27 @@ export default (
                             new_length = (elems_l + block_length);
                             
                             for (;elements_l < new_length; elements_l++) {
-                                elements.push(template.cloneNode(true))
+                                elements.push(element_template(template));
                             };
                         };
 
-                        chunk = string.substring(string_offset, char_l);
+                        e = elements[elems_i++];
+                        e.message = message;
+                        e.block = block;
+
+                        element = e.element;
+
+                        chunk = string.substring((e.start=string_offset), (e.end=char_l));
+                        
+                        e.length = chunk.length;
+                        
 
                         text_width_container.textContent = chunk;
                         w = (text_width_container.getBoundingClientRect().width);
-                        
+                        e.width = w;
+
                         max_width = (Math.max(max_width,w));
 
-                        element = elements[elems_i++];
                         inline = element.firstElementChild;
 
                         // inline.style.width = `${w}px`;
@@ -134,34 +174,33 @@ export default (
 
                         style.top = `${style_top}px`;
                         style.left = `${element_left}px`;
+
+                        e.top = style_top;
+                        e.left = element_left;
                         
                         style_top += px;
                     }
 
-                    i += size_message;
+                    i++;
                 }
                 break general;
             };
         };
 
-        (
-            (elems_i > elems_loaded)
-            ? (
-                fragment.append(...(elements.slice(elems_loaded, elems_i))),
-                content.appendChild(fragment),
-                true
-            )
-            :
-            (elems_i < elems_loaded)
-            ? (
-                range.setStartBefore(elements[elems_i]),
-                range.setEndAfter(elements[elems_loaded - 1]),
-                range.deleteContents(),
-                true
-            )
-            : false
-        )
-        && (alloc_state.length_loaded_elements = elems_i);
+        if (elems_i > elems_loaded) {
+            while (elems_loaded < elems_i) {
+                fragment.appendChild(elements[elems_loaded++].element);
+            };
+            
+            content.appendChild(fragment);
+            alloc_state.length_loaded_elements = elems_i;
+        }
+        else if (elems_i < elems_loaded) {
+            range.setStartBefore(elements[elems_i].element);
+            range.setEndAfter(elements[elems_loaded - 1].element);
+            range.deleteContents();
+            alloc_state.length_loaded_elements = elems_i;
+        }
 
         S.loaded_height = (style_top - content_top);
 

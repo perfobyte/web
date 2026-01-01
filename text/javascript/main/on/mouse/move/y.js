@@ -44,7 +44,7 @@ export default (
         .transform =
             scrollbar_thumb_y_transform(scrolled, S.thumb_y_scale);
         
-        S.scrollTop = (list.scrollTop = top);
+        list.scrollTop = top;
 
         S.scroll_top_lines = (top - content_top) / S.row_height;
     }

@@ -41,8 +41,8 @@ export default (
         .transform =
             scrollbar_thumb_x_transform(scrolled, S.thumb_x_scale);
         
-        S.scrollLeft = (list.scrollLeft = left);
-
+        list.scrollLeft = left;
+        
         S.scroll_left_lines = (left - content_left) / S.row_height;
     }
 );

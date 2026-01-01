@@ -5,6 +5,8 @@
     overflow:hidden;
     background-color:var(--background-color);
 
+    --cursor-width:1px;
+
     --background-color: #FFFFFFFF;
     --color: #000000FF;
     --placeholder-color: #808080FF;

@@ -52,16 +52,18 @@ export default (
             row_width_mode = mode_state.row_width,
 
             size_x = 0,
-            size_y = 0
+            size_y = 0,
+
+            size_message = alloc_state.size_message
         ;
 
         edit_rows(
-            alloc_state.string_block,
+            alloc_state.blocks,
             alloc_state.buffer_messages_view,
 
             0,
-            alloc_state.length_messages,
-            alloc_state.size_message,
+            alloc_state.length_messages * size_message,
+            size_message,
 
             0,
             alloc_state.length_loaded_elements,

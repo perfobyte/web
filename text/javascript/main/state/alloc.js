@@ -1,4 +1,6 @@
 import {array_unumber_update, array_unumber_constructor} from "../f/i.js";
+import test_messages from './test_messages.js';
+
 
 export default (
     () => {
@@ -23,8 +25,6 @@ export default (
 
             size_elements = size_block,
 
-            blocks = Array(number_blocks).fill(""),
-
             buffer_request = (
                 new SharedArrayBuffer(
                     number_blocks * 8
@@ -32,6 +32,7 @@ export default (
             ),
             buffer_request_view = new DataView(buffer_request),
             
+            blocks = Array(size_blocks).fill(null),
             buffer_blocks = new SharedArrayBuffer(size_blocks),
             buffer_blocks_view = new DataView(buffer_blocks),
 
@@ -43,37 +44,25 @@ export default (
             number_memory_pages = (size_ram / size_memory_page),
 
             size_message = 64,
-            length_messages = (5 * size_message),
 
-            string_block = ""
+            messages = (
+                test_messages
+            ),
+
+            length_messages = (messages.length),
+
+            test_block = {
+                id: 0,
+                value: "hello_my_friend\nhow are u bro\n i havent seen u a long time agosdfldsfkdsfksdfksdfsdf\\cwaitaaaa\naaaaai havent seen u a long time agosdfldsfkdsfksdfksdfsdfi havent seen u a long time agosdfldsfkdsfksdfksdfsdfi havent seen u a long time agosdfldsfkdsfksdfksdfsdfi havent seen u a long time agosdfldsfkdsfksdfksdfsdf11\n2\n3\n4\n3553345435345345345534534\nx312x1e1ex1e1ex3e123x123x312x1e1ex1e1ex3e123x123x312x1e1ex1e1ex3e123x123x312x1e1ex1e1ex3e123x123x312x1e1ex1e1ex3e123x123x312x1e1ex1e1ex3e123x123\nhello/world//////",
+            }
         ;
-
-        string_block = "hello_my_friend\nhow are u bro\n i havent seen u a long time agosdfldsfkdsfksdfksdfsdf\\cwaitaaaa\naaaaai havent seen u a long time agosdfldsfkdsfksdfksdfsdfi havent seen u a long time agosdfldsfkdsfksdfksdfsdfi havent seen u a long time agosdfldsfkdsfksdfksdfsdfi havent seen u a long time agosdfldsfkdsfksdfksdfsdf11\n2\n3\n4\n3553345435345345345534534\nx312x1e1ex1e1ex3e123x123x312x1e1ex1e1ex3e123x123x312x1e1ex1e1ex3e123x123x312x1e1ex1e1ex3e123x123x312x1e1ex1e1ex3e123x123x312x1e1ex1e1ex3e123x123\nhello/world//////";
         
-        [
-            { chat_id: 0n, block_id: 0, offset: 0,   length: 62,  id: 0n, timestamp: 0n },
-            { chat_id: 0n, block_id: 0, offset: 63,  length: 27,  id: 1n, timestamp: 1n },
-            { chat_id: 0n, block_id: 0, offset: 90,  length: 10,  id: 3n, timestamp: 2n }, // 91 -> 90
-            { chat_id: 0n, block_id: 0, offset: 100, length: 212, id: 4n, timestamp: 3n }, // 101 -> 100
-            { chat_id: 0n, block_id: 0, offset: 312, length: 197, id: 5n, timestamp: 4n }, // 313 -> 312 ✅ now starts with "1"
-        ]
-        .reduce(
-            (view, message, index) => {
-                var f = (index * size_message);
-                return (
-                    view.setBigUint64(f, message.chat_id, true),
-                    view.setUint32(f+8, message.block_id, true),
-                    view.setUint16(f+12, message.offset, true),
-                    view.setUint16(f+14, message.length, true),
-                    view.setBigUint64(f+16, message.id, true),
-                    view.setBigUint64(f+24, message.timestamp, true),
+        blocks[0] = test_block;
 
-                    view
-                );
-            },
-            buffer_messages_view,
-        );
-
+        messages.forEach((m) => {
+            m.block = test_block;
+        });
+        
         return {
             value_le,
 
@@ -81,7 +70,9 @@ export default (
             size_cpu_cache_line,
             size_block,
             size_ram,
+
             size_elements,
+            size_cursor_elements:1,
 
             size_message,
 
@@ -94,17 +85,15 @@ export default (
 
             length_loaded_elements:0,
             
-            blocks,
-
+            messages,
             buffer_messages,
             buffer_messages_view,
             
             offset_messages:0,
             length_messages,
 
-            string_block,
-            offset_string_block:0,
-
+            blocks,
+            
             buffer_blocks,
             buffer_blocks_view,
         }

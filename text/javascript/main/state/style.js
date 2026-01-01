@@ -4,7 +4,9 @@ export default ((row_height) => {
         list_margin = 14,
 
         content_left = list_margin,
-        content_top = list_margin
+        content_top = list_margin,
+
+        symbol_width = 20
     ;
     return {
         font_size: 16,
@@ -13,8 +15,12 @@ export default ((row_height) => {
         font_id: 4062975092252341068n,
 
         row_width:0,
+
         row_height,
         row_height_default: 22,
+        
+        symbol_width,
+        symbol_width_default: 20,
 
         zoom: 1,
         zoom_step: 0.1,
@@ -59,6 +65,9 @@ export default ((row_height) => {
         list_width:1,
         list_height:1,
 
+        list_width_neg:1,
+        list_height_neg:1,
+
         content_width: 0,
         content_height: 0,
 
@@ -82,9 +91,6 @@ export default ((row_height) => {
         thumb_y_scale:1,
 
         // scroll information
-        scrollLeft:0,
-        scrollTop:0,
-
         scroll_top_lines:0,
         scroll_left_lines:0,
     }
