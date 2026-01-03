@@ -2,6 +2,9 @@
     position:absolute;
     top:0;
     left:0;
-    width:var(--content-width);
-    height:var(--content-height);
+    width:var(--width-content);
+    height:var(--height-content);
+
+    background:var(--color-background);
+    pointer-events:none;
 }

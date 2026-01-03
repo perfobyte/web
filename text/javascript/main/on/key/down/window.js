@@ -8,9 +8,9 @@ import {
 } from '../../../conf/i.js';
 
 import {
-    style_state as S,
-    alloc_state,
-    app_state,
+    state_style as S,
+    state_alloc,
+    state_app,
 } from '../../../state/i.js';
 import {
     number_clamp,
@@ -43,7 +43,8 @@ import {
     elements,
     text_width_container,
 
-    cursor_elems,
+    elems_cursor,
+    main,
 } from '../../../elems/i.js';
 import {on_window_resize} from "../../resize/i.js";
 
@@ -62,7 +63,10 @@ export default (
             min = Math.min,
             max = Math.max,
 
-            key = e.key
+            key = e.key,
+
+            window = e.currentTarget,
+            document = window.document
         ;
 
         e.preventDefault();
@@ -75,7 +79,7 @@ export default (
             if (key === "Home") {
                 scroll_y(
                     0,
-                    S.thumb_y_scale,
+                    S.scale_thumb_y,
                     S,
                     
                     list,
@@ -86,8 +90,8 @@ export default (
             }
             else if (key === "End") {
                 scroll_y(
-                    (S.scroll_content_height),
-                    S.thumb_y_scale,
+                    (S.height_scroll_content),
+                    S.scale_thumb_y,
                     S,
                     
                     list,
@@ -127,11 +131,11 @@ export default (
                     )
                     : (S.zoom_default),
 
-                    cursor_elems,
+                    elems_cursor,
 
                     elements,
                     0,
-                    alloc_state.length_loaded_elements,
+                    state_alloc.length_loaded_elems,
                     
                     S,
                     
@@ -153,8 +157,8 @@ export default (
             
             if ((key === " ") || (key === "ArrowUp")) {
                 scroll_y(
-                    max(0, (list.scrollTop - S.list_height)),
-                    S.thumb_y_scale,
+                    max(0, (list.scrollTop - S.height_list)),
+                    S.scale_thumb_y,
                     S,
                     
                     list,
@@ -165,8 +169,8 @@ export default (
             }
             else if ((key === "PageUp") || (key === "ArrowLeft")) {
                 scroll_x(
-                    max(0, (list.scrollLeft - S.list_width)),
-                    S.thumb_x_scale,
+                    max(0, (list.scrollLeft - S.width_list)),
+                    S.scale_thumb_x,
                     S,
                     
                     list,
@@ -177,8 +181,8 @@ export default (
             }
             else if ((key === "PageDown") || (key === "ArrowRight")) {
                 scroll_x(
-                    min(S.scroll_content_width, (list.scrollLeft + S.list_width)),
-                    S.thumb_x_scale,
+                    min(S.width_scroll_content, (list.scrollLeft + S.width_list)),
+                    S.scale_thumb_x,
                     S,
                     
                     list,
@@ -189,8 +193,8 @@ export default (
             }
             else if (key === "ArrowDown") {
                 scroll_y(
-                    min(S.scroll_content_height, (list.scrollTop + S.list_height)),
-                    S.thumb_y_scale,
+                    min(S.height_scroll_content, (list.scrollTop + S.height_list)),
+                    S.scale_thumb_y,
                     S,
                     
                     list,
@@ -201,8 +205,8 @@ export default (
             }
             else if (key === "G") {
                 scroll_y(
-                    S.scroll_content_height,
-                    S.thumb_y_scale,
+                    S.height_scroll_content,
+                    S.scale_thumb_y,
                     S,
                     
                     list,
@@ -218,8 +222,8 @@ export default (
             (key === "PageDown")
         ) {
             scroll_y(
-                min(S.scroll_content_height, (list.scrollTop + S.list_height)),
-                S.thumb_y_scale,
+                min(S.height_scroll_content, (list.scrollTop + S.height_list)),
+                S.scale_thumb_y,
                 S,
                 
                 list,
@@ -230,8 +234,8 @@ export default (
         }
         else if (key === "PageUp") {
             scroll_y(
-                max(0, (list.scrollTop - S.list_height)),
-                S.thumb_y_scale,
+                max(0, (list.scrollTop - S.height_list)),
+                S.scale_thumb_y,
                 S,
                 
                 list,
@@ -242,8 +246,8 @@ export default (
         }
         else if ((key === "ArrowUp") || (key === "k")) {
             scroll_y(
-                max(0, (list.scrollTop - S.row_height)),
-                S.thumb_y_scale,
+                max(0, (list.scrollTop - S.height_row)),
+                S.scale_thumb_y,
                 S,
                 
                 list,
@@ -254,8 +258,8 @@ export default (
         }
         else if ((key === "ArrowDown") || (key === "j")) {
             scroll_y(
-                min(S.scroll_content_height, (list.scrollTop + S.row_height)),
-                S.thumb_y_scale,
+                min(S.height_scroll_content, (list.scrollTop + S.height_row)),
+                S.scale_thumb_y,
                 S,
                 
                 list,
@@ -266,8 +270,8 @@ export default (
         }
         else if ((key === "ArrowLeft") || (key === "h")) {
             scroll_x(
-                max(0, (list.scrollLeft - S.symbol_width)),
-                S.thumb_x_scale,
+                max(0, (list.scrollLeft - S.width_symbol)),
+                S.scale_thumb_x,
                 S,
                 
                 list,
@@ -278,8 +282,8 @@ export default (
         }
         else if ((key === "ArrowRight") || (key === "l")) {
             scroll_x(
-                min(S.scroll_content_width, (list.scrollLeft + S.symbol_width)),
-                S.thumb_x_scale,
+                min(S.width_scroll_content, (list.scrollLeft + S.width_symbol)),
+                S.scale_thumb_x,
                 S,
                 
                 list,
@@ -291,7 +295,7 @@ export default (
         else if (key === "Home") {
             scroll_x(
                 0,
-                S.thumb_x_scale,
+                S.scale_thumb_x,
                 S,
                 
                 list,
@@ -302,8 +306,8 @@ export default (
         }
         else if (key === "End") {
             scroll_x(
-                (S.scroll_content_width),
-                S.thumb_x_scale,
+                (S.width_scroll_content),
+                S.scale_thumb_x,
                 S,
                 
                 list,
@@ -315,11 +319,11 @@ export default (
         else if (
             (key === "g")
             &&
-            (app_state.last_key === "g")
+            (state_app.last_key === "g")
         ) {
             scroll_y(
                 0,
-                S.thumb_y_scale,
+                S.scale_thumb_y,
                 S,
                 
                 list,
@@ -328,8 +332,12 @@ export default (
                 scrollbar_thumb_y_transform,
             );
         }
+        else if (document.activeElement !== document.body) {
+            if (key === "Escape") {
+                main.element_input.blur();
+            }
+        };
         
-
-        app_state.last_key = key;
+        state_app.last_key = key;
     }
 );

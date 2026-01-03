@@ -1,5 +1,5 @@
 import {
-    style_state as S,
+    state_style as S,
 } from '../../../state/i.js';
 
 import {
@@ -15,15 +15,15 @@ import {
 export default (
     (e) => {
         var
-            scroll_content_size = S.scrollbar_content_height,
-            content_size = S.scroll_content_height,
+            scroll_content_size = S.height_scrollbar_content,
+            content_size = S.height_scroll_content,
 
             max = Math.max,
 
             scrolled = (
-                S.thumb_y_translate = 
+                S.translate_thumb_y = 
                     number_clamp(
-                        ((S.thumb_y_translate) + (e.movementY)),
+                        ((S.translate_thumb_y) + (e.movementY)),
                         0,
                         scroll_content_size,
                         Math.min,
@@ -37,15 +37,15 @@ export default (
 
             px = 0,
 
-            content_top = S.content_top
+            top_content = S.top_content
         ;
 
         scrollbar_thumb_y_style
         .transform =
-            scrollbar_thumb_y_transform(scrolled, S.thumb_y_scale);
+            scrollbar_thumb_y_transform(scrolled, S.scale_thumb_y);
         
         list.scrollTop = top;
 
-        S.scroll_top_lines = (top - content_top) / S.row_height;
+        S.lines_x = (top - top_content) / S.height_row;
     }
 );

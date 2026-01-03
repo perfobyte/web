@@ -18,12 +18,11 @@ export default (
             
             number_blocks = 1,
             number_message_blocks = 1,
-            value_le = true,
-
+            
             size_blocks = (size_block * number_blocks),
             size_message_blocks = (size_block * number_message_blocks),
 
-            size_elements = size_block,
+            size_elems = size_block,
 
             buffer_request = (
                 new SharedArrayBuffer(
@@ -38,8 +37,6 @@ export default (
 
             buffer_messages = new SharedArrayBuffer(size_message_blocks),
             buffer_messages_view = new DataView(buffer_messages),
-
-            offset_blocks = 0,
 
             number_memory_pages = (size_ram / size_memory_page),
 
@@ -64,38 +61,41 @@ export default (
         });
         
         return {
-            value_le,
+            value_is_endian_little: true,
 
             size_memory_page,
             size_cpu_cache_line,
             size_block,
             size_ram,
-
-            size_elements,
-            size_cursor_elements:1,
-
             size_message,
 
-            offset_blocks,
+            size_elems,
+            size_elems_cursor:1,
+            size_elems_input:1,
+            size_elems_textarea:1,
+
             number_blocks,
             number_message_blocks,
-
             number_cpu_cache_lines,
             number_memory_pages,
 
-            length_loaded_elements:0,
+            offset_blocks:0,
+            offset_messages:0,
+
+            length_loaded_elems:0,
+            length_loaded_elems_cursor:1,
+            length_loaded_elems_input:1,
+            length_loaded_elems_textarea:1,
+            length_messages,
             
-            messages,
             buffer_messages,
             buffer_messages_view,
-            
-            offset_messages:0,
-            length_messages,
 
-            blocks,
-            
             buffer_blocks,
             buffer_blocks_view,
+
+            blocks,
+            messages,
         }
     }
 )(

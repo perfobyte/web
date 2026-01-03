@@ -1,6 +1,6 @@
 
 // transform = scrollbar_thumb_y_transform
-// scale = S.thumb_y_scale
+// scale = S.scale_thumb_y
 // scrollbar_thumb_y_transform
 // thumb_style = scrollbar_thumb_y_style
 
@@ -20,12 +20,12 @@ export default (
         .transform =
             transform(
                 (
-                    S.thumb_y_translate = (
+                    S.translate_thumb_y = (
                         (
                             top
-                            / S.scroll_content_height
+                            / S.height_scroll_content
                         )
-                        * S.scrollbar_content_height
+                        * S.height_scrollbar_content
                     )
                 ),
                 scale
@@ -33,6 +33,6 @@ export default (
         
         list.scrollTop = top;
 
-        S.scroll_top_lines = ((top - S.content_top) / S.row_height);
+        S.lines_x = ((top - S.top_content) / S.height_row);
     }
 );

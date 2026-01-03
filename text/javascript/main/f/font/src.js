@@ -1,13 +1,13 @@
 
 export default (
-    (support_font_format, font_sid, i,l, font_path) => {
+    (support_structure_font, font_sid, i,l, font_path) => {
         var
             last_i = (l - 1),
             f = null,
             src = ""
         ;
         for(;i<l;i++){
-            f = support_font_format[i];
+            f = support_structure_font[i];
             src += (
                 `url("${
                     font_path(

@@ -1,2 +1,3 @@
+@import "./static/i.css";
 @import "./display.css";
-@import "./hideable.css";
+@import "./hidden.css";

@@ -2,14 +2,15 @@
 
 export default (
     (
-        cursor_elems,
+        elems_cursor,
         elements,
         text_width_container,
+        width,
     ) => {
         
         var
             i = 0,
-            l = cursor_elems.length,
+            l = elems_cursor.length,
 
             c = null,
             c_el = null,
@@ -27,7 +28,7 @@ export default (
         ;
         
         for(; i < l; i++) {
-            c = cursor_elems[i];
+            c = elems_cursor[i];
 
             x = c.x;
             y = c.y;
@@ -47,6 +48,8 @@ export default (
             
             s.top = `${e.top}px`;
             s.left = `${left}px`;
+
+            s.width = `${width}px`;
         }
     }
 );

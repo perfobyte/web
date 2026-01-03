@@ -1,6 +1,4 @@
 
 export default (
-    (e) => {
-        return undefined;
-    }
+    null //(e) => {}
 );

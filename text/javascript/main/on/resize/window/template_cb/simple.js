@@ -9,7 +9,7 @@ import {
 } from '../../../../elems/i.js';
 
 import {
-    style_state as S,
+    state_style as S,
 } from '../../../../state/i.js';
 
 import {
@@ -23,61 +23,61 @@ export default (
         width,
         height,
 
-        list_width,
-        list_height,
+        width_list,
+        height_list,
         
-        scrollbar_x_width,
-        scrollbar_y_height,
+        width_scrollbar_x,
+        height_scrollbar_y,
     ) => {
         var
-            row_height = S.row_height,
+            height_row = S.height_row,
             
-            content_width = (S.content_width),
-            content_height = (
-                (S.content_top)
-                + (S.loaded_height)
+            width_content = (S.width_content),
+            height_content = (
+                (S.top_content)
+                + (S.height_loaded)
                 + (
-                    S.content_bottom = (
-                        list_height - row_height
+                    S.bottom_content = (
+                        height_list - height_row
                     )
                 )
             ),
 
-            scale_x = Math.min(1, (list_width / (content_width))),
-            scale_y = Math.min(1, (list_height / (content_height))),
+            scale_x = Math.min(1, (width_list / (width_content))),
+            scale_y = Math.min(1, (height_list / (height_content))),
 
-            move_x = S.thumb_x_translate,
-            move_y = S.thumb_y_translate,
+            move_x = S.translate_thumb_x,
+            move_y = S.translate_thumb_y,
 
-            thumb_x_width = (scrollbar_x_width * scale_x),
-            thumb_y_height = (scrollbar_y_height * scale_y),
+            thumb_x_width = (width_scrollbar_x * scale_x),
+            thumb_y_height = (height_scrollbar_y * scale_y),
 
-            excess_x = ((move_x + thumb_x_width) - scrollbar_x_width),
-            excess_y = ((move_y + thumb_y_height) - scrollbar_y_height)
+            excess_x = ((move_x + thumb_x_width) - width_scrollbar_x),
+            excess_y = ((move_y + thumb_y_height) - height_scrollbar_y)
         ;
 
-        S.scroll_content_width = Math.max(0,(content_width - list_width));
-        S.scroll_content_height = Math.max(0,(content_height - list_height));
+        S.width_scroll_content = Math.max(0,(width_content - width_list));
+        S.height_scroll_content = Math.max(0,(height_content - height_list));
 
-        S.scrollbar_x_width = scrollbar_x_width;
-        S.scrollbar_y_height = scrollbar_y_height;
+        S.width_scrollbar_x = width_scrollbar_x;
+        S.height_scrollbar_y = height_scrollbar_y;
         
-        S.scrollbar_content_width = (scrollbar_x_width - thumb_x_width);
-        S.scrollbar_content_height = (scrollbar_y_height - thumb_y_height);
+        S.width_scrollbar_content = (width_scrollbar_x - thumb_x_width);
+        S.height_scrollbar_content = (height_scrollbar_y - thumb_y_height);
         
         html_style.setProperty(
-            "--content-height",
-            `${S.content_height = content_height}px`
+            "--height-content",
+            `${S.height_content = height_content}px`
         );
         
         scrollbar_thumb_x_style
         .transform = (
             scrollbar_thumb_x_transform(
                 ((excess_x) > 0)
-                ? (S.thumb_x_translate -= excess_x)
+                ? (S.translate_thumb_x -= excess_x)
                 : (move_x),
                 
-                (S.thumb_x_scale = (scale_x))
+                (S.scale_thumb_x = (scale_x))
             )
         );
         
@@ -85,10 +85,10 @@ export default (
         .transform = (
             scrollbar_thumb_y_transform(
                 ((excess_y) > 0)
-                ? (S.thumb_y_translate -= excess_y)
+                ? (S.translate_thumb_y -= excess_y)
                 : (move_y),
 
-                (S.thumb_y_scale = (scale_y))
+                (S.scale_thumb_y = (scale_y))
             )
         );
 

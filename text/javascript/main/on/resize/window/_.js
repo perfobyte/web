@@ -5,9 +5,9 @@ import {
 } from '../../../conf/i.js';
 
 import {
-    style_state as S,
-    mode_state,
-    alloc_state,
+    state_style as S,
+    state_mode,
+    state_alloc,
 } from "../../../state/i.js";
 import {
     scrollbar_thumb_x_style,
@@ -38,28 +38,28 @@ export default (
             width = window.innerWidth,
             height = window.innerHeight,
 
-            list_width = (S.list_width = (width - S.list_left - S.list_right)),
-            list_height = (S.list_height = (height - S.list_top - S.list_bottom)),
+            width_list = (S.width_list = (width - S.left_list - S.right_list)),
+            height_list = (S.height_list = (height - S.top_list - S.bottom_list)),
 
-            row_width_mode = mode_state.row_width,
+            row_width_mode = state_mode.width_row,
 
-            scrollbar_x_width = (
+            width_scrollbar_x = (
                 width
-                - S.scrollbar_x_left
-                - S.scrollbar_x_right
+                - S.left_scrollbar_x
+                - S.right_scrollbar_x
             ),
-            scrollbar_y_height = (
+            height_scrollbar_y = (
                 height
-                - S.scrollbar_y_top
-                - S.scrollbar_y_bottom
+                - S.top_scrollbar_y
+                - S.bottom_scrollbar_y
             )
         ;
 
-        html_style.setProperty("--list-width", `${list_width}px`);
-        html_style.setProperty("--list-height", `${list_height}px`);
+        html_style.setProperty("--width-list", `${width_list}px`);
+        html_style.setProperty("--height-list", `${height_list}px`);
 
-        S.list_width_neg = -list_width;
-        S.list_height_neg = -list_height;
+        S.width_list_neg = -width_list;
+        S.height_list_neg = -height_list;
         
         (
             template_cb[
@@ -69,11 +69,11 @@ export default (
             width,
             height,
 
-            list_width,
-            list_height,
+            width_list,
+            height_list,
 
-            scrollbar_x_width,
-            scrollbar_y_height,
+            width_scrollbar_x,
+            height_scrollbar_y,
         );
     }
 );

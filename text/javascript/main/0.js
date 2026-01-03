@@ -20,6 +20,7 @@ import {
     workers,
     TD,
     TE,
+    param_font,
 } from "./conf/i.js";
 
 import {
@@ -35,6 +36,8 @@ import {
 
     MESSAGE_ROW_EL,
     CURSOR_EL,
+    REGULAR_INPUT_EL,
+    REGULAR_TEXTAREA_EL,
 
     content_style,
 
@@ -44,18 +47,24 @@ import {
     default_row_inline_class,
 
     cursors,
-    cursor_elems,
+    inputs,
+    textareas,
+
+    elems_cursor,
+    elems_input,
+    elems_textarea,
+
+    main,
 } from "./elems/i.js";
 
 import {
-    style_state as S,
-    support_font_format,
+    state_style as S,
+    support_structure_font,
     support_font,
-    alloc_state,
-    language_state,
-    mode_state,
-    font_state,
-    
+    state_alloc,
+    state_lang,
+
+    state_mode,
 } from './state/i.js';
 
 import {
@@ -70,6 +79,13 @@ import {
 
     on_window_keydown,
     on_window_keyup,
+
+    on_input_focus,
+    
+    on_input_blur,
+    on_window_blur,
+
+    on_regular_input_beforeinput,
 } from './on/i.js';
 
 (
@@ -77,7 +93,7 @@ import {
         var
             document_fonts = document.fonts,
 
-            row_height = S.row_height,
+            height_row = S.height_row,
             font_id = S.font_id,
 
             font_id_bare_str = (`_${font_id}`),
@@ -87,19 +103,17 @@ import {
             width = window.innerWidth,
             height = window.innerHeight,
             
-            list_left = S.list_left,
-            list_right = S.list_right,
+            left_list = S.left_list,
+            right_list = S.right_list,
 
-            list_top = S.list_top,
-            list_bottom = S.list_bottom,
+            top_list = S.top_list,
+            bottom_list = S.bottom_list,
 
-            list_width = (S.list_width = (width - list_left - list_right)),
-            list_height = (S.list_height = (height - list_top - list_bottom)),
+            width_list = (S.width_list = (width - left_list - right_list)),
+            height_list = (S.height_list = (height - top_list - bottom_list)),
 
-            row_width_mode = mode_state.row_width
+            row_width_mode = state_mode.width_row
         ;
-
-        
         
         // workers[0] = new Worker("/f/text/javascript/worker/fs/1.js");
         
@@ -107,53 +121,51 @@ import {
         window.oncontextmenu = on_contextmenu;
         list.onmousedown = on_list_mousedown;
         list.onselectstart = on_list_selectstart;
-
+        
         window.addEventListener("wheel", on_list_wheel, passive_false);
         window.onkeydown = (on_window_keydown);
         window.onkeyup = (on_window_keyup);
+        window.onblur = on_window_blur;
 
         scrollbar_y.onmousedown = on_scrollbar_thumb_mousedown;
 
         if (row_width_mode === 0) {
             scrollbar_x.onmousedown = on_scrollbar_thumb_mousedown;
-            S.content_right = 100;
+            S.right_content = 100;
         }
         else if (row_width_mode === 1) {
-            S.list_bottom = (list_bottom = 0);
+            S.bottom_list = (bottom_list = 0);
 
             scrollbar_x.classList.add('none');
         };
 
-        st.setProperty("--row-height", `${row_height}px`);
+        st.setProperty("--height-row", `${height_row}px`);
         st.setProperty("--font-size", `${S.font_size}px`);
         st.setProperty("--font-family",`"${font_id_bare_str}"`);
 
-        st.setProperty("--list-top", `${list_top}px`);
-        st.setProperty("--list-left", `${list_left}px`);
-        st.setProperty("--list-right", `${list_right}px`);
-        st.setProperty("--list-bottom", `${list_bottom}px`);
+        st.setProperty("--top-list", `${top_list}px`);
+        st.setProperty("--left-list", `${left_list}px`);
+        st.setProperty("--right-list", `${right_list}px`);
+        st.setProperty("--bottom-list", `${bottom_list}px`);
         
-        st.setProperty("--scrollbar_x_left", `${S.scrollbar_x_left}px`);
-        st.setProperty("--scrollbar_x_right", `${S.scrollbar_x_right}px`);
+        st.setProperty("--left-scrollbar-x", `${S.left_scrollbar_x}px`);
+        st.setProperty("--right-scrollbar-x", `${S.right_scrollbar_x}px`);
 
-        st.setProperty("--scrollbar_y_top", `${S.scrollbar_y_top}px`);
-        st.setProperty("--scrollbar_y_bottom", `${S.scrollbar_y_bottom}px`);
-
-            
-        
+        st.setProperty("--top-scrollbar-y", `${S.top_scrollbar_y}px`);
+        st.setProperty("--bottom-scrollbar-y", `${S.bottom_scrollbar_y}px`);
         
         font_faces[0] =
         font_face = (
             new FontFace(
                 font_id_bare_str,
                 font_src(
-                    support_font_format,
+                    support_structure_font,
                     font_id,
                     0,
-                    support_font_format.length,
+                    support_structure_font.length,
                     font_path,
                 ),
-                font_state[0]
+                param_font[0]
             )
         );
         
@@ -165,33 +177,37 @@ import {
             .then(
                 () => {
                     var
-                        size_message = alloc_state.size_message,
+                        size_message = state_alloc.size_message,
                         
                         i = 0,
-                        l = cursor_elems.length,
+                        l = elems_cursor.length,
 
-                        c_el = null
+                        cursor = null,
+                        c_el = null,
+
+                        input_el = null,
+                        textarea_el = null
                     ;
                     load_msgs(
                         default_row_inline_class,
 
-                        alloc_state.blocks,
-                        alloc_state.offset_blocks,
+                        state_alloc.blocks,
+                        state_alloc.offset_blocks,
                         
-                        alloc_state.messages,
+                        state_alloc.messages,
                         0,
-                        alloc_state.length_messages,
+                        state_alloc.length_messages,
 
                         elements,
                         0,
-                        alloc_state.length_loaded_elements,
+                        state_alloc.length_loaded_elems,
 
                         MESSAGE_ROW_EL,
                         size_message,
-                        alloc_state.size_elements,
-                        S.row_height,
+                        state_alloc.size_elems,
+                        S.height_row,
 
-                        alloc_state,
+                        state_alloc,
                         S,
 
                         content,
@@ -207,31 +223,66 @@ import {
                     on_window_resize(window_event_object);
                     window.onresize = on_window_resize;
 
+                    for(;i < l; i++) {
+                        cursor = element_cursor(CURSOR_EL);
+                        elems_cursor[i] = cursor;
 
-                    {
-                        for(;i < l; i++) {
-                            c_el = element_cursor(CURSOR_EL);
-                
-                            cursor_elems[i] = c_el;
-                            
-                            fragment.appendChild(c_el.element);
-                        };
-                
-                        c_el.x = 4;
-                        c_el.y = 1;
-                
-                        init_cursors(
-                            cursor_elems,
-                            elements,
-                            text_width_container,
-                        );
-                        cursors.appendChild(fragment);
-                    }
+                        c_el = cursor.element;
+                        c_el.classList.add("hidden");
+                        fragment.appendChild(c_el);
+                    };
+
+                    cursor = elems_cursor[main.id_cursor];
+                    cursor.x = 4;
+                    cursor.y = 1;
                     
-                    list.scrollLeft =
-                    list.scrollTop = 0;
+                    init_cursors(
+                        elems_cursor,
+                        elements,
+                        text_width_container,
+                        S.width_cursor,
+                    );
 
-                    body_cl.add('a');
+                    c_el = main.element_cursor = cursor.element;
+                    main.element_cursor_classlist = c_el.classList;
+
+                    cursors.appendChild(fragment);
+
+
+                    i = 0;
+                    l = elems_input.length;
+                    for (;i < l; i++) {
+                        input_el = REGULAR_INPUT_EL.cloneNode(true);
+                        elems_input[i] = input_el;
+                        
+                        input_el.onfocus = on_input_focus;
+                        input_el.onblur = on_input_blur;
+                        input_el.onbeforeinput = on_regular_input_beforeinput;
+
+                        fragment.appendChild(input_el);
+                    }
+
+                    main.element_input = elems_input[main.id_input];
+                    inputs.appendChild(fragment);
+
+
+                    i = 0;
+                    l = elems_textarea.length;
+                    for (;i < l; i++) {
+                        textarea_el = REGULAR_TEXTAREA_EL.cloneNode(true);
+                        elems_textarea[i] = textarea_el;
+                        fragment.appendChild(textarea_el);
+                    };
+
+                    main.element_textarea = elems_textarea[main.id_textarea];
+                    textareas.appendChild(fragment);
+                    
+
+                    list.scrollLeft =
+                    list.scrollTop =
+                        0;
+
+                    body_cl.remove('hidden');
                 }
             )
         );

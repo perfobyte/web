@@ -1,5 +1,5 @@
 
-.message_inline {
+.message-inline {
     position:absolute;
     left:0;
 
@@ -9,16 +9,16 @@
     font-family: var(--font-family);
 }
 
-.default_height {
-    height:var(--row-height);
-    line-height:var(--row-height);
+.default-height {
+    height:var(--height-row);
+    line-height:var(--height-row);
     font-size:var(--font-size);
 }
 
-.simple_color {
+.simple-color {
     color:var(--color);
 }
 
-.placeholder_color {
-    color:var(--placeholder-color);
+.placeholder-color {
+    color:var(--color-placeholder);
 }

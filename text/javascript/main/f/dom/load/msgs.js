@@ -18,9 +18,9 @@ export default (
         template,
         size_message,
         block_length,
-        row_height,
+        height_row,
         
-        alloc_state,
+        state_alloc,
         S,
 
         content,
@@ -50,19 +50,19 @@ export default (
 
             style = null,
 
-            content_right = S.content_right,
+            right_content = S.right_content,
 
-            element_left = S.content_left,
+            element_left = S.left_content,
 
-            content_top = S.content_top,
-            style_top = content_top,
+            top_content = S.top_content,
+            style_top = top_content,
 
-            px = row_height,
+            px = height_row,
 
             inline = null,
 
             w = 0,
-            row_width = 0,
+            width_row = 0,
 
             message = null,
 
@@ -193,26 +193,26 @@ export default (
             };
             
             content.appendChild(fragment);
-            alloc_state.length_loaded_elements = elems_i;
+            state_alloc.length_loaded_elems = elems_i;
         }
         else if (elems_i < elems_loaded) {
             range.setStartBefore(elements[elems_i].element);
             range.setEndAfter(elements[elems_loaded - 1].element);
             range.deleteContents();
-            alloc_state.length_loaded_elements = elems_i;
+            state_alloc.length_loaded_elems = elems_i;
         }
 
-        S.loaded_height = (style_top - content_top);
+        S.height_loaded = (style_top - top_content);
 
-        S.content_height = (style_top += (S.content_bottom));
+        S.height_content = (style_top += (S.bottom_content));
 
-        row_width = (S.row_width = ((S.loaded_width = max_width) + content_right));
+        width_row = (S.width_row = ((S.width_loaded = max_width) + right_content));
 
-        S.content_width = (max_width += (element_left + content_right));
+        S.width_content = (max_width += (element_left + right_content));
         
-        html_style.setProperty("--row-width", `${row_width}px`);
+        html_style.setProperty("--width-row", `${width_row}px`);
 
-        html_style.setProperty("--content-height",`${style_top}px`);
-        html_style.setProperty("--content-width", `${max_width}px`);
+        html_style.setProperty("--height-content",`${style_top}px`);
+        html_style.setProperty("--width-content", `${max_width}px`);
     }
 );

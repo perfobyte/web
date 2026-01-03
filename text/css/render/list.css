@@ -6,11 +6,11 @@
     
     user-select: none;
     
-    top:var(--list-top);
-    left:var(--list-left);
+    top:var(--top-list);
+    left:var(--left-list);
 
-    width:var(--list-width);
-    height:var(--list-height);
+    width:var(--width-list);
+    height:var(--height-list);
 
     contain: layout paint;
     overflow: hidden;

@@ -1,12 +1,12 @@
 
-export default ((row_height) => {
+export default ((height_row) => {
     var
-        list_margin = 14,
+        margin_list = 14,
 
-        content_left = list_margin,
-        content_top = list_margin,
+        left_content = margin_list,
+        top_content = margin_list,
 
-        symbol_width = 20
+        width_symbol = 20
     ;
     return {
         font_size: 16,
@@ -14,85 +14,69 @@ export default ((row_height) => {
         font_size_step:1,
         font_id: 4062975092252341068n,
 
-        row_width:0,
-
-        row_height,
-        row_height_default: 22,
-        
-        symbol_width,
-        symbol_width_default: 20,
-
         zoom: 1,
         zoom_step: 0.1,
         zoom_default: 1,
-
         zoom_min: 0.375,
         zoom_max: 62.5,
         
-        // scroll:
-        wheel_x_pixel_value:1,
-        wheel_y_pixel_value:1,
-
-        wheel_x_string_value: row_height,
-        wheel_y_string_value: row_height,
-
-        wheel_x_pixel_value_default: 1,
-        wheel_y_pixel_value_default: 1,
-
-        wheel_x_string_value_default: row_height,
-        wheel_y_string_value_default: row_height,
+        height_row,
+        height_scrollbar_y:0,
+        height_list:1,
+        height_content: 0,
+        height_loaded:0,
+        height_scroll_content:0,
+        height_scrollbar_content:0,
+        height_list_neg:1,
+        height_row_default: height_row,
         
-        list_left: 0,
-        list_top: 0,
-        list_right: list_margin,
-        list_bottom: list_margin,
+        width_row: 0,
+        width_symbol,
+        width_scrollbar_x:0,
+        width_list:1,
+        width_content: 0,
+        width_loaded:0,
+        width_scroll_content:0,
+        width_scrollbar_content:0,
+        width_cursor:1,
+        width_list_neg:1,
+        width_cursor_default:1,
+        width_symbol_default: width_symbol,
 
-        content_left,
-        content_top,
-        content_right: 0,
-        content_bottom: 0,
+        left_list: 0,
+        left_content,
+        left_scrollbar_x:0,
+
+        top_list: 0,
+        top_content,
+        top_scrollbar_y:0,
+
+        right_list: margin_list,
+        right_content: 0,
+        right_scrollbar_x:margin_list,
+
+        bottom_list: margin_list,
+        bottom_content: 0,
+        bottom_scrollbar_y:0,
+
+        translate_thumb_x:0,
+        translate_thumb_y:0,
+
+        scale_thumb_x:1,
+        scale_thumb_y:1,
+
+        lines_x:0,
+        lines_y:0,
         
-        scrollbar_x_left:0,
-        scrollbar_x_right:list_margin,
+        value_wheel_x_pixel:1,
+        value_wheel_x_string: height_row,
+        value_wheel_y_pixel:1,
+        value_wheel_y_string: height_row,
 
-        scrollbar_y_top:0,
-        scrollbar_y_bottom:0,
-
-        scrollbar_x_width:0,
-        scrollbar_y_height:0,
-
-        // to know how far I can scroll
-        list_width:1,
-        list_height:1,
-
-        list_width_neg:1,
-        list_height_neg:1,
-
-        content_width: 0,
-        content_height: 0,
-
-        loaded_width:0,
-        loaded_height:0,
-
-        scroll_size_x:0,
-        scroll_size_y:0,
-
-        scroll_content_width:0,
-        scroll_content_height:0,
-
-        scrollbar_content_width:0,
-        scrollbar_content_height:0,
-
-        // for CSS transform property:
-        thumb_x_translate:0,
-        thumb_y_translate:0,
-
-        thumb_x_scale:1,
-        thumb_y_scale:1,
-
-        // scroll information
-        scroll_top_lines:0,
-        scroll_left_lines:0,
+        value_wheel_x_pixel_default: 1,
+        value_wheel_x_string_default: height_row,
+        value_wheel_y_pixel_default: 1,
+        value_wheel_y_string_default: height_row,
     }
 })(
     22,

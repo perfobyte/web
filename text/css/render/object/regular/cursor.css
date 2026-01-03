@@ -1,0 +1,14 @@
+
+.regular-cursor {
+    position:absolute;
+    height:var(--height-row);
+    background-color:var(--color);
+}
+
+.cursor-blinking {
+    animation: animation-blink-cursor 1s steps(1, end) infinite;
+}
+
+@keyframes animation-blink-cursor {
+    50% { opacity: 0; }
+}

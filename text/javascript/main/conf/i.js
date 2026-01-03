@@ -1,5 +1,6 @@
 export * from './crossplatform/i.js'
 export * from './linebreak/i.js'
+export * from './param/i.js';
 
 export var
     TE = new TextEncoder(),
@@ -19,7 +20,7 @@ export var
 
     window_event_object = { currentTarget: window },
     passive_false = { passive: false },
-    
+    prevent_scroll = { preventScroll: true },
  
     x_move_event = {
         currentTarget: window,

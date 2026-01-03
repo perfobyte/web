@@ -8,12 +8,12 @@ export default (
         scrollbar_thumb_x_transform,
         scrollbar_thumb_y_transform,
 
-        style_state,
+        state_style,
 
         min,
 
-        list_width,
-        list_height,
+        width_list,
+        height_list,
 
         list_scroll_width,
         list_scroll_height,
@@ -22,23 +22,23 @@ export default (
         prev_list_height,
     ) => {
         var
-            zoom_prev = style_state.zoom_prev,
-            zoom = style_state.zoom
+            zoom_prev = state_style.zoom_prev,
+            zoom = state_style.zoom
         ;
         return (
             (
                 scrollbar_thumb_y_style
                 .transform = (
                     scrollbar_thumb_y_transform(
-                        style_state.thumb_y_translate,
+                        state_style.translate_thumb_y,
                         
                         (
-                            style_state
-                            .thumb_y_scale = (
+                            state_style
+                            .scale_thumb_y = (
                                 min(
                                     1,
                                     (
-                                        list_height
+                                        height_list
                                         / list_scroll_height
                                     )
                                 )

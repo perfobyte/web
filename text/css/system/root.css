@@ -1,17 +1,15 @@
 
 :root {
-    position:relative;
-    
-    overflow:hidden;
-    background-color:var(--background-color);
+    --width-cursor:1px;
 
-    --cursor-width:1px;
-
-    --background-color: #FFFFFFFF;
     --color: #000000FF;
-    --placeholder-color: #808080FF;
+    --color-placeholder: #808080FF;
+    --color-background: #FFFFFFFF;
+    --color-background-scrollbar:rgba(121, 121, 121, 0.4);
+    --color-background-scrollbar-hover:rgba(116, 116, 116, 0.5);
+    --color-background-scrollbar-active:rgba(110, 110, 110, 0.7);
 
-    --scrollbar-bg:rgba(121, 121, 121, 0.4);
-    --scrollbar-bg-hover:rgba(116, 116, 116, 0.5);
-    --scrollbar-bg-active:rgba(110, 110, 110, 0.7);
+    position:relative;
+    overflow:hidden;
+    background-color:var(--color-background);
 }

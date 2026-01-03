@@ -8,47 +8,47 @@
     position:absolute;    
 }
 
-.scrollbar_thumb {
+.scrollbar-thumb {
     will-change: transform;
     transition:.2s background-color;
-    background:var(--scrollbar-bg);
+    background:var(--color-background-scrollbar);
     z-index:0;
 }
 
-.scrollbar_thumb:hover {
-    background:var(--scrollbar-bg-hover);
+.scrollbar-thumb:hover {
+    background:var(--color-background-scrollbar-hover);
 }
 
-.scrollbar_thumb.active {
-    background:var(--scrollbar-bg-active);
+.scrollbar-thumb.active {
+    background:var(--color-background-scrollbar-active);
 }
 
-#scrollbar_thumb_x {
+#scrollbar-thumb-x {
     transform-origin: left center;
     width:100%;
-    height:var(--list-bottom);
+    height:var(--bottom-list);
 }
-#scrollbar_thumb_y {
+#scrollbar-thumb-y {
     transform-origin: top center;
-    width:var(--list-right);
+    width:var(--right-list);
     height:100%;
 }
 
 
-#scrollbar_x {
+#scrollbar-x {
     bottom:0;
 
-    left:var(--scrollbar_x_left);
+    left:var(--left-scrollbar-x);
 
-    height:var(--list-bottom);
-    width:calc(100% - var(--scrollbar_x_right));
+    height:var(--bottom-list);
+    width:calc(100% - var(--right-scrollbar-x));
 }
 
-#scrollbar_y {
+#scrollbar-y {
     right:0;
 
-    top:var(--scrollbar_y_top);
+    top:var(--top-scrollbar-y);
 
-    height:calc(100% - var(--scrollbar_y_bottom));
-    width:var(--list-right);
+    height:calc(100% - var(--bottom-scrollbar-y));
+    width:var(--right-list);
 }

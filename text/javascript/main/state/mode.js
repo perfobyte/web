@@ -1,8 +1,8 @@
 export default {
-    row_width: 0,
+    width_row: 0,
     rendering: 0,
     lines: 0,
 
-    zoom_wheel_effect: 0,
-    sensitivity_wheel: -0.002,
+    wheel_zoom_effect: 0,
+    wheel_sensitivity: -0.002,
 };

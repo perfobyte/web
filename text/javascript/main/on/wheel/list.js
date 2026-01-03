@@ -11,7 +11,7 @@ import {
     template_clone,
     init_cursors,
 } from '../../f/i.js';
-import {style_state, mode_state, alloc_state} from '../../state/i.js';
+import {state_style, state_mode, state_alloc} from '../../state/i.js';
 import {
     xy_move_event,
     messages_fragment as fragment,
@@ -24,7 +24,7 @@ import {
     html_style,
     scrollbar_thumb_x_style,
     scrollbar_thumb_y_style,
-    cursor_elems,
+    elems_cursor,
 } from '../../elems/i.js';
 
 export default (
@@ -49,7 +49,7 @@ export default (
             event_object = null,
 
             unit = (
-                wheel_delta_value[direction][event.deltaMode](style_state)
+                wheel_delta_value[direction][event.deltaMode](state_style)
             ),
 
             px = (delta * unit)
@@ -62,20 +62,20 @@ export default (
                 zoom(
                     number_clamp(
                         (
-                            style_state.zoom * Math.exp((px) * (mode_state.sensitivity_wheel))
+                            state_style.zoom * Math.exp((px) * (state_mode.wheel_sensitivity))
                         ),
-                        style_state.zoom_min,
-                        style_state.zoom_max,
+                        state_style.zoom_min,
+                        state_style.zoom_max,
                         Math.min,
                         Math.max,
                     ),
-                    cursor_elems,
+                    elems_cursor,
 
                     elements,
                     0,
-                    alloc_state.length_loaded_elements,
+                    state_alloc.length_loaded_elems,
                     
-                    style_state,
+                    state_style,
                     
                     scrollbar_thumb_x_transform,
                     scrollbar_thumb_y_transform,

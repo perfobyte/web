@@ -1,11 +1,11 @@
 
 // i = 0,
-// l = alloc_state.length_loaded_elements,
+// l = state_alloc.length_loaded_elems,
 
 export default (
     new_zoom,
 
-    cursor_elems,
+    elems_cursor,
 
     elements,
     i,
@@ -29,30 +29,30 @@ export default (
         max = Math.max,
         min = Math.min,
 
-        list_width = S.list_width,
-        list_height = S.list_height,
+        width_list = S.width_list,
+        height_list = S.height_list,
 
-        content_top = S.content_top,
-        content_left = S.content_left,
+        top_content = S.top_content,
+        left_content = S.left_content,
 
-        content_height = content_top,
-        content_width = content_left,
+        height_content = top_content,
+        width_content = left_content,
 
         left = list.scrollLeft,
         top = list.scrollTop,
 
-        prev_row_height = S.row_height,
+        prev_row_height = S.height_row,
         
-        row_height = (S.row_height = S.row_height_default * new_zoom),
+        height_row = (S.height_row = S.height_row_default * new_zoom),
 
         px = 0,
         
-        scroll_top_lines = S.scroll_top_lines,
-        scroll_left_lines = S.scroll_left_lines,
+        lines_x = S.lines_x,
+        lines_y = S.lines_y,
         
         prev_zoom = S.zoom,
         
-        content_bottom = (S.content_bottom = ((list_height) - (row_height))),
+        bottom_content = (S.bottom_content = ((height_list) - (height_row))),
 
         font_size = (S.font_size = (S.font_size_default * new_zoom)),
 
@@ -67,7 +67,7 @@ export default (
         element = null,
         inline = null,
         
-        row_width = 0,
+        width_row = 0,
 
         node_i = 0,
         node_l = 0,
@@ -77,16 +77,16 @@ export default (
         thumb_x_width = 0,
         thumb_y_height = 0,
 
-        scrollbar_x_width = S.scrollbar_x_width,
-        scrollbar_y_height = S.scrollbar_y_height,
+        width_scrollbar_x = S.width_scrollbar_x,
+        height_scrollbar_y = S.height_scrollbar_y,
 
-        scrollbar_content_width = 0,
-        scrollbar_content_height = 0,
+        width_scrollbar_content = 0,
+        height_scrollbar_content = 0,
 
         e = null
     ;
     
-    html_style.setProperty("--row-height", `${row_height}px`);
+    html_style.setProperty("--height-row", `${height_row}px`);
     html_style.setProperty("--font-size", `${font_size}px`);
     
     for (;i < l; i++) {
@@ -113,60 +113,58 @@ export default (
 
         // inline.style.width = `${px}px`;
 
-        element.style.top = `${content_height}px`;
-        e.top = content_height;
+        element.style.top = `${height_content}px`;
+        e.top = height_content;
         
-        content_height += row_height;
+        height_content += height_row;
     };
-
-
-
-    S.loaded_height = (content_height - content_top);
-    S.content_height = (content_height += content_bottom);
-    S.zoom = new_zoom;
     
-    S.loaded_width = max_width;
+    S.height_loaded = (height_content - top_content);
+    S.height_content = (height_content += bottom_content);
+    S.zoom = new_zoom;
 
-    row_width = (S.row_width = (max_width + S.content_right));
+    S.width_loaded = max_width;
 
-    S.content_width = (content_width += (row_width));
+    width_row = (S.width_row = (max_width + S.right_content));
 
-    html_style.setProperty("--row-width", `${row_width}px`);
+    S.width_content = (width_content += (width_row));
 
-    html_style.setProperty("--content-height",`${content_height}px`);
-    html_style.setProperty("--content-width",`${content_width}px`);
+    html_style.setProperty("--width-row", `${width_row}px`);
 
-    max_left = (S.scroll_content_width = max(0,(content_width - list_width)));
-    max_top = (S.scroll_content_height = max(0,(content_height - list_height)));
+    html_style.setProperty("--height-content",`${height_content}px`);
+    html_style.setProperty("--width-content",`${width_content}px`);
 
-    scale_x = (S.thumb_x_scale = min(1, (list_width / content_width)));
-    scale_y = (S.thumb_y_scale = min(1, (list_height / content_height)));
+    max_left = (S.width_scroll_content = max(0,(width_content - width_list)));
+    max_top = (S.height_scroll_content = max(0,(height_content - height_list)));
 
-    scrollbar_content_width = (S.scrollbar_content_width = (scrollbar_x_width * (1 - scale_x)));
-    scrollbar_content_height = (S.scrollbar_content_height = (scrollbar_y_height * (1 - scale_y)));
+    scale_x = (S.scale_thumb_x = min(1, (width_list / width_content)));
+    scale_y = (S.scale_thumb_y = min(1, (height_list / height_content)));
+
+    width_scrollbar_content = (S.width_scrollbar_content = (width_scrollbar_x * (1 - scale_x)));
+    height_scrollbar_content = (S.height_scrollbar_content = (height_scrollbar_y * (1 - scale_y)));
 
 
-    (scroll_left_lines > 0)
+    (lines_y > 0)
     &&
     (
         left = (list.scrollLeft = (
-            content_left + (scroll_left_lines * row_height)
+            left_content + (lines_y * height_row)
         ))
     );
 
-    (scroll_top_lines > 0)
+    (lines_x > 0)
     &&
     (
         top = (list.scrollTop = (
-            content_top + (scroll_top_lines * row_height)
+            top_content + (lines_x * height_row)
         ))
     );
 
     scrollbar_thumb_x_style.transform =
         scrollbar_thumb_x_transform(
-            (S.thumb_x_translate = (
+            (S.translate_thumb_x = (
                 max_left
-                ? ((scrollbar_content_width) * (left / max_left))
+                ? ((width_scrollbar_content) * (left / max_left))
                 : 0
             )),
             scale_x
@@ -174,17 +172,18 @@ export default (
 
     scrollbar_thumb_y_style.transform =
         scrollbar_thumb_y_transform(
-            (S.thumb_y_translate = (
+            (S.translate_thumb_y = (
                 max_top
-                ? ((scrollbar_content_height) * (top / max_top))
+                ? ((height_scrollbar_content) * (top / max_top))
                 : 0
             )),
             scale_y
         );
 
     init_cursors(
-        cursor_elems,
+        elems_cursor,
         elements,
         text_width_container,
+        (S.width_cursor = (S.width_cursor_default * new_zoom)),
     )
 };

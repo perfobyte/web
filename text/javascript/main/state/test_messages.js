@@ -2,7 +2,7 @@
 
 export default [
     {
-        chat_id: 0n,
+        id_chat: 0n,
         block: null,
         offset: 0,
         length: 62,
@@ -11,7 +11,7 @@ export default [
         epoch: 0,
     },
     {
-        chat_id: 0n,
+        id_chat: 0n,
         block: null,
         offset: 63,
         length: 27,
@@ -20,7 +20,7 @@ export default [
         epoch: 0,
     },
     {
-        chat_id: 0n,
+        id_chat: 0n,
         block: null,
         offset: 90,
         length: 10,
@@ -29,7 +29,7 @@ export default [
         epoch: 0,
     },
     {
-        chat_id: 0n,
+        id_chat: 0n,
         block: null,
         offset: 100,
         length: 212,
@@ -38,7 +38,7 @@ export default [
         epoch: 0,
     },
     {
-        chat_id: 0n,
+        id_chat: 0n,
         block: null,
         offset: 312,
         length: 197,
@@ -59,10 +59,10 @@ messages
             f = (index * size_message)
         ;
         
-        view.setBigUint64(f, m.chat_id, true);
+        view.setBigUint64(f, m.id_chat, true);
         view.setBigUint64(f+8, m.id, true);
 
-        view.setUint32(f+16, m.block_id, true);
+        view.setUint32(f+16, m.id_block, true);
 
         view.setUint16(f+20, m.offset, true);
         view.setUint16(f+22, m.length, true);
