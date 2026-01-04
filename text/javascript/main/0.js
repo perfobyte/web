@@ -5,7 +5,7 @@ import {
 
     load_msgs,
 
-    element_cursor,
+    Cursor,
     init_cursors,
 
     element_template,
@@ -21,6 +21,9 @@ import {
     TD,
     TE,
     param_font,
+
+    edit_contexts,
+    EditContext,
 } from "./conf/i.js";
 
 import {
@@ -32,7 +35,7 @@ import {
     scrollbar_x,
     scrollbar_y,
 
-    elements,
+    elems,
 
     MESSAGE_ROW_EL,
     CURSOR_EL,
@@ -76,6 +79,7 @@ import {
 
     on_scrollbar_thumb_mousedown,
     on_list_wheel,
+    on_list_mouseup,
 
     on_window_keydown,
     on_window_keyup,
@@ -120,6 +124,7 @@ import {
         window.onerror = on_error;
         window.oncontextmenu = on_contextmenu;
         list.onmousedown = on_list_mousedown;
+        list.onmouseup = on_list_mouseup;
         list.onselectstart = on_list_selectstart;
         
         window.addEventListener("wheel", on_list_wheel, passive_false);
@@ -186,7 +191,9 @@ import {
                         c_el = null,
 
                         input_el = null,
-                        textarea_el = null
+                        textarea_el = null,
+
+                        tabindex = 1
                     ;
                     load_msgs(
                         default_row_inline_class,
@@ -198,7 +205,7 @@ import {
                         0,
                         state_alloc.length_messages,
 
-                        elements,
+                        elems,
                         0,
                         state_alloc.length_loaded_elems,
 
@@ -224,36 +231,35 @@ import {
                     window.onresize = on_window_resize;
 
                     for(;i < l; i++) {
-                        cursor = element_cursor(CURSOR_EL);
-                        elems_cursor[i] = cursor;
-
-                        c_el = cursor.element;
+                        c_el = CURSOR_EL.cloneNode(true);
                         c_el.classList.add("hidden");
                         fragment.appendChild(c_el);
+                        
+                        cursor = new Cursor(c_el,i,0,elems[0],0,null,0)
+                        elems_cursor[i] = cursor;
                     };
 
-                    cursor = elems_cursor[main.id_cursor];
-                    cursor.x = 4;
-                    cursor.y = 1;
-                    
                     init_cursors(
                         elems_cursor,
-                        elements,
+                        elems,
                         text_width_container,
                         S.width_cursor,
                     );
+
+                    cursor = main.cursor = elems_cursor[main.id_cursor];
 
                     c_el = main.element_cursor = cursor.element;
                     main.element_cursor_classlist = c_el.classList;
 
                     cursors.appendChild(fragment);
 
-
                     i = 0;
                     l = elems_input.length;
                     for (;i < l; i++) {
                         input_el = REGULAR_INPUT_EL.cloneNode(true);
                         elems_input[i] = input_el;
+
+                        input_el.setAttribute("tabindex", tabindex++);
                         
                         input_el.onfocus = on_input_focus;
                         input_el.onblur = on_input_blur;
@@ -268,16 +274,27 @@ import {
 
                     i = 0;
                     l = elems_textarea.length;
+
                     for (;i < l; i++) {
                         textarea_el = REGULAR_TEXTAREA_EL.cloneNode(true);
+                        textarea_el.setAttribute("tabindex", tabindex++);
                         elems_textarea[i] = textarea_el;
                         fragment.appendChild(textarea_el);
                     };
 
                     main.element_textarea = elems_textarea[main.id_textarea];
                     textareas.appendChild(fragment);
-                    
 
+                    i = 0;
+                    l = edit_contexts.length;
+
+                    for (;i < l;i++) {
+                        input_el = elems_input[i];
+
+                        input_el.editContext =
+                        edit_contexts[i] = new EditContext();
+                    }
+                    
                     list.scrollLeft =
                     list.scrollTop =
                         0;

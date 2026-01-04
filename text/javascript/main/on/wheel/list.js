@@ -17,7 +17,7 @@ import {
     messages_fragment as fragment,
 } from '../../conf/i.js';
 import {
-    elements,
+    elems,
     list,
     text_width_container,
 
@@ -71,7 +71,7 @@ export default (
                     ),
                     elems_cursor,
 
-                    elements,
+                    elems,
                     0,
                     state_alloc.length_loaded_elems,
                     

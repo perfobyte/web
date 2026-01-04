@@ -44,7 +44,7 @@ export var
     
     elements_block = Array(state_alloc.size_elems).fill(MESSAGE_ROW_EL),
 
-    elements = Array.from(elements_block, element_template),
+    elems = Array.from(elements_block, element_template),
 
     elems_cursor = Array(state_alloc.size_elems_cursor).fill(null),
 
@@ -53,6 +53,7 @@ export var
 
     main = {
         id_cursor: 0,
+        cursor:null,
         element_cursor: null,
         element_cursor_classlist: null,
 

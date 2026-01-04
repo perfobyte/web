@@ -7,4 +7,6 @@
 
     background:var(--color-background);
     pointer-events:none;
+
+    z-index:50;
 }

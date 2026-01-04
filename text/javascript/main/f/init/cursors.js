@@ -3,8 +3,8 @@
 export default (
     (
         elems_cursor,
-        elements,
-        text_width_container,
+        elems,
+        TW,
         width,
     ) => {
         
@@ -22,34 +22,48 @@ export default (
             px = 0,
 
             left = 0,
-            e = null,
+            
+            start_elem = null,
+            start_block_value = "",
+            chunk = "",
 
+            direction = 0,
+
+            end_elem = null,
+            
             offset = 0
         ;
         
         for(; i < l; i++) {
             c = elems_cursor[i];
+            start_elem = c.start_elem;
+            start_block_value = start_elem.block.value;
 
-            x = c.x;
-            y = c.y;
-
-            e = elements[y];
+            direction = c.direction;
             
-            c_el = c.element;
-            s = c_el.style;
+            if (direction === 0) {
+                c_el = c.element;
+                s = c_el.style;
 
-            offset = e.start;
+                offset = start_elem.start;
 
-            text_width_container.textContent = (
-                e.block.value.substring(offset,(offset + x))
-            );
+                TW.replaceChildren(
+                    new Text(
+                        start_block_value.substring(
+                            offset,
+                            (offset + c.start_elem_start)
+                        )
+                    )
+                );
+                
+                left = (start_elem.left + TW.offsetWidth);
+                
+                s.top = `${start_elem.top}px`;
+                s.left = `${left}px`;
 
-            left = (e.left + text_width_container.getBoundingClientRect().width);
-            
-            s.top = `${e.top}px`;
-            s.left = `${left}px`;
-
-            s.width = `${width}px`;
+                s.width = `${width}px`;
+                s.height = `${start_elem.height}px`
+            }
         }
     }
 );

@@ -11,7 +11,7 @@ export default (
         i,
         l,
 
-        elements,
+        elems,
         elems_i,
         elems_loaded,
 
@@ -28,7 +28,7 @@ export default (
         fragment,
         range,
 
-        text_width_container,
+        TW,
 
         element_template,
     ) => {
@@ -46,7 +46,7 @@ export default (
             
             new_length = 0,
 
-            elements_l = elements.length,
+            elements_l = elems.length,
 
             style = null,
 
@@ -62,6 +62,7 @@ export default (
             inline = null,
 
             w = 0,
+            h = 0,
             width_row = 0,
 
             message = null,
@@ -70,10 +71,13 @@ export default (
 
             message_id = 0,
 
+            x = 0,
+            y = 0,
+
             block = null
         ;
 
-        text_width_container.className = default_row_inline_class;
+        TW.className = default_row_inline_class;
 
         general: while (true) {
             append: {
@@ -97,10 +101,13 @@ export default (
                                 new_length = (elems_l + block_length);
                                 
                                 for (;elements_l < new_length; elements_l++) {
-                                    elements.push(element_template(template))
+                                    elems.push(element_template(template))
                                 };
                             };
-                            e = elements[elems_i++];
+                            e = elems[elems_i];
+                            e.x = 0;
+                            e.i = e.y = elems_i++;
+
                             e.message = message;
                             e.block = block;
 
@@ -110,10 +117,13 @@ export default (
                             
                             e.length = chunk.length;
                             
-                            text_width_container.textContent = chunk;
-
-                            w = (text_width_container.getBoundingClientRect().width);
+                            TW.replaceChildren(new Text(chunk));
+                            
+                            w = (TW.offsetWidth);
                             e.width = w;
+                            h = TW.offsetHeight;
+                            e.height = h;
+
 
                             max_width = (Math.max(max_width,w));
 
@@ -121,15 +131,15 @@ export default (
                             inline = element.firstElementChild;
                             
                             // inline.style.width = `${w}px`;
-                            inline.textContent = (chunk);
+                            inline.replaceChildren(new Text(chunk));
                             
                             style = element.style;
 
                             style.top = `${style_top}px`;
                             style.left = `${element_left}px`;
 
-                            e.top = style_top;
-                            e.left = element_left;
+                            e.bottom = ((e.top = style_top) + h);
+                            e.right = ((e.left = element_left) + w);
 
                             style_top += px;
 
@@ -144,11 +154,13 @@ export default (
                             new_length = (elems_l + block_length);
                             
                             for (;elements_l < new_length; elements_l++) {
-                                elements.push(element_template(template));
+                                elems.push(element_template(template));
                             };
                         };
 
-                        e = elements[elems_i++];
+                        e = elems[elems_i];
+                        e.i = e.y = elems_i++;
+
                         e.message = message;
                         e.block = block;
 
@@ -157,26 +169,29 @@ export default (
                         chunk = string.substring((e.start=string_offset), (e.end=char_l));
                         
                         e.length = chunk.length;
-                        
 
-                        text_width_container.textContent = chunk;
-                        w = (text_width_container.getBoundingClientRect().width);
+                        TW.replaceChildren(new Text(chunk))
+                        
+                        w = (TW.offsetWidth);
+                        h = (TW.offsetHeight);
+
                         e.width = w;
+                        e.height = h;
 
                         max_width = (Math.max(max_width,w));
 
                         inline = element.firstElementChild;
 
                         // inline.style.width = `${w}px`;
-                        inline.textContent = (chunk);
-
+                        inline.replaceChildren(new Text(chunk));
+                        
                         style = element.style;
 
                         style.top = `${style_top}px`;
                         style.left = `${element_left}px`;
 
-                        e.top = style_top;
-                        e.left = element_left;
+                        e.bottom = ((e.top = style_top) + h);
+                        e.right = ((e.left = element_left) + w);
                         
                         style_top += px;
                     }
@@ -189,26 +204,35 @@ export default (
 
         if (elems_i > elems_loaded) {
             while (elems_loaded < elems_i) {
-                fragment.appendChild(elements[elems_loaded++].element);
+                fragment.appendChild(elems[elems_loaded++].element);
             };
             
             content.appendChild(fragment);
             state_alloc.length_loaded_elems = elems_i;
         }
         else if (elems_i < elems_loaded) {
-            range.setStartBefore(elements[elems_i].element);
-            range.setEndAfter(elements[elems_loaded - 1].element);
+            range.setStartBefore(elems[elems_i].element);
+            range.setEndAfter(elems[elems_loaded - 1].element);
             range.deleteContents();
             state_alloc.length_loaded_elems = elems_i;
         }
 
+        S.height_loaded_start = (style_top);
         S.height_loaded = (style_top - top_content);
 
         S.height_content = (style_top += (S.bottom_content));
 
         width_row = (S.width_row = ((S.width_loaded = max_width) + right_content));
 
-        S.width_content = (max_width += (element_left + right_content));
+        S.width_content = (
+            (
+                S.width_loaded_start = (
+                    max_width
+                    + (element_left)
+                )
+            )
+            + (right_content)
+        );
         
         html_style.setProperty("--width-row", `${width_row}px`);
 

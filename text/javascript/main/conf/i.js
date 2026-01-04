@@ -1,8 +1,14 @@
+import {state_alloc} from '../state/i.js';
+
+
 export * from './crossplatform/i.js'
 export * from './linebreak/i.js'
 export * from './param/i.js';
+export * from './polyfill/i.js';
 
 export var
+    node_text = new Text(""),
+    
     TE = new TextEncoder(),
     TD = new TextDecoder("utf8"),
 
@@ -44,5 +50,7 @@ export var
     separation_result = {
         string_offset: 0,
         char_i: 0,
-    }
+    },
+
+    edit_contexts = Array(state_alloc.size_elems_input).fill(null)
 ;

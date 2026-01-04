@@ -28,15 +28,18 @@ export default (
         
         text_width_container.className = default_row_inline_class;
 
+        var node = new Text("");
+        text_width_container.replaceChildren(node);
+
         for (; coord_i < coord_l; coord_i++) {
             i = (coord = coords[coord_i])[0];
             l = coord[1];
 
             while (i < l) {
-                text_width_container.textContent = fromCodePoint(i++).repeat(count);
+                node.data = fromCodePoint(i++).repeat(count);
                 
                 map[loaded++] = (
-                    (text_width_container.getBoundingClientRect().width)
+                    (text_width_container.offsetWidth)
                     / count
                 );
             }

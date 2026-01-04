@@ -24,7 +24,10 @@ export default ((height_row) => {
         height_scrollbar_y:0,
         height_list:1,
         height_content: 0,
+
         height_loaded:0,
+        height_loaded_start:0,
+
         height_scroll_content:0,
         height_scrollbar_content:0,
         height_list_neg:1,
@@ -35,7 +38,10 @@ export default ((height_row) => {
         width_scrollbar_x:0,
         width_list:1,
         width_content: 0,
+        
         width_loaded:0,
+        width_loaded_start:0,
+
         width_scroll_content:0,
         width_scrollbar_content:0,
         width_cursor:1,

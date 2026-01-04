@@ -1,7 +1,6 @@
 
 .regular-cursor {
     position:absolute;
-    height:var(--height-row);
     background-color:var(--color);
 }
 

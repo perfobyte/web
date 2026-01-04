@@ -1,4 +1,13 @@
 
 .static-block {
     position:static;
+    z-index:60;
+    background:none;
+}
+
+.static-block-low {
+    position:absolute;
+    right:100%;
+    z-index:20;
+    background:none;
 }

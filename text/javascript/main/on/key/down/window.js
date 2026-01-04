@@ -5,6 +5,8 @@ import {
     y_move_event,
     
     messages_fragment as fragment,
+
+    edit_contexts,
 } from '../../../conf/i.js';
 
 import {
@@ -40,7 +42,7 @@ import {
     scrollbar_thumb_x_style,
     scrollbar_thumb_y_style,
 
-    elements,
+    elems,
     text_width_container,
 
     elems_cursor,
@@ -66,12 +68,14 @@ export default (
             key = e.key,
 
             window = e.currentTarget,
-            document = window.document
+            document = window.document,
+
+            active = document.activeElement,
+            body = document.body
         ;
 
         e.preventDefault();
         e.stopPropagation();
-        
         
         if (
             ctrl_key(e)
@@ -133,7 +137,7 @@ export default (
 
                     elems_cursor,
 
-                    elements,
+                    elems,
                     0,
                     state_alloc.length_loaded_elems,
                     
@@ -332,11 +336,16 @@ export default (
                 scrollbar_thumb_y_transform,
             );
         }
-        else if (document.activeElement !== document.body) {
+        else if (active === body) {
+            if (key === "Tab") {
+                main.element_input.focus();
+            }
+        }
+        else {
             if (key === "Escape") {
                 main.element_input.blur();
             }
-        };
+        }
         
         state_app.last_key = key;
     }

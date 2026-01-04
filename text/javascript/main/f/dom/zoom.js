@@ -7,7 +7,7 @@ export default (
 
     elems_cursor,
 
-    elements,
+    elems,
     i,
     l,
     
@@ -83,14 +83,16 @@ export default (
         width_scrollbar_content = 0,
         height_scrollbar_content = 0,
 
-        e = null
+        e = null,
+        
+        e_left = 0
     ;
     
     html_style.setProperty("--height-row", `${height_row}px`);
     html_style.setProperty("--font-size", `${font_size}px`);
     
     for (;i < l; i++) {
-        e = elements[i];
+        e = elems[i];
 
         element = e.element;
         inline = element.firstElementChild;
@@ -106,24 +108,41 @@ export default (
         };
         text_width_container.replaceChildren(fragment);
         
-        px = (text_width_container.getBoundingClientRect().width);
+        
+        px = (text_width_container.offsetWidth);
+
         e.width = px;
+        
         
         max_width = max(max_width, px);
 
         // inline.style.width = `${px}px`;
 
         element.style.top = `${height_content}px`;
-        e.top = height_content;
+
+        if (e.position === 2) {
+            e_left = left_content;
+        }
+        else {
+            e_left += px;
+        }
+
+        e.bottom = (
+            (e.top = height_content)
+            + (e.height = text_width_container.offsetHeight)
+        );
+        e.right = ((e.left = e_left) + (px));
         
         height_content += height_row;
     };
     
+    S.height_loaded_start = height_content;
     S.height_loaded = (height_content - top_content);
     S.height_content = (height_content += bottom_content);
     S.zoom = new_zoom;
 
-    S.width_loaded = max_width;
+    
+    S.width_loaded_start = (left_content + (S.width_loaded = max_width));
 
     width_row = (S.width_row = (max_width + S.right_content));
 
@@ -182,7 +201,7 @@ export default (
 
     init_cursors(
         elems_cursor,
-        elements,
+        elems,
         text_width_container,
         (S.width_cursor = (S.width_cursor_default * new_zoom)),
     )
