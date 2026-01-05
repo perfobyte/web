@@ -52,5 +52,6 @@ export var
         char_i: 0,
     },
 
-    edit_contexts = Array(state_alloc.size_elems_input).fill(null)
+    edit_contexts = Array(state_alloc.size_elems_input).fill(null),
+    selections = Array(state_alloc.size_selections).fill(null)
 ;

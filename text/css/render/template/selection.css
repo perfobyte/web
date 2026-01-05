@@ -1,0 +1,5 @@
+
+.selection {
+    position:absolute;
+    background-color:var(--color-background-selection);
+}

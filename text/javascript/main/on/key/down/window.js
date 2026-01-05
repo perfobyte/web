@@ -7,6 +7,7 @@ import {
     messages_fragment as fragment,
 
     edit_contexts,
+    node_text,
 } from '../../../conf/i.js';
 
 import {
@@ -154,6 +155,8 @@ export default (
                     html_style,
                     scrollbar_thumb_x_style,
                     scrollbar_thumb_y_style,
+
+                    node_text,
                 );
             }
         }

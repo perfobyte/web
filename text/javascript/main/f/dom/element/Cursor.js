@@ -4,27 +4,28 @@
 function Cursor(
     element,
     i,
-    direction,
+    
+    elem,
+    elem_start,
 
-    start_elem,
-    start_elem_start,
-
-    end_elem,
-    end_elem_end,
+    selection_direction,
 ) {
     this.element = element;
-
     this.i = i;
-    this.direction = direction;
+    
+    this.elem = elem;
+    this.elem_start = elem_start;
 
-    this.start_elem = start_elem;
-    this.start_elem_start = start_elem_start;
-
-    this.end_elem = end_elem;
-    this.end_elem_end = end_elem_end;
+    this.selection_direction = selection_direction;
 };
 
 Cursor.prototype = {
+    default: (
+        (Cursor, element, i, elem, selection) => {
+            return new Cursor(element,i,elem,0,0,selection)
+        }
+    ),
+
     row_col:(elem, elem_col) => {
         return (elem.x + elem_col);
     },
@@ -47,7 +48,7 @@ Cursor.prototype = {
 
 // cursor.start_block_start = (
 //     E.start
-//     + (cursor.start_elem_start)
+//     + (cursor.elem_start)
 // );
 
 // cursor.start_block = E.block;

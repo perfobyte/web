@@ -1,60 +1,13 @@
-import {main, elems, text_width_container, elems_selection} from '../../../elems/i.js';
-import {prevent_scroll, node_text} from '../../../conf/i.js';
-import {state_app, state_alloc, state_style as S} from '../../../state/i.js';
 
-import {on_list_mousemove} from '../move/i.js';
-import {on_list_mouseup} from '../up/i.js';
 
 export default (
     (e) => {
         var
-            max = Math.max,
-            min = Math.min,
-            
-            input_el = main.element_input,
-
-            window = e.view,
-            document = window.document,
-
-            i = 0,
-            l = state_alloc.length_loaded_elems,
-
-            list = e.currentTarget,
-
-            x = (list.scrollLeft + (e.clientX - S.left_list)),
-            y = max((list.scrollTop + (e.clientY - S.top_list)), (S.top_content)),
-
-            top = 0,
             left = 0,
-
+            top = 0,
             position = 0,
-        
-            o = 0,
-            elem_col = 0,
-            
-            cursor = main.cursor,
-            style = null,
-            E = null,
-            
-            w = 0,
-
-            value = "",
-
-            char_i = 0,
-            char_l = 0,
-            
-            text = null,
-            prev_w = 0,
-            tmp = 0,
-
-            lo = 0,
-            hi = 0
+            value = 0
         ;
-        
-        if (y >= S.height_loaded_start) {
-            y = elems[i=l-1].top;
-        };
-        
         cycle: for(; i < l; i++) {
             E = elems[i];
             
@@ -68,6 +21,7 @@ export default (
                 &&
                 (y < E.bottom)
             ) {
+                
                 found: {
                     if (x >= (left)) {
                         if (x < (E.right)) {
@@ -124,15 +78,7 @@ export default (
 
                     continue;
                 };
-                
-                //
-                elems_selection[0]
-                style = elems_selection[0].element.style;
-                style.top = `${top}px`;
-                style.left = `${left}px`;
-                style.width = `${E.width}px`;
-                style.height = `${E.height}px`;
-                
+
                 cursor.elem = E;
                 cursor.elem_start = elem_col;
 
@@ -145,14 +91,5 @@ export default (
                 break cycle;
             }
         };
-
-        list.addEventListener("mouseup", on_list_mouseup);
-        list.addEventListener("mousemove", on_list_mousemove);
-        
-        (input_el === document.body)
-        ||
-        (input_el.focus(prevent_scroll));
-
-        e.preventDefault();
     }
 );

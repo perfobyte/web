@@ -6,9 +6,11 @@ import {
     load_msgs,
 
     Cursor,
+    Selection,
+    SelectionElem,
     init_cursors,
 
-    element_template,
+    Elem,
 } from './f/i.js';
 
 import {
@@ -24,6 +26,8 @@ import {
 
     edit_contexts,
     EditContext,
+    node_text,
+    selections,
 } from "./conf/i.js";
 
 import {
@@ -41,6 +45,7 @@ import {
     CURSOR_EL,
     REGULAR_INPUT_EL,
     REGULAR_TEXTAREA_EL,
+    SELECTION_EL,
 
     content_style,
 
@@ -56,8 +61,10 @@ import {
     elems_cursor,
     elems_input,
     elems_textarea,
+    elems_selection,
 
     main,
+    list_selections,
 } from "./elems/i.js";
 
 import {
@@ -121,21 +128,22 @@ import {
         
         // workers[0] = new Worker("/f/text/javascript/worker/fs/1.js");
         
-        window.onerror = on_error;
-        window.oncontextmenu = on_contextmenu;
-        list.onmousedown = on_list_mousedown;
-        list.onmouseup = on_list_mouseup;
-        list.onselectstart = on_list_selectstart;
+        window.addEventListener("error", on_error);
+        window.addEventListener("contextmenu", on_contextmenu);
+        list.addEventListener("mousedown", on_list_mousedown);
+        
+        list.addEventListener("selectstart", on_list_selectstart);
         
         window.addEventListener("wheel", on_list_wheel, passive_false);
-        window.onkeydown = (on_window_keydown);
-        window.onkeyup = (on_window_keyup);
-        window.onblur = on_window_blur;
+        window.addEventListener("keydown", (on_window_keydown));
+        window.addEventListener("keyup", (on_window_keyup));
+        window.addEventListener("blur", on_window_blur);
 
-        scrollbar_y.onmousedown = on_scrollbar_thumb_mousedown;
+        scrollbar_y.addEventListener("mousedown", on_scrollbar_thumb_mousedown);
 
         if (row_width_mode === 0) {
-            scrollbar_x.onmousedown = on_scrollbar_thumb_mousedown;
+            scrollbar_x.addEventListener("mousedown", on_scrollbar_thumb_mousedown);
+
             S.right_content = 100;
         }
         else if (row_width_mode === 1) {
@@ -193,7 +201,14 @@ import {
                         input_el = null,
                         textarea_el = null,
 
-                        tabindex = 1
+                        sel_el = null,
+
+                        tabindex = 1,
+
+
+                        CursorDefault = Cursor.prototype.default,
+                        SelectionDefault = Selection.prototype.default,
+                        SelectionElemDefault = SelectionElem.prototype.default
                     ;
                     load_msgs(
                         default_row_inline_class,
@@ -224,7 +239,9 @@ import {
 
                         text_width_container,
 
-                        element_template,
+                        Elem,
+                        Text,
+                        node_text,
                     );
                     
                     on_window_resize(window_event_object);
@@ -234,8 +251,8 @@ import {
                         c_el = CURSOR_EL.cloneNode(true);
                         c_el.classList.add("hidden");
                         fragment.appendChild(c_el);
-                        
-                        cursor = new Cursor(c_el,i,0,elems[0],0,null,0)
+
+                        cursor = CursorDefault(Cursor,c_el,i,elems[0])
                         elems_cursor[i] = cursor;
                     };
 
@@ -244,6 +261,7 @@ import {
                         elems,
                         text_width_container,
                         S.width_cursor,
+                        node_text,
                     );
 
                     cursor = main.cursor = elems_cursor[main.id_cursor];
@@ -294,10 +312,29 @@ import {
                         input_el.editContext =
                         edit_contexts[i] = new EditContext();
                     }
+
+                    i = 0;
+                    l = elems_selection.length;
+
+                    for (; i < l; i++) {
+                        sel_el = SELECTION_EL.cloneNode(true);
+                        elems_selection[i] = SelectionElemDefault(SelectionElem,i,sel_el);
+                    };
+
+                    i = 0;
+                    l = selections.length;
+
+                    for (; i < l; i++) {
+                        selections[i] = SelectionDefault(Selection,i);
+                    };
                     
                     list.scrollLeft =
                     list.scrollTop =
                         0;
+
+                    //
+                    list_selections.replaceChildren(elems_selection[0].element);
+                    state_alloc.length_loaded_elems_selection++;
 
                     body_cl.remove('hidden');
                 }

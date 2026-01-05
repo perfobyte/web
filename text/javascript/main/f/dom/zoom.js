@@ -24,6 +24,8 @@ export default (
     html_style,
     scrollbar_thumb_x_style,
     scrollbar_thumb_y_style,
+
+    node_text,
 ) => {
     var
         max = Math.max,
@@ -204,5 +206,6 @@ export default (
         elems,
         text_width_container,
         (S.width_cursor = (S.width_cursor_default * new_zoom)),
+        node_text,
     )
 };

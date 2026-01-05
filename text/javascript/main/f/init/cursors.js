@@ -6,6 +6,7 @@ export default (
         elems,
         TW,
         width,
+        node_text,
     ) => {
         
         var
@@ -23,7 +24,7 @@ export default (
 
             left = 0,
             
-            start_elem = null,
+            elem = null,
             start_block_value = "",
             chunk = "",
 
@@ -33,37 +34,33 @@ export default (
             
             offset = 0
         ;
+
+        TW.replaceChildren(node_text);
         
         for(; i < l; i++) {
             c = elems_cursor[i];
-            start_elem = c.start_elem;
-            start_block_value = start_elem.block.value;
-
-            direction = c.direction;
+            elem = c.elem;
+            start_block_value = elem.block.value;
             
-            if (direction === 0) {
-                c_el = c.element;
-                s = c_el.style;
+            c_el = c.element;
+            s = c_el.style;
 
-                offset = start_elem.start;
+            offset = elem.start;
 
-                TW.replaceChildren(
-                    new Text(
-                        start_block_value.substring(
-                            offset,
-                            (offset + c.start_elem_start)
-                        )
-                    )
-                );
-                
-                left = (start_elem.left + TW.offsetWidth);
-                
-                s.top = `${start_elem.top}px`;
-                s.left = `${left}px`;
+            node_text.data = (
+                start_block_value.substring(
+                    offset,
+                    (offset + c.elem_start)
+                )
+            );        
+            
+            left = (elem.left + TW.offsetWidth);
+            
+            s.top = `${elem.top}px`;
+            s.left = `${left}px`;
 
-                s.width = `${width}px`;
-                s.height = `${start_elem.height}px`
-            }
+            s.width = `${width}px`;
+            s.height = `${elem.height}px`
         }
     }
 );

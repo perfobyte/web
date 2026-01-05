@@ -1,7 +1,7 @@
 import {state_alloc} from '../state/i.js'
 import template_clone from '../f/general/template_clone.js';
 
-import {element_template} from '../f/dom/element/i.js';
+import {Elem} from '../f/dom/element/i.js';
 
 import {array_from_object} from '../conf/i.js';
 
@@ -18,6 +18,7 @@ export var
     CURSOR_EL = template.querySelector(".regular-cursor"),
     REGULAR_INPUT_EL = template.querySelector(".regular-input"),
     REGULAR_TEXTAREA_EL = template.querySelector(".regular-textarea"),
+    SELECTION_EL = template.querySelector(".selection"),
 
     text_width_container = (MESSAGE_ROW_EL.cloneNode(true).firstElementChild),
     default_row_inline_class = text_width_container.className,
@@ -36,18 +37,18 @@ export var
     cursors = document.getElementById("cursors"),
     inputs = document.getElementById("inputs"),
     textareas = document.getElementById("textareas"),
+    list_selections = document.getElementById("list-selections"),
 
     content = list.firstElementChild,
     content_style = content.style,
     
     scrollbar_thumb = [scrollbar_thumb_x,scrollbar_thumb_y],
     
-    elements_block = Array(state_alloc.size_elems).fill(MESSAGE_ROW_EL),
-
-    elems = Array.from(elements_block, element_template),
-
+    elems_row = Array(state_alloc.size_rows).fill(null),
+    elems = Array(state_alloc.size_elems).fill(null),
+    
+    elems_selection = Array(state_alloc.size_elems_selection).fill(null),
     elems_cursor = Array(state_alloc.size_elems_cursor).fill(null),
-
     elems_input = Array(state_alloc.size_elems_input).fill(null),
     elems_textarea = Array(state_alloc.size_elems_textarea).fill(null),
 

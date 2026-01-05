@@ -23,6 +23,7 @@ export default (
             size_message_blocks = (size_block * number_message_blocks),
 
             size_elems = size_block,
+            size_rows = size_block,
 
             buffer_request = (
                 new SharedArrayBuffer(
@@ -51,7 +52,8 @@ export default (
             test_block = {
                 id: 0,
                 value: "hello_my_friend\nhow are u bro\n i havent seen u a long time agosdfldsfkdsfksdfksdfsdf\\cwaitaaaa\naaaaai havent seen u a long time agosdfldsfkdsfksdfksdfsdfi havent seen u a long time agosdfldsfkdsfksdfksdfsdfi havent seen u a long time agosdfldsfkdsfksdfksdfsdfi havent seen u a long time agosdfldsfkdsfksdfksdfsdf11\n2\n3\n4\n3553345435345345345534534\nx312x1e1ex1e1ex3e123x123x312x1e1ex1e1ex3e123x123x312x1e1ex1e1ex3e123x123x312x1e1ex1e1ex3e123x123x312x1e1ex1e1ex3e123x123x312x1e1ex1e1ex3e123x123\nhello/world//////",
-            }
+            },
+            size_elems_cursor = 1
         ;
         
         blocks[0] = test_block;
@@ -69,10 +71,14 @@ export default (
             size_ram,
             size_message,
 
+            size_rows,
             size_elems,
-            size_elems_cursor:1,
+            size_elems_cursor,
             size_elems_input:1,
             size_elems_textarea:1,
+
+            size_elems_selection: size_elems,
+            size_selections: size_elems_cursor,
 
             number_blocks,
             number_message_blocks,
@@ -82,10 +88,12 @@ export default (
             offset_blocks:0,
             offset_messages:0,
 
+            length_loaded_rows:0,
             length_loaded_elems:0,
             length_loaded_elems_cursor:1,
             length_loaded_elems_input:1,
             length_loaded_elems_textarea:1,
+            length_loaded_elems_selection:0,
             length_messages,
             
             buffer_messages,

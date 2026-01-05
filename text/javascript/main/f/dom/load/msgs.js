@@ -30,9 +30,13 @@ export default (
 
         TW,
 
-        element_template,
+        Elem,
+        Text,
+        node_text,
     ) => {
         var
+            ElemDefault = Elem.prototype.default,
+
             element = null,
             string = '',
             
@@ -78,6 +82,7 @@ export default (
         ;
 
         TW.className = default_row_inline_class;
+        TW.replaceChildren(node_text);
 
         general: while (true) {
             append: {
@@ -101,7 +106,7 @@ export default (
                                 new_length = (elems_l + block_length);
                                 
                                 for (;elements_l < new_length; elements_l++) {
-                                    elems.push(element_template(template))
+                                    elems.push(ElemDefault(Elem, template.cloneNode(true)))
                                 };
                             };
                             e = elems[elems_i];
@@ -117,8 +122,9 @@ export default (
                             
                             e.length = chunk.length;
                             
-                            TW.replaceChildren(new Text(chunk));
                             
+                            node_text.data = chunk;
+
                             w = (TW.offsetWidth);
                             e.width = w;
                             h = TW.offsetHeight;
@@ -154,7 +160,7 @@ export default (
                             new_length = (elems_l + block_length);
                             
                             for (;elements_l < new_length; elements_l++) {
-                                elems.push(element_template(template));
+                                elems.push(ElemDefault(Elem, template.cloneNode(true)));
                             };
                         };
 
@@ -170,7 +176,7 @@ export default (
                         
                         e.length = chunk.length;
 
-                        TW.replaceChildren(new Text(chunk))
+                        node_text.data = chunk;
                         
                         w = (TW.offsetWidth);
                         h = (TW.offsetHeight);

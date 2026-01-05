@@ -15,6 +15,7 @@ import {state_style, state_mode, state_alloc} from '../../state/i.js';
 import {
     xy_move_event,
     messages_fragment as fragment,
+    node_text,
 } from '../../conf/i.js';
 import {
     elems,
@@ -88,6 +89,8 @@ export default (
                     html_style,
                     scrollbar_thumb_x_style,
                     scrollbar_thumb_y_style,
+
+                    node_text,
                 )
             )
             : (
