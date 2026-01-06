@@ -2,7 +2,7 @@ import {
     scrollbar_thumb_y_style,
     list,
     MESSAGE_ROW_EL,
-    elems,
+    tokens,
 } from '../../../../elems/i.js';
 
 import {

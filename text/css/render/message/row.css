@@ -1,5 +1,5 @@
 
-.message-row {
+.row {
     position:absolute;
     width:var(--width-row);
     height:var(--height-row);

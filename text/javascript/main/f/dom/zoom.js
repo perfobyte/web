@@ -7,7 +7,7 @@ export default (
 
     elems_cursor,
 
-    elems,
+    tokens,
     i,
     l,
     
@@ -94,7 +94,7 @@ export default (
     html_style.setProperty("--font-size", `${font_size}px`);
     
     for (;i < l; i++) {
-        e = elems[i];
+        e = tokens[i];
 
         element = e.element;
         inline = element.firstElementChild;
@@ -203,7 +203,7 @@ export default (
 
     init_cursors(
         elems_cursor,
-        elems,
+        tokens,
         text_width_container,
         (S.width_cursor = (S.width_cursor_default * new_zoom)),
         node_text,

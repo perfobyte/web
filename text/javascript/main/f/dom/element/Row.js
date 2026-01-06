@@ -3,9 +3,15 @@
 function Row(
     i,
     element,
+
+    token_start,
+    token_end,
 ) {
     this.i = i;
-    this.element = element
+    this.element = element;
+
+    this.token_start = token_start;
+    this.token_end = token_end;
 };
 
 Row.prototype = {
@@ -13,8 +19,8 @@ Row.prototype = {
         (Row,i,element) => {
             return (
                 new Row(
-                    i,
-                    element
+                    i,element,
+                    null,null,
                 )
             );
         }

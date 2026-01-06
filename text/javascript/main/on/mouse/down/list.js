@@ -1,4 +1,4 @@
-import {main, elems, text_width_container, elems_selection} from '../../../elems/i.js';
+import {main, tokens, text_width_container, elems_selection} from '../../../elems/i.js';
 import {prevent_scroll, node_text} from '../../../conf/i.js';
 import {state_app, state_alloc, state_style as S} from '../../../state/i.js';
 
@@ -52,11 +52,11 @@ export default (
         ;
         
         if (y >= S.height_loaded_start) {
-            y = elems[i=l-1].top;
+            y = tokens[i=l-1].top;
         };
         
         cycle: for(; i < l; i++) {
-            E = elems[i];
+            E = tokens[i];
             
             left = E.left;
             top = E.top;
@@ -133,8 +133,8 @@ export default (
                 style.width = `${E.width}px`;
                 style.height = `${E.height}px`;
                 
-                cursor.elem = E;
-                cursor.elem_start = elem_col;
+                cursor.token = E;
+                cursor.token_start = elem_col;
 
                 style = cursor.element.style;
                 

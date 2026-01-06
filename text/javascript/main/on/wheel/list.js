@@ -18,7 +18,7 @@ import {
     node_text,
 } from '../../conf/i.js';
 import {
-    elems,
+    tokens,
     list,
     text_width_container,
 
@@ -72,7 +72,7 @@ export default (
                     ),
                     elems_cursor,
 
-                    elems,
+                    tokens,
                     0,
                     state_alloc.length_loaded_elems,
                     

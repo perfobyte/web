@@ -1,5 +1,5 @@
 
-.regular-cursor {
+.cursor {
     position:absolute;
     background-color:var(--color);
 }

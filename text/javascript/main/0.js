@@ -10,7 +10,8 @@ import {
     SelectionElem,
     init_cursors,
 
-    Elem,
+    Token,
+    Row,
 } from './f/i.js';
 
 import {
@@ -39,7 +40,7 @@ import {
     scrollbar_x,
     scrollbar_y,
 
-    elems,
+    tokens,
 
     MESSAGE_ROW_EL,
     CURSOR_EL,
@@ -208,8 +209,15 @@ import {
 
                         CursorDefault = Cursor.prototype.default,
                         SelectionDefault = Selection.prototype.default,
-                        SelectionElemDefault = SelectionElem.prototype.default
+                        SelectionElemDefault = SelectionElem.prototype.default,
+                        
+                        RowDefault = Row.prototype.default
                     ;
+
+                    i = 0;
+                    l = 0;
+
+
                     load_msgs(
                         default_row_inline_class,
 
@@ -220,7 +228,7 @@ import {
                         0,
                         state_alloc.length_messages,
 
-                        elems,
+                        tokens,
                         0,
                         state_alloc.length_loaded_elems,
 
@@ -239,7 +247,7 @@ import {
 
                         text_width_container,
 
-                        Elem,
+                        Token,
                         Text,
                         node_text,
                     );
@@ -252,13 +260,13 @@ import {
                         c_el.classList.add("hidden");
                         fragment.appendChild(c_el);
 
-                        cursor = CursorDefault(Cursor,c_el,i,elems[0])
+                        cursor = CursorDefault(Cursor,c_el,i,tokens[0])
                         elems_cursor[i] = cursor;
                     };
 
                     init_cursors(
                         elems_cursor,
-                        elems,
+                        tokens,
                         text_width_container,
                         S.width_cursor,
                         node_text,

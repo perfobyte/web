@@ -9,7 +9,7 @@ export default (
             value = 0
         ;
         cycle: for(; i < l; i++) {
-            E = elems[i];
+            E = tokens[i];
             
             left = E.left;
             top = E.top;
@@ -79,8 +79,8 @@ export default (
                     continue;
                 };
 
-                cursor.elem = E;
-                cursor.elem_start = elem_col;
+                cursor.token = E;
+                cursor.token_start = elem_col;
 
                 style = cursor.element.style;
                 

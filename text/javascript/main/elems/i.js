@@ -1,7 +1,7 @@
 import {state_alloc} from '../state/i.js'
 import template_clone from '../f/general/template_clone.js';
 
-import {Elem} from '../f/dom/element/i.js';
+import {Token} from '../f/dom/element/i.js';
 
 import {array_from_object} from '../conf/i.js';
 
@@ -14,10 +14,10 @@ export var
     body = document.body,
     body_cl = body.classList,
     
-    MESSAGE_ROW_EL = template.querySelector(".message-row"),
-    CURSOR_EL = template.querySelector(".regular-cursor"),
-    REGULAR_INPUT_EL = template.querySelector(".regular-input"),
-    REGULAR_TEXTAREA_EL = template.querySelector(".regular-textarea"),
+    MESSAGE_ROW_EL = template.querySelector(".row"),
+    CURSOR_EL = template.querySelector(".cursor"),
+    REGULAR_INPUT_EL = template.querySelector(".input"),
+    REGULAR_TEXTAREA_EL = template.querySelector(".textarea"),
     SELECTION_EL = template.querySelector(".selection"),
 
     text_width_container = (MESSAGE_ROW_EL.cloneNode(true).firstElementChild),
@@ -45,7 +45,7 @@ export var
     scrollbar_thumb = [scrollbar_thumb_x,scrollbar_thumb_y],
     
     elems_row = Array(state_alloc.size_rows).fill(null),
-    elems = Array(state_alloc.size_elems).fill(null),
+    tokens = Array(state_alloc.size_elems).fill(null),
     
     elems_selection = Array(state_alloc.size_elems_selection).fill(null),
     elems_cursor = Array(state_alloc.size_elems_cursor).fill(null),

@@ -43,7 +43,7 @@ import {
     scrollbar_thumb_x_style,
     scrollbar_thumb_y_style,
 
-    elems,
+    tokens,
     text_width_container,
 
     elems_cursor,
@@ -138,7 +138,7 @@ export default (
 
                     elems_cursor,
 
-                    elems,
+                    tokens,
                     0,
                     state_alloc.length_loaded_elems,
                     

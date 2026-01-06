@@ -11,7 +11,7 @@ export default (
         i,
         l,
 
-        elems,
+        tokens,
         elems_i,
         elems_loaded,
 
@@ -30,12 +30,12 @@ export default (
 
         TW,
 
-        Elem,
+        Token,
         Text,
         node_text,
     ) => {
         var
-            ElemDefault = Elem.prototype.default,
+            ElemDefault = Token.prototype.default,
 
             element = null,
             string = '',
@@ -50,7 +50,7 @@ export default (
             
             new_length = 0,
 
-            elements_l = elems.length,
+            elements_l = tokens.length,
 
             style = null,
 
@@ -106,10 +106,10 @@ export default (
                                 new_length = (elems_l + block_length);
                                 
                                 for (;elements_l < new_length; elements_l++) {
-                                    elems.push(ElemDefault(Elem, template.cloneNode(true)))
+                                    tokens.push(ElemDefault(Token, elements_l, template.cloneNode(true)))
                                 };
                             };
-                            e = elems[elems_i];
+                            e = tokens[elems_i];
                             e.x = 0;
                             e.i = e.y = elems_i++;
 
@@ -160,11 +160,11 @@ export default (
                             new_length = (elems_l + block_length);
                             
                             for (;elements_l < new_length; elements_l++) {
-                                elems.push(ElemDefault(Elem, template.cloneNode(true)));
+                                tokens.push(ElemDefault(Token, elements_l, template.cloneNode(true)));
                             };
                         };
 
-                        e = elems[elems_i];
+                        e = tokens[elems_i];
                         e.i = e.y = elems_i++;
 
                         e.message = message;
@@ -210,15 +210,15 @@ export default (
 
         if (elems_i > elems_loaded) {
             while (elems_loaded < elems_i) {
-                fragment.appendChild(elems[elems_loaded++].element);
+                fragment.appendChild(tokens[elems_loaded++].element);
             };
             
             content.appendChild(fragment);
             state_alloc.length_loaded_elems = elems_i;
         }
         else if (elems_i < elems_loaded) {
-            range.setStartBefore(elems[elems_i].element);
-            range.setEndAfter(elems[elems_loaded - 1].element);
+            range.setStartBefore(tokens[elems_i].element);
+            range.setEndAfter(tokens[elems_loaded - 1].element);
             range.deleteContents();
             state_alloc.length_loaded_elems = elems_i;
         }

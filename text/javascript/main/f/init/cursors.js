@@ -3,7 +3,7 @@
 export default (
     (
         elems_cursor,
-        elems,
+        tokens,
         TW,
         width,
         node_text,
@@ -24,7 +24,7 @@ export default (
 
             left = 0,
             
-            elem = null,
+            token = null,
             start_block_value = "",
             chunk = "",
 
@@ -39,28 +39,28 @@ export default (
         
         for(; i < l; i++) {
             c = elems_cursor[i];
-            elem = c.elem;
-            start_block_value = elem.block.value;
+            token = c.token;
+            start_block_value = token.block.value;
             
             c_el = c.element;
             s = c_el.style;
 
-            offset = elem.start;
+            offset = token.start;
 
             node_text.data = (
                 start_block_value.substring(
                     offset,
-                    (offset + c.elem_start)
+                    (offset + c.token_start)
                 )
             );        
             
-            left = (elem.left + TW.offsetWidth);
+            left = (token.left + TW.offsetWidth);
             
-            s.top = `${elem.top}px`;
+            s.top = `${token.top}px`;
             s.left = `${left}px`;
 
             s.width = `${width}px`;
-            s.height = `${elem.height}px`
+            s.height = `${token.height}px`
         }
     }
 );

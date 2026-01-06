@@ -3,8 +3,8 @@ function SelectionElem(
     i,
     element,
 
-    elem_start,
-    elem_end,
+    token_start,
+    token_end,
 
     elem_top,
     elem_height,
@@ -17,8 +17,8 @@ function SelectionElem(
     this.i = i;
     this.element = element;
 
-    this.elem_start = elem_start;
-    this.elem_end = elem_end;
+    this.token_start = token_start;
+    this.token_end = token_end;
     
     this.elem_top = elem_top;
     this.elem_height = elem_height;
@@ -42,7 +42,7 @@ SelectionElem.prototype = {
     },
 
     right() {
-        return this.elem_end.right;
+        return this.token_end.right;
     },
 
     bottom() {
@@ -51,7 +51,7 @@ SelectionElem.prototype = {
     },
 
     left() {
-        return this.elem_start.left;
+        return this.token_start.left;
     },
 
     height() {
@@ -60,8 +60,8 @@ SelectionElem.prototype = {
 
     width() {
         return (
-            (this.elem_end.right)
-            - (this.elem_start.left)
+            (this.token_end.right)
+            - (this.token_start.left)
         );
     }
 }
