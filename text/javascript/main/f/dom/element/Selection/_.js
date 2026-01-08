@@ -2,7 +2,9 @@
 
 function Selection(
     i,
-    selected,
+
+    block_start,
+    block_end,
     
     token_start,
     token_start_start,
@@ -11,8 +13,10 @@ function Selection(
     token_end_end,
 ) {
     this.i = i;
-    this.selected = selected;
     
+    this.block_start = block_start;
+    this.block_end = block_end;
+
     this.token_start = token_start;
     this.token_start_start = token_start_start;
 
@@ -23,12 +27,13 @@ function Selection(
 Selection.prototype = {
     default: (
         (Selection, i) => {
+            var n = null;
             return (
                 new Selection(
                     i,
-                    0,
-                    null,0,
-                    null,0,
+                    n,n,
+                    n,0,
+                    n,0,
                 )
             )
         }

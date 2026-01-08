@@ -7,11 +7,14 @@ import {
 
     Cursor,
     Selection,
-    SelectionElem,
+    SelectionBlock,
     init_cursors,
 
     Token,
     Row,
+
+    Input,
+    Textarea,
 } from './f/i.js';
 
 import {
@@ -40,9 +43,8 @@ import {
     scrollbar_x,
     scrollbar_y,
 
-    tokens,
-
-    MESSAGE_ROW_EL,
+    ROW_EL,
+    TOKEN_EL,
     CURSOR_EL,
     REGULAR_INPUT_EL,
     REGULAR_TEXTAREA_EL,
@@ -55,14 +57,13 @@ import {
 
     default_row_inline_class,
 
+    tokens,
+    rows,
+    
     cursors,
     inputs,
     textareas,
-
-    elems_cursor,
-    elems_input,
-    elems_textarea,
-    elems_selection,
+    selections,
 
     main,
     list_selections,
@@ -194,7 +195,7 @@ import {
                         size_message = state_alloc.size_message,
                         
                         i = 0,
-                        l = elems_cursor.length,
+                        l = cursors.length,
 
                         cursor = null,
                         c_el = null,
@@ -209,14 +210,26 @@ import {
 
                         CursorDefault = Cursor.prototype.default,
                         SelectionDefault = Selection.prototype.default,
-                        SelectionElemDefault = SelectionElem.prototype.default,
+                        SelectionElemDefault = SelectionBlock.prototype.default,
                         
-                        RowDefault = Row.prototype.default
+                        RowDefault = Row.prototype.default,
+                        TokenDefault = Token.prototype.default,
+
+                        TextareaDefault = Textarea.prototype.default,
+                        InputDefault = Input.prototype.default
                     ;
 
                     i = 0;
-                    l = 0;
-
+                    l = tokens.length;
+                    for(;i<l;i++){
+                        tokens[i] = TokenDefault(Token, i, TOKEN_EL.cloneNode(true));
+                    };
+                    
+                    i = 0;
+                    l = rows.length;
+                    for(;i<l;i++){
+                        rows[i] = RowDefault(Row, i, ROW_EL.cloneNode(true));
+                    };
 
                     load_msgs(
                         default_row_inline_class,
@@ -232,9 +245,9 @@ import {
                         0,
                         state_alloc.length_loaded_elems,
 
-                        MESSAGE_ROW_EL,
+                        ROW_EL,
                         size_message,
-                        state_alloc.size_elems,
+                        state_alloc.size_tokens,
                         S.height_row,
 
                         state_alloc,
@@ -261,18 +274,17 @@ import {
                         fragment.appendChild(c_el);
 
                         cursor = CursorDefault(Cursor,c_el,i,tokens[0])
-                        elems_cursor[i] = cursor;
+                        cursors[i] = cursor;
                     };
 
                     init_cursors(
-                        elems_cursor,
-                        tokens,
+                        cursors,
                         text_width_container,
                         S.width_cursor,
                         node_text,
                     );
 
-                    cursor = main.cursor = elems_cursor[main.id_cursor];
+                    cursor = main.cursor = cursors[main.id_cursor];
 
                     c_el = main.element_cursor = cursor.element;
                     main.element_cursor_classlist = c_el.classList;
@@ -280,10 +292,10 @@ import {
                     cursors.appendChild(fragment);
 
                     i = 0;
-                    l = elems_input.length;
+                    l = inputs.length;
                     for (;i < l; i++) {
                         input_el = REGULAR_INPUT_EL.cloneNode(true);
-                        elems_input[i] = input_el;
+                        inputs[i] = InputDefault(Input, i, input_el);
 
                         input_el.setAttribute("tabindex", tabindex++);
                         
@@ -294,39 +306,40 @@ import {
                         fragment.appendChild(input_el);
                     }
 
-                    main.element_input = elems_input[main.id_input];
+                    main.element_input = inputs[main.id_input];
                     inputs.appendChild(fragment);
 
 
                     i = 0;
-                    l = elems_textarea.length;
+                    l = textareas.length;
 
                     for (;i < l; i++) {
                         textarea_el = REGULAR_TEXTAREA_EL.cloneNode(true);
                         textarea_el.setAttribute("tabindex", tabindex++);
-                        elems_textarea[i] = textarea_el;
+
+                        textareas[i] = TextareaDefault(Textarea, i, textarea_el);
+
                         fragment.appendChild(textarea_el);
                     };
 
-                    main.element_textarea = elems_textarea[main.id_textarea];
+                    main.element_textarea = textareas[main.id_textarea];
                     textareas.appendChild(fragment);
 
                     i = 0;
                     l = edit_contexts.length;
 
                     for (;i < l;i++) {
-                        input_el = elems_input[i];
+                        input_el = inputs[i].element;
 
-                        input_el.editContext =
                         edit_contexts[i] = new EditContext();
-                    }
+                    };
 
                     i = 0;
-                    l = elems_selection.length;
+                    l = selections.length;
 
                     for (; i < l; i++) {
                         sel_el = SELECTION_EL.cloneNode(true);
-                        elems_selection[i] = SelectionElemDefault(SelectionElem,i,sel_el);
+                        selections[i] = SelectionElemDefault(SelectionBlock, i, sel_el);
                     };
 
                     i = 0;
@@ -341,7 +354,7 @@ import {
                         0;
 
                     //
-                    list_selections.replaceChildren(elems_selection[0].element);
+                    list_selections.replaceChildren(selections[0].element);
                     state_alloc.length_loaded_elems_selection++;
 
                     body_cl.remove('hidden');

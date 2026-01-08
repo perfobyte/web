@@ -27,9 +27,10 @@ function Token(
     this.block = block;
     
     this.top = top;
-    this.right = right;
-    this.bottom = bottom;
     this.left = left;
+
+    this.bottom = bottom;
+    this.right = right;
 
     this.width = width;
     this.height = height;

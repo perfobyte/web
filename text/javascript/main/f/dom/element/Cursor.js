@@ -24,7 +24,11 @@ function Cursor(
 Cursor.prototype = {
     default: (
         (Cursor, element, i, token, selection) => {
-            return new Cursor(element,i,token,0,0,selection)
+            return new Cursor(
+                element,i,
+                token,0,
+                0,selection
+            )
         }
     ),
 };

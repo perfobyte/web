@@ -22,7 +22,7 @@ export default (
             size_blocks = (size_block * number_blocks),
             size_message_blocks = (size_block * number_message_blocks),
 
-            size_elems = size_block,
+            size_tokens = size_block,
             size_rows = size_block,
 
             buffer_request = (
@@ -53,7 +53,7 @@ export default (
                 id: 0,
                 value: "hello_my_friend\nhow are u bro\n i havent seen u a long time agosdfldsfkdsfksdfksdfsdf\\cwaitaaaa\naaaaai havent seen u a long time agosdfldsfkdsfksdfksdfsdfi havent seen u a long time agosdfldsfkdsfksdfksdfsdfi havent seen u a long time agosdfldsfkdsfksdfksdfsdfi havent seen u a long time agosdfldsfkdsfksdfksdfsdf11\n2\n3\n4\n3553345435345345345534534\nx312x1e1ex1e1ex3e123x123x312x1e1ex1e1ex3e123x123x312x1e1ex1e1ex3e123x123x312x1e1ex1e1ex3e123x123x312x1e1ex1e1ex3e123x123x312x1e1ex1e1ex3e123x123\nhello/world//////",
             },
-            size_elems_cursor = 1
+            size_cursors = 1
         ;
         
         blocks[0] = test_block;
@@ -72,13 +72,13 @@ export default (
             size_message,
 
             size_rows,
-            size_elems,
-            size_elems_cursor,
-            size_elems_input:1,
-            size_elems_textarea:1,
+            size_tokens,
+            size_cursors,
+            size_inputs:1,
+            size_textareas:1,
 
-            size_elems_selection: size_elems,
-            size_selections: size_elems_cursor,
+            size_selection_elems: size_tokens,
+            size_selections: size_cursors,
 
             number_blocks,
             number_message_blocks,

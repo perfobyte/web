@@ -31,11 +31,14 @@ export default (
         TW,
 
         Token,
+        Row,
+        
         Text,
         node_text,
     ) => {
         var
-            ElemDefault = Token.prototype.default,
+            TokenDefault = Token.prototype.default,
+            RowDefault = Row.prototype.default,
 
             element = null,
             string = '',
@@ -78,7 +81,8 @@ export default (
             x = 0,
             y = 0,
 
-            block = null
+            block = null,
+            row = null
         ;
 
         TW.className = default_row_inline_class;
@@ -106,9 +110,15 @@ export default (
                                 new_length = (elems_l + block_length);
                                 
                                 for (;elements_l < new_length; elements_l++) {
-                                    tokens.push(ElemDefault(Token, elements_l, template.cloneNode(true)))
+                                    tokens.push(
+                                        TokenDefault(
+                                            Toke
+                                        )
+                                    );
+                                    TokenDefault(Token, elements_l, template.cloneNode(true))
                                 };
                             };
+                            
                             e = tokens[elems_i];
                             e.x = 0;
                             e.i = e.y = elems_i++;
@@ -160,7 +170,7 @@ export default (
                             new_length = (elems_l + block_length);
                             
                             for (;elements_l < new_length; elements_l++) {
-                                tokens.push(ElemDefault(Token, elements_l, template.cloneNode(true)));
+                                tokens.push(TokenDefault(Token, elements_l, template.cloneNode(true)));
                             };
                         };
 

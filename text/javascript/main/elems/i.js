@@ -14,13 +14,14 @@ export var
     body = document.body,
     body_cl = body.classList,
     
-    MESSAGE_ROW_EL = template.querySelector(".row"),
+    ROW_EL = template.querySelector(".row"),
+    TOKEN_EL = template.querySelector(".token"),
     CURSOR_EL = template.querySelector(".cursor"),
     REGULAR_INPUT_EL = template.querySelector(".input"),
     REGULAR_TEXTAREA_EL = template.querySelector(".textarea"),
     SELECTION_EL = template.querySelector(".selection"),
 
-    text_width_container = (MESSAGE_ROW_EL.cloneNode(true).firstElementChild),
+    text_width_container = (ROW_EL.cloneNode(true).firstElementChild),
     default_row_inline_class = text_width_container.className,
 
     scrollbar_x = document.getElementById("scrollbar-x"),
@@ -44,13 +45,13 @@ export var
     
     scrollbar_thumb = [scrollbar_thumb_x,scrollbar_thumb_y],
     
-    elems_row = Array(state_alloc.size_rows).fill(null),
-    tokens = Array(state_alloc.size_elems).fill(null),
+    rows = Array(state_alloc.size_rows).fill(null),
+    tokens = Array(state_alloc.size_tokens).fill(null),
     
-    elems_selection = Array(state_alloc.size_elems_selection).fill(null),
-    elems_cursor = Array(state_alloc.size_elems_cursor).fill(null),
-    elems_input = Array(state_alloc.size_elems_input).fill(null),
-    elems_textarea = Array(state_alloc.size_elems_textarea).fill(null),
+    selections = Array(state_alloc.size_selection_elems).fill(null),
+    cursors = Array(state_alloc.size_cursors).fill(null),
+    inputs = Array(state_alloc.size_inputs).fill(null),
+    textareas = Array(state_alloc.size_textareas).fill(null),
 
     main = {
         id_cursor: 0,

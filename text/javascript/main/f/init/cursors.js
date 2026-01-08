@@ -2,8 +2,7 @@
 
 export default (
     (
-        elems_cursor,
-        tokens,
+        cursors,
         TW,
         width,
         node_text,
@@ -11,7 +10,7 @@ export default (
         
         var
             i = 0,
-            l = elems_cursor.length,
+            l = cursors.length,
 
             c = null,
             c_el = null,
@@ -38,7 +37,7 @@ export default (
         TW.replaceChildren(node_text);
         
         for(; i < l; i++) {
-            c = elems_cursor[i];
+            c = cursors[i];
             token = c.token;
             start_block_value = token.block.value;
             

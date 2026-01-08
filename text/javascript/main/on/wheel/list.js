@@ -25,7 +25,7 @@ import {
     html_style,
     scrollbar_thumb_x_style,
     scrollbar_thumb_y_style,
-    elems_cursor,
+    cursors,
 } from '../../elems/i.js';
 
 export default (
@@ -70,7 +70,7 @@ export default (
                         Math.min,
                         Math.max,
                     ),
-                    elems_cursor,
+                    cursors,
 
                     tokens,
                     0,

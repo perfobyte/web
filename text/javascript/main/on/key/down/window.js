@@ -46,7 +46,7 @@ import {
     tokens,
     text_width_container,
 
-    elems_cursor,
+    cursors,
     main,
 } from '../../../elems/i.js';
 import {on_window_resize} from "../../resize/i.js";
@@ -136,7 +136,7 @@ export default (
                     )
                     : (S.zoom_default),
 
-                    elems_cursor,
+                    cursors,
 
                     tokens,
                     0,

@@ -1,4 +1,4 @@
-import {main, tokens, text_width_container, elems_selection} from '../../../elems/i.js';
+import {main, tokens, text_width_container, selections} from '../../../elems/i.js';
 import {prevent_scroll, node_text} from '../../../conf/i.js';
 import {state_app, state_alloc, state_style as S} from '../../../state/i.js';
 
@@ -126,8 +126,8 @@ export default (
                 };
                 
                 //
-                elems_selection[0]
-                style = elems_selection[0].element.style;
+                selections[0]
+                style = selections[0].element.style;
                 style.top = `${top}px`;
                 style.left = `${left}px`;
                 style.width = `${E.width}px`;

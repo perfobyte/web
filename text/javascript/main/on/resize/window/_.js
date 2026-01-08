@@ -13,7 +13,7 @@ import {
     scrollbar_thumb_x_style,
     scrollbar_thumb_y_style,
     list,
-    MESSAGE_ROW_EL,
+    ROW_EL,
     text_width_container,
     tokens,
 

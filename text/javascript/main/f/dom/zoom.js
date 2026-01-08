@@ -5,7 +5,7 @@
 export default (
     new_zoom,
 
-    elems_cursor,
+    cursors,
 
     tokens,
     i,
@@ -202,8 +202,7 @@ export default (
         );
 
     init_cursors(
-        elems_cursor,
-        tokens,
+        cursors,
         text_width_container,
         (S.width_cursor = (S.width_cursor_default * new_zoom)),
         node_text,
