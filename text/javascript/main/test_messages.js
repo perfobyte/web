@@ -2,8 +2,6 @@
 
 export default [
     {
-        id_chat: 0n,
-        block: null,
         offset: 0,
         length: 62,
         id: 0n,
@@ -11,8 +9,6 @@ export default [
         epoch: 0,
     },
     {
-        id_chat: 0n,
-        block: null,
         offset: 62,
         length: 27,
         id: 1n,
@@ -20,8 +16,6 @@ export default [
         epoch: 0,
     },
     {
-        id_chat: 0n,
-        block: null,
         offset: 89,
         length: 10,
         id: 3n,
@@ -29,8 +23,6 @@ export default [
         epoch: 0,
     },
     {
-        id_chat: 0n,
-        block: null,
         offset: 99,
         length: 212,
         id: 4n,
@@ -38,8 +30,6 @@ export default [
         epoch: 0,
     },
     {
-        id_chat: 0n,
-        block: null,
         offset: 311,
         length: 198,
         id: 5n,

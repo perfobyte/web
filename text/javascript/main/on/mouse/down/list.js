@@ -28,7 +28,7 @@ export default (
             max = Math.max,
             min = Math.min,
             
-            input_el = main.element_input.element,
+            input_el = main.input.element,
             cursor = main.cursor,
 
             window = e.view,

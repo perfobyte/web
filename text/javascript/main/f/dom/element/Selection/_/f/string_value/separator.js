@@ -16,23 +16,46 @@ export default (
         AS,
     ) => {
         var
+            n = null,
             group = groups[i],
             block = group.block,
             
             value = "",
-            group_string_value = null,
             block_value = "",
 
-            token = null,
+            group_string_value = n,
+            token = n,
+            sblock = n,
 
-            z = 0,
-            x = 0
+            message_i = 0,
+            message_l = 0,
+
+            sblock_i = 0,
+            sblock_l = 0,
+
+            token_i = 0,
+            token_l = 0
         ;
         
         if ((l-i)>1) {
             group_string_value = group.string_value;
 
+            sblock_i = group.i;
+            sblock_l = group.l;
             
+            for(;sblock_i < sblock_l; sblock_i++) {
+                sblock = sblocks[sblock_i];
+
+                block = sblock.block;
+                block_value = block.value;
+                
+                token_i = sblock.i;
+                token_l = sblock.l;
+
+                for(;token_i < token_l; token_i++) {
+                    token = tokens[token_i];
+                }
+            };
 
             value = (
                 block.value.substring(

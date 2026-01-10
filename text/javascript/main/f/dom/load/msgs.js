@@ -147,7 +147,7 @@ export default (
                     
                     w = (TW.offsetWidth);
                     style.width = `${w}px`;
-                    console.log("w =",w);
+                    
                     max_width = (Math.max(max_width,w));
                     
                     token_el.replaceChildren(new Text(chunk));
@@ -160,7 +160,7 @@ export default (
 
                     t.length = chunk.length;
                     t.x = 0;
-                    t.i = t.y = tokens_i++;
+                    t.id = t.y = tokens_i++;
 
                     t.message = message;
                     t.block = block;
@@ -201,8 +201,6 @@ export default (
 
         width_row = (S.width_row = ((S.width_loaded = max_width) + right_content));
 
-        
-        console.log("width_row =",width_row);
         html_style.setProperty("--width-row", `${width_row}px`);
         
         html_style.setProperty("--height-content",`${style_top}px`);

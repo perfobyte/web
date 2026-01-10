@@ -372,12 +372,12 @@ export default (
         }
         else if (active === body) {
             if (key === "Tab") {
-                main.element_input.focus();
+                main.input.element.focus();
             }
         }
         else {
             if (key === "Escape") {
-                main.element_input.blur();
+                main.input.element.blur();
             }
         }
         

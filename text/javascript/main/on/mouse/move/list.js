@@ -174,8 +174,8 @@ export default (
                 style.left = `${left + w}px`;
                 style.height = `${E.height}px`;
 
-                from = (token = selection.token_start).i;
-                to = E.i;
+                from = (token = selection.token_start).id;
+                to = E.id;
 
                 offset = selection.offset;
                 char_i = selection.left_start;
@@ -225,8 +225,7 @@ export default (
                         );
                     }
                 };
-                console.log(offset, elem_col);
-
+                
                 i = 0;
                 w = l = A.length_selection_blocks;
                 x = A.length_selection_groups;

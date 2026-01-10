@@ -1,6 +1,6 @@
 
 function Token(
-    i, element, row,
+    id, element, row,
 
     x,y,
 
@@ -12,7 +12,7 @@ function Token(
 
     width, height,
 ) {
-    this.i = i;
+    this.id = id;
     this.element = element;
     this.row = row;
 

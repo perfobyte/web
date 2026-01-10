@@ -57,5 +57,10 @@ export var
     edit_contexts = Array(A.size_inputs).fill(null),
     
     selections = Array(A.size_selections).fill(null),
-    selection_groups = Array(A.size_selection_groups).fill(null)
+    selection_groups = Array(A.size_selection_groups).fill(null),
+
+    blocks = Array(A.size_blocks).fill(null),
+    
+    messages = Array(A.size_messages).fill(null),
+    chats = Array(A.size_chats).fill(null)
 ;

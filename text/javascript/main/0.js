@@ -1,3 +1,4 @@
+import test_messages from './test_messages.js';
 
 import {
     font_path,
@@ -16,6 +17,10 @@ import {
 
     Input,
     Textarea,
+    Block,
+
+    Chat,
+    Message,
 } from './f/i.js';
 
 import {
@@ -35,6 +40,9 @@ import {
 
     selections,
     selection_groups,
+
+    blocks,
+    messages,chats,
 } from "./conf/i.js";
 
 import {
@@ -114,6 +122,8 @@ import {
 (
     (window, document) => {
         var
+            n = null,
+
             document_fonts = document.fonts,
 
             height_row = S.height_row,
@@ -121,7 +131,7 @@ import {
 
             font_id_bare_str = (`_${font_id}`),
 
-            font_face = null,
+            font_face = n,
 
             width = window.innerWidth,
             height = window.innerHeight,
@@ -202,18 +212,22 @@ import {
             .then(
                 () => {
                     var
+                        n = null,
                         size_message = A.size_message,
                         
                         i = 0,
                         l = cursors.length,
 
-                        cursor = null,
-                        c_el = null,
+                        cursor = n,
+                        c_el = n,
 
-                        input_el = null,
-                        textarea_el = null,
+                        input_el = n,
+                        textarea_el = n,
 
-                        sel_el = null,
+                        sel_el = n,
+                        block = n,
+                        message = n,
+                        chat = n,
 
                         tabindex = 1,
                         
@@ -226,8 +240,54 @@ import {
                         TokenDefault = Token.prototype.default,
 
                         TextareaDefault = Textarea.prototype.default,
-                        InputDefault = Input.prototype.default
+                        InputDefault = Input.prototype.default,
+
+                        ChatDefault = Chat.prototype.default,
+                        MessageDefault = Message.prototype.default,
+
+                        BlockProto = Block.prototype,
+                        BlockDefault = BlockProto.default,
+                        
+                        ObjectAssign = Object.assign
                     ;
+
+                    i = 0;
+                    l = chats.length;
+                    for(;i<l;i++){
+                        chats[i] = ChatDefault(Chat, BigInt(i))
+                    };
+                    chat = chats[0];
+                    A.length_chats = 1;
+
+                    i = 0;
+                    l = blocks.length;
+                    BlockProto.size = A.size_block;
+
+                    for(;i<l;i++){
+                        blocks[i] = BlockDefault(Block, i);
+                    };
+                    
+                    block = blocks[0];
+                    block.value = "hello_my_friend\nhow are u bro\n i havent seen u a long time agosdfldsfkdsfksdfksdfsdf\\cwaitaaaa\naaaaai havent seen u a long time agosdfldsfkdsfksdfksdfsdfi havent seen u a long time agosdfldsfkdsfksdfksdfsdfi havent seen u a long time agosdfldsfkdsfksdfksdfsdfi havent seen u a long time agosdfldsfkdsfksdfksdfsdf11\n2\n3\n4\n3553345435345345345534534\nx312x1e1ex1e1ex3e123x123x312x1e1ex1e1ex3e123x123x312x1e1ex1e1ex3e123x123x312x1e1ex1e1ex3e123x123x312x1e1ex1e1ex3e123x123x312x1e1ex1e1ex3e123x123\nhello/world//////";
+                    block.offset = 0;
+
+                    i = 0;
+                    l = messages.length;
+                    for(;i<l;i++){
+                        messages[i] = MessageDefault(Message, BigInt(i));
+                    };
+                    
+                    i = 0;
+                    l = test_messages.length;
+                    for(;i<l;i++){
+                        message = messages[i];
+                        ObjectAssign(message, test_messages[i]);
+                        message.block = block;
+                        message.chat = chat;
+                    };
+                    
+                    A.length_messages = l;
+                    
 
                     i = 0;
                     l = tokens.length;
@@ -244,7 +304,7 @@ import {
                     load_msgs(
                         default_row_inline_class,
                         
-                        A.messages,
+                        messages,
                         0,
                         A.length_messages,
 
@@ -327,8 +387,8 @@ import {
 
                         fragment.appendChild(input_el);
                     }
-
-                    main.element_input = inputs[main.id_input];
+                    
+                    main.input = inputs[main.id_input];
                     list_inputs.appendChild(fragment);
 
                     i = 0;
@@ -348,19 +408,18 @@ import {
 
                     i = 0;
                     l = edit_contexts.length;
-
                     for (;i < l;i++) {
                         input_el = inputs[i].element;
 
                         edit_contexts[i] = new EditContext();
                     };
-
+                    
+                    
                     i = 0;
                     l = selection_groups.length;
                     for (;i<l;i++) {
                         selection_groups[i] = SelectionGroupDefault(SelectionGroup, i);
                     }
-                    console.dir(selection_groups);
                     
                     i = 0;
                     l = selection_blocks.length;
