@@ -21,7 +21,8 @@ export var
     REGULAR_TEXTAREA_EL = template.querySelector(".textarea"),
     SELECTION_EL = template.querySelector(".selection"),
 
-    text_width_container = (ROW_EL.cloneNode(true).firstElementChild),
+    text_width_row = ROW_EL.cloneNode(true),
+    text_width_container = (text_width_row.firstElementChild),
     default_row_inline_class = text_width_container.className,
 
     scrollbar_x = document.getElementById("scrollbar-x"),
@@ -35,10 +36,10 @@ export var
 
     list = document.getElementById("list"),
 
-    cursors = document.getElementById("cursors"),
-    inputs = document.getElementById("inputs"),
-    textareas = document.getElementById("textareas"),
-    list_selections = document.getElementById("list-selections"),
+    list_cursors = document.getElementById("cursors"),
+    list_inputs = document.getElementById("inputs"),
+    list_textareas = document.getElementById("textareas"),
+    list_selections = document.getElementById("selections"),
 
     content = list.firstElementChild,
     content_style = content.style,
@@ -48,7 +49,8 @@ export var
     rows = Array(state_alloc.size_rows).fill(null),
     tokens = Array(state_alloc.size_tokens).fill(null),
     
-    selections = Array(state_alloc.size_selection_elems).fill(null),
+    selection_blocks = Array(state_alloc.size_selection_blocks).fill(null),
+    
     cursors = Array(state_alloc.size_cursors).fill(null),
     inputs = Array(state_alloc.size_inputs).fill(null),
     textareas = Array(state_alloc.size_textareas).fill(null),
@@ -67,7 +69,7 @@ export var
     }
 ;
 
-text_width_container.setAttribute("id","text-width-container");
-body.appendChild(text_width_container);
+text_width_row.setAttribute("id","text-width-container");
+body.appendChild(text_width_row);
 
 export * from "./event.js"

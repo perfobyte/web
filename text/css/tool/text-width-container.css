@@ -1,16 +1,8 @@
 
 
 #text-width-container {
-    position: absolute;
-    visibility: hidden;
-    white-space: pre;
-    
-    left: 100%;
-    
-    font-weight: normal;
-    font-style: normal;
-    letter-spacing: normal;
-    text-transform: none;
-    word-spacing: normal;
-    tab-size: 4;
+    left:0;
+    top:0;
+    z-index:0;
+    pointer-events:none;
 }

@@ -2,32 +2,31 @@
 
 
 function Cursor(
+    id,
     element,
-    i,
     
     token,
     token_start,
 
-    selection_direction,
     selection,
 ) {
+    this.id = id;
     this.element = element;
-    this.i = i;
     
     this.token = token;
     this.token_start = token_start;
 
-    this.selection_direction = selection_direction;
     this.selection = selection;
 };
 
 Cursor.prototype = {
     default: (
-        (Cursor, element, i, token, selection) => {
+        (Cursor, id, element) => {
+            var n = null;
             return new Cursor(
-                element,i,
-                token,0,
-                0,selection
+                id,
+                element,
+                n,0,n
             )
         }
     ),

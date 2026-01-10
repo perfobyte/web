@@ -14,7 +14,7 @@ import {
 import {state_style, state_mode, state_alloc} from '../../state/i.js';
 import {
     xy_move_event,
-    messages_fragment as fragment,
+    fragment as fragment,
     node_text,
 } from '../../conf/i.js';
 import {
@@ -50,7 +50,7 @@ export default (
             event_object = null,
 
             unit = (
-                wheel_delta_value[direction][event.deltaMode](state_style)
+                state_style[wheel_delta_value[direction * event.deltaMode]]
             ),
 
             px = (delta * unit)
@@ -74,7 +74,7 @@ export default (
 
                     tokens,
                     0,
-                    state_alloc.length_loaded_elems,
+                    state_alloc.length_tokens,
                     
                     state_style,
                     

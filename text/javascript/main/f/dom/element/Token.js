@@ -1,6 +1,6 @@
 
 function Token(
-    i, element,
+    i, element, row,
 
     x,y,
 
@@ -14,6 +14,7 @@ function Token(
 ) {
     this.i = i;
     this.element = element;
+    this.row = row;
 
     this.x = x;
     this.y = y;
@@ -39,14 +40,14 @@ function Token(
 Token.prototype = {
     default: (Token, i, element) => {
         return new Token(
-            i,element,
+            i,element,null,
             0,0,
             0,0,0,2,
             null,null,
             0,0,0,0,
             0,0,
         )
-    },
+    }
 };
 
 export default Token;

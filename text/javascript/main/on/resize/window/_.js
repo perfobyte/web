@@ -1,7 +1,7 @@
 
 import {
-    messages_fragment,
-    messages_range,
+    fragment,
+    range,
 } from '../../../conf/i.js';
 
 import {

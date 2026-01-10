@@ -3,24 +3,27 @@ import {linebreaks} from '../../../conf/i.js';
 export default (
     (
         default_row_inline_class,
-
-        blocks,
-        offset_blocks,
-
+        
         msgs,
         i,
         l,
 
         tokens,
-        elems_i,
-        elems_loaded,
+        tokens_i,
+        length_tokens,
 
-        template,
-        size_message,
-        block_length,
+        rows,
+        rows_i,
+        length_rows,
+
+        ROW_EL,
+        TOKEN_EL,
+
+        size_rows,
+        size_tokens,
         height_row,
         
-        state_alloc,
+        A,
         S,
 
         content,
@@ -40,7 +43,7 @@ export default (
             TokenDefault = Token.prototype.default,
             RowDefault = Row.prototype.default,
 
-            element = null,
+            token_el = null,
             string = '',
             
             char_i = 0,
@@ -53,7 +56,8 @@ export default (
             
             new_length = 0,
 
-            elements_l = tokens.length,
+            tokens_l = tokens.length,
+            rows_l = rows.length,
 
             style = null,
 
@@ -74,7 +78,7 @@ export default (
 
             message = null,
 
-            e = null,
+            t = null,
 
             message_id = 0,
 
@@ -82,156 +86,113 @@ export default (
             y = 0,
 
             block = null,
-            row = null
+            row = null,
+            row_el = null
         ;
 
         TW.className = default_row_inline_class;
         TW.replaceChildren(node_text);
 
-        general: while (true) {
-            append: {
-                while (i < l) {
-                    message = msgs[i];
+        
+        while (i < l) {
+            message = msgs[i];
 
-                    char_i = message.offset;
-                    char_l = (char_i + (message.length));
+            char_i = message.offset;
+            char_l = (char_i + (message.length));
 
-                    block = message.block;
-                    
-                    string = block.value;
-                    
-                    while (char_i < char_l) {
-                        next = (char_i + 1);
+            block = message.block;
+            string = block.value;
+            string_offset = char_i;
+            
+            while (char_i < char_l) {
+                next = (char_i + 1);
 
-                        if (
-                            linebreaks.includes(string[char_i])
-                        ) {
-                            if (elems_i >= elements_l) {
-                                new_length = (elems_l + block_length);
-                                
-                                for (;elements_l < new_length; elements_l++) {
-                                    tokens.push(
-                                        TokenDefault(
-                                            Toke
-                                        )
-                                    );
-                                    TokenDefault(Token, elements_l, template.cloneNode(true))
-                                };
-                            };
-                            
-                            e = tokens[elems_i];
-                            e.x = 0;
-                            e.i = e.y = elems_i++;
-
-                            e.message = message;
-                            e.block = block;
-
-                            element = e.element;
-
-                            chunk = string.substring((e.start=string_offset), (e.end=char_i));
-                            
-                            e.length = chunk.length;
-                            
-                            
-                            node_text.data = chunk;
-
-                            w = (TW.offsetWidth);
-                            e.width = w;
-                            h = TW.offsetHeight;
-                            e.height = h;
-
-
-                            max_width = (Math.max(max_width,w));
-
-                            
-                            inline = element.firstElementChild;
-                            
-                            // inline.style.width = `${w}px`;
-                            inline.replaceChildren(new Text(chunk));
-                            
-                            style = element.style;
-
-                            style.top = `${style_top}px`;
-                            style.left = `${element_left}px`;
-
-                            e.bottom = ((e.top = style_top) + h);
-                            e.right = ((e.left = element_left) + w);
-
-                            style_top += px;
-
-                            string_offset = next;
+                if (
+                    linebreaks.includes(string[char_i])
+                    ||
+                    (
+                        (next === char_l)
+                        &&
+                        (string_offset < next)
+                    )
+                ) {
+                    if (rows_i >= rows_l) {
+                        new_length = (rows_l + size_rows);
+                        
+                        for (;rows_l < new_length; rows_l++) {
+                            rows.push(RowDefault(Row, rows_l, ROW_EL.cloneNode(true)));
                         };
-
-                        char_i = next;
                     };
 
-                    if (string_offset < char_l) {
-                        if (elems_i >= elements_l) {
-                            new_length = (elems_l + block_length);
-                            
-                            for (;elements_l < new_length; elements_l++) {
-                                tokens.push(TokenDefault(Token, elements_l, template.cloneNode(true)));
-                            };
+                    if (tokens_i >= tokens_l) {
+                        new_length = (tokens_l + size_tokens);
+                        
+                        for (;tokens_l < new_length; tokens_l++) {
+                            tokens.push(TokenDefault(Token, tokens_l, TOKEN_EL.cloneNode(true)));
                         };
+                    };
 
-                        e = tokens[elems_i];
-                        e.i = e.y = elems_i++;
+                    row = rows[rows_i++];
+                    row_el = row.element;
+                    inline = row_el.firstElementChild;
+                    style = row_el.style;
+                    style.top = `${style_top}px`;
+                    style.left = `${element_left}px`;
 
-                        e.message = message;
-                        e.block = block;
+                    t = tokens[tokens_i];
+                    token_el = t.element;
+                    t.row = row;
+                    
+                    node_text.textContent = chunk = string.substring((t.start=string_offset), (t.end=next));
+                    
+                    w = (TW.offsetWidth);
+                    style.width = `${w}px`;
+                    console.log("w =",w);
+                    max_width = (Math.max(max_width,w));
+                    
+                    token_el.replaceChildren(new Text(chunk));
+                    inline.replaceChildren(token_el);
 
-                        element = e.element;
+                    string_offset = next;
 
-                        chunk = string.substring((e.start=string_offset), (e.end=char_l));
-                        
-                        e.length = chunk.length;
+                    t.width = w;
+                    t.height = h = TW.offsetHeight;
 
-                        node_text.data = chunk;
-                        
-                        w = (TW.offsetWidth);
-                        h = (TW.offsetHeight);
+                    t.length = chunk.length;
+                    t.x = 0;
+                    t.i = t.y = tokens_i++;
 
-                        e.width = w;
-                        e.height = h;
+                    t.message = message;
+                    t.block = block;
 
-                        max_width = (Math.max(max_width,w));
+                    style_top = t.bottom = ((t.top = style_top) + h);
+                    t.right = ((t.left = element_left) + w);
+                };
 
-                        inline = element.firstElementChild;
-
-                        // inline.style.width = `${w}px`;
-                        inline.replaceChildren(new Text(chunk));
-                        
-                        style = element.style;
-
-                        style.top = `${style_top}px`;
-                        style.left = `${element_left}px`;
-
-                        e.bottom = ((e.top = style_top) + h);
-                        e.right = ((e.left = element_left) + w);
-                        
-                        style_top += px;
-                    }
-
-                    i++;
-                }
-                break general;
+                char_i = next;
             };
+
+            i++;
         };
 
-        if (elems_i > elems_loaded) {
-            while (elems_loaded < elems_i) {
-                fragment.appendChild(tokens[elems_loaded++].element);
+        if (rows_i > length_rows) {
+            while (length_rows < rows_i) {
+                fragment.appendChild(rows[length_rows++].element);
             };
             
             content.appendChild(fragment);
-            state_alloc.length_loaded_elems = elems_i;
+            A.length_rows = rows_i;
         }
-        else if (elems_i < elems_loaded) {
-            range.setStartBefore(tokens[elems_i].element);
-            range.setEndAfter(tokens[elems_loaded - 1].element);
+        else if (rows_i < length_rows) {
+            range.setStartBefore(rows[rows_i].element);
+            range.setEndAfter(rows[length_rows - 1].element);
             range.deleteContents();
-            state_alloc.length_loaded_elems = elems_i;
+            A.length_rows = rows_i;
         }
+
+        (tokens_i === length_tokens)
+        ||
+        (A.length_tokens = tokens_i);
 
         S.height_loaded_start = (style_top);
         S.height_loaded = (style_top - top_content);
@@ -240,19 +201,21 @@ export default (
 
         width_row = (S.width_row = ((S.width_loaded = max_width) + right_content));
 
-        S.width_content = (
-            (
-                S.width_loaded_start = (
-                    max_width
-                    + (element_left)
-                )
-            )
-            + (right_content)
-        );
         
+        console.log("width_row =",width_row);
         html_style.setProperty("--width-row", `${width_row}px`);
-
+        
         html_style.setProperty("--height-content",`${style_top}px`);
-        html_style.setProperty("--width-content", `${max_width}px`);
+        html_style.setProperty("--width-content", `${
+            S.width_content = (
+                (
+                    S.width_loaded_start = (
+                        max_width
+                        + (element_left)
+                    )
+                )
+                + (right_content)
+            )    
+        }px`);
     }
 );

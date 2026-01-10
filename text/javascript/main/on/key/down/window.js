@@ -4,16 +4,20 @@ import {
     x_move_event,
     y_move_event,
     
-    messages_fragment as fragment,
+    fragment as fragment,
 
     edit_contexts,
     node_text,
+
+    selection_groups,
+    clipboard,
 } from '../../../conf/i.js';
 
 import {
     state_style as S,
     state_alloc,
     state_app,
+    state_mode,
 } from '../../../state/i.js';
 import {
     number_clamp,
@@ -48,6 +52,7 @@ import {
 
     cursors,
     main,
+    selection_blocks,
 } from '../../../elems/i.js';
 import {on_window_resize} from "../../resize/i.js";
 
@@ -140,7 +145,7 @@ export default (
 
                     tokens,
                     0,
-                    state_alloc.length_loaded_elems,
+                    state_alloc.length_tokens,
                     
                     S,
                     
@@ -158,6 +163,32 @@ export default (
 
                     node_text,
                 );
+            }
+            else if (key === "c") {
+
+                ((s) => {
+                    var
+                        value = s.string_value[state_mode.separator]
+                    ;
+                    clipboard.writeText(
+                        value(
+                            selection_groups,
+                            selection_blocks,
+                            tokens,
+                            
+                            s.i,
+                            s.l,
+    
+                            (s.offset),
+                            (s.end),
+
+                            state_app,
+                        )
+                    );
+
+                })(
+                    main.cursor.selection
+                )
             }
         }
         else if (e.shiftKey) {

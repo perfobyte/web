@@ -1,4 +1,4 @@
-import {array_unumber_update, array_unumber_constructor} from "../f/i.js";
+import {array_unumber_update, array_unumber_constructor, Block} from "../f/i.js";
 import test_messages from './test_messages.js';
 
 
@@ -49,12 +49,21 @@ export default (
 
             length_messages = (messages.length),
 
-            test_block = {
-                id: 0,
-                value: "hello_my_friend\nhow are u bro\n i havent seen u a long time agosdfldsfkdsfksdfksdfsdf\\cwaitaaaa\naaaaai havent seen u a long time agosdfldsfkdsfksdfksdfsdfi havent seen u a long time agosdfldsfkdsfksdfksdfsdfi havent seen u a long time agosdfldsfkdsfksdfksdfsdfi havent seen u a long time agosdfldsfkdsfksdfksdfsdf11\n2\n3\n4\n3553345435345345345534534\nx312x1e1ex1e1ex3e123x123x312x1e1ex1e1ex3e123x123x312x1e1ex1e1ex3e123x123x312x1e1ex1e1ex3e123x123x312x1e1ex1e1ex3e123x123x312x1e1ex1e1ex3e123x123\nhello/world//////",
-            },
-            size_cursors = 1
+            test_value = "hello_my_friend\nhow are u bro\n i havent seen u a long time agosdfldsfkdsfksdfksdfsdf\\cwaitaaaa\naaaaai havent seen u a long time agosdfldsfkdsfksdfksdfsdfi havent seen u a long time agosdfldsfkdsfksdfksdfsdfi havent seen u a long time agosdfldsfkdsfksdfksdfsdfi havent seen u a long time agosdfldsfkdsfksdfksdfsdf11\n2\n3\n4\n3553345435345345345534534\nx312x1e1ex1e1ex3e123x123x312x1e1ex1e1ex3e123x123x312x1e1ex1e1ex3e123x123x312x1e1ex1e1ex3e123x123x312x1e1ex1e1ex3e123x123x312x1e1ex1e1ex3e123x123\nhello/world//////",
+
+            test_block = new Block(0, 0, test_value),
+            size_cursors = 1,
+
+            size_selections = size_cursors,
+            size_selection_blocks = size_tokens,
+            size_selection_groups = size_tokens,
+
+            length_selections = 0,
+            length_selection_blocks = 0,
+            length_selection_groups = 0
         ;
+        
+        Block.prototype.size = size_block;
         
         blocks[0] = test_block;
 
@@ -77,8 +86,9 @@ export default (
             size_inputs:1,
             size_textareas:1,
 
-            size_selection_elems: size_tokens,
-            size_selections: size_cursors,
+            size_selection_blocks,
+            size_selection_groups,
+            size_selections,
 
             number_blocks,
             number_message_blocks,
@@ -88,13 +98,17 @@ export default (
             offset_blocks:0,
             offset_messages:0,
 
-            length_loaded_rows:0,
-            length_loaded_elems:0,
-            length_loaded_elems_cursor:1,
-            length_loaded_elems_input:1,
-            length_loaded_elems_textarea:1,
-            length_loaded_elems_selection:0,
             length_messages,
+
+            length_rows:0,
+            length_tokens:0,
+            length_cursors:1,
+            length_inputs:1,
+            length_textareas:1,
+
+            length_selections:0,
+            length_selection_blocks:0,
+            length_selection_groups:0,
             
             buffer_messages,
             buffer_messages_view,

@@ -1,44 +1,31 @@
 
 function SelectionBlock(
-    i,
+    id,
     element,
-    token,
+    block,
 
-    top,
-    right,
-    bottom,
-    left,
-
-    width,
-    height,
+    i,
+    l,
 ) {
-    this.i = i;
+    this.id = id;
     this.element = element;
-
-    this.token = token;
-
-    this.top = top;
-    this.right = right;
-    this.bottom = bottom;
-    this.left = left;
+    this.block = block;
     
-    this.width = width;
-    this.height = height;
+    this.i = i;
+    this.l = l;
 };
 
 SelectionBlock.prototype = {
     default: (
-        (SelectionBlock, i, element) => {
+        (SelectionBlock, id, element) => {
             return (
                 new SelectionBlock(
-                    i,element,
-                    null,
-                    0,0,0,0,
-                    0,0
+                    id,element,
+                    null,0,0,
                 )
             )
         }
     ),
-}
+};
 
 export default SelectionBlock;

@@ -39,6 +39,8 @@ export default (
             length_sections,
 
             last_key:"",
+
+            separator:()=>"\n",
         };
     }
 )(

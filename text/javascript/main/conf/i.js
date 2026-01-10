@@ -1,5 +1,5 @@
-import {state_alloc} from '../state/i.js';
-
+import {state_alloc as A} from '../state/i.js';
+import {TOKEN_EL} from "../elems/i.js";
 
 export * from './crossplatform/i.js'
 export * from './linebreak/i.js'
@@ -7,7 +7,8 @@ export * from './param/i.js';
 export * from './polyfill/i.js';
 
 export var
-    node_text = new Text(""),
+    
+    node_text = TOKEN_EL.cloneNode(true),
     
     TE = new TextEncoder(),
     TD = new TextDecoder("utf8"),
@@ -19,8 +20,8 @@ export var
     VIDEO = document.createElement("video"),
     CANVAS = document.createElement("canvas"),
 
-    messages_fragment = document.createDocumentFragment(),
-    messages_range = document.createRange(),
+    fragment = document.createDocumentFragment(),
+    range = document.createRange(),
 
     CANVAS_2D_CONTEXT = CANVAS.getContext("2d"),
 
@@ -43,8 +44,9 @@ export var
         y_move_event,
     ],
 
-    workers = [null],
-    font_faces = [null],
+    workers = Array(1).fill(null),
+    font_faces = Array(1).fill(null),
+
     array_from_object = {length:0},
 
     separation_result = {
@@ -52,6 +54,8 @@ export var
         char_i: 0,
     },
 
-    edit_contexts = Array(state_alloc.size_inputs).fill(null),
-    selections = Array(state_alloc.size_selections).fill(null)
+    edit_contexts = Array(A.size_inputs).fill(null),
+    
+    selections = Array(A.size_selections).fill(null),
+    selection_groups = Array(A.size_selection_groups).fill(null)
 ;

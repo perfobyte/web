@@ -1,6 +1,6 @@
 
 // i = 0,
-// l = state_alloc.length_loaded_elems,
+// l = state_alloc.length_tokens,
 
 export default (
     new_zoom,
@@ -85,7 +85,10 @@ export default (
         width_scrollbar_content = 0,
         height_scrollbar_content = 0,
 
-        e = null,
+        t = null,
+        row = null,
+
+        style = null,
         
         e_left = 0
     ;
@@ -94,12 +97,14 @@ export default (
     html_style.setProperty("--font-size", `${font_size}px`);
     
     for (;i < l; i++) {
-        e = tokens[i];
+        t = tokens[i];
+        row = t.row;
 
-        element = e.element;
+        element = row.element;
         inline = element.firstElementChild;
-
         text_width_container.className = (inline.className);
+
+        style = element.style;
 
         nodes = inline.childNodes;
         node_i = 0;
@@ -108,32 +113,30 @@ export default (
         while (node_i < node_l) {
             fragment.appendChild(nodes[node_i++].cloneNode(true))
         };
-        text_width_container.replaceChildren(fragment);
         
+        text_width_container.replaceChildren(fragment);
         
         px = (text_width_container.offsetWidth);
 
-        e.width = px;
-        
+        row.width = px;
         
         max_width = max(max_width, px);
+        
+        style.width = `${px}px`;
+        style.top = `${height_content}px`;
 
-        // inline.style.width = `${px}px`;
-
-        element.style.top = `${height_content}px`;
-
-        if (e.position === 2) {
+        if (t.position === 2) {
             e_left = left_content;
         }
         else {
             e_left += px;
         }
 
-        e.bottom = (
-            (e.top = height_content)
-            + (e.height = text_width_container.offsetHeight)
+        t.bottom = (
+            (t.top = height_content)
+            + (t.height = text_width_container.offsetHeight)
         );
-        e.right = ((e.left = e_left) + (px));
+        t.right = ((t.left = e_left) + (px));
         
         height_content += height_row;
     };

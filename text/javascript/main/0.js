@@ -8,6 +8,7 @@ import {
     Cursor,
     Selection,
     SelectionBlock,
+    SelectionGroup,
     init_cursors,
 
     Token,
@@ -20,8 +21,8 @@ import {
 import {
     window_event_object,
     passive_false,
-    messages_fragment as fragment,
-    messages_range as range,
+    fragment as fragment,
+    range as range,
     font_faces,
     workers,
     TD,
@@ -31,7 +32,9 @@ import {
     edit_contexts,
     EditContext,
     node_text,
+
     selections,
+    selection_groups,
 } from "./conf/i.js";
 
 import {
@@ -63,17 +66,24 @@ import {
     cursors,
     inputs,
     textareas,
-    selections,
-
+    
     main,
     list_selections,
+    list_cursors,
+    list_inputs,
+    list_textareas,
+
+    selection_blocks,
+    
 } from "./elems/i.js";
 
 import {
     state_style as S,
+    state_alloc as A,
+
     support_structure_font,
     support_font,
-    state_alloc,
+    
     state_lang,
 
     state_mode,
@@ -192,7 +202,7 @@ import {
             .then(
                 () => {
                     var
-                        size_message = state_alloc.size_message,
+                        size_message = A.size_message,
                         
                         i = 0,
                         l = cursors.length,
@@ -206,11 +216,11 @@ import {
                         sel_el = null,
 
                         tabindex = 1,
-
-
+                        
                         CursorDefault = Cursor.prototype.default,
                         SelectionDefault = Selection.prototype.default,
-                        SelectionElemDefault = SelectionBlock.prototype.default,
+                        SelectionBlockDefault = SelectionBlock.prototype.default,
+                        SelectionGroupDefault = SelectionGroup.prototype.default,
                         
                         RowDefault = Row.prototype.default,
                         TokenDefault = Token.prototype.default,
@@ -233,24 +243,27 @@ import {
 
                     load_msgs(
                         default_row_inline_class,
-
-                        state_alloc.blocks,
-                        state_alloc.offset_blocks,
                         
-                        state_alloc.messages,
+                        A.messages,
                         0,
-                        state_alloc.length_messages,
+                        A.length_messages,
 
                         tokens,
                         0,
-                        state_alloc.length_loaded_elems,
+                        A.length_tokens,
+
+                        rows,
+                        0,
+                        A.length_rows,
 
                         ROW_EL,
-                        size_message,
-                        state_alloc.size_tokens,
+                        TOKEN_EL,
+
+                        A.size_rows,
+                        A.size_tokens,
                         S.height_row,
 
-                        state_alloc,
+                        A,
                         S,
 
                         content,
@@ -261,6 +274,8 @@ import {
                         text_width_container,
 
                         Token,
+                        Row,
+
                         Text,
                         node_text,
                     );
@@ -268,14 +283,28 @@ import {
                     on_window_resize(window_event_object);
                     window.onresize = on_window_resize;
 
+                    i = 0;
+                    l = cursors.length;
+
                     for(;i < l; i++) {
                         c_el = CURSOR_EL.cloneNode(true);
                         c_el.classList.add("hidden");
                         fragment.appendChild(c_el);
 
-                        cursor = CursorDefault(Cursor,c_el,i,tokens[0])
+                        cursor = CursorDefault(Cursor,i,c_el)
                         cursors[i] = cursor;
                     };
+
+                    cursor = main.cursor = cursors[main.id_cursor];
+                    
+                    //
+                    cursor.token = tokens[1];
+                    cursor.token_start = 4;
+
+                    c_el = main.element_cursor = cursor.element;
+                    main.element_cursor_classlist = c_el.classList;
+
+                    list_cursors.appendChild(fragment);
 
                     init_cursors(
                         cursors,
@@ -283,13 +312,6 @@ import {
                         S.width_cursor,
                         node_text,
                     );
-
-                    cursor = main.cursor = cursors[main.id_cursor];
-
-                    c_el = main.element_cursor = cursor.element;
-                    main.element_cursor_classlist = c_el.classList;
-
-                    cursors.appendChild(fragment);
 
                     i = 0;
                     l = inputs.length;
@@ -307,8 +329,7 @@ import {
                     }
 
                     main.element_input = inputs[main.id_input];
-                    inputs.appendChild(fragment);
-
+                    list_inputs.appendChild(fragment);
 
                     i = 0;
                     l = textareas.length;
@@ -323,7 +344,7 @@ import {
                     };
 
                     main.element_textarea = textareas[main.id_textarea];
-                    textareas.appendChild(fragment);
+                    list_textareas.appendChild(fragment);
 
                     i = 0;
                     l = edit_contexts.length;
@@ -335,16 +356,22 @@ import {
                     };
 
                     i = 0;
-                    l = selections.length;
+                    l = selection_groups.length;
+                    for (;i<l;i++) {
+                        selection_groups[i] = SelectionGroupDefault(SelectionGroup, i);
+                    }
+                    console.dir(selection_groups);
+                    
+                    i = 0;
+                    l = selection_blocks.length;
 
                     for (; i < l; i++) {
                         sel_el = SELECTION_EL.cloneNode(true);
-                        selections[i] = SelectionElemDefault(SelectionBlock, i, sel_el);
+                        selection_blocks[i] = SelectionBlockDefault(SelectionBlock, i, sel_el);
                     };
 
                     i = 0;
                     l = selections.length;
-
                     for (; i < l; i++) {
                         selections[i] = SelectionDefault(Selection,i);
                     };
@@ -354,9 +381,8 @@ import {
                         0;
 
                     //
-                    list_selections.replaceChildren(selections[0].element);
-                    state_alloc.length_loaded_elems_selection++;
-
+                    list_selections.replaceChildren(selection_blocks[0].element);
+                    
                     body_cl.remove('hidden');
                 }
             )

@@ -1,9 +1,8 @@
 
 .inline {
     position:absolute;
-    left:0;
-
-    white-space: pre;
+    
+    white-space: nowrap;
     overflow: hidden;
     
     font-family: var(--font-family);

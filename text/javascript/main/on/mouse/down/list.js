@@ -1,6 +1,23 @@
-import {main, tokens, text_width_container, selections} from '../../../elems/i.js';
-import {prevent_scroll, node_text} from '../../../conf/i.js';
-import {state_app, state_alloc, state_style as S} from '../../../state/i.js';
+import {
+    main,
+    tokens,
+    text_width_container,
+    selection_blocks,
+    rows,
+    list_selections,
+} from '../../../elems/i.js';
+import {
+    prevent_scroll,
+    node_text,
+    selection_groups,
+    selections,
+    range,
+} from '../../../conf/i.js';
+import {
+    state_app,
+    state_alloc as A,
+    state_style as S,
+} from '../../../state/i.js';
 
 import {on_list_mousemove} from '../move/i.js';
 import {on_list_mouseup} from '../up/i.js';
@@ -11,13 +28,14 @@ export default (
             max = Math.max,
             min = Math.min,
             
-            input_el = main.element_input,
+            input_el = main.element_input.element,
+            cursor = main.cursor,
 
             window = e.view,
             document = window.document,
 
             i = 0,
-            l = state_alloc.length_loaded_elems,
+            l = A.length_tokens,
 
             list = e.currentTarget,
 
@@ -28,14 +46,16 @@ export default (
             left = 0,
 
             position = 0,
-        
-            o = 0,
             elem_col = 0,
             
-            cursor = main.cursor,
             style = null,
             E = null,
-            
+
+            sblock = null,
+            group = null,
+            block = null,
+            selection = null,
+
             w = 0,
 
             value = "",
@@ -48,7 +68,8 @@ export default (
             tmp = 0,
 
             lo = 0,
-            hi = 0
+            hi = 0,
+            lo1 = 0
         ;
         
         if (y >= S.height_loaded_start) {
@@ -61,7 +82,8 @@ export default (
             left = E.left;
             top = E.top;
             position = E.position;
-            value = E.block.value;
+            block = E.block;
+            value = block.value;
 
             if (
                 (y >= top)
@@ -82,20 +104,22 @@ export default (
 
                             while (lo < hi) {
                                 tmp = (lo + hi) >> 1;
-                                node_text.data = value.substring(char_i, tmp);
+                                node_text.textContent = value.substring(char_i, tmp);
                                 
                                 if (text_width_container.offsetWidth < x) {lo = tmp + 1}
                                 else {hi = tmp};
                             }
 
-                            node_text.data = value.substring(char_i, Math.max(char_i, lo - 1));
+                            lo1 = (lo - 1);
+
+                            node_text.textContent = value.substring(char_i, Math.max(char_i, lo1));
                             prev_w = text_width_container.offsetWidth;
 
-                            node_text.data = value.substring(char_i, lo);
+                            node_text.textContent = value.substring(char_i, lo);
                             tmp = text_width_container.offsetWidth;
 
                             if (x < ((prev_w + tmp) / 2)) {
-                                elem_col = lo - 1;
+                                elem_col = (lo1);
                                 w = prev_w;
                             } else {
                                 elem_col = lo;
@@ -107,7 +131,7 @@ export default (
                         else if (
                             position > 1
                         ) {
-                            elem_col = E.length;
+                            elem_col = E.end;
                             w = E.width;
                             break found;
                         }
@@ -117,8 +141,9 @@ export default (
                         ||
                         (position === 1)
                     ) {
+                        elem_col = E.start;
                         w = 0;
-                        elem_col = 0;
+                        
                         break found;
                     };
 
@@ -126,28 +151,51 @@ export default (
                 };
                 
                 //
-                selections[0]
-                style = selections[0].element.style;
-                style.top = `${top}px`;
-                style.left = `${left}px`;
-                style.width = `${E.width}px`;
-                style.height = `${E.height}px`;
+                sblock = selection_blocks[0];
+                selection = selections[0];
+                group = selection_groups[0];
+
+                selection.token_start = E;
                 
-                cursor.token = E;
-                cursor.token_start = elem_col;
+                selection.end = selection.offset = (elem_col);
+                selection.l = (selection.i = group.id) + 1;
+
+                prev_w = A.length_selection_blocks;
+                
+                if ((prev_w-1)>0) {
+                    range.setStartBefore(selection_blocks[1].element);
+                    range.setEndAfter(selection_blocks[prev_w - 1].element);
+                    range.deleteContents();
+                }
+                
+                A.length_selection_blocks =
+                A.length_selection_groups =
+                A.length_selections = 1;
+
+                sblock.element.style.width = "0px";
+
+                prev_w||(list_selections.appendChild(sblock.element));
+
+                sblock.block = group.block = block;
+                group.l = (group.i = sblock.id) + 1;
+
+                selection.token_end = selection.token_start = cursor.token = E;
+                cursor.end = cursor.offset = elem_col;
+
+                selection.selection_direction = 0;
+                cursor.selection = selection;
 
                 style = cursor.element.style;
-                
                 style.top = `${top}px`;
-                style.left = `${left + w}px`;
+                style.left = `${left + (selection.left_start = w)}px`;
                 style.height = `${E.height}px`;
-
+                
                 break cycle;
             }
         };
 
-        list.addEventListener("mouseup", on_list_mouseup);
-        list.addEventListener("mousemove", on_list_mousemove);
+        window.addEventListener("mouseup", on_list_mouseup);
+        window.addEventListener("mousemove", on_list_mousemove);
         
         (input_el === document.body)
         ||

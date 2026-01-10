@@ -46,7 +46,7 @@ export default (
 
             offset = token.start;
 
-            node_text.data = (
+            node_text.textContent = (
                 start_block_value.substring(
                     offset,
                     (offset + c.token_start)

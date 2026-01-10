@@ -1,4 +1,5 @@
 
 .token {
-    white-space:nowrap;
+    position:relative;
+    white-space: pre;
 }
