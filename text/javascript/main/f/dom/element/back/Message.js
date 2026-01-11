@@ -1,7 +1,11 @@
 
 
 function Message(
-    id,
+    i,id,
+    
+    tokens_i,
+    tokens_l,
+    tokens_length,
 
     chat,
     block,
@@ -12,7 +16,12 @@ function Message(
     created,
     epoch,
 ) {
+    this.i = i;
     this.id = id;
+    
+    this.tokens_i = tokens_i;
+    this.tokens_l = tokens_l;
+    this.tokens_length = tokens_length;
     
     this.chat = chat;
     this.block = block;
@@ -26,11 +35,12 @@ function Message(
 
 Message.prototype = {
     default: (
-        (Message, id) => {
+        (Message, i, id) => {
             var n = null;
             return (
                 new Message(
-                    id,
+                    i,id,
+                    0,0,0,
                     n,n,
                     0,0,
                     0,0,

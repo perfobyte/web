@@ -10,7 +10,9 @@ import {
     node_text,
 
     selection_groups,
+    messages,
     clipboard,
+    
 } from '../../../conf/i.js';
 
 import {
@@ -172,6 +174,7 @@ export default (
                     ;
                     clipboard.writeText(
                         value(
+                            messages,
                             selection_groups,
                             selection_blocks,
                             tokens,
@@ -179,7 +182,7 @@ export default (
                             s.i,
                             s.l,
     
-                            (s.offset),
+                            (s.start),
                             (s.end),
 
                             state_app,

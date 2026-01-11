@@ -3,6 +3,7 @@
 
 export default (
     (
+        messages,
         groups,
         sblocks,
         tokens,
@@ -12,8 +13,7 @@ export default (
         block_offset,
         block_end,
 
-        direction,
-        AS,
+        state_app,
     ) => {
         var
             n = null,
@@ -21,82 +21,72 @@ export default (
             block = group.block,
             
             value = "",
-            block_value = "",
+            
+            sblock = sblocks[group.i],
+            token = tokens[sblock.i],
+            message = token.message,
+            
+            message_i = (message.i),
+            message_l = (tokens[sblocks[groups[l - 1].l - 1].l - 1].message.i) + 1,
 
-            group_string_value = n,
-            token = n,
-            sblock = n,
-
-            message_i = 0,
-            message_l = 0,
-
-            sblock_i = 0,
-            sblock_l = 0,
-
-            token_i = 0,
-            token_l = 0
+            separator = state_app.separator
         ;
         
-        if ((l-i)>1) {
-            group_string_value = group.string_value;
-
-            sblock_i = group.i;
-            sblock_l = group.l;
-            
-            for(;sblock_i < sblock_l; sblock_i++) {
-                sblock = sblocks[sblock_i];
-
-                block = sblock.block;
-                block_value = block.value;
+        if ((message_l - message_i) > 0) {
+            if (
+                (block_offset === block_end)
+                &&
+                (block === messages[message_l - 1].block)
+            ) {
+                debugger;
                 
-                token_i = sblock.i;
-                token_l = sblock.l;
-
-                for(;token_i < token_l; token_i++) {
-                    token = tokens[token_i];
-                }
-            };
-
-            value = (
-                block.value.substring(
-                    block_offset,
-                    ((tokens[sblocks[group.i].i]).end)
-                )
-            );
-            
-            i++;
-            l--;
-            
-            for (;i < l; i++) {
-                group = groups[i];
-                block = group.block;
-                value += (
-                    group_string_value(
-                        sblocks,
-                        tokens,
-                        block.value,
-                        group.i,
-                        group.l,
-                        value_separator,
+                value = separator();
+            }
+            else {
+                value = (
+                    message.block.value.substring(
+                        block_offset,
+                        (tokens[message.tokens_l - 1].end)
                     )
+                    + separator()
                 );
-            };
-            
-            group = groups[i];
-            block = group.block;
-            
-            value += (
-                block.value.substring(
-                    (tokens[sblocks[group.l-1].l-1].start),
-                    (block_end)
+                debugger;
+                message_i++;
+
+                message_l--;
+                
+
+                for (;message_i < message_l; message_i++) {
+                    message = messages[message_i];
+
+                    var dbg_v = (message.block.value).substring(
+                        (tokens[message.tokens_i].start),
+                        (tokens[message.tokens_l - 1].end)
+                    )
+                    + separator()
+                    
+                    value += (
+                        dbg_v
+                    );
+                    debugger;
+                };
+
+                message = messages[message_i];
+                var d = (message.block.value).substring(
+                    (tokens[message.tokens_i].start),
+                    block_end
                 )
-            );
+                value += (
+                    d
+                );
+                debugger;
+            }
         }
         else {
-            block_value = block.value;
+            value = (message.block.value.substring(block_offset, block_end));
+        }        
 
-            value = (block.value.substring(block_offset,block_end));
-        }
+        console.log(JSON.stringify(message.block.value), "\n\n",block_offset, block_end, JSON.stringify(value));
         
         return value;
     }

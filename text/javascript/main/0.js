@@ -274,7 +274,7 @@ import {
                     i = 0;
                     l = messages.length;
                     for(;i<l;i++){
-                        messages[i] = MessageDefault(Message, BigInt(i));
+                        messages[i] = MessageDefault(Message, i, BigInt(i));
                     };
                     
                     i = 0;

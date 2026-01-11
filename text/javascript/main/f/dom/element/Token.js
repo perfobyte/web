@@ -1,32 +1,25 @@
 
 function Token(
     id, element, row,
-
-    x,y,
+    message, block,
 
     start, end, length, position,
 
-    message, block,
-    
     top, right, bottom, left,
-
     width, height,
 ) {
     this.id = id;
     this.element = element;
     this.row = row;
 
-    this.x = x;
-    this.y = y;
-    
+    this.message = message;
+    this.block = block;
+
     this.start = start;
     this.end = end;
     this.length = length;
     this.position = position;
 
-    this.message = message;
-    this.block = block;
-    
     this.top = top;
     this.left = left;
 
@@ -39,11 +32,11 @@ function Token(
 
 Token.prototype = {
     default: (Token, i, element) => {
+        var n = null;
         return new Token(
-            i,element,null,
-            0,0,
+            i,element,n,
+            n,n,
             0,0,0,2,
-            null,null,
             0,0,0,0,
             0,0,
         )

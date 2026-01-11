@@ -143,7 +143,6 @@ export default (
                     ) {
                         elem_col = E.start;
                         w = 0;
-                        
                         break found;
                     };
 
@@ -154,10 +153,8 @@ export default (
                 sblock = selection_blocks[0];
                 selection = selections[0];
                 group = selection_groups[0];
-
-                selection.token_start = E;
                 
-                selection.end = selection.offset = (elem_col);
+                selection.start = selection.end = selection.offset = (elem_col);
                 selection.l = (selection.i = group.id) + 1;
 
                 prev_w = A.length_selection_blocks;
@@ -177,11 +174,17 @@ export default (
                 prev_w||(list_selections.appendChild(sblock.element));
 
                 sblock.block = group.block = block;
+
+                sblock.l = (sblock.i = E.id) + 1;
                 group.l = (group.i = sblock.id) + 1;
-
-                selection.token_end = selection.token_start = cursor.token = E;
-                cursor.end = cursor.offset = elem_col;
-
+                
+                
+                selection.token_offset =
+                selection.token_end =
+                selection.token_start =
+                    cursor.token = E
+                ;
+                
                 selection.selection_direction = 0;
                 cursor.selection = selection;
 

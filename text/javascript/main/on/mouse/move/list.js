@@ -174,20 +174,24 @@ export default (
                 style.left = `${left + w}px`;
                 style.height = `${E.height}px`;
 
-                from = (token = selection.token_start).id;
+                from = (token = selection.token_offset).id;
                 to = E.id;
 
                 offset = selection.offset;
                 char_i = selection.left_start;
 
-                selection.token_end = E;
-                selection.end = (offset);
+                x = token.block.id;
+                y = E.block.id;
 
                 if (
                     (from > to)
                     ||
+                    (x > y)
+                    ||
                     (
                         (from === to)
+                        &&
+                        (x === y)
                         &&
                         ((offset) > elem_col)
                     )
@@ -196,6 +200,9 @@ export default (
 
                     tmp = from;     from = to;       to = tmp;
                     tmp = char_i;   char_i = char_l; char_l = tmp;
+
+                    selection.start = elem_col;
+                    selection.end = offset;
                 }
                 else {
                     selection.direction = (
@@ -203,10 +210,11 @@ export default (
                         ? 0
                         : 2
                     );
-                };
 
+                    selection.start = offset;
+                    selection.end = elem_col;
+                };
                 selection.token_end = E;
-                selection.end = (elem_col);
 
                 tmp = ((to+1)-from);
                 
@@ -235,6 +243,8 @@ export default (
                 sblock.block = token.block;
                 style = sblock.element.style;
 
+                sblock.bind_to_token(token);
+
                 style.top = `${token.top}px`;
                 style.height = `${token.height}px`;
                 style.left = `${token.left + char_i}px`;
@@ -251,6 +261,8 @@ export default (
                         sblock.block = token.block;
                         style = sblock.element.style;
 
+                        sblock.bind_to_token(token);
+
                         style.top = `${token.top}px`;
                         style.left = `${token.left}px`;
                         style.width = `${token.width}px`;
@@ -259,6 +271,9 @@ export default (
 
                     sblock = selection_blocks[i++];
                     token = tokens[from];
+
+                    sblock.bind_to_token(token);
+                    
                     sblock.block = token.block;
                     style = sblock.element.style;
 

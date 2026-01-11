@@ -26,6 +26,10 @@ SelectionBlock.prototype = {
             )
         }
     ),
+
+    bind_to_token(token) {
+        this.l = (this.i = token.id) + 1;
+    }
 };
 
 export default SelectionBlock;

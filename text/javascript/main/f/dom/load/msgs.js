@@ -87,7 +87,9 @@ export default (
 
             block = null,
             row = null,
-            row_el = null
+            row_el = null,
+
+            end = 0
         ;
 
         TW.className = default_row_inline_class;
@@ -99,21 +101,37 @@ export default (
 
             char_i = message.offset;
             char_l = (char_i + (message.length));
-
+            
             block = message.block;
             string = block.value;
             string_offset = char_i;
+
+            message.tokens_i = tokens_i;
             
             while (char_i < char_l) {
                 next = (char_i + 1);
 
                 if (
-                    linebreaks.includes(string[char_i])
+                    (
+                        linebreaks.includes(string[char_i])
+                        ? (
+                            (end = next),
+                            true
+                        )
+                        : false
+                    )
                     ||
                     (
-                        (next === char_l)
-                        &&
-                        (string_offset < next)
+                        (
+                            (next === char_l)
+                            &&
+                            (string_offset < next)
+                        )
+                        ? (
+                            (end=char_i+1),
+                            true
+                        )
+                        : false
                     )
                 ) {
                     if (rows_i >= rows_l) {
@@ -143,7 +161,7 @@ export default (
                     token_el = t.element;
                     t.row = row;
                     
-                    node_text.textContent = chunk = string.substring((t.start=string_offset), (t.end=next));
+                    node_text.textContent = chunk = string.substring((t.start=string_offset), (t.end=end));
                     
                     w = (TW.offsetWidth);
                     style.width = `${w}px`;
@@ -159,8 +177,7 @@ export default (
                     t.height = h = TW.offsetHeight;
 
                     t.length = chunk.length;
-                    t.x = 0;
-                    t.id = t.y = tokens_i++;
+                    t.id = tokens_i++;
 
                     t.message = message;
                     t.block = block;
@@ -171,6 +188,9 @@ export default (
 
                 char_i = next;
             };
+
+            message.tokens_l = tokens_i;
+            message.tokens_length = (tokens_i - (message.tokens_i));
 
             i++;
         };

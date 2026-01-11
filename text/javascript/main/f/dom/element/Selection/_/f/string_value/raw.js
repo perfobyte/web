@@ -3,6 +3,7 @@
 
 export default (
     (
+        messages,
         groups,
         sblocks,
         tokens,
@@ -12,8 +13,7 @@ export default (
         block_offset,
         block_end,
 
-        direction,
-        AS,
+        state_app,
     ) => {
         var
             group = groups[i],
@@ -45,7 +45,6 @@ export default (
                         block.value,
                         group.i,
                         group.l,
-                        separator,
                     )
                 );
             };

@@ -5,12 +5,11 @@ function Selection(
     
     i,l,
 
-    token_start,token_end,
+    token_offset,token_start,token_end,
 
     left_start,left_end,
     
-    offset,
-    end,
+    offset,start,end,
 
     direction,
 ) {
@@ -18,7 +17,8 @@ function Selection(
     
     this.i = i;
     this.l = l;
-    
+
+    this.token_offset = token_offset;
     this.token_start = token_start;
     this.token_end = token_end;
 
@@ -26,6 +26,7 @@ function Selection(
     this.left_end = left_end;
 
     this.offset = offset;
+    this.start = start;
     this.end = end;
 
     this.direction = direction;
