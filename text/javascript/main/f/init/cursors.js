@@ -3,9 +3,15 @@
 export default (
     (
         cursors,
+        tokens,
+        selection_groups,
+        selection_blocks,
+        
+
         TW,
-        width,
         node_text,
+        width_cursor,
+        zoom,
     ) => {
         
         var
@@ -24,12 +30,28 @@ export default (
             left = 0,
             
             token = null,
-            start_block_value = "",
+            block_value = "",
             chunk = "",
 
             direction = 0,
 
             end_elem = null,
+
+            s = null,
+
+            sg_i = 0,
+            sg_l = 0,
+
+            sb_i = 0,
+            sb_l = 0,
+
+            sb_el = null,
+
+            sgroup = null,
+            sblock = null,
+            block = null,
+
+            style = null,
             
             offset = 0
         ;
@@ -39,7 +61,7 @@ export default (
         for(; i < l; i++) {
             c = cursors[i];
             token = c.token;
-            start_block_value = token.block.value;
+            block_value = token.block.value;
             
             c_el = c.element;
             s = c_el.style;
@@ -47,19 +69,62 @@ export default (
             offset = token.start;
 
             node_text.textContent = (
-                start_block_value.substring(
+                block_value.substring(
                     offset,
-                    (offset + c.token_start)
+                    (c.token_start)
                 )
-            );        
+            );
             
             left = (token.left + TW.offsetWidth);
             
             s.top = `${token.top}px`;
             s.left = `${left}px`;
 
-            s.width = `${width}px`;
+            px = width_cursor(zoom);
+            s.width = `${px}px`;
             s.height = `${token.height}px`
+
+            if (s = c.selection) {
+
+                sg_i = s.i;
+                sg_l = s.l;
+                for(;sg_i<sg_l;sg_i++) {
+                    sgroup = selection_groups[sg_i];
+                    
+                    block = sgroup.block;
+                    block_value = block.value;
+
+                    sb_i = sgroup.i;
+                    sb_l = sgroup.l;
+                    
+                    for(;sb_i < sb_l; sb_i++){
+                        sblock = selection_blocks[sb_i];
+                        token = tokens[sblock.i];
+                        
+                        sb_el = sblock.element;
+                        style = sb_el.style;
+
+                        style.top = `${token.top}px`;
+                        style.height = `${token.height}px`;
+
+                        
+                        offset = token.start;
+                        px = sblock.start;
+                        console.log(offset, px, sblock.end);
+                        
+                        node_text.textContent = (block_value.substring(offset, px));
+                        console.log(block_value.substring(offset, px));
+                        console.log(block_value.substring(sblock.start, sblock.end))
+                        
+
+                        
+                        style.left = `${token.left + TW.offsetWidth}px`;
+
+                        node_text.textContent = (block_value.substring(px, sblock.end));
+                        style.width = `${TW.offsetWidth}px`;
+                    }
+                }
+            }
         }
     }
 );

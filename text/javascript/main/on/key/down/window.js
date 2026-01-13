@@ -144,6 +144,8 @@ export default (
                     : (S.zoom_default),
 
                     cursors,
+                    selection_groups,
+                    selection_blocks,
 
                     tokens,
                     0,

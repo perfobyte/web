@@ -6,6 +6,8 @@ export default (
     new_zoom,
 
     cursors,
+    selection_groups,
+    selection_blocks,
 
     tokens,
     i,
@@ -24,7 +26,7 @@ export default (
     html_style,
     scrollbar_thumb_x_style,
     scrollbar_thumb_y_style,
-
+    
     node_text,
 ) => {
     var
@@ -206,8 +208,14 @@ export default (
 
     init_cursors(
         cursors,
+        tokens,
+        selection_groups,
+        selection_blocks,
+
         text_width_container,
-        (S.width_cursor = (S.width_cursor_default * new_zoom)),
         node_text,
+
+        S.width_cursor,
+        new_zoom,
     )
 };

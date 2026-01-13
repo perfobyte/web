@@ -115,7 +115,7 @@ export default (
                     (
                         linebreaks.includes(string[char_i])
                         ? (
-                            (end = next),
+                            (end = char_i),
                             true
                         )
                         : false
@@ -128,7 +128,7 @@ export default (
                             (string_offset < next)
                         )
                         ? (
-                            (end=char_i+1),
+                            (end = next),
                             true
                         )
                         : false

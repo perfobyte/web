@@ -16,6 +16,7 @@ import {
     xy_move_event,
     fragment as fragment,
     node_text,
+    selection_groups,
 } from '../../conf/i.js';
 import {
     tokens,
@@ -26,6 +27,7 @@ import {
     scrollbar_thumb_x_style,
     scrollbar_thumb_y_style,
     cursors,
+    selection_blocks,
 } from '../../elems/i.js';
 
 export default (
@@ -70,7 +72,10 @@ export default (
                         Math.min,
                         Math.max,
                     ),
+                    
                     cursors,
+                    selection_groups,
+                    selection_blocks,
 
                     tokens,
                     0,

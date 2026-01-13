@@ -32,14 +32,12 @@ export default (
             separator = state_app.separator
         ;
         
-        if ((message_l - message_i) > 0) {
+        if ((message_l - message_i) > 1) {
             if (
                 (block_offset === block_end)
                 &&
                 (block === messages[message_l - 1].block)
             ) {
-                debugger;
-                
                 value = separator();
             }
             else {
@@ -50,36 +48,28 @@ export default (
                     )
                     + separator()
                 );
-                debugger;
                 message_i++;
-
                 message_l--;
                 
-
                 for (;message_i < message_l; message_i++) {
                     message = messages[message_i];
 
-                    var dbg_v = (message.block.value).substring(
-                        (tokens[message.tokens_i].start),
-                        (tokens[message.tokens_l - 1].end)
-                    )
-                    + separator()
-                    
                     value += (
-                        dbg_v
+                        (message.block.value).substring(
+                            (tokens[message.tokens_i].start),
+                            (tokens[message.tokens_l - 1].end)
+                        )
+                        + separator()
                     );
-                    debugger;
                 };
 
                 message = messages[message_i];
-                var d = (message.block.value).substring(
-                    (tokens[message.tokens_i].start),
-                    block_end
-                )
                 value += (
-                    d
+                    (message.block.value).substring(
+                        (tokens[message.tokens_i].start),
+                        block_end
+                    )
                 );
-                debugger;
             }
         }
         else {

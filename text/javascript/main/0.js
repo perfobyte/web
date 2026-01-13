@@ -368,9 +368,14 @@ import {
 
                     init_cursors(
                         cursors,
+                        tokens,
+                        selection_groups,
+                        selection_blocks,
+
                         text_width_container,
-                        S.width_cursor,
                         node_text,
+                        S.width_cursor,
+                        S.zoom,
                     );
 
                     i = 0;

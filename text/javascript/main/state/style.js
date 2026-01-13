@@ -44,9 +44,10 @@ export default ((height_row) => {
 
         width_scroll_content:0,
         width_scrollbar_content:0,
-        width_cursor:1,
+
+        width_cursor:(zoom) => (1 * zoom),
+
         width_list_neg:1,
-        width_cursor_default:1,
         width_symbol_default: width_symbol,
 
         left_list: 0,

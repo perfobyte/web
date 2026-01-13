@@ -5,12 +5,23 @@
     --color: #000000FF;
     --color-placeholder: #808080FF;
     --color-background: #FFFFFFFF;
-    --color-background-scrollbar:rgba(121, 121, 121, 0.4);
-    --color-background-scrollbar-hover:rgba(116, 116, 116, 0.5);
-    --color-background-scrollbar-active:rgba(110, 110, 110, 0.7);
+    --color-background-scrollbar-x:var(--color-background);
+    --color-background-scrollbar-y:var(--color-background);
+
+    --color-background-scrollbar-thumb:rgba(121, 121, 121, 0.4);
+    --color-background-scrollbar-thumb-hover:rgba(116, 116, 116, 0.5);
+    --color-background-scrollbar-thumb-active:rgba(110, 110, 110, 0.7);
+
     --color-background-selection:rgba(0, 120, 215, 0.3);
+
+    --color-background-scrollbar-x-thumb: var(--color-background-scrollbar-thumb);
+    --color-background-scrollbar-x-thumb-hover: var(--color-background-scrollbar-thumb-hover);
+    --color-background-scrollbar-x-thumb-active: var(--color-background-scrollbar-thumb-active);
+
+    --color-background-scrollbar-y-thumb: var(--color-background-scrollbar-thumb);
+    --color-background-scrollbar-y-thumb-hover: var(--color-background-scrollbar-thumb-hover);
+    --color-background-scrollbar-y-thumb-active: var(--color-background-scrollbar-thumb-active);
 
     position:relative;
     overflow:hidden;
-    background-color:var(--color-background);
 }

@@ -2,25 +2,28 @@
 
 #scrollbars {
     position:static;
+    
 }
 
 .scrollbar {
-    position:absolute;    
+    position:absolute;
+    background:none;
+    z-index:50;
 }
 
 .scrollbar-thumb {
     will-change: transform;
     transition:.2s background-color;
-    background:var(--color-background-scrollbar);
+    background:var(--color-background-scrollbar-thumb);
     z-index:0;
 }
 
 .scrollbar-thumb:hover {
-    background:var(--color-background-scrollbar-hover);
+    background:var(--color-background-scrollbar-thumb-hover);
 }
 
 .scrollbar-thumb.active {
-    background:var(--color-background-scrollbar-active);
+    background:var(--color-background-scrollbar-thumb-active);
 }
 
 #scrollbar-thumb-x {
@@ -39,16 +42,16 @@
     bottom:0;
 
     left:var(--left-scrollbar-x);
-
     height:var(--bottom-list);
     width:calc(100% - var(--right-scrollbar-x));
+    background-color:var(--color-background-scrollbar-x);
 }
 
 #scrollbar-y {
     right:0;
 
     top:var(--top-scrollbar-y);
-
     height:calc(100% - var(--bottom-scrollbar-y));
     width:var(--right-list);
+    background-color:var(--color-background-scrollbar-y);
 }

@@ -142,6 +142,8 @@ export default (
                             position > 1
                         ) {
                             elem_col = E.end;
+                            console.log("after =", elem_col);
+
                             w = E.width;
                             
                             break found;
@@ -200,9 +202,7 @@ export default (
 
                     tmp = from;     from = to;       to = tmp;
                     tmp = char_i;   char_i = char_l; char_l = tmp;
-
-                    selection.start = elem_col;
-                    selection.end = offset;
+                    tmp = elem_col; elem_col = offset; offset = tmp;
                 }
                 else {
                     selection.direction = (
@@ -210,10 +210,11 @@ export default (
                         ? 0
                         : 2
                     );
-
-                    selection.start = offset;
-                    selection.end = elem_col;
                 };
+
+                selection.start = offset;
+                selection.end = elem_col;
+
                 selection.token_end = E;
 
                 tmp = ((to+1)-from);
@@ -228,7 +229,7 @@ export default (
                     while(l<y){
                         selection_blocks.push(
                             SelectionBlockDefault(
-                                SelectionBlock, l++, SELECTION_EL.cloneNode(true)
+                                SelectionBlock, (l++), SELECTION_EL.cloneNode(true)
                             )
                         );
                     }
@@ -244,15 +245,19 @@ export default (
                 style = sblock.element.style;
 
                 sblock.bind_to_token(token);
+                
+                
 
                 style.top = `${token.top}px`;
                 style.height = `${token.height}px`;
                 style.left = `${token.left + char_i}px`;
 
                 if ((to-(from++)) === 0) {
+                    sblock.set_boundaries(offset, elem_col);
                     style.width = `${char_l - char_i}px`;
                 }
                 else {
+                    sblock.set_boundaries(offset, token.end);
                     style.width = `${token.width - char_i}px`;
                     
                     for(;from<to;from++){
@@ -262,6 +267,7 @@ export default (
                         style = sblock.element.style;
 
                         sblock.bind_to_token(token);
+                        sblock.assign_token_boundaries(token);
 
                         style.top = `${token.top}px`;
                         style.left = `${token.left}px`;
@@ -273,6 +279,7 @@ export default (
                     token = tokens[from];
 
                     sblock.bind_to_token(token);
+                    sblock.set_boundaries(token.start, elem_col);
                     
                     sblock.block = token.block;
                     style = sblock.element.style;
@@ -325,6 +332,8 @@ export default (
                         group = selection_groups[y++];
                     }
                 };
+
+                console.log(selection.start, selection.end);
 
                 break cycle;
             }

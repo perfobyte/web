@@ -154,29 +154,37 @@ export default (
                 selection = selections[0];
                 group = selection_groups[0];
                 
-                selection.start = selection.end = selection.offset = (elem_col);
+                
+                selection.start =
+                selection.end =
+                selection.offset =
+                    cursor.token_start =
+                        elem_col
+                ;
+
                 selection.l = (selection.i = group.id) + 1;
 
                 prev_w = A.length_selection_blocks;
                 
-                if ((prev_w-1)>0) {
+                if ((prev_w - 1) > 0) {
                     range.setStartBefore(selection_blocks[1].element);
                     range.setEndAfter(selection_blocks[prev_w - 1].element);
                     range.deleteContents();
-                }
+                };
                 
                 A.length_selection_blocks =
                 A.length_selection_groups =
-                A.length_selections = 1;
+                A.length_selections =
+                    1;
 
                 sblock.element.style.width = "0px";
 
-                prev_w||(list_selections.appendChild(sblock.element));
+                prev_w || (list_selections.appendChild(sblock.element));
 
-                sblock.block = group.block = block;
+                sblock.block = (group.block = block);
 
-                sblock.l = (sblock.i = E.id) + 1;
-                group.l = (group.i = sblock.id) + 1;
+                sblock.l = ((sblock.i = E.id) + 1);
+                group.l = ((group.i = sblock.id) + 1);
                 
                 
                 selection.token_offset =
