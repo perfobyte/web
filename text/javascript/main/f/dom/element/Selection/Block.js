@@ -35,19 +35,17 @@ SelectionBlock.prototype = {
     ),
 
     bind_to_token(token) {
-        this.l = (this.i = token.id) + 1;
+        this.l = ((this.i = token.id) + 1);
     },
 
     assign_token_boundaries(token) {
         this.start = token.start;
         this.end = token.end;
-        console.log(token.start, token.end);
     },
 
     set_boundaries(start, end) {
         this.start = start;
         this.end = end;
-        console.log(start, end);
     }
 };
 

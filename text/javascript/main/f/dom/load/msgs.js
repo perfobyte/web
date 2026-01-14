@@ -158,10 +158,14 @@ export default (
                     style.left = `${element_left}px`;
 
                     t = tokens[tokens_i];
+
+                    row.l = ((row.i = t.id) + 1);
+                    
                     token_el = t.element;
                     t.row = row;
                     
-                    node_text.textContent = chunk = string.substring((t.start=string_offset), (t.end=end));
+                    node_text.textContent = chunk =
+                        string.substring((t.start=string_offset), (t.end=end));
                     
                     w = (TW.offsetWidth);
                     style.width = `${w}px`;

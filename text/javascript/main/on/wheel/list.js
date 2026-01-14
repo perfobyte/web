@@ -17,6 +17,7 @@ import {
     fragment as fragment,
     node_text,
     selection_groups,
+    
 } from '../../conf/i.js';
 import {
     tokens,
@@ -28,6 +29,7 @@ import {
     scrollbar_thumb_y_style,
     cursors,
     selection_blocks,
+    rows,
 } from '../../elems/i.js';
 
 export default (
@@ -76,6 +78,10 @@ export default (
                     cursors,
                     selection_groups,
                     selection_blocks,
+
+                    rows,
+                    0,
+                    state_alloc.length_rows,
 
                     tokens,
                     0,

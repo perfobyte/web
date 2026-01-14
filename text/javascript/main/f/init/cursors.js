@@ -7,7 +7,6 @@ export default (
         selection_groups,
         selection_blocks,
         
-
         TW,
         node_text,
         width_cursor,
@@ -85,6 +84,8 @@ export default (
             s.height = `${token.height}px`
 
             if (s = c.selection) {
+                s.left_start = s.pos_from_left(TW, node_text, s.token_left, block_value, s.start);
+                s.left_end = s.pos_from_left(TW, node_text, s.token_right, block_value, s.end);
 
                 sg_i = s.i;
                 sg_l = s.l;
@@ -106,18 +107,10 @@ export default (
 
                         style.top = `${token.top}px`;
                         style.height = `${token.height}px`;
-
                         
                         offset = token.start;
                         px = sblock.start;
-                        console.log(offset, px, sblock.end);
-                        
                         node_text.textContent = (block_value.substring(offset, px));
-                        console.log(block_value.substring(offset, px));
-                        console.log(block_value.substring(sblock.start, sblock.end))
-                        
-
-                        
                         style.left = `${token.left + TW.offsetWidth}px`;
 
                         node_text.textContent = (block_value.substring(px, sblock.end));

@@ -12,7 +12,6 @@ import {
     selection_groups,
     messages,
     clipboard,
-    
 } from '../../../conf/i.js';
 
 import {
@@ -55,6 +54,7 @@ import {
     cursors,
     main,
     selection_blocks,
+    rows,
 } from '../../../elems/i.js';
 import {on_window_resize} from "../../resize/i.js";
 
@@ -146,6 +146,10 @@ export default (
                     cursors,
                     selection_groups,
                     selection_blocks,
+
+                    rows,
+                    0,
+                    state_alloc.length_rows,
 
                     tokens,
                     0,

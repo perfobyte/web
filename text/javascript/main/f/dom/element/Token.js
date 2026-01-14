@@ -40,6 +40,10 @@ Token.prototype = {
             0,0,0,0,
             0,0,
         )
+    },
+
+    string_value() {
+        return this.block.value.substring(this.start, this.end);
     }
 };
 

@@ -2,6 +2,7 @@
 .row {
     position:absolute;
     overflow:hidden;
+    
     width:var(--width-row);
     height:var(--height-row);
 }

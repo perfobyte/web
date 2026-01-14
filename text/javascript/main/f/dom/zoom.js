@@ -1,6 +1,6 @@
 
-// i = 0,
-// l = state_alloc.length_tokens,
+// tokens_i = 0,
+// tokens_l = state_alloc.length_tokens,
 
 export default (
     new_zoom,
@@ -9,9 +9,13 @@ export default (
     selection_groups,
     selection_blocks,
 
+    rows,
+    rows_i,
+    rows_l,
+
     tokens,
-    i,
-    l,
+    tokens_i,
+    tokens_l,
     
     S,
     
@@ -21,7 +25,7 @@ export default (
     
     fragment,
     list,
-    text_width_container,
+    TW,
 
     html_style,
     scrollbar_thumb_x_style,
@@ -92,71 +96,69 @@ export default (
 
         style = null,
         
-        e_left = 0
+        e_left = 0,
+
+        row = null,
+        
+        row_width = 0,
+        rows_l_1 = (rows_l - 1),
+
+        t_i = tokens_i,
+        t_l = 0
     ;
     
     html_style.setProperty("--height-row", `${height_row}px`);
     html_style.setProperty("--font-size", `${font_size}px`);
     
-    for (;i < l; i++) {
-        t = tokens[i];
-        row = t.row;
+    for(;rows_i < rows_l; rows_i++){
+        row = rows[rows_i];
+        row_width = 0;
+        style = row.element.style;
 
-        element = row.element;
-        inline = element.firstElementChild;
-        text_width_container.className = (inline.className);
 
-        style = element.style;
+        (rows_i > t_i) && (tokens_i = row.i);
+        
+        t_l = (rows_i === rows_l_1) ? tokens_l : (row.l);
 
-        nodes = inline.childNodes;
-        node_i = 0;
-        node_l = nodes.length;
-        
-        while (node_i < node_l) {
-            fragment.appendChild(nodes[node_i++].cloneNode(true))
-        };
-        
-        text_width_container.replaceChildren(fragment);
-        
-        px = (text_width_container.offsetWidth);
-
-        row.width = px;
-        
-        max_width = max(max_width, px);
-        
-        style.width = `${px}px`;
         style.top = `${height_content}px`;
 
-        if (t.position === 2) {
-            e_left = left_content;
-        }
-        else {
-            e_left += px;
-        }
+        e_left = left_content;
 
-        t.bottom = (
-            (t.top = height_content)
-            + (t.height = text_width_container.offsetHeight)
-        );
-        t.right = ((t.left = e_left) + (px));
-        
-        height_content += height_row;
-    };
+        for (;tokens_i < t_l; tokens_i++) {
+            t = tokens[tokens_i];
     
-    S.height_loaded_start = height_content;
-    S.height_loaded = (height_content - top_content);
+            element = t.element;
+            
+            node_text.className = element.className;
+            node_text.textContent = t.string_value();
+            
+            row_width += (px = (TW.offsetWidth));
+            
+            style.left = `${e_left}px`;
+            
+            t.right = ((t.left = e_left) + (t.width = px));
+            t.bottom = (
+                (t.top = height_content)
+                + (t.height = TW.offsetHeight)
+            );
+            e_left += left_content;
+        };
+
+        height_content += (row.height = height_row);
+        style.width = `${row_width}px`;
+        max_width = max(max_width, (row.width = row_width));
+    }
+    
+    S.height_loaded = ((S.height_loaded_start = height_content) - top_content);
     S.height_content = (height_content += bottom_content);
     S.zoom = new_zoom;
 
-    
     S.width_loaded_start = (left_content + (S.width_loaded = max_width));
-
-    width_row = (S.width_row = (max_width + S.right_content));
-
-    S.width_content = (width_content += (width_row));
+    S.width_content = (width_content += (
+        width_row = (S.width_row = (max_width + S.right_content))
+    ));
 
     html_style.setProperty("--width-row", `${width_row}px`);
-
     html_style.setProperty("--height-content",`${height_content}px`);
     html_style.setProperty("--width-content",`${width_content}px`);
 
@@ -212,7 +214,7 @@ export default (
         selection_groups,
         selection_blocks,
 
-        text_width_container,
+        TW,
         node_text,
 
         S.width_cursor,

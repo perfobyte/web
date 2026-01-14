@@ -1,20 +1,20 @@
 
 
 function Row(
-    i,
+    id,
     element,
 
-    token_start,
-    token_end,
+    i,
+    l,
 
     width,
     height,
 ) {
-    this.i = i;
+    this.id = id;
     this.element = element;
 
-    this.token_start = token_start;
-    this.token_end = token_end;
+    this.i = i;
+    this.l = l;
 
     this.width = width;
     this.height = height;
@@ -22,11 +22,11 @@ function Row(
 
 Row.prototype = {
     default: (
-        (Row,i,element) => {
+        (Row,id,element) => {
             return (
                 new Row(
-                    i,element,
-                    null,null,
+                    id,element,
+                    0,0,
                     null,null,
                 )
             );

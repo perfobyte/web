@@ -155,6 +155,8 @@ export default (
                 group = selection_groups[0];
                 
                 
+                sblock.start =
+                sblock.end =
                 selection.start =
                 selection.end =
                 selection.offset =
@@ -186,12 +188,7 @@ export default (
                 sblock.l = ((sblock.i = E.id) + 1);
                 group.l = ((group.i = sblock.id) + 1);
                 
-                
-                selection.token_offset =
-                selection.token_end =
-                selection.token_start =
-                    cursor.token = E
-                ;
+                selection.set_uni_token(cursor.token = E);
                 
                 selection.selection_direction = 0;
                 cursor.selection = selection;
