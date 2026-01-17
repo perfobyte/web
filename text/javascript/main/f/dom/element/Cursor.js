@@ -21,12 +21,13 @@ function Cursor(
 
 Cursor.prototype = {
     default: (
-        (Cursor, id, element) => {
-            var n = null;
+        (Cursor, id, element, token) => {
             return new Cursor(
                 id,
                 element,
-                n,0,n
+                token,
+                0,
+                null,
             )
         }
     ),

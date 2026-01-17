@@ -3,32 +3,37 @@
 
 export default (
     (
-        messages,
-        groups,
-        sblocks,
-        tokens,
+        a,
         
         i,l,
 
-        block_offset,
-        block_end,
+        bf_offset,
+        bf_end,
 
-        state_app,
+        selection_empty_value,
+        ss,
     ) => {
         var
+            messages = a.messages,
+            groups = a.selection_groups,
+            sblocks = a.selection_blocks,
+            tokens = a.tokens,
+
             group = groups[i],
             block = group.block,
+
+            buffer = block.buffer,
+            buffer_value = buffer.value,
             
             value = "",
             group_string_value = null
         ;
-        
         if ((l-i)>1) {
             group_string_value = group.string_value;
 
             value = (
-                block.value.substring(
-                    block_offset,
+                buffer_value.substring(
+                    bf_offset,
                     ((tokens[sblocks[group.i].i]).end)
                 )
             );
@@ -38,11 +43,13 @@ export default (
             for (;i < l; i++) {
                 group = groups[i];
                 block = group.block;
+                buffer_value = block.buffer.value;
+                
                 value += (
                     group_string_value(
                         sblocks,
                         tokens,
-                        block.value,
+                        buffer_value,
                         group.i,
                         group.l,
                     )
@@ -51,16 +58,21 @@ export default (
             
             group = groups[i];
             block = group.block;
+            buffer_value = block.buffer.value;
             
             value += (
-                block.value.substring(
+                buffer_value.substring(
                     (tokens[sblocks[group.l-1].l-1].start),
-                    (block_end)
+                    (bf_end)
                 )
             );
         }
         else {
-            value = (block.value.substring(block_offset,block_end));
+            value = (
+                (bf_offset === bf_end)
+                ? selection_empty_value[ss.state_mode.selection_empty](a,ss)
+                : buffer_value.substring(bf_offset, bf_end)
+            );
         }
         
         return value;

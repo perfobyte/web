@@ -1,9 +1,10 @@
-import {main} from '../../elems/i.js';
+import {cursors} from '../../conf/i.js';
 
 export default (
     (e) => {
-        main
-        .element_cursor_classlist
+        cursors[0]
+        .element
+        .classList
         .remove("hidden");
     }
 );

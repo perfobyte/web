@@ -1,44 +1,63 @@
+import {blocks} from './conf/i.js';
 
-
-export default [
+export default (blocks) => [
     {
-        offset: 0,
-        length: 62,
+        start: 0,
+        end: 62,
         id: 0n,
         created: 0,
         epoch: 0,
+        block:blocks[0],
     },
     {
-        offset: 62,
-        length: 27,
+        start: 62,
+        end: 89,
         id: 1n,
         created: 1,
         epoch: 0,
+        block:blocks[0],
     },
     {
-        offset: 89,
-        length: 10,
+        start: 89,
+        end: 99,
         id: 3n,
         created: 2,
         epoch: 0,
+        block:blocks[0],
     },
     {
-        offset: 99,
-        length: 212,
+        start: 99,
+        end: 311,
         id: 4n,
         created: 3, 
         epoch: 0,
+        block:blocks[0],
     },
     {
-        offset: 311,
-        length: 198,
+        start: 311,
+        end: 509,
         id: 5n,
         created: 4,
         epoch: 0,
+        block:blocks[0],
+    },
+    {
+        start: 509,
+        end: 4096,
+        id: 6n,
+        created: 5,
+        epoch: 0,
+        block:blocks[0],
+    },
+    {
+        start: 4096,
+        end: 4100,
+        id: 7n,
+        created: 6,
+        epoch: 0,
+        block: blocks[1],
     },
 ];
-
-
 
 /*
 

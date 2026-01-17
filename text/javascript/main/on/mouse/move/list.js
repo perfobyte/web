@@ -1,13 +1,9 @@
 
 import {
-    main,
-    tokens,
     text_width_container,
-    selection_blocks,
-    rows,
     SELECTION_EL,
     list_selections,
-    list
+    list,
 } from '../../../elems/i.js';
 import {
     prevent_scroll,
@@ -17,6 +13,11 @@ import {
 
     range,
     fragment,
+
+    tokens,
+    selection_blocks,
+    rows,
+    cursors,
 } from '../../../conf/i.js';
 import {
     state_app,
@@ -32,7 +33,7 @@ export default (
     (e) => {
         var
             max = Math.max,
-            cursor = main.cursor,
+            cursor = cursors[0],
             
             window = e.currentTarget,
             document = window.document,
@@ -93,7 +94,7 @@ export default (
             top = E.top;
             position = E.position;
             block = E.block;
-            value = block.value;
+            value = block.buffer.value;
 
             if (
                 (y >= top)
@@ -160,7 +161,7 @@ export default (
 
                     continue;
                 };
-
+                
                 selection = cursor.selection;
 
                 cursor.token = E;
@@ -184,14 +185,14 @@ export default (
                 y = E.block.id;
 
                 if (
-                    (from > to)
-                    ||
                     (x > y)
                     ||
+                    (from > to)
+                    ||
                     (
-                        (from === to)
-                        &&
                         (x === y)
+                        &&
+                        (from === to)
                         &&
                         ((offset) > elem_col)
                     )
@@ -202,8 +203,9 @@ export default (
                     tmp = char_i;   char_i = char_l; char_l = tmp;
                     tmp = elem_col; elem_col = offset; offset = tmp;
 
-                    selection.token_left = E;
-                    selection.token_right = token;
+                    
+                    selection.i = (selection.token_left = E).block.id;
+                    selection.l = (selection.token_right = token).block.id + 1;
                 }
                 else {
                     selection.direction = (
@@ -212,12 +214,14 @@ export default (
                         : 2
                     );
 
-                    selection.token_left = token;
-                    selection.token_right = E;
+                    selection.i = (selection.token_left = token).block.id;
+                    selection.l = ((selection.token_right = E).block.id + 1);
                 };
 
                 selection.start = offset;
                 selection.end = elem_col;
+                
+                console.log(selection.start, selection.end);
 
                 selection.token_end = E;
 
@@ -324,16 +328,19 @@ export default (
                 x = 0;
                 y = 0;
                 group = selection_groups[y++];
+
                 
                 while (i < l) {
                     sblock = selection_blocks[i++];
-                    if ((group.block!==sblock.block)||(i===l)){
+                    if ((group.block !== sblock.block)||(i===l)){
                         group.i = x;
                         x = (group.l = i);
+                        console.log(group);
+
                         group = selection_groups[y++];
                     }
                 };
-
+                
                 break cycle;
             }
         };

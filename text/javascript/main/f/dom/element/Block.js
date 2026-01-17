@@ -1,21 +1,34 @@
 
 function Block(
     id,
-    offset,
-    value,
+    start,
+    end,
+    buffer,
 ) {
     this.id = id;
-    this.offset = offset;
-    this.value = value;
+    this.start = start;
+    this.end = end;
+    this.buffer = buffer;
 };
 
 Block.prototype = {
     default: (
         (Block, id) => {
-            return new Block(id, 0,"");
+            return new Block(id, 0, 0, null);
         }
     ),
+    string_value() {
+        var
+            t = this,
+            v = t.buffer.value
+        ;
+        return(
+            v.substring(t.start, t.end)
+        );
+    },
+    
     size: 0,
+    index_last: 0,
 };
 
 export default Block;

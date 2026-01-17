@@ -17,19 +17,19 @@ import {
     fragment as fragment,
     node_text,
     selection_groups,
-    
+
+    tokens,
+    cursors,
+    selection_blocks,
+    rows,
 } from '../../conf/i.js';
 import {
-    tokens,
     list,
     text_width_container,
 
     html_style,
     scrollbar_thumb_x_style,
     scrollbar_thumb_y_style,
-    cursors,
-    selection_blocks,
-    rows,
 } from '../../elems/i.js';
 
 export default (

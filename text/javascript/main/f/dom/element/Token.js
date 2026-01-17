@@ -1,9 +1,10 @@
+import {string_value} from './f/i.js';
 
 function Token(
     id, element, row,
     message, block,
 
-    start, end, length, position,
+    start, end, position,
 
     top, right, bottom, left,
     width, height,
@@ -17,7 +18,6 @@ function Token(
 
     this.start = start;
     this.end = end;
-    this.length = length;
     this.position = position;
 
     this.top = top;
@@ -36,15 +36,13 @@ Token.prototype = {
         return new Token(
             i,element,n,
             n,n,
-            0,0,0,2,
+            0,0,2,
             0,0,0,0,
             0,0,
         )
     },
 
-    string_value() {
-        return this.block.value.substring(this.start, this.end);
-    }
+    string_value,
 };
 
 export default Token;

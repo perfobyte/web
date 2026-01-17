@@ -1,17 +1,16 @@
-
+import {string_value} from '../f/i.js';
 
 function Message(
     i,id,
     
     tokens_i,
     tokens_l,
-    tokens_length,
-
+    
     chat,
     block,
     
-    offset,
-    length,
+    start,
+    end,
 
     created,
     epoch,
@@ -21,13 +20,12 @@ function Message(
     
     this.tokens_i = tokens_i;
     this.tokens_l = tokens_l;
-    this.tokens_length = tokens_length;
     
     this.chat = chat;
     this.block = block;
 
-    this.offset = offset;
-    this.length = length;
+    this.start = start;
+    this.end = end;
     
     this.created = created; 
     this.epoch = epoch;
@@ -40,14 +38,16 @@ Message.prototype = {
             return (
                 new Message(
                     i,id,
-                    0,0,0,
+                    0,0,
                     n,n,
                     0,0,
                     0,0,
                 )
             )
         }
-    )
+    ),
+    
+    string_value,
 };
 
 export default Message;

@@ -88,6 +88,7 @@ export default (
             block = null,
             row = null,
             row_el = null,
+            buffer = null,
 
             end = 0
         ;
@@ -99,13 +100,14 @@ export default (
         while (i < l) {
             message = msgs[i];
 
-            char_i = message.offset;
-            char_l = (char_i + (message.length));
+            char_i = message.start;
+            char_l = message.end;
             
             block = message.block;
-            string = block.value;
+            
+            string = (block.buffer).value;
+            
             string_offset = char_i;
-
             message.tokens_i = tokens_i;
             
             while (char_i < char_l) {
@@ -113,11 +115,12 @@ export default (
 
                 if (
                     (
-                        linebreaks.includes(string[char_i])
-                        ? (
-                            (end = char_i),
-                            true
+                        (
+                            linebreaks.includes(
+                                string[char_i]
+                            )
                         )
+                        ? ((end = char_i),true)
                         : false
                     )
                     ||
@@ -127,10 +130,7 @@ export default (
                             &&
                             (string_offset < next)
                         )
-                        ? (
-                            (end = next),
-                            true
-                        )
+                        ? ((end = next),true)
                         : false
                     )
                 ) {
@@ -164,7 +164,8 @@ export default (
                     token_el = t.element;
                     t.row = row;
                     
-                    node_text.textContent = chunk =
+                    node_text.textContent =
+                    chunk =
                         string.substring((t.start=string_offset), (t.end=end));
                     
                     w = (TW.offsetWidth);
@@ -180,7 +181,6 @@ export default (
                     t.width = w;
                     t.height = h = TW.offsetHeight;
 
-                    t.length = chunk.length;
                     t.id = tokens_i++;
 
                     t.message = message;
@@ -194,8 +194,7 @@ export default (
             };
 
             message.tokens_l = tokens_i;
-            message.tokens_length = (tokens_i - (message.tokens_i));
-
+            
             i++;
         };
 

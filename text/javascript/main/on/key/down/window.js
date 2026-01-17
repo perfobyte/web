@@ -12,7 +12,16 @@ import {
     selection_groups,
     messages,
     clipboard,
+
+    cursors,
+    selection_blocks,
+    rows,
+    tokens,
+    inputs,
+    arrays,
 } from '../../../conf/i.js';
+
+import states from '../../../state/*.js';
 
 import {
     state_style as S,
@@ -34,6 +43,7 @@ import {
     scroll_y,
 
     init_cursors,
+    selection_empty_value,
 } from '../../../f/i.js';
 import {
     html_style,
@@ -48,13 +58,7 @@ import {
     scrollbar_thumb_x_style,
     scrollbar_thumb_y_style,
 
-    tokens,
     text_width_container,
-
-    cursors,
-    main,
-    selection_blocks,
-    rows,
 } from '../../../elems/i.js';
 import {on_window_resize} from "../../resize/i.js";
 
@@ -173,31 +177,20 @@ export default (
                 );
             }
             else if (key === "c") {
-
-                ((s) => {
-                    var
-                        value = s.string_value[state_mode.separator]
-                    ;
-                    clipboard.writeText(
-                        value(
-                            messages,
-                            selection_groups,
-                            selection_blocks,
-                            tokens,
-                            
-                            s.i,
-                            s.l,
-    
-                            (s.start),
-                            (s.end),
-
-                            state_app,
+                clipboard.writeText(
+                    ((s) => (
+                        s
+                        ? (
+                            s.string_value(
+                                state_mode.separator,
+                                arrays,
+                                selection_empty_value,
+                                states,
+                            )
                         )
-                    );
-
-                })(
-                    main.cursor.selection
-                )
+                        : state_app.value_blured()
+                    ))(cursors[0].selection)
+                );
             }
         }
         else if (e.shiftKey) {
@@ -381,12 +374,12 @@ export default (
         }
         else if (active === body) {
             if (key === "Tab") {
-                main.input.element.focus();
+                inputs[0].element.focus();
             }
         }
         else {
             if (key === "Escape") {
-                main.input.element.blur();
+                inputs[0].element.blur();
             }
         }
         

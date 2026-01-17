@@ -1,9 +1,5 @@
 import {
-    main,
-    tokens,
     text_width_container,
-    selection_blocks,
-    rows,
     list_selections,
 } from '../../../elems/i.js';
 import {
@@ -12,6 +8,11 @@ import {
     selection_groups,
     selections,
     range,
+    tokens,
+    selection_blocks,
+    rows,
+    inputs,
+    cursors,
 } from '../../../conf/i.js';
 import {
     state_app,
@@ -28,8 +29,8 @@ export default (
             max = Math.max,
             min = Math.min,
             
-            input_el = main.input.element,
-            cursor = main.cursor,
+            input_el = inputs[0].element,
+            cursor = cursors[0],
 
             window = e.view,
             document = window.document,
@@ -83,7 +84,7 @@ export default (
             top = E.top;
             position = E.position;
             block = E.block;
-            value = block.value;
+            value = block.buffer.value;
 
             if (
                 (y >= top)
@@ -149,11 +150,9 @@ export default (
                     continue;
                 };
                 
-                //
                 sblock = selection_blocks[0];
                 selection = selections[0];
                 group = selection_groups[0];
-                
                 
                 sblock.start =
                 sblock.end =

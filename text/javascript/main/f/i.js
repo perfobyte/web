@@ -8,6 +8,7 @@ export * from './general/i.js';
 export * from './init/i.js';
 export * from "./reduce/i.js";
 export * from './scroll/i.js';
+export * from './selection/i.js';
 export * from './standart/i.js';
 export * from './to/i.js';
 export * from "./wheel/i.js";

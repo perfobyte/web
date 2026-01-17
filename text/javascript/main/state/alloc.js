@@ -9,16 +9,18 @@ export default (
             size_cpu_cache_line = 64,
             number_cpu_cache_lines = [131072,131072,1048576,3145728,],
             
-            length_blocks = 1,
+            number_blocks = 2,
+            size_buffers = 2,
+
             number_message_blocks = 1,
             
-            size_blocks = (size_block * length_blocks),
+            size_blocks = (size_block * number_blocks),
             size_message_blocks = (size_block * number_message_blocks),
 
             size_tokens = size_block,
             size_rows = size_block,
 
-            buffer_request = new SharedArrayBuffer(length_blocks * 8),
+            buffer_request = new SharedArrayBuffer(number_blocks * 8),
             buffer_request_view = new DataView(buffer_request),
             
             buffer_blocks = new SharedArrayBuffer(size_blocks),
@@ -54,6 +56,7 @@ export default (
 
             size_chats,
             size_messages,
+            size_buffers,
             
             size_rows,
             size_tokens,
@@ -65,7 +68,7 @@ export default (
             size_selection_groups,
             size_selections,
 
-            length_blocks,
+            number_blocks,
 
             number_message_blocks,
             number_cpu_cache_lines,

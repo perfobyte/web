@@ -44,29 +44,7 @@ export var
     content = list.firstElementChild,
     content_style = content.style,
     
-    scrollbar_thumb = [scrollbar_thumb_x,scrollbar_thumb_y],
-    
-    rows = Array(state_alloc.size_rows).fill(null),
-    tokens = Array(state_alloc.size_tokens).fill(null),
-    
-    selection_blocks = Array(state_alloc.size_selection_blocks).fill(null),
-    
-    cursors = Array(state_alloc.size_cursors).fill(null),
-    inputs = Array(state_alloc.size_inputs).fill(null),
-    textareas = Array(state_alloc.size_textareas).fill(null),
-
-    main = {
-        id_cursor: 0,
-        cursor:null,
-        element_cursor: null,
-        element_cursor_classlist: null,
-
-        id_input: 0,
-        element_input: null,
-        
-        id_textarea: 0,
-        element_textarea: null,
-    }
+    scrollbar_thumb = [scrollbar_thumb_x,scrollbar_thumb_y]
 ;
 
 text_width_row.setAttribute("id","text-width-container");

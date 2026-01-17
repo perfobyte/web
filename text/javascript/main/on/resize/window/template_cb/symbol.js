@@ -2,12 +2,12 @@ import {
     scrollbar_thumb_y_style,
     list,
     ROW_EL,
-    tokens,
 } from '../../../../elems/i.js';
 
 import {
     fragment,
     range,
+    tokens,
 } from '../../../../conf/i.js';
 
 import {

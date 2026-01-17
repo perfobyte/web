@@ -29,7 +29,7 @@ export default (
             left = 0,
             
             token = null,
-            block_value = "",
+            bf_value = "",
             chunk = "",
 
             direction = 0,
@@ -49,6 +49,7 @@ export default (
             sgroup = null,
             sblock = null,
             block = null,
+            buffer = null,
 
             style = null,
             
@@ -60,7 +61,8 @@ export default (
         for(; i < l; i++) {
             c = cursors[i];
             token = c.token;
-            block_value = token.block.value;
+
+            bf_value = (token.block.buffer.value);
             
             c_el = c.element;
             s = c_el.style;
@@ -68,7 +70,7 @@ export default (
             offset = token.start;
 
             node_text.textContent = (
-                block_value.substring(
+                bf_value.substring(
                     offset,
                     (c.token_start)
                 )
@@ -84,16 +86,15 @@ export default (
             s.height = `${token.height}px`
 
             if (s = c.selection) {
-                s.left_start = s.pos_from_left(TW, node_text, s.token_left, block_value, s.start);
-                s.left_end = s.pos_from_left(TW, node_text, s.token_right, block_value, s.end);
+                s.left_start = s.pos_from_left(TW, node_text, s.token_left, bf_value, s.start);
+                s.left_end = s.pos_from_left(TW, node_text, s.token_right, bf_value, s.end);
 
                 sg_i = s.i;
                 sg_l = s.l;
                 for(;sg_i<sg_l;sg_i++) {
                     sgroup = selection_groups[sg_i];
                     
-                    block = sgroup.block;
-                    block_value = block.value;
+                    bf_value = sgroup.block.buffer.value;
 
                     sb_i = sgroup.i;
                     sb_l = sgroup.l;
@@ -110,10 +111,10 @@ export default (
                         
                         offset = token.start;
                         px = sblock.start;
-                        node_text.textContent = (block_value.substring(offset, px));
+                        node_text.textContent = (bf_value.substring(offset, px));
                         style.left = `${token.left + TW.offsetWidth}px`;
 
-                        node_text.textContent = (block_value.substring(px, sblock.end));
+                        node_text.textContent = (bf_value.substring(px, sblock.end));
                         style.width = `${TW.offsetWidth}px`;
                     }
                 }

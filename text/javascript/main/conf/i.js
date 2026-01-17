@@ -6,6 +6,9 @@ export * from './linebreak/i.js'
 export * from './param/i.js';
 export * from './polyfill/i.js';
 
+export * from './arrays.js';
+export * as arrays from './arrays.js';
+
 export var
     
     node_text = TOKEN_EL.cloneNode(true),
@@ -52,15 +55,5 @@ export var
     separation_result = {
         string_offset: 0,
         char_i: 0,
-    },
-
-    edit_contexts = Array(A.size_inputs).fill(null),
-    
-    selections = Array(A.size_selections).fill(null),
-    selection_groups = Array(A.size_selection_groups).fill(null),
-
-    blocks = Array(A.size_blocks).fill(null),
-    
-    messages = Array(A.size_messages).fill(null),
-    chats = Array(A.size_chats).fill(null)
+    }
 ;

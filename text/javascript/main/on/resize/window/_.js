@@ -2,6 +2,7 @@
 import {
     fragment,
     range,
+    tokens,
 } from '../../../conf/i.js';
 
 import {
@@ -15,9 +16,6 @@ import {
     list,
     ROW_EL,
     text_width_container,
-    tokens,
-
-    
 } from '../../../elems/i.js';
 import {
     scrollbar_thumb_x_transform,
