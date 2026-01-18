@@ -1,6 +1,6 @@
 
 
-function Buffer(
+function BufferStr(
     id,
     value,
 ) {
@@ -8,14 +8,14 @@ function Buffer(
     this.value = value;
 };
 
-Buffer.prototype = {
+BufferStr.prototype = {
     default: (
-        (Buffer, id) => {
+        (BufferStr, id) => {
             return (
-                new Buffer(id, "")
+                new BufferStr(id, "")
             )
         }
     ),
 };
 
-export default Buffer;
+export default BufferStr;

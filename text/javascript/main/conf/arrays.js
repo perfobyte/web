@@ -8,7 +8,7 @@ export var
     messages = Array(A.size_messages).fill(null),
     chats = Array(A.size_chats).fill(null),
 
-    buffers = Array(A.size_buffers).fill(""),
+    buffers_str = Array(A.size_buffers).fill(null),
 
     rows = Array(A.size_rows).fill(null),
     tokens = Array(A.size_tokens).fill(null),

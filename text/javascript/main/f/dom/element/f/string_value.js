@@ -2,12 +2,10 @@
 
 export default (
     function() {
-        var
-            t = this,
-            v = (t.block.buffer.value)
-        ;
+        var t=this;
         return (
-            v.substring(t.start, t.end)
+            (t.block.buffer.value)
+            .substring(t.start, t.end)
         );
     }
 );

@@ -3,22 +3,25 @@
 function SelectionGroup(
     id,
     block,
+    
     i,
     l
 ) {
     this.id = id;
     this.block = block;
-
+    
     this.i = i;
     this.l = l;
 };
 
 SelectionGroup.prototype = {
     default: (
-        (SelectionGroup, id) => {
+        (constructor) => {
+            var n = null;
             return (
-                new SelectionGroup(
-                    id,null,
+                new constructor(
+                    0,
+                    n,
                     0,0
                 )
             )
@@ -26,11 +29,12 @@ SelectionGroup.prototype = {
     ),
 
     string_value: (
-        (sblocks, tokens, block_value, i,l) => {
+        function(sblocks, tokens) {
+            var t = this;
             return (
-                block_value.substring(
-                    tokens[sblocks[i].i].start,
-                    tokens[(sblocks[l-1].l)-1].end
+                t.block.buffer.value.substring(
+                    tokens[sblocks[t.i].i].start,
+                    tokens[(sblocks[t.l-1].l)-1].end
                 )
             );
         }

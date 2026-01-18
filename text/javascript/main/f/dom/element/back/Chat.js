@@ -10,9 +10,7 @@ Chat.prototype = {
     default: (
         (Chat, id) => {
             return (
-                new Chat(
-                    id
-                )
+                new Chat(id)
             )
         }
     )

@@ -1,5 +1,4 @@
 
-
 export default (
     (src,char,found, i,l) => {
         while (i<l) {

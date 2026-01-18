@@ -3,15 +3,13 @@
 export default (
     EditContext
     ||
-    (() => {
-        function EditContext() {
-
-        };
-
-        EditContext.prototype = {
-
-        };
-
-        return EditContext;
-    })()
+    (
+        (
+            () => {
+                function a(){};
+                a.prototype=null;
+                return a;
+            }
+        )()
+    )
 );

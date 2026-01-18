@@ -1,7 +1,7 @@
 export default (
-    (name, arr) => {
+    (name, buffer) => {
         var
-            blob = new Blob([arr.buffer], { type: "application/octet-stream" }),
+            blob = new Blob([buffer], { type: "application/octet-stream" }),
             url = URL.createObjectURL(blob),
             a = document.createElement("a")
         ;

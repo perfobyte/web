@@ -8,23 +8,21 @@ export default (
         ss,
     ) {
         var
-            s = this,
-            value = s.string_value_template[separator_mode],
-            v = (
-                value(
-                    a,
-                    
-                    s.i,
-                    s.l,
-    
-                    s.start,
-                    s.end,
-    
-                    selection_empty_value,
-                    ss,
-                )
-            )
+            s = this
         ;
-        return(v);
+        return(
+            ( (s.string_value_template)[ separator_mode ] )(
+                a,
+                
+                s.i,
+                s.l,
+
+                s.start,
+                s.end,
+
+                selection_empty_value,
+                ss,
+            )
+        );
     }
 )

@@ -1,17 +1,17 @@
 
 
 function Input(
-    i,
+    id,
     element,
 ) {
-    this.i = i;
+    this.id = id;
     this.element = element;
 };
 
 Input.prototype = {
     default: (
-        (Input, i, element) => {
-            return new Input(i, element);
+        (Input, id, element) => {
+            return new Input(id, element);
         }
     )
 };

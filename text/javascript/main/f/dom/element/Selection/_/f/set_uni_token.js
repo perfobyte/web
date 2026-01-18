@@ -2,10 +2,12 @@
 
 export default (
     function(token) {
-        this.token_left =
-        this.token_right =
-        this.token_end =
-        this.token_start =
+        var t=this;
+        
+        t.token_left =
+        t.token_right =
+        t.token_end =
+        t.token_start =
             token
         ;
     }

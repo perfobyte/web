@@ -5,4 +5,4 @@ export default {
     2: literally_same,
     4: literally_same,
     8: BigInt,
-}
+};

@@ -22,13 +22,7 @@ function Cursor(
 Cursor.prototype = {
     default: (
         (Cursor, id, element, token) => {
-            return new Cursor(
-                id,
-                element,
-                token,
-                0,
-                null,
-            )
+            return new Cursor(id,element,token,0,null);
         }
     ),
 };

@@ -49,5 +49,3 @@ export var
 
 text_width_row.setAttribute("id","text-width-container");
 body.appendChild(text_width_row);
-
-export * from "./event.js"

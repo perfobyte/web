@@ -3,6 +3,7 @@ export default {
     rendering: 0,
     lines: 0,
     separator: 1,
+    allocation: 0,
 
     selection_empty: 1,
 

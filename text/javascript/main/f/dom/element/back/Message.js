@@ -1,29 +1,29 @@
 import {string_value} from '../f/i.js';
 
 function Message(
-    i,id,
-    
-    tokens_i,
-    tokens_l,
-    
+    id,i,
+
     chat,
     block,
     
+    tokens_i,
+    tokens_l,
+
     start,
     end,
 
     created,
     epoch,
 ) {
-    this.i = i;
     this.id = id;
+    this.i = i;
+    
+    this.chat = chat;
+    this.block = block;
     
     this.tokens_i = tokens_i;
     this.tokens_l = tokens_l;
     
-    this.chat = chat;
-    this.block = block;
-
     this.start = start;
     this.end = end;
     
@@ -33,13 +33,13 @@ function Message(
 
 Message.prototype = {
     default: (
-        (Message, i, id) => {
+        (Message, id, i) => {
             var n = null;
             return (
                 new Message(
-                    i,id,
-                    0,0,
+                    id,i,
                     n,n,
+                    0,0,
                     0,0,
                     0,0,
                 )

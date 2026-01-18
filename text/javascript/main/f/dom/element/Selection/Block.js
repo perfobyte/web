@@ -2,23 +2,23 @@
 function SelectionBlock(
     id,
     element,
+
     block,
+    start,
+    end,
 
     i,
     l,
-
-    start,
-    end,
 ) {
     this.id = id;
     this.element = element;
-    this.block = block;
-    
-    this.i = i;
-    this.l = l;
 
+    this.block = block;
     this.start = start;
     this.end = end;
+
+    this.i = i;
+    this.l = l;
 };
 
 SelectionBlock.prototype = {

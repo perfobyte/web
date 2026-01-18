@@ -25,12 +25,10 @@ export default (
             buffer = block.buffer,
             buffer_value = buffer.value,
             
-            value = "",
-            group_string_value = null
+            value = ""
         ;
         if ((l-i)>1) {
-            group_string_value = group.string_value;
-
+            
             value = (
                 buffer_value.substring(
                     bf_offset,
@@ -41,19 +39,7 @@ export default (
             l--;
             
             for (;i < l; i++) {
-                group = groups[i];
-                block = group.block;
-                buffer_value = block.buffer.value;
-                
-                value += (
-                    group_string_value(
-                        sblocks,
-                        tokens,
-                        buffer_value,
-                        group.i,
-                        group.l,
-                    )
-                );
+                value += groups[i].string_value(sblocks,tokens);
             };
             
             group = groups[i];

@@ -27,6 +27,8 @@ import {
 import {
     SelectionBlock,
     Selection,
+    SelectionGroup,
+    array_expand,
 } from '../../../f/i.js';
 
 export default (
@@ -55,7 +57,10 @@ export default (
 
             sblock = null,
             group = null,
+
             block = null,
+            next_block = null,
+
             selection = null,
 
             w = 0,
@@ -80,7 +85,8 @@ export default (
             offset = 0,
 
             SelectionBlockDefault = SelectionBlock.prototype.default,
-            SelectionDefault = Selection.prototype.default
+            SelectionDefault = Selection.prototype.default,
+            SelectionGroupDefault = Selection.prototype.default
         ;
         
         if (y >= S.height_loaded_start) {
@@ -204,8 +210,8 @@ export default (
                     tmp = elem_col; elem_col = offset; offset = tmp;
 
                     
-                    selection.i = (selection.token_left = E).block.id;
-                    selection.l = (selection.token_right = token).block.id + 1;
+                    selection.token_left = E;
+                    selection.token_right = token;
                 }
                 else {
                     selection.direction = (
@@ -214,15 +220,13 @@ export default (
                         : 2
                     );
 
-                    selection.i = (selection.token_left = token).block.id;
-                    selection.l = ((selection.token_right = E).block.id + 1);
+                    selection.token_left = token;
+                    selection.token_right = E;
                 };
 
                 selection.start = offset;
                 selection.end = elem_col;
                 
-                console.log(selection.start, selection.end);
-
                 selection.token_end = E;
 
                 tmp = ((to + 1) - from);
@@ -322,24 +326,48 @@ export default (
                         selection_groups.push(SelectionDefault(Selection,y++))
                     }
                 };
-
-                l = i;
-                i = 0;
-                x = 0;
+            
+                position = top = selection_groups.length;
+                to = A.size_selection_groups;
+                
                 y = 0;
+                selection.i = y;
+
                 group = selection_groups[y++];
 
-                
+                l = i;
+                left = l-1;
+                x = i = 0;
+
+                sblock = selection_blocks[i++];
+                block = sblock.block;
+
                 while (i < l) {
                     sblock = selection_blocks[i++];
-                    if ((group.block !== sblock.block)||(i===l)){
+                    next_block = sblock.block;
+                    
+                    if ((next_block !== block)||(i===left)){
                         group.i = x;
                         x = (group.l = i);
-                        console.log(group);
+                        group.block = block;
 
-                        group = selection_groups[y++];
+                        block = next_block;
+
+                        (y < top)
+                        ||
+                        (top = array_expand(y, top, to, selection_groups, SelectionGroupDefault, SelectionGroup));
+                        
+                        group = selection_groups[y];
+                        group.id = y;
+
+                        (i===left) || (y++);
                     }
                 };
+
+                selection.l =
+                A.length_selection_groups = y;
+
+                console.log("groups =",y);
                 
                 break cycle;
             }

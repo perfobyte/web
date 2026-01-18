@@ -91,8 +91,9 @@ export default (
                         message = messages[mi];
                         bf_value = message.block.buffer.value;
                         
-
-                        var c = (
+                        // debugger;
+                        
+                        value += (
                             bf_value.substring(
                                 (
                                     (
@@ -113,11 +114,6 @@ export default (
                                     : tokens[message.tokens_l - 1].end
                                 )
                             )
-                        );
-                        // debugger;
-                        
-                        value += (
-                            c    
                         );
 
                         ((i===lm1))

@@ -1,17 +1,17 @@
 
 
 function Textarea(
-    i,
+    id,
     element,
 ) {
-    this.i = i;
+    this.id = id;
     this.element = element;
 };
 
 Textarea.prototype = {
     default: (
-        (Textarea, i, element) => {
-            return new Textarea(i, element);
+        (Textarea, id, element) => {
+            return new Textarea(id, element);
         }
     )
 };

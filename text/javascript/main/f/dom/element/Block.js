@@ -18,12 +18,9 @@ Block.prototype = {
         }
     ),
     string_value() {
-        var
-            t = this,
-            v = t.buffer.value
-        ;
+        var t = this;
         return(
-            v.substring(t.start, t.end)
+            (t.buffer.value).substring(t.start, t.end)
         );
     },
     

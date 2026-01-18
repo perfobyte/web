@@ -1,5 +1,4 @@
 
-
 export default (
     (Selection, id) => {
         var
