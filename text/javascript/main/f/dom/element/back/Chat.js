@@ -8,12 +8,16 @@ function Chat(
 
 Chat.prototype = {
     default: (
-        (Chat, id) => {
+        (Chat) => {
             return (
-                new Chat(id)
+                new Chat(0n)
             )
         }
-    )
+    ),
+
+    setup(id) {
+        this.id = id;
+    }
 };
 
 export default Chat;

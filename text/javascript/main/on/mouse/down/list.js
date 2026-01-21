@@ -154,20 +154,23 @@ export default (
                 selection = selections[0];
                 group = selection_groups[0];
                 
+
                 sblock.start =
                 sblock.end =
                 selection.start =
                 selection.end =
                 selection.offset =
-                    cursor.token_start =
-                        elem_col
+                cursor.token_start =
+                    elem_col
                 ;
 
-                selection.l = (selection.i = group.id) + 1;
+                cursor.token = E;
 
+                selection.l = (selection.i = group.index) + 1;
+                
                 prev_w = A.length_selection_blocks;
                 
-                if ((prev_w - 1) > 0) {
+                if (prev_w > 1) {
                     range.setStartBefore(selection_blocks[1].element);
                     range.setEndAfter(selection_blocks[prev_w - 1].element);
                     range.deleteContents();
@@ -179,22 +182,23 @@ export default (
                     1;
 
                 sblock.element.style.width = "0px";
-
                 prev_w || (list_selections.appendChild(sblock.element));
 
-                sblock.block = (group.block = block);
+                sblock.block =
+                group.block =
+                    block;
 
-                sblock.l = ((sblock.i = E.id) + 1);
-                group.l = ((group.i = sblock.id) + 1);
+                sblock.l = ((sblock.i = E.index) + 1);
+                group.l = ((group.i = sblock.index) + 1);
                 
-                selection.set_uni_token(cursor.token = E);
-                
-                selection.selection_direction = 0;
+                selection.set_uni_token(E);
+                selection.left_start = w;
+                selection.direction = 0;
+
                 cursor.selection = selection;
-
                 style = cursor.element.style;
                 style.top = `${top}px`;
-                style.left = `${left + (selection.left_start = w)}px`;
+                style.left = `${left + w}px`;
                 style.height = `${E.height}px`;
                 
                 break cycle;

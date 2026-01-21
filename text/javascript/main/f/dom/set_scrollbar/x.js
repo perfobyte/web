@@ -1,4 +1,3 @@
-import template from './template.js';
 
 import {
     scrollbar_thumb_x_style,
@@ -8,7 +7,14 @@ import {
     scrollbar_thumb_x_transform,
 } from '../../scroll/i.js';
 
-export default template(
-    scrollbar_thumb_x_style,
-    scrollbar_thumb_x_transform,
-)
+export default (translate, ratio) => {
+    return (
+        scrollbar_thumb_x_style
+        .transform = (
+            scrollbar_thumb_x_transform(
+                translate,
+                ratio,
+            )
+        )
+    );
+};

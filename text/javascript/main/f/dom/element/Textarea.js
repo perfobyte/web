@@ -1,19 +1,24 @@
 
 
 function Textarea(
-    id,
+    index,
     element,
 ) {
-    this.id = id;
+    this.index = index;
     this.element = element;
 };
 
 Textarea.prototype = {
     default: (
-        (Textarea, id, element) => {
-            return new Textarea(id, element);
+        (Textarea) => {
+            return new Textarea(0, null);
         }
-    )
+    ),
+
+    setup(index, element) {
+        this.index = index;
+        this.element = element;
+    }
 };
 
 export default Textarea;

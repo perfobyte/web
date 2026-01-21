@@ -1,7 +1,7 @@
 import * as f from './f/i.js';
 
 function Selection(
-    id,
+    index,
     
     i,l,
 
@@ -14,7 +14,7 @@ function Selection(
 
     direction,
 ) {
-    this.id = id;
+    this.index = index;
     
     this.i = i;
     this.l = l;

@@ -1,7 +1,7 @@
 import {string_value} from '../f/i.js';
 
 function Message(
-    id,i,
+    id,index,
 
     chat,
     block,
@@ -16,7 +16,7 @@ function Message(
     epoch,
 ) {
     this.id = id;
-    this.i = i;
+    this.index = index;
     
     this.chat = chat;
     this.block = block;
@@ -33,11 +33,11 @@ function Message(
 
 Message.prototype = {
     default: (
-        (Message, id, i) => {
-            var n = null;
+        (Message) => {
+            var n=null;
             return (
                 new Message(
-                    id,i,
+                    0n,0,
                     n,n,
                     0,0,
                     0,0,
@@ -46,6 +46,11 @@ Message.prototype = {
             )
         }
     ),
+
+    setup(id, index) {
+        this.id = id;
+        this.index = index;
+    },
     
     string_value,
 };

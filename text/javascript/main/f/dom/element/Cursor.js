@@ -2,7 +2,7 @@
 
 
 function Cursor(
-    id,
+    index,
     element,
     
     token,
@@ -10,7 +10,7 @@ function Cursor(
 
     selection,
 ) {
-    this.id = id;
+    this.index = index;
     this.element = element;
     
     this.token = token;
@@ -21,10 +21,17 @@ function Cursor(
 
 Cursor.prototype = {
     default: (
-        (Cursor, id, element, token) => {
-            return new Cursor(id,element,token,0,null);
+        (Cursor) => {
+            var n=null;
+            return new Cursor(0,n,n,0,n);
         }
     ),
+
+    setup(index, element, token) {
+        this.index = index;
+        this.element = element;
+        this.token = token;
+    }
 };
 
 export default Cursor;

@@ -2,57 +2,64 @@ import {blocks} from './conf/i.js';
 
 export default (blocks) => [
     {
+        id: 0n,
+        index: 0,
         start: 0,
         end: 62,
-        id: 0n,
         created: 0,
         epoch: 0,
         block:blocks[0],
     },
     {
+        id: 1n,
+        index: 1,
         start: 62,
         end: 89,
-        id: 1n,
         created: 1,
         epoch: 0,
         block:blocks[0],
     },
     {
+        id: 2n,
+        index: 2,
         start: 89,
         end: 99,
-        id: 3n,
         created: 2,
         epoch: 0,
         block:blocks[0],
     },
     {
+        id: 3n,
+        index: 3,
         start: 99,
         end: 311,
-        id: 4n,
         created: 3, 
         epoch: 0,
         block:blocks[0],
     },
     {
+        id: 4n,
+        index: 4,
         start: 311,
         end: 509,
-        id: 5n,
         created: 4,
         epoch: 0,
         block:blocks[0],
     },
     {
+        id: 5n,
+        index: 5,
         start: 509,
         end: 4096,
-        id: 6n,
         created: 5,
         epoch: 0,
         block:blocks[0],
     },
     {
+        id: 6n,
+        index: 6,
         start: 4096,
         end: 4100,
-        id: 7n,
         created: 6,
         epoch: 0,
         block: blocks[1],
@@ -69,7 +76,7 @@ messages
         ;
         
         view.setBigUint64(f, m.id_chat, true);
-        view.setBigUint64(f+8, m.id, true);
+        view.setBigUint64(f+8, m.index, true);
 
         view.setUint32(f+16, m.id_block, true);
 

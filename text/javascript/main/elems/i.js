@@ -44,7 +44,10 @@ export var
     content = list.firstElementChild,
     content_style = content.style,
     
-    scrollbar_thumb = [scrollbar_thumb_x,scrollbar_thumb_y]
+    scrollbar_thumb = [
+        scrollbar_thumb_x,
+        scrollbar_thumb_y
+    ]
 ;
 
 text_width_row.setAttribute("id","text-width-container");

@@ -178,18 +178,23 @@ export default (
             }
             else if (key === "c") {
                 clipboard.writeText(
-                    ((s) => (
-                        s
-                        ? (
-                            s.string_value(
-                                state_mode.separator,
-                                arrays,
-                                selection_empty_value,
-                                states,
+                    ((s) => {
+                        var v = (
+                            s
+                            ? (
+                                s.string_value(
+                                    state_mode.separator,
+                                    arrays,
+                                    selection_empty_value,
+                                    states,
+                                )
                             )
-                        )
-                        : state_app.value_blured()
-                    ))(cursors[0].selection)
+                            : state_app.value_blured()
+                        );
+                        console.dir(JSON.stringify(v));
+
+                        return(v)
+                    })(cursors[0].selection)
                 );
             }
         }

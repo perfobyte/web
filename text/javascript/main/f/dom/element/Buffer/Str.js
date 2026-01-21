@@ -1,21 +1,25 @@
 
 
 function BufferStr(
-    id,
+    index,
     value,
 ) {
-    this.id = id;
+    this.index = index;
     this.value = value;
 };
 
 BufferStr.prototype = {
     default: (
-        (BufferStr, id) => {
+        (BufferStr) => {
             return (
-                new BufferStr(id, "")
+                new BufferStr(0,"")
             )
         }
     ),
+
+    setup(index) {
+        this.index = index;
+    },
 };
 
 export default BufferStr;

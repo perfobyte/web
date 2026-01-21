@@ -1,13 +1,13 @@
 
 
 function SelectionGroup(
-    id,
+    index,
     block,
     
     i,
     l
 ) {
-    this.id = id;
+    this.index = index;
     this.block = block;
     
     this.i = i;
@@ -27,6 +27,10 @@ SelectionGroup.prototype = {
             )
         }
     ),
+
+    setup(index) {
+        this.index = index;
+    },
 
     string_value: (
         function(sblocks, tokens) {

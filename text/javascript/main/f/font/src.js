@@ -4,18 +4,18 @@ export default (
         var
             last_i = (l - 1),
             f = null,
-            src = ""
+            src = "",
+            ext = ""
         ;
         for(;i<l;i++){
             f = support_structure_font[i];
+            ext = f.extension;
+
             src += (
                 `url("${
-                    font_path(
-                        f.extension,
-                        font_sid,
-                    )
+                    font_path(ext, font_sid)
                 }${
-                    (f.id === 4)
+                    (ext === "svg")
                     ? `#${font_sid}`
                     : ""
                 }") format("${

@@ -1,19 +1,23 @@
 
 
 function Input(
-    id,
+    index,
     element,
 ) {
-    this.id = id;
+    this.index = index;
     this.element = element;
 };
 
 Input.prototype = {
     default: (
-        (Input, id, element) => {
-            return new Input(id, element);
+        (Input) => {
+            return new Input(0, null);
         }
-    )
+    ),
+    setup(index, element) {
+        this.index = index;
+        this.element = element;
+    },
 };
 
 export default Input;

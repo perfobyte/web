@@ -1,7 +1,7 @@
 import {string_value} from './f/i.js';
 
 function Token(
-    id, element, row,
+    index, element, row,
     message, block,
 
     start, end, position,
@@ -9,7 +9,7 @@ function Token(
     top, right, bottom, left,
     width, height,
 ) {
-    this.id = id;
+    this.index = index;
     this.element = element;
     this.row = row;
 
@@ -30,15 +30,20 @@ function Token(
 };
 
 Token.prototype = {
-    default: (Token, i, element) => {
-        var n = null;
+    default: (Token) => {
+        var n=null;
         return new Token(
-            i,element,n,
+            0,n,n,
             n,n,
             0,0,2,
             0,0,0,0,
             0,0,
         )
+    },
+
+    setup(index, element) {
+        this.index = index;
+        this.element = element;
     },
 
     string_value,

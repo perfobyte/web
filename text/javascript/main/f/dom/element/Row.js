@@ -1,13 +1,13 @@
 
 
 function Row(
-    id,
+    index,
     element,
     
     i,l,
     width,height,
 ) {
-    this.id = id;
+    this.index = index;
     this.element = element;
     
     this.i = i;
@@ -19,16 +19,21 @@ function Row(
 
 Row.prototype = {
     default: (
-        (Row,id,element) => {
+        (Row) => {
             return (
                 new Row(
-                    id,element,
+                    0,null,
                     0,0,
                     0,0,
                 )
             );
         }
     ),
+
+    setup(index, element) {
+        this.index = index;
+        this.element = element;
+    },
 
     string_value:(
         function(

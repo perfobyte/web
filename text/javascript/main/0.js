@@ -232,6 +232,7 @@ import {
                         block = n,
                         message = n,
                         chat = n,
+                        selection = n,
 
                         tabindex = 1,
                         
@@ -252,18 +253,24 @@ import {
                         BlockProto = Block.prototype,
                         BlockDefault = BlockProto.default,
 
-                        BufferDefault = BufferStr.prototype.default,
+                        BufferStrDefault = BufferStr.prototype.default,
                         
                         ObjectAssign = Object.assign,
 
-                        tmsgs = null,
-                        group = null
+                        tmsgs = n,
+                        group = n,
+                        sblock = n,
+                        input = n,
+                        row = n,
+                        textarea = n
                     ;
 
                     i = 0;
                     l = chats.length;
                     for(;i<l;i++){
-                        chats[i] = ChatDefault(Chat, BigInt(i))
+                        chat = ChatDefault(Chat);
+                        chat.setup(BigInt(i));
+                        chats[i] = chat;
                     };
                     chat = chats[0];
                     A.length_chats = 1;
@@ -274,14 +281,18 @@ import {
                     BlockProto.index_last = ((BlockProto.size = A.size_block) - 1);
 
                     for (;i<l;i++) {
-                        blocks[i] = BlockDefault(Block, i);
+                        block = BlockDefault(Block);
+                        block.setup(i);
+                        blocks[i] = block;
                     };
 
                     i = 0;
                     l = buffers_str.length;
                     
                     for(;i<l;i++) {
-                        buffers_str[i] = BufferDefault(BufferStr, i);
+                        buffer = BufferStrDefault(BufferStr);
+                        buffer.setup(i);
+                        buffers_str[i] = buffer;
                     };
 
                     buffer = buffers_str[0];
@@ -300,7 +311,9 @@ import {
                     i = 0;
                     l = messages.length;
                     for(;i<l;i++){
-                        messages[i] = MessageDefault(Message, BigInt(i), i);
+                        message = MessageDefault(Message);
+                        message.setup(BigInt(i), i);
+                        messages[i] = message;
                     };
                     
                     i = 0;
@@ -316,13 +329,17 @@ import {
                     i = 0;
                     l = tokens.length;
                     for(;i<l;i++){
-                        tokens[i] = TokenDefault(Token, i, TOKEN_EL.cloneNode(true));
+                        token = TokenDefault(Token);
+                        token.setup(i, TOKEN_EL.cloneNode(true));
+                        tokens[i] = token;
                     };
                     
                     i = 0;
                     l = rows.length;
                     for(;i<l;i++){
-                        rows[i] = RowDefault(Row, i, ROW_EL.cloneNode(true));
+                        row = RowDefault(Row);
+                        row.setup(i, ROW_EL.cloneNode(true));
+                        rows[i] = row;
                     };
 
                     load_msgs(
@@ -372,11 +389,14 @@ import {
                     
                     token = tokens[0];
                     for(;i < l; i++) {
+                        cursor = CursorDefault(Cursor);
+
                         c_el = CURSOR_EL.cloneNode(true);
                         c_el.classList.add("hidden");
                         fragment.appendChild(c_el);
-                        
-                        cursors[i] = CursorDefault(Cursor,i,c_el,token);
+
+                        cursor.setup(i, c_el, token);
+                        cursors[i] = cursor;
                     };
 
                     list_cursors.appendChild(fragment);
@@ -396,16 +416,17 @@ import {
                     i = 0;
                     l = inputs.length;
                     for (;i < l; i++) {
-                        input_el = REGULAR_INPUT_EL.cloneNode(true);
-                        inputs[i] = InputDefault(Input, i, input_el);
+                        input = InputDefault(Input);
 
+                        input_el = REGULAR_INPUT_EL.cloneNode(true);
                         input_el.setAttribute("tabindex", tabindex++);
-                        
                         input_el.onfocus = on_input_focus;
                         input_el.onblur = on_input_blur;
                         input_el.onbeforeinput = on_regular_input_beforeinput;
-
                         fragment.appendChild(input_el);
+
+                        input.setup(i, input_el);
+                        inputs[i] = input;
                     }
                     
                     list_inputs.appendChild(fragment);
@@ -414,12 +435,14 @@ import {
                     l = textareas.length;
 
                     for (;i < l; i++) {
+                        textarea = TextareaDefault(Textarea);
+                        
                         textarea_el = REGULAR_TEXTAREA_EL.cloneNode(true);
                         textarea_el.setAttribute("tabindex", tabindex++);
-
-                        textareas[i] = TextareaDefault(Textarea, i, textarea_el);
-
                         fragment.appendChild(textarea_el);
+
+                        textarea.setup(i, textarea_el);
+                        textareas[i] = textarea;
                     };
 
                     list_textareas.appendChild(fragment);
@@ -436,8 +459,7 @@ import {
                     l = selection_groups.length;
                     for (;i<l;i++) {
                         group = SelectionGroupDefault(SelectionGroup);
-                        group.id = i;
-
+                        group.setup(i);
                         selection_groups[i] = group;
                     };
                     
@@ -445,14 +467,19 @@ import {
                     l = selection_blocks.length;
 
                     for (; i < l; i++) {
+                        sblock = SelectionBlockDefault(SelectionBlock);
                         sel_el = SELECTION_EL.cloneNode(true);
-                        selection_blocks[i] = SelectionBlockDefault(SelectionBlock, i, sel_el);
+
+                        sblock.setup(i, sel_el);
+                        selection_blocks[i] = sblock;
                     };
 
                     i = 0;
                     l = selections.length;
                     for (; i < l; i++) {
-                        selections[i] = SelectionDefault(Selection,i);
+                        selection = SelectionDefault(Selection);
+                        selection.setup(i);
+                        selections[i] = selection;
                     };
                     
                     list.scrollLeft =

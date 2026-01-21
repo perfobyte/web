@@ -1,6 +1,6 @@
 
 function SelectionBlock(
-    id,
+    index,
     element,
 
     block,
@@ -10,7 +10,7 @@ function SelectionBlock(
     i,
     l,
 ) {
-    this.id = id;
+    this.index = index;
     this.element = element;
 
     this.block = block;
@@ -23,10 +23,10 @@ function SelectionBlock(
 
 SelectionBlock.prototype = {
     default: (
-        (SelectionBlock, id, element) => {
+        (SelectionBlock) => {
             return (
                 new SelectionBlock(
-                    id,element,
+                    0,null,
                     null,0,0,
                     0,0,
                 )
@@ -34,8 +34,13 @@ SelectionBlock.prototype = {
         }
     ),
 
+    setup(index, element) {
+        this.index = index;
+        this.element = element;
+    },
+
     bind_to_token(token) {
-        this.l = ((this.i = token.id) + 1);
+        this.l = ((this.i = token.index) + 1);
     },
 
     assign_token_boundaries(token) {

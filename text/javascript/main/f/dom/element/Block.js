@@ -1,11 +1,11 @@
 
 function Block(
-    id,
+    index,
     start,
     end,
     buffer,
 ) {
-    this.id = id;
+    this.index = index;
     this.start = start;
     this.end = end;
     this.buffer = buffer;
@@ -13,10 +13,15 @@ function Block(
 
 Block.prototype = {
     default: (
-        (Block, id) => {
-            return new Block(id, 0, 0, null);
+        (Block) => {
+            return new Block(0,0,0,null);
         }
     ),
+
+    setup(index) {
+        this.index = index;
+    },
+
     string_value() {
         var t = this;
         return(

@@ -1,3 +1,6 @@
 
 
-export default console.error;
+export default (e) => {
+    console.log("application error:");
+    console.error(e);
+};

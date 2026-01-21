@@ -43,7 +43,9 @@ export default (
             TokenDefault = Token.prototype.default,
             RowDefault = Row.prototype.default,
 
-            token_el = null,
+            n=null,
+
+            token_el = n,
             string = '',
             
             char_i = 0,
@@ -59,7 +61,7 @@ export default (
             tokens_l = tokens.length,
             rows_l = rows.length,
 
-            style = null,
+            style = n,
 
             right_content = S.right_content,
 
@@ -70,25 +72,27 @@ export default (
 
             px = height_row,
 
-            inline = null,
+            inline = n,
 
             w = 0,
             h = 0,
             width_row = 0,
 
-            message = null,
+            message = n,
 
-            t = null,
+            t = n,
 
             message_id = 0,
 
             x = 0,
             y = 0,
 
-            block = null,
-            row = null,
-            row_el = null,
-            buffer = null,
+            block = n,
+            row = n,
+            row_el = n,
+            buffer = n,
+            token = n,
+            
 
             end = 0
         ;
@@ -115,11 +119,7 @@ export default (
 
                 if (
                     (
-                        (
-                            linebreaks.includes(
-                                string[char_i]
-                            )
-                        )
+                        (linebreaks.includes(string[char_i]))
                         ? ((end = char_i),true)
                         : false
                     )
@@ -138,7 +138,9 @@ export default (
                         new_length = (rows_l + size_rows);
                         
                         for (;rows_l < new_length; rows_l++) {
-                            rows.push(RowDefault(Row, rows_l, ROW_EL.cloneNode(true)));
+                            row = RowDefault(Row);
+                            row.setup(rows_l, ROW_EL.cloneNode(true));
+                            rows.push(row);
                         };
                     };
 
@@ -146,7 +148,9 @@ export default (
                         new_length = (tokens_l + size_tokens);
                         
                         for (;tokens_l < new_length; tokens_l++) {
-                            tokens.push(TokenDefault(Token, tokens_l, TOKEN_EL.cloneNode(true)));
+                            token = TokenDefault(Token);
+                            token.setup(tokens_l, TOKEN_EL.cloneNode(true));
+                            tokens.push(token);
                         };
                     };
 
@@ -159,7 +163,7 @@ export default (
 
                     t = tokens[tokens_i];
 
-                    row.l = ((row.i = t.id) + 1);
+                    row.l = ((row.i = t.index) + 1);
                     
                     token_el = t.element;
                     t.row = row;
@@ -181,7 +185,7 @@ export default (
                     t.width = w;
                     t.height = h = TW.offsetHeight;
 
-                    t.id = tokens_i++;
+                    t.index = tokens_i++;
 
                     t.message = message;
                     t.block = block;
