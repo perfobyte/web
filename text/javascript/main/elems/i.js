@@ -20,7 +20,7 @@ export var
     REGULAR_INPUT_EL = template.querySelector(".input"),
     REGULAR_TEXTAREA_EL = template.querySelector(".textarea"),
     SELECTION_EL = template.querySelector(".selection"),
-
+    
     text_width_row = ROW_EL.cloneNode(true),
     text_width_container = (text_width_row.firstElementChild),
     default_row_inline_class = text_width_container.className,

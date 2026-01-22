@@ -1,6 +1,6 @@
 
 import {
-    text_width_container,
+    text_width_container as TW,
     SELECTION_EL,
     list_selections,
     list,
@@ -82,10 +82,14 @@ export default (
 
             token = null,
             offset = 0,
+            step = 0,
 
             SelectionBlockDefault = SelectionBlock.prototype.default,
             SelectionDefault = Selection.prototype.default,
-            SelectionGroupDefault = SelectionGroup.prototype.default
+            SelectionGroupDefault = SelectionGroup.prototype.default,
+
+            wwt = S.width_whitespace_trailing,
+            wwl = S.width_whitespace_leading
         ;
         
         if (y >= S.height_loaded_start) {
@@ -109,7 +113,7 @@ export default (
                 found: {
                     if (x >= (left)) {
                         if (x < (E.right)) {
-                            text_width_container.replaceChildren(node_text);
+                            TW.replaceChildren(node_text);
 
                             x -= left;
                             char_i = E.start;
@@ -122,17 +126,17 @@ export default (
                                 tmp = (lo + hi) >> 1;
                                 node_text.textContent = value.substring(char_i, tmp);
                                 
-                                if (text_width_container.offsetWidth < x) {lo = tmp + 1}
+                                if (TW.offsetWidth < x) {lo = tmp + 1}
                                 else {hi = tmp};
                             }
 
                             lo1 = (lo - 1);
 
                             node_text.textContent = value.substring(char_i, max(char_i, lo1));
-                            prev_w = text_width_container.offsetWidth;
+                            prev_w = TW.offsetWidth;
 
                             node_text.textContent = value.substring(char_i, lo);
-                            tmp = text_width_container.offsetWidth;
+                            tmp = TW.offsetWidth;
 
                             if (x < ((prev_w + tmp) / 2)) {
                                 elem_col = (lo1);
@@ -225,14 +229,17 @@ export default (
                 selection.start = offset;
                 selection.end = elem_col;
                 
-                console.log("start =",offset, ", end =",elem_col);
-
-                tmp = ((to + 1) - from);
-
-                (tmp < l)
-                ||
-                (l = array_expand(tmp,l,A.size_selection_blocks,sbs,SelectionBlockDefault,SelectionBlock));
+                tmp = ((to - from) + 1);
                 
+                
+                w = sbs.length;
+                if (tmp >= w) {
+                    step = A.size_selection_blocks;
+                    w = array_expand(
+                        tmp,w, step, sbs,SelectionBlockDefault,SelectionBlock
+                    );
+                };
+
                 i = 0;
                 w = l = A.length_selection_blocks;
                 x = A.length_selection_groups;
@@ -248,27 +255,23 @@ export default (
                 style.left = `${token.left + char_i}px`;
                 style.height = `${token.height}px`;
 
-                if ((to-(from++)) === 0) {
+                if ((to - (from++)) === 0) {
                     sblock.set_boundaries(offset, elem_col);
                     style.width = `${char_l - char_i}px`;
                 }
                 else {
                     sblock.set_boundaries(offset, token.end);
-                    style.width = `${token.width - char_i}px`;
+                    style.width = `${token.width - char_i + wwt}px`;
                     
-                    for(;from<to;from++){
+                    for(;from < to; from++){
                         token = tokens[from];
                         sblock = sbs[i++];
                         sblock.block = token.block;
                         
                         sblock.bind_to_token(token);
                         sblock.assign_token_boundaries(token);
-
-                        style = sblock.element.style;
-                        style.top = `${token.top}px`;
-                        style.left = `${token.left}px`;
-                        style.width = `${token.width}px`;
-                        style.height = `${token.height}px`;
+                        
+                        sblock.stylize_middle(sblock.element.style, token, wwl, wwt);
                     };
 
                     sblock = sbs[i++];
@@ -278,12 +281,7 @@ export default (
                     sblock.set_boundaries(token.start, elem_col);
                     
                     sblock.block = token.block;
-                    style = sblock.element.style;
-
-                    style.top = `${token.top}px`;
-                    style.left = `${token.left}px`;
-                    style.width = `${char_l}px`;
-                    style.height = `${token.height}px`;
+                    sblock.stylize_last((sblock.element.style), token, char_l, wwl);
                 }
 
                 if (i > w) {
@@ -344,8 +342,6 @@ export default (
 
                 selection.l =
                 A.length_selection_groups = (y);
-
-                console.log("groups =",selection.l);
                 
                 break cycle;
             }

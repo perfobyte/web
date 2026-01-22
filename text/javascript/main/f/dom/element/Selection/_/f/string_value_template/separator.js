@@ -19,7 +19,7 @@ export default (
             sblocks = a.selection_blocks,
             tokens = a.tokens,
             blocks = a.blocks,
-
+            
             n = null,
             group = groups[i],
             block = group.block,

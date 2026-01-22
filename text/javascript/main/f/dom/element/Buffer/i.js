@@ -1,1 +1,1 @@
-export {default as BufferStr} from './Str.js';
+export {default as BufferStr} from './Str/_.js';

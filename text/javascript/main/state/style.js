@@ -1,3 +1,4 @@
+import {literally_same} from '../f/general/i.js';
 
 export default ((height_row) => {
     var
@@ -9,6 +10,9 @@ export default ((height_row) => {
         width_symbol = 20
     ;
     return {
+        width_whitespace_trailing: 4,
+        width_whitespace_leading: 4,
+
         font_size: 16,
         font_size_default: 16,
         font_size_step:1,
@@ -45,7 +49,7 @@ export default ((height_row) => {
         width_scroll_content:0,
         width_scrollbar_content:0,
 
-        width_cursor:(zoom) => (1 * zoom),
+        width_cursor: literally_same,
 
         width_list_neg:1,
         width_symbol_default: width_symbol,

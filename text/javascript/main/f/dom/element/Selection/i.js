@@ -1,4 +1,4 @@
 
-export {default as Selection} from './_/i.js';
-export {default as SelectionBlock} from "./Block.js";
-export {default as SelectionGroup} from './Group.js';
+export {default as Selection} from './_/_.js';
+export {default as SelectionBlock} from "./Block/_.js";
+export {default as SelectionGroup} from './Group/_.js';

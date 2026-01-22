@@ -2,7 +2,6 @@ import {blocks} from './conf/i.js';
 
 export default (blocks) => [
     {
-        id: 0n,
         index: 0,
         start: 0,
         end: 62,
@@ -11,7 +10,6 @@ export default (blocks) => [
         block:blocks[0],
     },
     {
-        id: 1n,
         index: 1,
         start: 62,
         end: 89,
@@ -20,7 +18,6 @@ export default (blocks) => [
         block:blocks[0],
     },
     {
-        id: 2n,
         index: 2,
         start: 89,
         end: 99,
@@ -29,7 +26,6 @@ export default (blocks) => [
         block:blocks[0],
     },
     {
-        id: 3n,
         index: 3,
         start: 99,
         end: 311,
@@ -38,7 +34,6 @@ export default (blocks) => [
         block:blocks[0],
     },
     {
-        id: 4n,
         index: 4,
         start: 311,
         end: 509,
@@ -47,7 +42,6 @@ export default (blocks) => [
         block:blocks[0],
     },
     {
-        id: 5n,
         index: 5,
         start: 509,
         end: 4096,
@@ -56,7 +50,6 @@ export default (blocks) => [
         block:blocks[0],
     },
     {
-        id: 6n,
         index: 6,
         start: 4096,
         end: 4100,
