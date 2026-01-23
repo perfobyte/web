@@ -4,6 +4,7 @@ import {EditContext} from "./polyfill/i.js";
 import {
     array,
     alloc_new,
+    reduce_instance,
 
     Selection,
     SelectionGroup,
@@ -62,6 +63,4 @@ export var
     edit_contexts = Array(inputs.length + textareas.length)
 ;
 
-edit_contexts.forEach((_,i,a) => {
-    a[i] = new EditContext();
-});
+edit_contexts.reduce(reduce_instance, EditContext);

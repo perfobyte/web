@@ -166,7 +166,7 @@ export default (
 
                 cursor.token = E;
 
-                selection.l = (selection.i = group.index) + 1;
+                selection.l = ((selection.i = group.index) + 1);
                 
                 prev_w = A.length_selection_blocks;
                 

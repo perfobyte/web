@@ -29,6 +29,8 @@ import {
     Selection,
     SelectionGroup,
     array_expand,
+
+    foreach,
 } from '../../../f/i.js';
 
 export default (
@@ -228,34 +230,46 @@ export default (
 
                 selection.start = offset;
                 selection.end = elem_col;
-                
+
                 tmp = ((to - from) + 1);
-                
                 
                 w = sbs.length;
                 if (tmp >= w) {
-                    step = A.size_selection_blocks;
-                    w = array_expand(
-                        tmp,w, step, sbs,SelectionBlockDefault,SelectionBlock
+                    x = array_expand(
+                        tmp, w, A.size_selection_blocks, sbs, SelectionBlockDefault, SelectionBlock
                     );
+                    setup(sbs, w, x, SelectionBlock, foreach);
                 };
 
+                w = sgs.length;
+                if (tmp >= w) {
+                    x = array_expand(
+                        tmp, w, A.size_selection_groups, sgs, SelectionGroupDefault, SelectionGroup
+                    );
+                    setup(sgs, w, x, SelectionGroup, foreach);
+                }
+                
                 i = 0;
-                w = l = A.length_selection_blocks;
-                x = A.length_selection_groups;
-                sblock = sbs[i++];
+                w = A.length_selection_blocks;
+                sblock = sbs[i];
 
                 token = tokens[from];
-                sblock.block = token.block;
+                block = sblock.block = token.block;
                 style = sblock.element.style;
 
+                y = 0;
+                selection.i = y;
+                (group = sgs[y++])
+                .value_start(i++, block)
+                
                 sblock.bind_to_token(token);
 
                 style.top = `${token.top}px`;
                 style.left = `${token.left + char_i}px`;
                 style.height = `${token.height}px`;
-
+                
                 if ((to - (from++)) === 0) {
+                    group.value_finish(i);
                     sblock.set_boundaries(offset, elem_col);
                     style.width = `${char_l - char_i}px`;
                 }
@@ -265,23 +279,41 @@ export default (
                     
                     for(;from < to; from++){
                         token = tokens[from];
-                        sblock = sbs[i++];
-                        sblock.block = token.block;
-                        
+                        sblock = sbs[i];
+                        next_block = (sblock.block = token.block);
+
                         sblock.bind_to_token(token);
                         sblock.assign_token_boundaries(token);
                         
                         sblock.stylize_middle(sblock.element.style, token, wwl, wwt);
+
+                        if (block !== next_block) {
+                            group.value_finish(i);
+
+                            (group = sgs[y++])
+                            .value_start((i), (block = next_block));
+                        }
+                        i++;
                     };
 
-                    sblock = sbs[i++];
+                    sblock = sbs[i];
                     token = tokens[from];
 
                     sblock.bind_to_token(token);
                     sblock.set_boundaries(token.start, elem_col);
                     
-                    sblock.block = token.block;
+                    next_block = sblock.block = token.block;
                     sblock.stylize_last((sblock.element.style), token, char_l, wwl);
+
+                    if (block === next_block) {
+                        group.value_finish(++i);
+                    }
+                    else {
+                        group.value_finish(i);
+
+                        (group = sgs[y++])
+                        .value_set(i, (++i), (next_block));
+                    }
                 }
 
                 if (i > w) {
@@ -298,50 +330,9 @@ export default (
                     A.length_selection_blocks = i;
                 };
 
-                x = sgs.length;
-
-                (i < x)
-                ||
-                (x = array_expand(i,x,A.size_selection_groups,sgs,SelectionGroupDefault,SelectionGroup));
-                
-                position = top = sgs.length;
-                
-                y = 0;
-                selection.i = y;
-                group = sgs[y];
-                group.index = y++;
-                
-                l = i;
-                left = l-1;
-                x = 0;
-                i = 0;
-
-                sblock = sbs[i++];
-                block = sblock.block;
-
-                for (;i < l;i++) {
-                    sblock = sbs[i];
-                    next_block = sblock.block;
-                    
-                    if (next_block !== block){
-                        group.i = x;
-                        group.l = i;
-                        group.block = block;
-
-                        x = i;
-                        block = next_block;
-
-                        group = sgs[++y];
-                        group.index = y;
-                    }
-                };
-
-                group.i = x;
-                group.l = l;
-                group.block = block;
-
                 selection.l =
-                A.length_selection_groups = (y);
+                A.length_selection_groups =
+                    y;
                 
                 break cycle;
             }

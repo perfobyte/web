@@ -5,12 +5,16 @@ export default (
         return {
             id_lang: 3762095517704366129n,
             last_key:"",
-            
-            value_blured: same(""),
+
+            //
+            separator_render_message: same("\n"),
+            separator_render_block: same("\n"),
+            separator_render_row: same("\n"),
 
             separator: same("\n"),
-            separator_block: same("\n\nbetween blocks\n\n"),
-            separator_row: same("\n"),
+            separator_block: same("\n"),
+            
+            value_blured: same(""),
         };
     }
 )();

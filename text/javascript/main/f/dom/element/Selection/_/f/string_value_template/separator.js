@@ -20,23 +20,22 @@ export default (
             tokens = a.tokens,
             blocks = a.blocks,
             
-            n = null,
-            group = groups[i],
-            block = group.block,
-            next_block = n,
+            group = null,
+            sblock = null,
+            token = null,
+            message = null,
+
+            block = null,
+            next_block = null,
             
-            bf_value = (block.buffer.value),
+            bf_value = "",
             value = "",
-            
-            sblock = sblocks[group.i],
-            token = tokens[sblock.i],
-            message = token.message,
-            
-            message_i = (message.i),
 
-            lm1 = l-1,
-            message_l = (tokens[sblocks[groups[lm1].l - 1].l - 1].message.i) + 1,
+            lm1 = 0,
+            message_i = 0,
+            message_l = 0,
 
+            A = ss.state_alloc,
             AS = ss.state_app,
             separator = AS.separator,
             separator_block = AS.separator_block,
@@ -48,99 +47,77 @@ export default (
             mi = 0,
             ml = 0,
             first_mi = 0,
-            last_ml = 0
+            last_mi = 0
         ;
         
-        l1 = (message_l - message_i);
-
-        if (l1 > 1) {
-            
-            a: {
-                if (
-                    (l1 === 2)
-                    &&
-                    (bf_offset === bf_end)
-                ) {
-                    value = (
-                        (
-                            (bf_offset % (block.size))
-                            ? separator
-                            : separator_block
-                        )()
-                    );
-                    console.log("newline = ", (
-                        (bf_offset % (block.size))
-                        ? "block"
-                        : "message"
-                    ))
-                    break a;
-                };
-                
-                for(;i < l; i++) {
-                    group = groups[i];
-                    block = group.block;
-                    sblock = sblocks[group.i];
-
-                    mi = ((i === first_i) ? message_i: sblock.i);
-                    ml = ((i === lm1) ? message_l: sblock.l);
-
-                    first_mi = mi;
-                    l1 = (ml - 1);
-                    
-                    for (;mi<ml;mi++) {
-                        message = messages[mi];
-                        bf_value = message.block.buffer.value;
-                        
-                        // debugger;
-                        
-                        value += (
-                            bf_value.substring(
-                                (
-                                    (
-                                        (first_i === i)
-                                        &&
-                                        (first_mi === mi)
-                                    )
-                                    ? bf_offset
-                                    : tokens[message.tokens_i].start
-                                ),
-                                (
-                                    (
-                                        (lm1 === i)
-                                        &&
-                                        (l1 === mi)
-                                    )
-                                    ? bf_end
-                                    : tokens[message.tokens_l - 1].end
-                                )
-                            )
-                        );
-
-                        ((i===lm1))
-                        ? (
-                            (mi === l1)
-                            ||
-                            (value += separator())
-                        )
-                        : (
-                            value += (
-                                (mi === l1)
-                                ? separator_block
-                                : separator
-                            )()
-                        );
-                    }
-                }
-            }
-        }
-        else {
+        if (bf_offset === bf_end) {
             value = (
-                (bf_offset === bf_end)
+                (A.length_selection_blocks === 1)
                 ? selection_empty_value[ss.state_mode.selection_empty](a,ss)
-                : bf_value.substring(bf_offset, bf_end)
+                :
+                (
+                    (A.length_selection_groups > 1)
+                    ? separator_block
+                    : separator
+                )()
             );
         }
-        
+        else {
+            first_i = i;
+            l1 = (l - 1);
+            
+            for(;i < l; i++) {
+                group = groups[i];
+                
+                mi = (
+                    group.token_first(tokens, sblocks)
+                    .message.index
+                );
+                ml = (
+                    group.token_last(tokens, sblocks)
+                    .message.index + 1
+                );
+
+                first_mi = mi;
+                lm1 = (ml - 1);
+                
+                for (;mi<ml;mi++) {
+                    // debugger;
+
+                    message = messages[mi];
+                    
+                    value += (
+                        message
+                        .value_buffer()
+                        .substring(
+                            (
+                                (
+                                    (i === first_i)
+                                    &&
+                                    (mi === first_mi)
+                                )
+                                ? bf_offset
+                                : message.start
+                            ),
+                            (
+                                (
+                                    (i === l1)
+                                    &&
+                                    (mi === lm1)
+                                )
+                                ? bf_end
+                                : message.end
+                            )
+                        )
+                    );
+
+                    (mi === lm1) || (value += separator());
+                }
+
+                (i === l1) || (value += separator_block());
+            }
+        }
+
         return value;
     }
 );
