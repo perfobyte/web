@@ -7,8 +7,9 @@ export default (
             
             active_el = document.activeElement
         ;
+
         (active_el === document.body)
         ||
-        (active_el.blur())
+        (active_el.blur());
     }
 );

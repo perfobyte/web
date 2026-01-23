@@ -23,6 +23,8 @@ import {
 import {on_list_mousemove} from '../move/i.js';
 import {on_list_mouseup} from '../up/i.js';
 
+import {cursor_focus} from '../../../f/i.js';
+
 export default (
     (e) => {
         var
@@ -56,6 +58,7 @@ export default (
             group = null,
             block = null,
             selection = null,
+            cursor_el = null,
 
             w = 0,
 
@@ -149,57 +152,20 @@ export default (
 
                     continue;
                 };
-                
-                sblock = selection_blocks[0];
-                selection = selections[0];
-                group = selection_groups[0];
-                
-
-                sblock.start =
-                sblock.end =
-                selection.start =
-                selection.end =
-                selection.offset =
-                cursor.token_start =
-                    elem_col
-                ;
 
                 cursor.token = E;
-
-                selection.l = ((selection.i = group.index) + 1);
+                cursor.token_start = elem_col;
                 
-                prev_w = A.length_selection_blocks;
-                
-                if (prev_w > 1) {
-                    range.setStartBefore(selection_blocks[1].element);
-                    range.setEndAfter(selection_blocks[prev_w - 1].element);
-                    range.deleteContents();
-                };
-                
-                A.length_selection_blocks =
-                A.length_selection_groups =
-                A.length_selections =
-                    1;
-
-                sblock.element.style.width = "0px";
-                prev_w || (list_selections.appendChild(sblock.element));
-
-                sblock.block =
-                group.block =
-                    block;
-
-                sblock.l = ((sblock.i = E.index) + 1);
-                group.l = ((group.i = sblock.index) + 1);
-                
-                selection.set_uni_token(E);
-                selection.left_start = w;
-                selection.direction = 0;
-
-                cursor.selection = selection;
-                style = cursor.element.style;
-                style.top = `${top}px`;
-                style.left = `${left + w}px`;
-                style.height = `${E.height}px`;
+                cursor_focus(
+                    A,
+                    cursor,
+                    w,
+                    selections,
+                    selection_groups,
+                    selection_blocks,
+                    list_selections,
+                    range
+                );
                 
                 break cycle;
             }
@@ -210,7 +176,7 @@ export default (
         
         (input_el === document.body)
         ||
-        (input_el.focus(prevent_scroll));
+        (input_el.focus());
 
         e.preventDefault();
     }

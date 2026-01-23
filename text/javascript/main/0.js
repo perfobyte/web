@@ -123,6 +123,7 @@ import {
     on_window_blur,
 
     on_regular_input_beforeinput,
+    on_document_visibilitychange,
 } from './on/i.js';
 
 (
@@ -156,6 +157,8 @@ import {
         
         // workers[0] = new Worker("/f/text/javascript/worker/fs/1.js");
         
+        document.addEventListener("visibilitychange", on_document_visibilitychange);
+
         window.addEventListener("error", on_error);
         window.addEventListener("contextmenu", on_contextmenu);
         list.addEventListener("mousedown", on_list_mousedown);

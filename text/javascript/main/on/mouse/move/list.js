@@ -64,6 +64,7 @@ export default (
             next_block = null,
 
             selection = null,
+            sblock_el = null,
 
             w = 0,
 
@@ -252,9 +253,12 @@ export default (
                 i = 0;
                 w = A.length_selection_blocks;
                 sblock = sbs[i];
+                sblock_el = sblock.element;
+                sblock_el.classList.replace("inactive", "simple");
 
                 token = tokens[from];
                 block = sblock.block = token.block;
+                
                 style = sblock.element.style;
 
                 y = 0;
@@ -263,6 +267,8 @@ export default (
                 .value_start(i++, block)
                 
                 sblock.bind_to_token(token);
+                
+                
 
                 style.top = `${token.top}px`;
                 style.left = `${token.left + char_i}px`;
@@ -280,12 +286,16 @@ export default (
                     for(;from < to; from++){
                         token = tokens[from];
                         sblock = sbs[i];
+
+                        sblock_el = sblock.element;
+                        sblock_el.classList.replace("inactive", "simple");
+                        
                         next_block = (sblock.block = token.block);
 
                         sblock.bind_to_token(token);
                         sblock.assign_token_boundaries(token);
                         
-                        sblock.stylize_middle(sblock.element.style, token, wwl, wwt);
+                        sblock.stylize_middle(sblock_el.style, token, wwl, wwt);
 
                         if (block !== next_block) {
                             group.value_finish(i);
@@ -301,9 +311,11 @@ export default (
 
                     sblock.bind_to_token(token);
                     sblock.set_boundaries(token.start, elem_col);
+
+                    sblock_el = sblock.element;
                     
                     next_block = sblock.block = token.block;
-                    sblock.stylize_last((sblock.element.style), token, char_l, wwl);
+                    sblock.stylize_last((sblock_el.style), token, char_l, wwl);
 
                     if (block === next_block) {
                         group.value_finish(++i);

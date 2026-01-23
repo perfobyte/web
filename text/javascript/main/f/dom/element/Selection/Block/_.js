@@ -16,6 +16,8 @@ function SelectionBlock(
     this.element = element;
 
     this.block = block;
+
+    //
     this.start = start;
     this.end = end;
 

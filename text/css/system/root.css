@@ -13,6 +13,7 @@
     --color-background-scrollbar-thumb-active:rgba(110, 110, 110, 0.7);
 
     --color-background-selection:rgba(0, 120, 215, 0.3);
+    --color-background-selection-inactive:#3a3d41;
 
     --color-background-scrollbar-x-thumb: var(--color-background-scrollbar-thumb);
     --color-background-scrollbar-x-thumb-hover: var(--color-background-scrollbar-thumb-hover);

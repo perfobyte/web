@@ -1,5 +1,12 @@
 
 .selection {
     position:absolute;
+}
+
+.selection.active {
     background-color:var(--color-background-selection);
+}
+
+.selection.inactive {
+    background-color:var(--color-background-selection-inactive);
 }

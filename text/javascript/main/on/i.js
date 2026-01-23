@@ -10,5 +10,6 @@ export * from "./input/i.js";
 export * from './key/i.js';
 export * from './mouse/i.js';
 export * from './select/i.js';
+export * from './visibility/i.js';
 export * from './resize/i.js';
 export * from "./wheel/i.js";

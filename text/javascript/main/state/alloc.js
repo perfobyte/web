@@ -95,6 +95,13 @@ export default (
 
             buffer_blocks,
             buffer_blocks_view,
+
+            length_selection_set(v) {
+                this.length_selections =
+                this.length_selection_blocks = 
+                this.length_selection_groups =
+                    v;
+            }
         }
     }
 )(

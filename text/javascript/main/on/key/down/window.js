@@ -19,13 +19,14 @@ import {
     tokens,
     inputs,
     arrays,
+    range,
 } from '../../../conf/i.js';
 
 import states from '../../../state/*.js';
 
 import {
     state_style as S,
-    state_alloc,
+    state_alloc as A,
     state_app,
     state_mode,
 } from '../../../state/i.js';
@@ -44,6 +45,8 @@ import {
 
     init_cursors,
     selection_empty_value,
+    cursor_blur,
+    cursor_focus,
 } from '../../../f/i.js';
 import {
     html_style,
@@ -153,11 +156,11 @@ export default (
 
                     rows,
                     0,
-                    state_alloc.length_rows,
+                    A.length_rows,
 
                     tokens,
                     0,
-                    state_alloc.length_tokens,
+                    A.length_tokens,
                     
                     S,
                     
@@ -376,16 +379,6 @@ export default (
 
                 scrollbar_thumb_y_transform,
             );
-        }
-        else if (active === body) {
-            if (key === "Tab") {
-                inputs[0].element.focus();
-            }
-        }
-        else {
-            if (key === "Escape") {
-                inputs[0].element.blur();
-            }
         }
         
         state_app.last_key = key;
