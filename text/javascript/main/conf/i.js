@@ -6,8 +6,8 @@ export * from './linebreak/i.js'
 export * from './param/i.js';
 export * from './polyfill/i.js';
 
-export * from './arrays.js';
-export * as arrays from './arrays.js';
+export * from './arrays/i.js';
+export * as arrays from './arrays/i.js';
 
 export var
     

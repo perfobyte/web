@@ -1,5 +1,4 @@
 
-export * from './app/i.js';
 export * from "./support/i.js";
 
 export {default as state_alloc} from './alloc.js';

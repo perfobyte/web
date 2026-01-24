@@ -1,4 +1,4 @@
-import {ROW_EL as template} from '../../../../../../elems/i.js';
+import {ROW_EL as template} from '../../../../elems/i.js';
 
 import {setup, setup_iteration} from './setup/i.js';
 import Default from './default.js';

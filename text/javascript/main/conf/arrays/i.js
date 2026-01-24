@@ -1,5 +1,8 @@
-import {state_alloc as A} from '../state/i.js';
-import {EditContext} from "./polyfill/i.js";
+export {default as hotkeys} from './hotkeys/i.js';
+
+
+import {state_alloc as A} from '../../state/i.js';
+import {EditContext} from "../polyfill/i.js";
 
 import {
     array,
@@ -18,7 +21,7 @@ import {
     Cursor,
     Input,
     Textarea,
-} from '../f/i.js';
+} from '../../f/i.js';
 
 var
     CursorProto = Cursor.prototype

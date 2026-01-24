@@ -1,4 +1,4 @@
-import {TOKEN_EL} from '../../../../../../elems/i.js';
+import {TOKEN_EL} from '../../../../elems/i.js';
 
 import {setup, setup_iteration} from './setup/i.js';
 import string_value from './string_value.js';

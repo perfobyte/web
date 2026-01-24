@@ -1,7 +1,7 @@
 import {state_alloc} from '../state/i.js'
 import template_clone from '../f/general/template_clone.js';
 
-import {Token} from '../f/dom/element/i.js';
+import {Token} from '../constructor/i.js';
 
 import {array_from_object} from '../conf/i.js';
 

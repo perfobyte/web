@@ -1,4 +1,4 @@
-import {SELECTION_EL} from '../../../../../../elems/i.js';
+import {SELECTION_EL} from '../../../../elems/i.js';
 
 import Default from './default.js';
 import {setup, setup_iteration} from './setup/i.js';
